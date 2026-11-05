@@ -5,7 +5,7 @@ NiaziTools['salary-calculator'] = function (root, U) {
     fields: [
       { id: 'amount', label: 'Salary amount', type: 'number', placeholder: 'e.g. 150000', value: '' },
       { id: 'period', label: 'This amount is…', type: 'select', options: Object.keys(PER).map(function (k) { return { value: k, label: PER[k] }; }), value: 'monthly' },
-      { id: 'currency', label: 'Currency', type: 'select', options: CUR, value: 'USD' },
+      { id: 'currency', label: 'Currency', type: 'select', options: CUR, value: 'PKR' },
       { id: 'hours', label: 'Hours per week', type: 'number', value: '40', hint: 'Used for hourly and daily conversions.' },
       { id: 'days', label: 'Working days per week', type: 'number', value: '5' },
       { id: 'weeks', label: 'Paid weeks per year', type: 'number', value: '52', hint: 'Use 52 for a standard year.' },

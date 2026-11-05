@@ -6,7 +6,7 @@ NiaziTools['loan-emi-calculator'] = function (root, U) {
       { id: 'r', label: 'Annual interest rate (%)', type: 'number', placeholder: 'e.g. 12.5' },
       { id: 't', label: 'Loan term', type: 'number', value: '5' },
       { id: 'tu', label: 'Term unit', type: 'select', options: ['years', 'months'], value: 'years' },
-      { id: 'cur', label: 'Currency', type: 'select', options: ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'AED', 'SAR', 'CAD', 'AUD'], value: 'USD' },
+      { id: 'cur', label: 'Currency', type: 'select', options: ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'AED', 'SAR', 'CAD', 'AUD'], value: 'PKR' },
       { id: 'sd', label: 'First payment date (for schedule)', type: 'date', value: '' }
     ],
     actions: [{ id: 'csv', label: 'Download schedule (CSV)', kind: 'ghost', onClick: function (v, c) { if (csv) U.download('loan-schedule.csv', csv, 'text/csv;charset=utf-8'); else c.error('Enter loan details first.'); } }],
