@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ten Excel Formulas Every Sales Operations Analyst Should Know</title>
+<meta name="description" content="Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.">
+<link rel="canonical" href="https://gmdkhantoolshub.github.io/blog/excel-formulas-sales-ops/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b1b34">
+<meta name="author" content="Ghulam Mohiuddin Niazi">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ghulam Mohiuddin Niazi">
+<meta property="og:title" content="Ten Excel Formulas Every Sales Operations Analyst Should Know">
+<meta property="og:description" content="Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.">
+<meta property="og:url" content="https://gmdkhantoolshub.github.io/blog/excel-formulas-sales-ops/">
+<meta property="og:image" content="https://gmdkhantoolshub.github.io/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ten Excel Formulas Every Sales Operations Analyst Should Know">
+<meta name="twitter:description" content="Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.">
+<meta name="twitter:image" content="https://gmdkhantoolshub.github.io/assets/img/og-image.png">
+
+
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<script>try{var t=JSON.parse(localStorage.getItem('niazi.theme'));if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=f6df7d91">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ten Excel Formulas Every Sales Operations Analyst Should Know","description":"Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.","datePublished":"2026-11-05","dateModified":"2026-11-05","mainEntityOfPage":"https://gmdkhantoolshub.github.io/blog/excel-formulas-sales-ops/","image":"https://gmdkhantoolshub.github.io/assets/img/og-image.png","inLanguage":"en","articleSection":"Data Analytics","author":{"@type":"Person","name":"Ghulam Mohiuddin Niazi","url":"https://gmdkhantoolshub.github.io/about/"},"publisher":{"@type":"Person","name":"Ghulam Mohiuddin Niazi"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://gmdkhantoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://gmdkhantoolshub.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Ten Excel Formulas Every Sales Operations Analyst Should Know"}]}</script>
+</head>
+<body data-root="../../" >
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="container nav">
+<a class="brand" href="../../" aria-label="Ghulam Mohiuddin Niazi – home"><span class="brand-mark" aria-hidden="true">GN</span><span class="name">GM Niazi</span></a>
+<nav aria-label="Main"><ul class="nav-links" id="nav-links"><li><a href="../../">Home</a></li><li><a href="../../about/">About</a></li><li><a href="../../resume/">Resume</a></li><li><a href="../../portfolio/">Portfolio</a></li><li><a href="../../tools/">Tools</a></li><li><a href="../../blog/" aria-current="page">Blog</a></li><li><a href="../../contact/">Contact</a></li></ul></nav>
+<div class="nav-actions"><button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle colour theme"><svg class="ic i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><svg class="ic i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+<button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-controls="nav-links" aria-expanded="false"><svg class="ic i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg><svg class="ic i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+</div></header>
+<main id="main">
+<section class="page-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../blog/">Blog</a></li><li aria-current="page">Ten Excel Formulas Every Sales Operations Analyst Should Know</li></ol></nav><span class="eyebrow">Data Analytics</span><h1>Ten Excel Formulas Every Sales Operations Analyst Should Know</h1><p class="lead">Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.</p><div class="post-meta"><span>By Ghulam Mohiuddin Niazi</span><span>Published 5 November 2026</span><span>3 min read</span></div></div></section>
+<section class="section" style="padding-top:32px"><div class="container post-layout"><article class="prose">
+
+<p>Spreadsheets remain the everyday tool for sales reporting. These ten formulas cover most of what analysts do with sales, targets and distributor data.</p>
+<h2>1. SUMIFS</h2>
+<p><code>=SUMIFS(D:D,A:A,"North",B:B,"Q1")</code> adds sales for a region and a quarter. It is the backbone of most summary tables.</p>
+<h2>2. COUNTIFS</h2>
+<p><code>=COUNTIFS(A:A,"North",C:C,"&gt;1000")</code> counts, for example, outlets above a sales threshold.</p>
+<aside class="ad-slot " data-ad="inContent" data-ad-state="off" aria-label="Advertisement"></aside><h2>3. XLOOKUP</h2>
+<p><code>=XLOOKUP(A2,F:F,H:H,"Not found")</code> finds a value in one column and returns the matching item from another. It replaces most VLOOKUP uses in newer Excel versions.</p>
+<h2>4. INDEX + MATCH</h2>
+<p><code>=INDEX(H:H,MATCH(A2,F:F,0))</code> works in every version and handles lookups to the left.</p>
+<h2>5. IFERROR</h2>
+<p><code>=IFERROR(C2/B2,0)</code> avoids #DIV/0! in achievement and growth columns.</p>
+<h2>6. SUMPRODUCT</h2>
+<p><code>=SUMPRODUCT(B2:B6,C2:C6)/SUM(C2:C6)</code> gives a weighted average, useful for scorecards.</p>
+<h2>7. Percentage change</h2>
+<p><code>=(C2-B2)/B2</code> formatted as a percentage shows growth month on month or year on year.</p>
+<h2>8. RANK</h2>
+<p><code>=RANK(B2,$B$2:$B$50,0)</code> ranks territories or salespeople by performance.</p>
+<h2>9. Nested IF or IFS</h2>
+<p><code>=IF(B2&gt;=100,"Exceeds",IF(B2&gt;=90,"Meets","Below"))</code> turns a score into a rating band.</p>
+<h2>10. DATEDIF</h2>
+<p><code>=DATEDIF(A2,B2,"M")</code> returns complete months between two dates, handy for tenure or ageing reports.</p>
+<h2>Good habits</h2>
+<ul>
+<li>Keep raw data in one sheet and reports in another.</li>
+<li>Use Excel Tables so ranges grow automatically.</li>
+<li>Lock ranges with $ when copying formulas.</li>
+<li>Check totals against a source system before sharing.</li>
+</ul>
+<h2>Putting them together: a simple monthly report</h2>
+<p>Imagine a data sheet with Region in column A, Month in column B, Product in column C and Sales in column D, and a report sheet that lists regions in column A with the target in column B. A basic performance table needs only three formulas.</p>
+<table><tr><th>Report column</th><th>Formula in row 2</th></tr>
+<tr><td>C: Actual</td><td><code>=SUMIFS(Data!D:D,Data!A:A,A2,Data!B:B,$H$1)</code></td></tr>
+<tr><td>D: Achievement</td><td><code>=IFERROR(C2/B2,0)</code></td></tr>
+<tr><td>E: Rank</td><td><code>=RANK(D2,$D$2:$D$10,0)</code></td></tr>
+</table>
+<p>Cell H1 holds the month. Change it, and the entire table recalculates. This one design choice, keeping the reporting period in a single input cell, avoids editing formulas every month and removes a common source of error.</p>
+<h2>Pitfalls that cause wrong numbers</h2>
+<ul>
+<li><strong>Numbers stored as text.</strong> Values exported from other systems often look like numbers but are ignored by SUM and SUMIFS. Check by comparing COUNT with COUNTA on the column, then convert with VALUE or Text to Columns.</li>
+<li><strong>Extra spaces.</strong> "North " and "North" do not match. Use <code>=TRIM(A2)</code> to clean text before using it as a lookup key.</li>
+<li><strong>Approximate matches.</strong> VLOOKUP defaults to an approximate match when the last argument is omitted, which can return a wrong value without any warning. Always use FALSE or 0 for exact matches, as in <code>=VLOOKUP(A2,F:H,3,FALSE)</code>.</li>
+<li><strong>Different argument order.</strong> SUMIF puts the sum range last, while SUMIFS puts it first. This catches many people when they switch between the two.</li>
+<li><strong>Averaging percentages.</strong> The average of regional achievement percentages is not the overall achievement. Use total actual ÷ total target, or a weighted average.</li>
+</ul>
+<h2>Use IFERROR with care</h2>
+<p>IFERROR is convenient for division by zero, but it hides every kind of error, including broken references and failed lookups. If a missing product code silently returns 0, your total will be understated with no sign of a problem. For lookups, prefer a visible message such as "Not found" so that gaps can be spotted and fixed.</p>
+<h2>Version and compatibility notes</h2>
+<ul>
+<li><strong>XLOOKUP</strong> needs Excel 2021 or Microsoft 365. If colleagues use older versions, use INDEX and MATCH.</li>
+<li><strong>IFS</strong> is available from Excel 2019 onwards. Nested IF works everywhere.</li>
+<li><strong>RANK</strong> still works, and newer versions also offer RANK.EQ and RANK.AVG, which differ in how they treat ties.</li>
+<li><strong>DATEDIF</strong> does not appear in Excel's function suggestions, and Microsoft warns that its "MD" unit can give inaccurate results, so stick to "Y" and "M" for reports.</li>
+</ul>
+<h2>When to move beyond formulas</h2>
+<p>Formulas are ideal for fixed report layouts. For exploring data, a PivotTable is often faster: you can summarise thousands of rows by region and product in moments, then refine the view by dragging fields. When you repeatedly clean the same export every month, Power Query can record those steps and repeat them with a single refresh. Both are built into modern versions of Excel for Windows and worth learning after these ten formulas.</p>
+<div class="callout"><p>Not sure how to write one? The <a href="../../tools/excel-formula-generator/">Excel Formula Generator</a> builds these formulas from your cell ranges.</p></div>
+
+<p class="small muted" style="margin-top:32px">This article is general information, not professional advice. See the <a href="../../disclaimer/">disclaimer</a>.</p>
+<div class="share-row no-print" data-share hidden><span class="share-label">Share this article</span><a class="share-btn" data-net="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>WhatsApp</span></a><a class="share-btn" data-net="linkedin" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a><a class="share-btn" data-net="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook</span></a><button type="button" class="share-btn" data-net="copy" aria-label="Copy link"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span>Copy link</span></button><button type="button" class="share-btn" data-net="native" aria-label="Share" hidden><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg><span>Share</span></button></div>
+</article><aside class="side-col no-print" aria-label="Tools"><div class="side-card"><h2>Tools for this article</h2><ul class="side-links"><li><a href="../../tools/excel-formula-generator/"><div class="icon-chip cat-productivity" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 13h2"/><path d="M14 13h2"/><path d="M8 17h2"/><path d="M14 17h2"/></svg></div><span>Excel Formula Generator</span></a></li><li><a href="../../tools/kpi-performance-calculator/"><div class="icon-chip cat-calculators" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div><span>KPI Performance Calculator</span></a></li></ul></div><div class="side-card"><h2>More free tools</h2><ul class="side-links"><li><a href="../../tools/resume-builder/"><div class="icon-chip cat-career" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M15 18a3 3 0 1 0-6 0"/><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><circle cx="12" cy="13" r="2"/></svg></div><span>Professional Resume Builder</span></a></li><li><a href="../../tools/salary-calculator/"><div class="icon-chip cat-calculators" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></div><span>Salary Calculator</span></a></li><li><a href="../../tools/qr-code-generator/"><div class="icon-chip cat-utilities" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg></div><span>QR Code Generator</span></a></li><li><a href="../../tools/ats-resume-checker/"><div class="icon-chip cat-career" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg></div><span>ATS Resume Checker</span></a></li></ul></div><aside class="ad-slot ad-sidebar" data-ad="sidebar" data-ad-state="off" aria-label="Advertisement"></aside></aside></div>
+<div class="container" style="margin-top:48px"><h2>Keep reading</h2><div class="grid grid-3"><article class="card hover post-card"><span class="tag">Sales Operations</span><h3><a class="stretch" href="../../blog/sales-operations-explained/">What Does a Sales Operations Team Actually Do?</a></h3><p class="muted">A plain-English guide to sales operations: planning, data, reporting, process and coordination, and why strong sales ops makes sales teams faster.</p><p class="small muted" style="margin:0;flex:none">4 min read</p></article><article class="card hover post-card"><span class="tag">FMCG Management</span><h3><a class="stretch" href="../../blog/secondary-vs-primary-sales-fmcg/">Primary vs Secondary Sales in FMCG: Why the Difference Matters</a></h3><p class="muted">Understand primary, secondary and tertiary sales in FMCG distribution, why secondary sales data matters, and how to keep it accurate.</p><p class="small muted" style="margin:0;flex:none">4 min read</p></article><article class="card hover post-card"><span class="tag">Business Intelligence</span><h3><a class="stretch" href="../../blog/weighted-kpi-scorecard/">How to Build a Weighted KPI Scorecard That Teams Trust</a></h3><p class="muted">Step-by-step guidance on choosing KPIs, setting weights, handling lower-is-better metrics and avoiding common scorecard mistakes.</p><p class="small muted" style="margin:0;flex:none">4 min read</p></article></div><aside class="ad-slot " data-ad="between" data-ad-state="off" aria-label="Advertisement"></aside></div></section>
+</main>
+<footer class="site-footer"><div class="container">
+<div class="footer-grid">
+<div><a class="brand" href="../../"><span class="brand-mark" aria-hidden="true">GN</span><span class="name">GM Niazi</span></a>
+<p class="muted small" style="margin-top:12px;max-width:36ch">Free calculators, generators and career tools that run privately in your browser. Built by Ghulam Mohiuddin Niazi.</p>
+<div class="social"><a class="icon-btn" href="https://www.linkedin.com/in/ghulammohiuddin-niazi-gmd-0166772fa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a class="icon-btn" href="mailto:asmarkniazi@gmail.com" aria-label="Send an email"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a></div></div>
+<div><p class="footer-h">Featured tools</p><ul><li><a href="../../tools/resume-builder/">Professional Resume Builder</a></li><li><a href="../../tools/salary-calculator/">Salary Calculator</a></li><li><a href="../../tools/qr-code-generator/">QR Code Generator</a></li><li><a href="../../tools/ats-resume-checker/">ATS Resume Checker</a></li><li><a href="../../tools/loan-emi-calculator/">Loan &amp; EMI Calculator</a></li><li><a href="../../tools/image-compressor/">Image Compressor</a></li><li><a href="../../tools/">All 20 tools</a></li></ul></div>
+<div><p class="footer-h">Explore</p><ul><li><a href="../../blog/">Blog &amp; Insights</a></li><li><a href="../../about/">About</a></li><li><a href="../../resume/">Resume</a></li><li><a href="../../portfolio/">Portfolio</a></li><li><a href="../../contact/">Contact</a></li></ul></div>
+<div><p class="footer-h">Legal</p><ul><li><a href="../../privacy-policy/">Privacy Policy</a></li><li><a href="../../terms-and-conditions/">Terms &amp; Conditions</a></li><li><a href="../../disclaimer/">Disclaimer</a></li><li><a href="../../cookie-policy/">Cookie Policy</a></li><li><a href="#" data-open-consent>Cookie settings</a></li></ul></div>
+</div>
+<div class="footer-bottom"><span>© <span data-year>2026</span> Ghulam Mohiuddin Niazi. All rights reserved.</span><span>Your data stays in your browser.</span></div>
+</div></footer>
+<script src="../../assets/js/config.js?v=28ea8ee0"></script>
+<script src="../../assets/js/tools-data.js?v=b823cd41"></script>
+
+<script src="../../assets/js/main.js?v=7005fa39" defer></script>
+</body>
+</html>
