@@ -713,3 +713,81 @@ ol.steps li::before { background: var(--grad); color: #fff; border-radius: 10px;
 .faq-wrap .section-head h2::after { left: 50%; transform: translateX(-50%); }
 .cta-band .eyebrow { background: rgba(255, 255, 255, .1); color: #c7d7ff; }
 .cta-band .btn-row { gap: 12px; }
+
+/* ---------- Audit 2026-11: ad space reservation (reduce layout shift) ---------- */
+.ad-slot { contain: layout; }
+@media (max-width: 640px) { .ad-slot ins, .ad-slot .ad-ph { min-height: 280px; } .ad-slot.ad-sidebar ins, .ad-slot.ad-sidebar .ad-ph { min-height: 280px; } }
+
+/* ---------- Welcome screen (home page, once per session) ---------- */
+html.wl, html.wl-open { overflow: hidden; }
+html.wl body::before { content: ""; position: fixed; inset: 0; z-index: 9998; background: #0b1b34; }
+.welcome { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; padding: 24px 16px; color: #fff; text-align: center; overflow: hidden;
+  background: radial-gradient(700px 420px at 85% 0%, rgba(124, 58, 237, .5), transparent 60%), radial-gradient(640px 400px at 0% 100%, rgba(37, 99, 235, .5), transparent 60%), linear-gradient(160deg, #0a1730, #0b1b34 55%, #141b47);
+  transition: opacity .55s ease, transform .55s ease, filter .55s ease; }
+.welcome::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 70%); pointer-events: none; }
+.welcome.out { opacity: 0; transform: scale(1.05); filter: blur(6px); pointer-events: none; }
+.wl-inner { position: relative; max-width: 640px; }
+.wl-bots { display: flex; justify-content: center; align-items: flex-end; gap: clamp(18px, 6vw, 56px); margin-bottom: 18px; }
+.wl-bot-wrap { position: relative; width: clamp(96px, 24vw, 150px); }
+.wl-bot { width: 100%; height: auto; overflow: visible; }
+.wl-b .wl-bot { transform: scaleX(-1); }
+.wl-shadow { fill: rgba(0, 0, 0, .35); }
+.wl-bulb { fill: #fbbf24; }
+.wl-eye { fill: #67e8f9; }
+.wl-arm { transform-box: view-box; transform-origin: 98px 98px; }
+.wl-bubble { position: absolute; left: 50%; top: -14px; transform: translate(-50%, -100%) scale(0); transform-origin: 50% 120%; white-space: nowrap; background: #fff; color: #1e1b4b; font-family: var(--display); font-weight: 800; font-size: clamp(.8rem, 2.6vw, .95rem); padding: 6px 12px; border-radius: 12px; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .5); }
+.wl-bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; background: #fff; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+.wl-kicker { margin: 0 0 4px; color: #c7d7ff; font-weight: 600; letter-spacing: .02em; }
+.wl-title { margin: 0 0 8px; color: #fff; font-size: clamp(1.9rem, 6.5vw, 3.2rem); line-height: 1.1; letter-spacing: -0.035em; }
+.wl-title span { background: linear-gradient(135deg, #93c5fd, #c4b5fd 55%, #f0abfc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.wl-sub { margin: 0 auto 22px; color: #bccae0; max-width: 40ch; }
+.wl-bar { width: min(260px, 70vw); height: 5px; margin: 0 auto 18px; border-radius: 99px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.wl-bar i { display: block; height: 100%; width: 100%; border-radius: inherit; background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899); transform-origin: 0 50%; transform: scaleX(0); animation: wl-fill var(--wl-dur, 3400ms) linear forwards; }
+.wl-skip { font: inherit; font-size: .88rem; font-weight: 600; color: #dbe4f3; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .22); border-radius: 999px; padding: 8px 18px; cursor: pointer; transition: background .15s, border-color .15s; }
+.wl-skip:hover { background: rgba(255, 255, 255, .16); border-color: rgba(255, 255, 255, .45); }
+.wl-skip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.wl-sparks i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: 0; box-shadow: 0 0 12px 2px rgba(167, 139, 250, .8); }
+.wl-sparks i:nth-child(1) { left: 12%; top: 22%; } .wl-sparks i:nth-child(2) { left: 82%; top: 18%; } .wl-sparks i:nth-child(3) { left: 22%; top: 72%; } .wl-sparks i:nth-child(4) { left: 74%; top: 76%; }
+.wl-sparks i:nth-child(5) { left: 50%; top: 10%; } .wl-sparks i:nth-child(6) { left: 6%; top: 48%; } .wl-sparks i:nth-child(7) { left: 92%; top: 50%; } .wl-sparks i:nth-child(8) { left: 38%; top: 88%; }
+@keyframes wl-fill { to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .wl-a { animation: wl-in-l .9s cubic-bezier(.2, .9, .25, 1.2) .1s both; }
+  .wl-b { animation: wl-in-r .9s cubic-bezier(.2, .9, .25, 1.2) .25s both; }
+  .wl-bot-wrap .wl-bot { animation: wl-float 2.4s ease-in-out 1s infinite; }
+  .wl-b .wl-bot { animation-name: wl-float-m; animation-delay: 1.3s; }
+  .wl-arm { animation: wl-wave .7s ease-in-out .9s 4 alternate; }
+  .wl-eye { transform-box: fill-box; transform-origin: center; animation: wl-blink 2.6s ease-in-out .6s infinite; }
+  .wl-bulb { animation: wl-glow 1.2s ease-in-out infinite alternate; }
+  .wl-led { animation: wl-glow 0.8s ease-in-out infinite alternate; } .wl-led2 { animation-delay: .4s; }
+  .wl-a .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) .95s both; }
+  .wl-b .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.25s both; }
+  .wl-kicker { animation: wl-rise .6s ease 1.0s both; }
+  .wl-title { animation: wl-rise .7s cubic-bezier(.2, .7, .2, 1) 1.15s both; }
+  .wl-sub { animation: wl-rise .7s ease 1.35s both; }
+  .wl-bar, .wl-skip { animation: wl-rise .6s ease 1.45s both; }
+  .wl-sparks i { animation: wl-twinkle 2.2s ease-in-out infinite; }
+  .wl-sparks i:nth-child(2n) { animation-delay: .7s; } .wl-sparks i:nth-child(3n) { animation-delay: 1.3s; }
+  .wl-shadow { transform-box: fill-box; transform-origin: center; animation: wl-shadow 2.4s ease-in-out 1s infinite; }
+}
+.welcome.still .wl-bubble { transform: translate(-50%, -100%) scale(1); }
+@keyframes wl-in-l { from { opacity: 0; transform: translateX(-60px) rotate(-8deg); } to { opacity: 1; transform: none; } }
+@keyframes wl-in-r { from { opacity: 0; transform: translateX(60px) rotate(8deg); } to { opacity: 1; transform: none; } }
+@keyframes wl-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes wl-float-m { 0%, 100% { transform: scaleX(-1) translateY(0); } 50% { transform: scaleX(-1) translateY(-10px); } }
+@keyframes wl-wave { from { transform: rotate(-12deg); } to { transform: rotate(22deg); } }
+@keyframes wl-blink { 0%, 44%, 52%, 100% { transform: scaleY(1); } 48% { transform: scaleY(.1); } }
+@keyframes wl-glow { from { opacity: .55; } to { opacity: 1; filter: drop-shadow(0 0 6px currentColor); } }
+@keyframes wl-pop { from { transform: translate(-50%, -100%) scale(0); } to { transform: translate(-50%, -100%) scale(1); } }
+@keyframes wl-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes wl-twinkle { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: .9; transform: scale(1); } }
+@keyframes wl-shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.8); opacity: .6; } }
+@media print { .welcome { display: none !important; } }
+
+/* ---------- Audit 2026-11: tool space reservation and link visibility ---------- */
+#tool-root:not([data-ready]) { min-height: 520px; }
+@media (max-width: 640px) { #tool-root:not([data-ready]) { min-height: 640px; } }
+/* Links inside running text must not rely on colour alone (WCAG 1.4.1). */
+main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a, details.faq p a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.site-footer p a, .side-card p a { text-decoration: underline; text-underline-offset: 2px; }
+#fx-body:empty { min-height: 600px; }
+@media (max-width: 640px) { #fx-body:empty { min-height: 780px; } }

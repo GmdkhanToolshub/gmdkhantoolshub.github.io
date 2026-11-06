@@ -8,6 +8,8 @@ window.SITE_CONFIG = {
     "between": ""
   },
   "gaMeasurementId": "",
+  /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
+     While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",
   "currencyApiUrl": "https://open.er-api.com/v6/latest/USD",
   "contactEmail": "asmarkniazi@gmail.com"

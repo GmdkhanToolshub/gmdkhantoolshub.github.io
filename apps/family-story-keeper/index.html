@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https:; frame-src https:; media-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)</title>
 <script>try{var t=JSON.parse(localStorage.getItem('niazi.theme'));if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
@@ -108,7 +109,7 @@ footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--soft);font-
 <details><summary>How do I make the family book?</summary><p>Open a storyteller and choose Make family book. Your browser's print window opens, where you can print it or save it as a PDF.</p></details>
 </section>
 <div id="book" aria-hidden="true"></div>
-<footer>Private by design: everything stays in this browser on this device. Nothing is uploaded. Made by GM Niazi · <a href="https://gmdkhantoolshub.github.io/" target="_blank" rel="noopener">gmdkhantoolshub.github.io</a></footer>
+<footer>Private by design: everything stays in this browser on this device. Nothing is uploaded. Made by GM Niazi · <a href="https://gmdkhantoolshub.github.io/" target="_blank" rel="noopener noreferrer">gmdkhantoolshub.github.io</a></footer>
 <div class="toast" id="toast" role="status"></div>
 <script>document.getElementById("themeBtn").addEventListener("click",function(){var r=document.documentElement,n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("niazi.theme",JSON.stringify(n))}catch(e){}});</script>
 <script>
@@ -276,7 +277,7 @@ function proCard() {
   return h("div", { class: "card pro", style: "margin-top:24px" }, h("div", { style: "font-weight:800;font-size:1.15rem", text: "Unlock Family Story Keeper Pro" }),
     h("ul", {}, h("li", { text: `All ${CHAPTERS.length} chapters and ${CHAPTERS.reduce((s, c) => s + c.qs.length, 0)} guided questions, in English and Urdu` }), h("li", { text: "Unlimited storytellers for the whole family" }),
       h("li", { text: "Add your own questions and photos" }), h("li", { text: "Backup and restore, to move stories to another device or keep them safe" }), h("li", { text: "Clean family book without the Lite footer" }), h("li", { text: "One-time purchase, no subscription; works offline" })),
-    PRO_URL ? h("a", { class: "btn pri", href: PRO_URL, target: "_blank", rel: "noopener" }, "Get Pro") : h("span", { class: "muted", text: "Pro is coming soon." }));
+    PRO_URL ? h("a", { class: "btn pri", href: PRO_URL, target: "_blank", rel: "noopener noreferrer" }, "Get Pro") : h("span", { class: "muted", text: "Pro is coming soon." }));
 }
 function addPerson(ev, existing) {
   all("people").then((people) => {

@@ -4,7 +4,7 @@ NiaziTools['ats-resume-checker'] = function (root, U) {
   var VERBS = 'led managed built developed created improved increased reduced delivered implemented launched coordinated analysed analyzed designed achieved streamlined optimized optimised negotiated trained mentored planned executed monitored prepared reported forecasted supported owned automated established resolved drove generated administered'.split(' ');
   var ctx = U.mount(root, {
     fields: [
-      { id: 'resume', label: 'Your resume (paste plain text)', type: 'textarea', rows: 12, wide: true, value: '', hint: 'Paste text rather than uploading a file — your resume never leaves your browser.' },
+      { id: 'resume', label: 'Your resume (paste plain text)', type: 'textarea', rows: 12, wide: true, value: '', hint: 'Paste text rather than uploading a file — your resume is processed in your browser and not uploaded to our servers.' },
       { id: 'jd', label: 'Job description', type: 'textarea', rows: 10, wide: true, value: '' }
     ],
     actions: [{ id: 'go', label: 'Analyse match', onClick: function (v, c) { run(v, c); } }],

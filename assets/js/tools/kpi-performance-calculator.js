@@ -12,11 +12,11 @@ NiaziTools['kpi-performance-calculator'] = function (root, U) {
   var box = root.querySelector('#kpi-rows'), out = root.querySelector('#tool-result'), err = root.querySelector('#kpi-err'), lastText = '';
   function draw() {
     box.innerHTML = rows.map(function (r, i) {
-      return '<div class="repeat-row" data-i="' + i + '"><div class="form-grid"><div class="field wide"><label>KPI name</label><input data-k="name" value="' + U.esc(r.name) + '" maxlength="60"></div>' +
-        '<div class="field"><label>Weight (%)</label><input data-k="weight" inputmode="decimal" value="' + U.esc(r.weight) + '"></div>' +
-        '<div class="field"><label>Better when…</label><select data-k="dir"><option value="high"' + (r.dir === 'high' ? ' selected' : '') + '>Higher is better</option><option value="low"' + (r.dir === 'low' ? ' selected' : '') + '>Lower is better</option></select></div>' +
-        '<div class="field"><label>Target</label><input data-k="target" inputmode="decimal" value="' + U.esc(r.target) + '"></div>' +
-        '<div class="field"><label>Actual</label><input data-k="actual" inputmode="decimal" value="' + U.esc(r.actual) + '"></div></div>' +
+      return '<div class="repeat-row" data-i="' + i + '"><div class="form-grid"><div class="field wide"><label>KPI name</label><input aria-label="KPI name (KPI ' + (i + 1) + ')" data-k="name" value="' + U.esc(r.name) + '" maxlength="60"></div>' +
+        '<div class="field"><label>Weight (%)</label><input aria-label="Weight (%) (KPI ' + (i + 1) + ')" data-k="weight" inputmode="decimal" value="' + U.esc(r.weight) + '"></div>' +
+        '<div class="field"><label>Better when…</label><select aria-label="Better when… (KPI ' + (i + 1) + ')" data-k="dir"><option value="high"' + (r.dir === 'high' ? ' selected' : '') + '>Higher is better</option><option value="low"' + (r.dir === 'low' ? ' selected' : '') + '>Lower is better</option></select></div>' +
+        '<div class="field"><label>Target</label><input aria-label="Target (KPI ' + (i + 1) + ')" data-k="target" inputmode="decimal" value="' + U.esc(r.target) + '"></div>' +
+        '<div class="field"><label>Actual</label><input aria-label="Actual (KPI ' + (i + 1) + ')" data-k="actual" inputmode="decimal" value="' + U.esc(r.actual) + '"></div></div>' +
         (rows.length > 1 ? '<button type="button" class="btn btn-ghost btn-sm remove" data-del="' + i + '" aria-label="Remove KPI">Remove</button>' : '') + '</div>';
     }).join('');
   }

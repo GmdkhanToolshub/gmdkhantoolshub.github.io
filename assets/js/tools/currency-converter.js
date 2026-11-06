@@ -14,7 +14,10 @@ NiaziTools['currency-converter'] = function (root, U) {
     if (cached && Date.now() - cached.t < TTL) { rates = cached.r; updated = cached.u; return Promise.resolve(); }
     return fetch(API).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function (j) {
       if (!j || !j.rates || (j.result && j.result !== 'success')) throw new Error('Unexpected response');
-      rates = j.rates; updated = j.time_last_update_utc || new Date().toUTCString(); U.store.set(KEY, { t: Date.now(), r: rates, u: updated });
+      // Treat the external feed as untrusted: keep only 3-letter codes with positive numeric rates.
+      rates = {}; Object.keys(j.rates).forEach(function (k) { var r = j.rates[k]; if (/^[A-Z]{3}$/.test(k) && typeof r === 'number' && isFinite(r) && r > 0) rates[k] = r; });
+      if (!rates.USD) throw new Error('Unexpected response');
+      updated = j.time_last_update_utc || new Date().toUTCString(); U.store.set(KEY, { t: Date.now(), r: rates, u: updated });
     }).catch(function (e) {
       if (cached) { rates = cached.r; updated = cached.u; stale = true; return; }
       throw e;

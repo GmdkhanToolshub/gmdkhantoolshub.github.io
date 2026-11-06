@@ -130,7 +130,11 @@
       if (sec) sec.hidden = !favs.length;
     }
     if (rb) {
-      var rec = store(REC, []).map(toolBySlug).filter(Boolean).slice(0, 4), s2 = rb.closest('[data-list-section]');
+      // Skip tools already shown as cards elsewhere on this page, and any repeated ids, so no card appears twice.
+      var shown = {}, seen = {};
+      $$('.tool-card[data-slug]').forEach(function (c) { if (!rb.contains(c)) shown[c.getAttribute('data-slug')] = 1; });
+      var rec = store(REC, []).filter(function (s) { if (seen[s] || shown[s]) return false; seen[s] = 1; return true; })
+        .map(toolBySlug).filter(Boolean).slice(0, 4), s2 = rb.closest('[data-list-section]');
       rb.innerHTML = rec.map(function (t) { return cardHTML(t, store(FAV, []).indexOf(t.slug) >= 0); }).join('');
       if (s2) s2.hidden = !rec.length;
     }
@@ -229,7 +233,9 @@
   var tr = $('#tool-root');
   if (tr) {
     var slug = tr.getAttribute('data-tool-id');
-    window.addEventListener('load', function () {
+    // Deferred scripts run in order, so the tool script is already loaded here; start now instead of
+    // waiting for images and ads (window 'load'), which delayed the tool and shifted the layout.
+    var boot = function () {
       try {
         if (!window.NiaziTools || !NiaziTools[slug]) throw new Error('Tool script not found');
         tr.innerHTML = ''; NiaziTools[slug](tr, window.NiaziUtil);
@@ -237,7 +243,9 @@
         tr.innerHTML = '<div class="empty-state"><b>This tool could not start</b>Please refresh the page. If the problem continues, contact us and mention “' + esc(slug) + '”.</div>';
         if (window.console) console.warn(err);
       }
-    });
+      tr.setAttribute('data-ready', '');
+    };
+    if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) boot(); else window.addEventListener('load', boot);
   }
 })();
 
