@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)</title>
+<script>try{var t=JSON.parse(localStorage.getItem('niazi.theme'));if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
 <link rel="canonical" href="https://gmdkhantoolshub.github.io/apps/family-story-keeper/">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#9a5b2e">
+<meta name="theme-color" content="#0b1b34">
 <meta name="author" content="Ghulam Mohiuddin Niazi">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ghulam Mohiuddin Niazi">
@@ -19,56 +20,65 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)">
 <meta name="twitter:description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
+<style>@font-face{font-family:Inter;src:url(../../assets/fonts/inter.woff2) format("woff2");font-weight:100 900;font-display:swap}@font-face{font-family:"Plus Jakarta Sans";src:url(../../assets/fonts/plus-jakarta-sans.woff2) format("woff2");font-weight:200 800;font-display:swap}</style>
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Family Story Keeper", "url": "https://gmdkhantoolshub.github.io/apps/family-story-keeper/", "description": "Free private app to record your parents' and grandparents' life stories in their own voice, with guided questions in English and Urdu and a printable family book.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "inLanguage": ["en", "ur"], "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Ghulam Mohiuddin Niazi", "url": "https://gmdkhantoolshub.github.io/about/"}}</script>
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--ink:#1f2933;--soft:#5f6b7a;--line:#e3ded3;--accent:#9a5b2e;--accent2:#c9772f;--ok:#2f8f5b;--warn:#b7791f;--rec:#c0392b;--r:16px;--fs:17px}
-@media (prefers-color-scheme:dark){:root{--bg:#171512;--card:#211e1a;--ink:#f2ede4;--soft:#b5ab9c;--line:#3a342c;--accent:#e0a36c;--accent2:#e8b27f}}
-*{box-sizing:border-box}html{font-size:var(--fs)}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",Arial,sans-serif;line-height:1.55}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#0f1e38;--soft:#47556e;--line:#e0e6f0;--line2:#c9d3e3;--accent:#4f46e5;--accent2:#7c3aed;--soft-acc:#eef0fe;--grad:linear-gradient(135deg,#2563eb 0%,#4f46e5 55%,#7c3aed 100%);--glow:0 10px 30px -10px rgba(79,70,229,.55);--shadow:0 1px 2px rgba(11,27,52,.05),0 8px 24px -12px rgba(11,27,52,.14);--ok:#067a55;--warn:#a35a06;--rec:#c9302c;--r:16px;--fs:17px;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0b1424;--card:#13203a;--ink:#edf2fb;--soft:#b3c0d6;--line:#243555;--line2:#33476c;--accent:#8b9cf9;--accent2:#b79df5;--soft-acc:#1c2650;--glow:0 10px 30px -10px rgba(99,102,241,.6);--shadow:0 8px 24px -14px rgba(0,0,0,.6);--ok:#3ccb9d;--warn:#eeb04f;--rec:#f2625c;color-scheme:dark}
+*{box-sizing:border-box}html{font-size:var(--fs)}body{margin:0;background:radial-gradient(900px 360px at 100% 0%,rgba(124,58,237,.08),transparent 65%) no-repeat,radial-gradient(800px 360px at 0% 0%,rgba(37,99,235,.07),transparent 60%) no-repeat,var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",Arial,sans-serif;line-height:1.55}
 body.big{--fs:21px}
 a{color:var(--accent)}button,input,textarea,select{font:inherit;color:inherit}
-header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--grad);opacity:.85}
+h1,h2,h3,.logo{font-family:"Plus Jakarta Sans","Inter",system-ui,sans-serif;letter-spacing:-.02em}
+::selection{background:#4f46e5;color:#fff}
 .bar{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;text-decoration:none;color:var(--ink);cursor:pointer;background:none;border:0;padding:0}
-.logo i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-style:normal}
-.ed{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--accent);color:#fff;letter-spacing:.04em}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--grad);box-shadow:var(--glow);display:grid;place-items:center;color:#fff;font-style:normal}
+.ed{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--grad);color:#fff;letter-spacing:.04em}
 .sp{flex:1}
-.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
-.btn:hover{border-color:var(--accent)}.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}.btn.sm{padding:6px 12px;min-height:36px;font-size:.9rem}
+.btn{border:1px solid var(--line2);background:var(--card);color:var(--ink);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:transform .15s,box-shadow .15s,border-color .15s,color .15s}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}.btn.pri{background:var(--grad);border-color:transparent;color:#fff;box-shadow:var(--glow)}.btn.pri:hover{color:#fff;filter:brightness(1.06);box-shadow:0 14px 34px -10px rgba(79,70,229,.7)}.btn.sm{padding:6px 12px;min-height:36px;font-size:.9rem}
 .btn.rec{background:var(--rec);border-color:var(--rec);color:#fff}.btn:disabled{opacity:.5;cursor:not-allowed}
 main{max-width:980px;margin:0 auto;padding:20px 16px 80px}
 h1{font-size:1.8rem;margin:.2em 0 .3em;line-height:1.2}h2{font-size:1.35rem;margin:1.2em 0 .5em}
 .lead{color:var(--soft);margin-top:0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
 .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .muted{color:var(--soft)}.small{font-size:.85rem}
-.pbar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.person{cursor:pointer;display:flex;gap:14px;align-items:center}.person:hover{border-color:var(--accent)}
-.av{width:58px;height:58px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-weight:800;font-size:1.3rem;flex:none;overflow:hidden}.av img{width:100%;height:100%;object-fit:cover}
-.chap{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}.chap:hover{border-color:var(--accent)}
+.pbar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.pbar i{display:block;height:100%;background:var(--grad)}
+.person{cursor:pointer;display:flex;gap:14px;align-items:center}.person:hover,.chap:hover{border-color:var(--accent);transform:translateY(-3px)}
+.av{width:58px;height:58px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.3rem;flex:none;overflow:hidden}.av img{width:100%;height:100%;object-fit:cover}
+.chap{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
 .lock{opacity:.6}
 .q{border-top:1px solid var(--line);padding:14px 0;display:flex;gap:12px;align-items:flex-start;cursor:pointer}.q:first-child{border-top:0}
 .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;margin-top:3px;display:grid;place-items:center;font-size:.7rem;color:#fff}.dot.done{background:var(--ok);border-color:var(--ok)}
 .iv{max-width:760px;margin:0 auto}.iv .qt{font-size:1.55rem;font-weight:700;line-height:1.35;margin:.3em 0 .6em}body.big .iv .qt{font-size:1.75rem}
 .urdu{font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting","Segoe UI",serif;direction:rtl;text-align:right;line-height:2.1}
-textarea{width:100%;min-height:180px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);resize:vertical}
-input[type=text],input[type=number],select{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);width:100%}
+textarea{width:100%;min-height:180px;border:1px solid var(--line2);border-radius:12px;padding:12px;background:var(--card);resize:vertical}
+input[type=text],input[type=number],select{border:1px solid var(--line2);border-radius:11px;padding:10px;background:var(--card);width:100%}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
 label{font-weight:600;display:block;margin:10px 0 4px}
 .recbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0}
 .pulse{width:14px;height:14px;border-radius:50%;background:var(--rec);animation:p 1s infinite}@keyframes p{50%{opacity:.25}}
 audio{width:100%;max-width:420px}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;z-index:50;opacity:0;transition:opacity .2s}.toast.show{opacity:1}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--grad);color:#fff;padding:10px 18px;border-radius:12px;z-index:50;opacity:0;transition:opacity .2s}.toast.show{opacity:1}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:40;padding:16px}.modal .card{max-width:520px;width:100%;max-height:90vh;overflow:auto}
-.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--line);font-size:.8rem;font-weight:600}
-.pro{background:linear-gradient(135deg,#fff4e6,#fde8d3);border-color:#f0c9a0;color:#5a3415}@media (prefers-color-scheme:dark){.pro{background:#2b2116;border-color:#5b4026;color:#f2d7b8}}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;background:var(--soft-acc);color:var(--accent);font-size:.8rem;font-weight:600}
+.pro{position:relative;overflow:hidden;background:radial-gradient(500px 200px at 100% 0%,rgba(124,58,237,.14),transparent 70%),linear-gradient(135deg,#eef4ff,#f3efff);border-color:#c7cdf7}.pro::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--grad)}
+:root[data-theme="dark"] .pro{background:radial-gradient(500px 200px at 100% 0%,rgba(124,58,237,.3),transparent 70%),linear-gradient(135deg,#14234a,#221a45);border-color:#3b3f7a}
+footer a,.about a{color:var(--accent)}a.btn{color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){main>*{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}main>*:nth-child(2){animation-delay:.05s}main>*:nth-child(3){animation-delay:.1s}main>*:nth-child(4){animation-delay:.15s}main>*:nth-child(n+5){animation-delay:.2s}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--soft);font-size:.85rem}
 .about{max-width:980px;margin:0 auto;padding:10px 16px 30px}.about details{border-top:1px solid var(--line);padding:10px 0}.about summary{cursor:pointer;font-weight:600}
 /* Book */
 #book{display:none}
 @media print{header,main,footer,.toast,.noprint,.about{display:none!important}#book{display:block!important;color:#111;background:#fff;font-size:12pt}body{background:#fff}
  .bk-cover{page-break-after:always;text-align:center;padding-top:28%}.bk-ch{page-break-before:always}.bk-qa{break-inside:avoid;margin:0 0 16pt}
- .bk-q{font-weight:700;color:#7a4520;margin-bottom:4pt}.bk-a{white-space:pre-wrap}.bk-ph{max-width:60%;max-height:240pt;display:block;margin:6pt 0;border-radius:6pt}}
+ .bk-q{font-weight:700;color:#3730a3;margin-bottom:4pt}.bk-a{white-space:pre-wrap}.bk-ph{max-width:60%;max-height:240pt;display:block;margin:6pt 0;border-radius:6pt}}
 </style>
 </head>
 <body>
@@ -78,6 +88,7 @@ footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--soft);font-
 <button class="btn sm" id="langBtn" type="button" title="Question language">اردو / EN</button>
 <button class="btn sm" id="bigBtn" type="button" aria-pressed="false">A+ Large text</button>
 <button class="btn sm" id="setBtn" type="button">Settings</button>
+<button class="btn sm" id="themeBtn" type="button" aria-label="Switch light or dark theme" title="Light / dark">◐</button>
 <a class="btn sm" href="../../">More free tools</a>
 </div></header>
 <main id="app" aria-live="polite"><h1>Family Story Keeper</h1><p class="lead">Loading the app…</p></main>
@@ -99,6 +110,7 @@ footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--soft);font-
 <div id="book" aria-hidden="true"></div>
 <footer>Private by design: everything stays in this browser on this device. Nothing is uploaded. Made by GM Niazi · <a href="https://gmdkhantoolshub.github.io/" target="_blank" rel="noopener">gmdkhantoolshub.github.io</a></footer>
 <div class="toast" id="toast" role="status"></div>
+<script>document.getElementById("themeBtn").addEventListener("click",function(){var r=document.documentElement,n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("niazi.theme",JSON.stringify(n))}catch(e){}});</script>
 <script>
 /* Family Story Keeper: question library (English + Urdu). Original content by GM Niazi. */
 const CHAPTERS = [
