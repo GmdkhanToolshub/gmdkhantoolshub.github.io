@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)</title>
+<meta name="description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
+<link rel="canonical" href="https://gmdkhantoolshub.github.io/apps/family-story-keeper/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#9a5b2e">
+<meta name="author" content="Ghulam Mohiuddin Niazi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ghulam Mohiuddin Niazi">
+<meta property="og:title" content="Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)">
+<meta property="og:description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
+<meta property="og:url" content="https://gmdkhantoolshub.github.io/apps/family-story-keeper/">
+<meta property="og:image" content="https://gmdkhantoolshub.github.io/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Family Story Keeper – Record Grandparents&#x27; Life Stories (Free)">
+<meta name="twitter:description" content="Free private app to record your parents&#x27; and grandparents&#x27; life stories in their own voice, with guided questions in English and Urdu and a printable family book.">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Family Story Keeper", "url": "https://gmdkhantoolshub.github.io/apps/family-story-keeper/", "description": "Free private app to record your parents' and grandparents' life stories in their own voice, with guided questions in English and Urdu and a printable family book.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "inLanguage": ["en", "ur"], "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Ghulam Mohiuddin Niazi", "url": "https://gmdkhantoolshub.github.io/about/"}}</script>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1f2933;--soft:#5f6b7a;--line:#e3ded3;--accent:#9a5b2e;--accent2:#c9772f;--ok:#2f8f5b;--warn:#b7791f;--rec:#c0392b;--r:16px;--fs:17px}
+@media (prefers-color-scheme:dark){:root{--bg:#171512;--card:#211e1a;--ink:#f2ede4;--soft:#b5ab9c;--line:#3a342c;--accent:#e0a36c;--accent2:#e8b27f}}
+*{box-sizing:border-box}html{font-size:var(--fs)}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",Arial,sans-serif;line-height:1.55}
+body.big{--fs:21px}
+a{color:var(--accent)}button,input,textarea,select{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;text-decoration:none;color:var(--ink);cursor:pointer;background:none;border:0;padding:0}
+.logo i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-style:normal}
+.ed{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--accent);color:#fff;letter-spacing:.04em}
+.sp{flex:1}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
+.btn:hover{border-color:var(--accent)}.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}.btn.sm{padding:6px 12px;min-height:36px;font-size:.9rem}
+.btn.rec{background:var(--rec);border-color:var(--rec);color:#fff}.btn:disabled{opacity:.5;cursor:not-allowed}
+main{max-width:980px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:1.8rem;margin:.2em 0 .3em;line-height:1.2}h2{font-size:1.35rem;margin:1.2em 0 .5em}
+.lead{color:var(--soft);margin-top:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.muted{color:var(--soft)}.small{font-size:.85rem}
+.pbar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.person{cursor:pointer;display:flex;gap:14px;align-items:center}.person:hover{border-color:var(--accent)}
+.av{width:58px;height:58px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-weight:800;font-size:1.3rem;flex:none;overflow:hidden}.av img{width:100%;height:100%;object-fit:cover}
+.chap{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}.chap:hover{border-color:var(--accent)}
+.lock{opacity:.6}
+.q{border-top:1px solid var(--line);padding:14px 0;display:flex;gap:12px;align-items:flex-start;cursor:pointer}.q:first-child{border-top:0}
+.dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;margin-top:3px;display:grid;place-items:center;font-size:.7rem;color:#fff}.dot.done{background:var(--ok);border-color:var(--ok)}
+.iv{max-width:760px;margin:0 auto}.iv .qt{font-size:1.55rem;font-weight:700;line-height:1.35;margin:.3em 0 .6em}body.big .iv .qt{font-size:1.75rem}
+.urdu{font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting","Segoe UI",serif;direction:rtl;text-align:right;line-height:2.1}
+textarea{width:100%;min-height:180px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);resize:vertical}
+input[type=text],input[type=number],select{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);width:100%}
+label{font-weight:600;display:block;margin:10px 0 4px}
+.recbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0}
+.pulse{width:14px;height:14px;border-radius:50%;background:var(--rec);animation:p 1s infinite}@keyframes p{50%{opacity:.25}}
+audio{width:100%;max-width:420px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;z-index:50;opacity:0;transition:opacity .2s}.toast.show{opacity:1}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:40;padding:16px}.modal .card{max-width:520px;width:100%;max-height:90vh;overflow:auto}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--line);font-size:.8rem;font-weight:600}
+.pro{background:linear-gradient(135deg,#fff4e6,#fde8d3);border-color:#f0c9a0;color:#5a3415}@media (prefers-color-scheme:dark){.pro{background:#2b2116;border-color:#5b4026;color:#f2d7b8}}
+footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--soft);font-size:.85rem}
+.about{max-width:980px;margin:0 auto;padding:10px 16px 30px}.about details{border-top:1px solid var(--line);padding:10px 0}.about summary{cursor:pointer;font-weight:600}
+/* Book */
+#book{display:none}
+@media print{header,main,footer,.toast,.noprint,.about{display:none!important}#book{display:block!important;color:#111;background:#fff;font-size:12pt}body{background:#fff}
+ .bk-cover{page-break-after:always;text-align:center;padding-top:28%}.bk-ch{page-break-before:always}.bk-qa{break-inside:avoid;margin:0 0 16pt}
+ .bk-q{font-weight:700;color:#7a4520;margin-bottom:4pt}.bk-a{white-space:pre-wrap}.bk-ph{max-width:60%;max-height:240pt;display:block;margin:6pt 0;border-radius:6pt}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<button class="logo" id="home" type="button" aria-label="Family Story Keeper home"><i aria-hidden="true">❦</i><span>Family Story Keeper</span></button><span class="ed" id="edtag"></span>
+<span class="sp"></span>
+<button class="btn sm" id="langBtn" type="button" title="Question language">اردو / EN</button>
+<button class="btn sm" id="bigBtn" type="button" aria-pressed="false">A+ Large text</button>
+<button class="btn sm" id="setBtn" type="button">Settings</button>
+<a class="btn sm" href="../../">More free tools</a>
+</div></header>
+<main id="app" aria-live="polite"><h1>Family Story Keeper</h1><p class="lead">Loading the app…</p></main>
+<section class="about noprint" aria-labelledby="about-h">
+<h2 id="about-h">About Family Story Keeper</h2>
+<p>Every family has stories that are only kept in someone's memory: where a grandparent grew up, how parents met, recipes, journeys and lessons learned the hard way. Family Story Keeper helps you save them before they're lost, in the storyteller's own voice.</p>
+<p>Choose a storyteller, open a chapter, and work through guided questions together: childhood, family, school, work, love and marriage, raising children, places, traditions and faith, life and times, and wisdom for future generations. Record each answer as voice, type it, or both. When you're ready, make a printable family book to share or give as a gift.</p>
+<h2>Why it's different</h2>
+<ul><li><strong>Private:</strong> no account and no upload. Stories stay in your own browser on your own device.</li>
+<li><strong>Bilingual:</strong> every question is available in English and Urdu, and answers can be in any language.</li>
+<li><strong>Made for elders:</strong> a simple interview mode, large-text option and big buttons.</li>
+<li><strong>Works anywhere:</strong> on phones, tablets and computers in any modern browser.</li></ul>
+<h2>Frequently asked questions</h2>
+<details><summary>Is Family Story Keeper free?</summary><p>Yes. The free Lite edition includes one storyteller and the first two chapters. The one-time Pro edition adds all 10 chapters, unlimited storytellers, your own questions, photos, and backup and restore.</p></details>
+<details><summary>Where are the recordings stored?</summary><p>Only in your browser on this device. Nothing is sent to a server. Clearing your browser data deletes them, so download recordings you want to keep.</p></details>
+<details><summary>Can my grandparent answer in Urdu or Punjabi?</summary><p>Yes. Voice answers can be in any language, and the questions can be shown in English or Urdu.</p></details>
+<details><summary>How do I make the family book?</summary><p>Open a storyteller and choose Make family book. Your browser's print window opens, where you can print it or save it as a PDF.</p></details>
+</section>
+<div id="book" aria-hidden="true"></div>
+<footer>Private by design: everything stays in this browser on this device. Nothing is uploaded. Made by GM Niazi · <a href="https://gmdkhantoolshub.github.io/" target="_blank" rel="noopener">gmdkhantoolshub.github.io</a></footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+/* Family Story Keeper: question library (English + Urdu). Original content by GM Niazi. */
+const CHAPTERS = [
+  { id: "childhood", en: "Childhood", ur: "بچپن", qs: [
+    ["Where and when were you born? What do you know about the day you were born?", "آپ کہاں اور کب پیدا ہوئے؟ اپنی پیدائش کے دن کے بارے میں آپ کیا جانتے ہیں؟"],
+    ["Describe the house you grew up in. What did it look, sound and smell like?", "جس گھر میں آپ بڑے ہوئے اس کا حال بتائیں۔ وہ کیسا دکھتا تھا، اس کی آوازیں اور خوشبوئیں کیسی تھیں؟"],
+    ["What games did you play as a child, and who did you play with?", "بچپن میں آپ کون سے کھیل کھیلتے تھے اور کس کے ساتھ کھیلتے تھے؟"],
+    ["What is your earliest memory?", "آپ کی سب سے پرانی یاد کون سی ہے؟"],
+    ["What was a normal day like when you were ten years old?", "جب آپ دس سال کے تھے تو آپ کا عام دن کیسا گزرتا تھا؟"],
+    ["What was your favourite food as a child, and who cooked it?", "بچپن میں آپ کا پسندیدہ کھانا کیا تھا اور اسے کون پکاتا تھا؟"],
+    ["Did you ever get into trouble as a child? What happened?", "کیا بچپن میں کبھی آپ کو ڈانٹ پڑی؟ کیا ہوا تھا؟"],
+    ["What did you want to be when you grew up?", "بچپن میں آپ بڑے ہو کر کیا بننا چاہتے تھے؟"],
+  ]},
+  { id: "family", en: "Parents & Family", ur: "والدین اور خاندان", qs: [
+    ["What were your parents like? Describe each of them in a few words.", "آپ کے والدین کیسے تھے؟ چند الفاظ میں دونوں کے بارے میں بتائیں۔"],
+    ["What did your father and mother do for work?", "آپ کے والد اور والدہ کیا کام کرتے تھے؟"],
+    ["What is the most important thing your parents taught you?", "آپ کے والدین نے آپ کو سب سے اہم بات کیا سکھائی؟"],
+    ["Tell me about your brothers and sisters. What were they like growing up?", "اپنے بہن بھائیوں کے بارے میں بتائیں۔ بچپن میں وہ کیسے تھے؟"],
+    ["What do you remember about your grandparents?", "آپ کو اپنے دادا دادی یا نانا نانی کے بارے میں کیا یاد ہے؟"],
+    ["Where did our family originally come from? Are there stories about our ancestors?", "ہمارا خاندان اصل میں کہاں سے تھا؟ کیا ہمارے بزرگوں کے بارے میں کوئی کہانیاں ہیں؟"],
+    ["What family celebrations or gatherings do you remember most?", "خاندان کی کون سی تقریبات یا اکٹھ آپ کو سب سے زیادہ یاد ہیں؟"],
+    ["Is there a family saying, joke or story that everyone knows?", "کیا خاندان میں کوئی کہاوت، لطیفہ یا قصہ ہے جو سب جانتے ہیں؟"],
+  ]},
+  { id: "school", en: "School Days", ur: "اسکول کے دن", qs: [
+    ["Which school did you go to, and how did you get there each day?", "آپ کس اسکول میں پڑھتے تھے اور روز وہاں کیسے جاتے تھے؟"],
+    ["Who was your favourite teacher, and why?", "آپ کے پسندیدہ استاد کون تھے اور کیوں؟"],
+    ["What subjects did you love, and which did you find hard?", "آپ کو کون سے مضامین پسند تھے اور کون سے مشکل لگتے تھے؟"],
+    ["Who were your best friends at school? Are you still in touch?", "اسکول میں آپ کے گہرے دوست کون تھے؟ کیا اب بھی رابطہ ہے؟"],
+    ["What was your proudest moment at school?", "اسکول میں آپ کا سب سے فخر والا لمحہ کون سا تھا؟"],
+    ["How was school different then compared with today?", "اُس وقت کا اسکول آج کے مقابلے میں کیسے مختلف تھا؟"],
+    ["Did you study further after school? What was that like?", "کیا آپ نے اسکول کے بعد مزید تعلیم حاصل کی؟ وہ تجربہ کیسا تھا؟"],
+  ]},
+  { id: "work", en: "Work & Career", ur: "کام اور روزگار", qs: [
+    ["What was your very first job, and how much were you paid?", "آپ کی پہلی نوکری کون سی تھی اور آپ کو کتنی تنخواہ ملتی تھی؟"],
+    ["What work did you do for most of your life?", "زندگی کا زیادہ حصہ آپ نے کیا کام کیا؟"],
+    ["What are you most proud of in your working life?", "اپنی پیشہ ورانہ زندگی میں آپ کو کس بات پر سب سے زیادہ فخر ہے؟"],
+    ["Who helped you most in your career?", "آپ کے کام میں سب سے زیادہ مدد کس نے کی؟"],
+    ["What was the hardest part of your work?", "آپ کے کام کا سب سے مشکل حصہ کیا تھا؟"],
+    ["What advice would you give someone starting their first job today?", "آج پہلی نوکری شروع کرنے والے کو آپ کیا مشورہ دیں گے؟"],
+  ]},
+  { id: "love", en: "Love & Marriage", ur: "محبت اور شادی", qs: [
+    ["How did you meet your husband or wife?", "آپ کی اپنے شوہر یا بیوی سے پہلی ملاقات کیسے ہوئی؟"],
+    ["Tell me about your wedding day. What do you remember most?", "اپنی شادی کے دن کے بارے میں بتائیں۔ آپ کو سب سے زیادہ کیا یاد ہے؟"],
+    ["What was life like in your first home together?", "اکٹھے پہلے گھر میں زندگی کیسی تھی؟"],
+    ["What is the secret to a long and happy marriage?", "ایک لمبی اور خوشگوار شادی کا راز کیا ہے؟"],
+    ["What do you love most about your partner?", "آپ کو اپنے جیون ساتھی کی کون سی بات سب سے زیادہ پسند ہے؟"],
+  ]},
+  { id: "children", en: "Raising a Family", ur: "بچوں کی پرورش", qs: [
+    ["How did you feel when your first child was born?", "جب آپ کا پہلا بچہ پیدا ہوا تو آپ کو کیسا محسوس ہوا؟"],
+    ["What were your children like when they were small?", "آپ کے بچے چھوٹے تھے تو کیسے تھے؟"],
+    ["What was the hardest thing about being a parent?", "والدین ہونے کا سب سے مشکل پہلو کیا تھا؟"],
+    ["What is a funny story about one of your children?", "اپنے کسی بچے کے بارے میں کوئی مزے دار واقعہ سنائیں۔"],
+    ["What did you hope for your children when they were growing up?", "جب آپ کے بچے بڑے ہو رہے تھے تو آپ ان کے لیے کیا چاہتے تھے؟"],
+    ["How did it feel to become a grandparent?", "دادا دادی یا نانا نانی بن کر کیسا لگا؟"],
+  ]},
+  { id: "places", en: "Places & Travel", ur: "جگہیں اور سفر", qs: [
+    ["Which cities or villages have you lived in? Which did you love most?", "آپ کن شہروں یا دیہات میں رہے؟ کون سی جگہ سب سے زیادہ پسند آئی؟"],
+    ["What was the most memorable journey you ever took?", "آپ کا سب سے یادگار سفر کون سا تھا؟"],
+    ["How has your hometown changed over the years?", "سالوں میں آپ کا آبائی شہر یا گاؤں کیسے بدل گیا؟"],
+    ["Is there a place you always wanted to visit?", "کیا کوئی ایسی جگہ ہے جہاں آپ ہمیشہ جانا چاہتے تھے؟"],
+    ["Did you ever move far from home? What was that like?", "کیا آپ کبھی گھر سے دور منتقل ہوئے؟ وہ تجربہ کیسا تھا؟"],
+  ]},
+  { id: "traditions", en: "Traditions & Faith", ur: "روایات اور ایمان", qs: [
+    ["How did your family celebrate Eid or other special days?", "آپ کا خاندان عید یا دوسرے خاص دن کیسے مناتا تھا؟"],
+    ["What traditions do you hope our family keeps?", "آپ چاہتے ہیں ہمارا خاندان کون سی روایات قائم رکھے؟"],
+    ["What role has faith played in your life?", "آپ کی زندگی میں ایمان کا کیا کردار رہا ہے؟"],
+    ["What recipes should never be forgotten in our family? Share one.", "ہمارے خاندان کی کون سی ترکیبیں کبھی نہیں بھولنی چاہئیں؟ ایک بتائیں۔"],
+    ["What songs, poems or stories did you grow up with?", "آپ کن گیتوں، نظموں یا کہانیوں کے ساتھ بڑے ہوئے؟"],
+  ]},
+  { id: "times", en: "Life & Times", ur: "زندگی اور زمانہ", qs: [
+    ["What was the hardest time in your life, and how did you get through it?", "آپ کی زندگی کا سب سے مشکل وقت کون سا تھا اور آپ نے اسے کیسے گزارا؟"],
+    ["What big events in the world or the country do you remember living through?", "دنیا یا ملک کے کون سے بڑے واقعات آپ کو یاد ہیں جن کے آپ گواہ رہے؟"],
+    ["How was everyday life different when you were young: prices, transport, technology?", "آپ کی جوانی میں روزمرہ زندگی کیسے مختلف تھی: قیمتیں، سواری، ٹیکنالوجی؟"],
+    ["What invention changed your life the most?", "کس ایجاد نے آپ کی زندگی سب سے زیادہ بدلی؟"],
+    ["What is the happiest day you can remember?", "آپ کو یاد سب سے خوشی والا دن کون سا ہے؟"],
+    ["Who was your closest friend in adult life?", "بڑے ہو کر آپ کا سب سے قریبی دوست کون تھا؟"],
+  ]},
+  { id: "wisdom", en: "Wisdom & Messages", ur: "نصیحتیں اور پیغامات", qs: [
+    ["What are the most important lessons life has taught you?", "زندگی نے آپ کو سب سے اہم سبق کون سے سکھائے؟"],
+    ["What would you tell your twenty-year-old self?", "آپ اپنے بیس سالہ آپ کو کیا نصیحت کریں گے؟"],
+    ["What makes a person truly happy?", "انسان کو حقیقی خوشی کس چیز سے ملتی ہے؟"],
+    ["Is there anything you wish you had done differently?", "کیا کوئی کام ہے جو آپ مختلف طریقے سے کرنا چاہتے تھے؟"],
+    ["How would you like to be remembered?", "آپ چاہتے ہیں لوگ آپ کو کیسے یاد رکھیں؟"],
+    ["What message would you like to leave for your grandchildren and future generations?", "آپ اپنے پوتے پوتیوں، نواسے نواسیوں اور آنے والی نسلوں کے لیے کیا پیغام چھوڑنا چاہیں گے؟"],
+  ]},
+];
+
+const EDITION = "lite";           // "lite" or "pro"
+const PRO_URL = "";           // where to buy Pro
+const PRO = EDITION === "pro";
+const LITE_CHAPTERS = 2;                  // Lite: first two chapters
+const LITE_PEOPLE = 1;                    // Lite: one storyteller
+const $ = (s, el = document) => el.querySelector(s);
+const app = $("#app");
+
+/* ---------- tiny DOM helper (always uses textContent for user data) ---------- */
+function h(tag, attrs = {}, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v; else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "text") el.textContent = v; else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) el.append(k instanceof Node ? k : document.createTextNode(String(k)));
+  return el;
+}
+function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 2600); }
+
+/* ---------- storage: IndexedDB ---------- */
+let db;
+function openDB() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open("family-story-keeper", 1);
+    r.onupgradeneeded = () => { const d = r.result; d.createObjectStore("people", { keyPath: "id" }); d.createObjectStore("answers", { keyPath: "key" }); d.createObjectStore("custom", { keyPath: "id" }); };
+    r.onsuccess = () => { db = r.result; res(); }; r.onerror = () => rej(r.error);
+  });
+}
+function tx(store, mode, fn) { return new Promise((res, rej) => { const t = db.transaction(store, mode); const s = t.objectStore(store); const out = fn(s); t.oncomplete = () => res(out instanceof IDBRequest ? out.result : out); t.onerror = () => rej(t.error); }); }
+const all = (s) => tx(s, "readonly", (st) => st.getAll());
+const put = (s, v) => tx(s, "readwrite", (st) => st.put(v));
+const del = (s, k) => tx(s, "readwrite", (st) => st.delete(k));
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+/* ---------- settings ---------- */
+const prefs = (() => { try { return JSON.parse(localStorage.getItem("fsk.prefs")) || {}; } catch { return {}; } })();
+function savePrefs() { try { localStorage.setItem("fsk.prefs", JSON.stringify(prefs)); } catch {} }
+prefs.lang = prefs.lang || "en";
+function applyPrefs() { document.body.classList.toggle("big", !!prefs.big); $("#bigBtn").setAttribute("aria-pressed", prefs.big ? "true" : "false"); }
+
+/* ---------- data helpers ---------- */
+let customQs = [];
+function chaptersFor(pid) {
+  return CHAPTERS.map((c, ci) => ({ ...c, ci, locked: !PRO && ci >= LITE_CHAPTERS,
+    items: c.qs.map((q, qi) => ({ qid: `${c.id}:${qi}`, en: q[0], ur: q[1] }))
+      .concat(customQs.filter((x) => x.pid === pid && x.chapter === c.id).map((x) => ({ qid: `custom:${x.id}`, en: x.text, ur: x.text, custom: true }))) }));
+}
+const qText = (it) => (prefs.lang === "ur" ? it.ur : it.en);
+async function answersFor(pid) { const a = await all("answers"); const m = {}; a.filter((x) => x.pid === pid).forEach((x) => (m[x.qid] = x)); return m; }
+const hasAns = (a) => a && ((a.text && a.text.trim()) || a.audio);
+function initials(n) { return (n || "?").trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase(); }
+function avatar(p) { const d = h("div", { class: "av" }); if (p.photo) { const i = h("img", { alt: "" }); i.src = URL.createObjectURL(p.photo); d.append(i); } else d.textContent = initials(p.name); return d; }
+
+/* ---------- views ---------- */
+async function viewHome() {
+  const people = await all("people"); const ans = await all("answers");
+  app.replaceChildren(
+    h("h1", { text: "Save your family's stories, in their own voice" }),
+    h("p", { class: "lead", text: "Ask the guided questions, record the answers as voice or text, and turn them into a family book. Everything stays private on this device." }),
+    h("div", { class: "row" }, h("button", { class: "btn pri", type: "button", onclick: addPerson }, "+ Add a storyteller"),
+      !PRO && h("span", { class: "muted small", text: `Lite: ${LITE_PEOPLE} storyteller and the first ${LITE_CHAPTERS} chapters.` })),
+    h("h2", { text: people.length ? "Storytellers" : "Get started" }),
+    people.length ? h("div", { class: "grid" }, people.map((p) => {
+      const n = ans.filter((a) => a.pid === p.id && hasAns(a)).length;
+      return h("div", { class: "card person", role: "button", tabindex: "0", onclick: () => viewPerson(p.id), onkeydown: (e) => e.key === "Enter" && viewPerson(p.id) },
+        avatar(p), h("div", {}, h("div", { style: "font-weight:700;font-size:1.1rem", text: p.name }), h("div", { class: "muted small", text: [p.relation, p.born && "Born " + p.born].filter(Boolean).join(" · ") }),
+          h("div", { class: "muted small", text: `${n} answered` })));
+    })) : h("div", { class: "card" }, h("p", { text: "Start with someone whose stories you'd love to keep: a grandparent, parent, aunt or uncle. You can sit together and ask the questions, or let them answer on their own." }),
+      h("ol", {}, h("li", { text: "Add a storyteller." }), h("li", { text: "Open a chapter and press Start interview." }), h("li", { text: "Record their voice, or type their answer." }), h("li", { text: "Make a printable family book whenever you like." }))),
+    !PRO && proCard()
+  );
+}
+function proCard() {
+  return h("div", { class: "card pro", style: "margin-top:24px" }, h("div", { style: "font-weight:800;font-size:1.15rem", text: "Unlock Family Story Keeper Pro" }),
+    h("ul", {}, h("li", { text: `All ${CHAPTERS.length} chapters and ${CHAPTERS.reduce((s, c) => s + c.qs.length, 0)} guided questions, in English and Urdu` }), h("li", { text: "Unlimited storytellers for the whole family" }),
+      h("li", { text: "Add your own questions and photos" }), h("li", { text: "Backup and restore, to move stories to another device or keep them safe" }), h("li", { text: "Clean family book without the Lite footer" }), h("li", { text: "One-time purchase, no subscription; works offline" })),
+    PRO_URL ? h("a", { class: "btn pri", href: PRO_URL, target: "_blank", rel: "noopener" }, "Get Pro") : h("span", { class: "muted", text: "Pro is coming soon." }));
+}
+function addPerson(ev, existing) {
+  all("people").then((people) => {
+    if (!existing && !PRO && people.length >= LITE_PEOPLE) { modal("Lite edition", h("p", { text: "The free Lite edition keeps stories for one storyteller. Pro has no limit, so the whole family can take part." }), proCard()); return; }
+    const p = existing || { id: uid(), name: "", relation: "", born: "" };
+    const name = h("input", { type: "text", value: p.name, maxlength: 60, required: true, id: "pn" });
+    const rel = h("input", { type: "text", value: p.relation, maxlength: 40, placeholder: "e.g. Grandmother, Dada, Nani", id: "pr" });
+    const born = h("input", { type: "number", value: p.born, min: 1900, max: 2026, placeholder: "e.g. 1952", id: "pb" });
+    const photo = h("input", { type: "file", accept: "image/*", id: "pp" });
+    modal(existing ? "Edit storyteller" : "Add a storyteller",
+      h("label", { for: "pn", text: "Name" }), name, h("label", { for: "pr", text: "Relationship to you" }), rel, h("label", { for: "pb", text: "Year of birth (optional)" }), born,
+      PRO ? [h("label", { for: "pp", text: "Photo (optional)" }), photo] : null,
+      h("div", { class: "row", style: "margin-top:16px" }, h("button", { class: "btn pri", type: "button", onclick: async () => {
+        if (!name.value.trim()) { name.focus(); return; }
+        p.name = name.value.trim(); p.relation = rel.value.trim(); p.born = born.value.trim();
+        if (PRO && photo.files[0]) p.photo = await shrink(photo.files[0]);
+        await put("people", p); closeModal(); existing ? viewPerson(p.id) : viewHome(); toast("Saved");
+      } }, "Save"), h("button", { class: "btn", type: "button", onclick: closeModal }, "Cancel")));
+    setTimeout(() => name.focus(), 50);
+  });
+}
+async function viewPerson(pid) {
+  const p = (await all("people")).find((x) => x.id === pid); if (!p) return viewHome();
+  const ans = await answersFor(pid); const chs = chaptersFor(pid);
+  const total = chs.filter((c) => !c.locked).reduce((s, c) => s + c.items.length, 0);
+  const done = chs.filter((c) => !c.locked).reduce((s, c) => s + c.items.filter((i) => hasAns(ans[i.qid])).length, 0);
+  app.replaceChildren(
+    h("button", { class: "btn sm", type: "button", onclick: viewHome }, "← All storytellers"),
+    h("div", { class: "row", style: "margin:16px 0" }, avatar(p), h("div", { style: "flex:1" }, h("h1", { text: p.name, style: "margin:0" }), h("div", { class: "muted", text: [p.relation, p.born && "Born " + p.born].filter(Boolean).join(" · ") })),
+      h("button", { class: "btn sm", type: "button", onclick: () => addPerson(null, p) }, "Edit"), h("button", { class: "btn pri", type: "button", onclick: () => makeBook(pid) }, "Make family book")),
+    h("div", { class: "card" }, h("div", { class: "row" }, h("strong", { text: `${done} of ${total} questions answered` })), h("div", { class: "pbar", style: "margin-top:8px" }, h("i", { style: `width:${total ? (done / total) * 100 : 0}%` }))),
+    h("h2", { text: "Chapters" }),
+    h("div", { class: "grid" }, chs.map((c) => {
+      const d = c.items.filter((i) => hasAns(ans[i.qid])).length;
+      return h("div", { class: "card chap" + (c.locked ? " lock" : ""), role: "button", tabindex: "0", onclick: () => (c.locked ? modal("Pro chapter", h("p", { text: `"${c.en}" is part of Family Story Keeper Pro.` }), proCard()) : viewChapter(pid, c.ci)), onkeydown: (e) => e.key === "Enter" && e.target.click() },
+        h("div", {}, h("div", { style: "font-weight:700", text: prefs.lang === "ur" ? c.ur : c.en, class: prefs.lang === "ur" ? "urdu" : null }), h("div", { class: "muted small", text: c.locked ? "Pro" : `${d} of ${c.items.length} answered` })),
+        h("span", { class: "pill", text: c.locked ? "🔒" : `${Math.round((d / c.items.length) * 100)}%` }));
+    })),
+    h("div", { class: "row", style: "margin-top:24px" }, h("button", { class: "btn sm", type: "button", onclick: async () => { if (confirm(`Delete ${p.name} and all their answers? This can't be undone.`)) { const a = await all("answers"); for (const x of a.filter((x) => x.pid === pid)) await del("answers", x.key); await del("people", pid); viewHome(); toast("Deleted"); } } }, "Delete storyteller"))
+  );
+}
+async function viewChapter(pid, ci) {
+  const c = chaptersFor(pid)[ci]; const ans = await answersFor(pid);
+  app.replaceChildren(
+    h("button", { class: "btn sm", type: "button", onclick: () => viewPerson(pid) }, "← Back"),
+    h("h1", { text: prefs.lang === "ur" ? c.ur : c.en, class: prefs.lang === "ur" ? "urdu" : null }),
+    h("div", { class: "row" }, h("button", { class: "btn pri", type: "button", onclick: () => interview(pid, ci, firstOpen(c, ans)) }, "▶ Start interview"),
+      PRO && h("button", { class: "btn", type: "button", onclick: () => addCustom(pid, c) }, "+ Add my own question")),
+    h("div", { class: "card", style: "margin-top:16px" }, c.items.map((it, i) => h("div", { class: "q", role: "button", tabindex: "0", onclick: () => interview(pid, ci, i), onkeydown: (e) => e.key === "Enter" && interview(pid, ci, i) },
+      h("span", { class: "dot" + (hasAns(ans[it.qid]) ? " done" : ""), text: hasAns(ans[it.qid]) ? "✓" : "" }),
+      h("div", { style: "flex:1" }, h("div", { text: qText(it), class: prefs.lang === "ur" ? "urdu" : null }),
+        ans[it.qid] && h("div", { class: "muted small", text: [ans[it.qid].audio && "🎙 voice", ans[it.qid].text && ans[it.qid].text.trim() && "✎ text", ans[it.qid].photo && "📷 photo"].filter(Boolean).join("  ") }))))));
+}
+const firstOpen = (c, ans) => Math.max(0, c.items.findIndex((i) => !hasAns(ans[i.qid])));
+function addCustom(pid, c) {
+  const t = h("textarea", { maxlength: 300, style: "min-height:100px", id: "cq" });
+  modal("Add your own question", h("label", { for: "cq", text: "Question (any language)" }), t,
+    h("div", { class: "row", style: "margin-top:12px" }, h("button", { class: "btn pri", type: "button", onclick: async () => { if (!t.value.trim()) return; const x = { id: uid(), pid, chapter: c.id, text: t.value.trim() }; await put("custom", x); customQs.push(x); closeModal(); viewChapter(pid, c.ci); } }, "Add"), h("button", { class: "btn", type: "button", onclick: closeModal }, "Cancel")));
+}
+
+/* ---------- interview mode ---------- */
+let rec = null, chunks = [], stream = null, timer = null;
+async function interview(pid, ci, qi) {
+  stopRec(true);
+  const chs = chaptersFor(pid); const c = chs[ci]; const it = c.items[qi]; if (!it) return viewChapter(pid, ci);
+  const key = `${pid}|${it.qid}`; const a = (await tx("answers", "readonly", (s) => s.get(key))) || { key, pid, qid: it.qid, text: "" };
+  const txt = h("textarea", { placeholder: "Type the answer here, or record it below…", id: "ans", dir: "auto" }); txt.value = a.text || "";
+  let saveT; txt.addEventListener("input", () => { clearTimeout(saveT); saveT = setTimeout(async () => { a.text = txt.value; a.updated = Date.now(); await put("answers", a); }, 400); });
+  const audioWrap = h("div"); const recBox = h("div", { class: "recbox" });
+  const drawAudio = () => {
+    audioWrap.replaceChildren();
+    if (a.audio) { const au = h("audio", { controls: true }); au.src = URL.createObjectURL(a.audio);
+      audioWrap.append(au, h("div", { class: "row", style: "margin-top:6px" },
+        h("button", { class: "btn sm", type: "button", onclick: () => download(a.audio, `${safe(it.en).slice(0, 40)}.${ext(a.audio.type)}`) }, "Download recording"),
+        h("button", { class: "btn sm", type: "button", onclick: async () => { if (confirm("Delete this recording?")) { delete a.audio; await put("answers", a); drawAudio(); } } }, "Delete recording"))); }
+  };
+  const recBtn = h("button", { class: "btn rec", type: "button" }, "● Record voice");
+  const status = h("span", { class: "muted" });
+  recBtn.onclick = async () => {
+    if (rec && rec.state === "recording") { stopRec(); return; }
+    if (!navigator.mediaDevices || !window.MediaRecorder) { toast("Voice recording isn't supported in this browser. Try Chrome, Edge, Firefox or Safari."); return; }
+    try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch { toast("Microphone permission was blocked. Allow it in your browser settings to record."); return; }
+    const type = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg"].find((t) => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || "";
+    rec = new MediaRecorder(stream, type ? { mimeType: type } : undefined); chunks = [];
+    rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+    rec.onstop = async () => { stream && stream.getTracks().forEach((t) => t.stop()); clearInterval(timer); recBtn.textContent = "● Record voice"; recBox.querySelector(".pulse")?.remove();
+      if (rec._discard || !chunks.length) { status.textContent = ""; return; }
+      a.audio = new Blob(chunks, { type: rec.mimeType || "audio/webm" }); a.updated = Date.now(); await put("answers", a); status.textContent = "Saved ✓"; drawAudio(); };
+    rec.start(1000); const t0 = Date.now(); recBtn.textContent = "■ Stop & save"; recBox.prepend(h("span", { class: "pulse", "aria-hidden": "true" }));
+    timer = setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); status.textContent = `Recording… ${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }, 500);
+  };
+  recBox.append(recBtn, status);
+  const photoBox = h("div");
+  const drawPhoto = () => { photoBox.replaceChildren(); if (!PRO) return;
+    if (a.photo) { const i = h("img", { alt: "Photo for this answer", style: "max-width:100%;max-height:260px;border-radius:12px;display:block;margin:8px 0" }); i.src = URL.createObjectURL(a.photo);
+      photoBox.append(i, h("button", { class: "btn sm", type: "button", onclick: async () => { delete a.photo; await put("answers", a); drawPhoto(); } }, "Remove photo")); }
+    else { const f = h("input", { type: "file", accept: "image/*", id: "aph", style: "max-width:100%" }); f.onchange = async () => { if (f.files[0]) { a.photo = await shrink(f.files[0]); await put("answers", a); drawPhoto(); } };
+      photoBox.append(h("label", { for: "aph", text: "Add a photo (optional)" }), f); } };
+  drawAudio(); drawPhoto();
+  const go = (n) => { stopRec(); (n < 0 || n >= c.items.length) ? viewChapter(pid, ci) : interview(pid, ci, n); };
+  app.replaceChildren(h("div", { class: "iv" },
+    h("div", { class: "row" }, h("button", { class: "btn sm", type: "button", onclick: () => { stopRec(); viewChapter(pid, ci); } }, "← Chapter"), h("span", { class: "sp" }), h("span", { class: "muted", text: `${qi + 1} / ${c.items.length}` })),
+    h("div", { class: "pbar", style: "margin:12px 0" }, h("i", { style: `width:${((qi + 1) / c.items.length) * 100}%` })),
+    h("div", { class: "muted small", text: prefs.lang === "ur" ? c.ur : c.en }),
+    h("div", { class: "qt" + (prefs.lang === "ur" ? " urdu" : ""), text: qText(it) }),
+    prefs.lang === "ur" && !it.custom ? h("div", { class: "muted small", text: it.en }) : null,
+    recBox, audioWrap, h("label", { for: "ans", text: "Written answer" }), txt, photoBox,
+    h("div", { class: "row", style: "margin-top:18px" }, h("button", { class: "btn", type: "button", onclick: () => go(qi - 1) }, "← Previous"), h("span", { class: "sp" }),
+      h("button", { class: "btn pri", type: "button", onclick: async () => { a.text = txt.value; a.updated = Date.now(); await put("answers", a); go(qi + 1); } }, qi + 1 < c.items.length ? "Save & next →" : "Save & finish ✓"))));
+}
+function stopRec(discard) { if (rec && rec.state === "recording") { rec._discard = !!discard; rec.stop(); } }
+
+/* ---------- book ---------- */
+async function makeBook(pid) {
+  const p = (await all("people")).find((x) => x.id === pid); const ans = await answersFor(pid); const chs = chaptersFor(pid).filter((c) => !c.locked);
+  const b = $("#book"); b.replaceChildren();
+  const cover = h("div", { class: "bk-cover" });
+  if (p.photo) { const i = h("img", { class: "bk-ph", style: "margin:0 auto 18pt;max-width:40%" }); i.src = URL.createObjectURL(p.photo); cover.append(i); }
+  cover.append(h("div", { style: "font-size:30pt;font-weight:800", text: `The Story of ${p.name}` }), h("div", { style: "font-size:14pt;margin-top:8pt;color:#555", text: [p.relation, p.born && "Born " + p.born].filter(Boolean).join(" · ") }),
+    h("div", { style: "margin-top:30pt;color:#777", text: `Collected with love · ${new Date().getFullYear()}` }));
+  b.append(cover);
+  let any = false;
+  for (const c of chs) {
+    const items = c.items.filter((i) => ans[i.qid] && ((ans[i.qid].text || "").trim() || ans[i.qid].photo || ans[i.qid].audio)); if (!items.length) continue; any = true;
+    const sec = h("section", { class: "bk-ch" }, h("h2", { style: "font-size:20pt;border-bottom:2pt solid #c9772f;padding-bottom:4pt", text: c.en }));
+    for (const it of items) { const a = ans[it.qid];
+      const qa = h("div", { class: "bk-qa" }, h("div", { class: "bk-q", text: it.en }), prefs.lang === "ur" && !it.custom ? h("div", { class: "bk-q urdu", text: it.ur }) : null,
+        h("div", { class: "bk-a", dir: "auto", text: (a.text || "").trim() || (a.audio ? "(Answer recorded as voice. Keep the recording with this book.)" : "") }));
+      if (a.photo) { const i = h("img", { class: "bk-ph" }); i.src = URL.createObjectURL(a.photo); qa.append(i); }
+      sec.append(qa); }
+    b.append(sec);
+  }
+  if (!PRO) b.append(h("p", { style: "margin-top:24pt;color:#888;font-size:9pt;text-align:center", text: "Made with Family Story Keeper Lite · gmdkhantoolshub.github.io" }));
+  if (!any) { toast("Answer a few questions first, then make the book."); return; }
+  modal("Your family book is ready", h("p", { text: "Your browser's print window will open. Choose 'Save as PDF' to keep a digital copy, or print it on paper." }),
+    h("p", { class: "muted small", text: "Voice recordings can't go inside a printed book. Use Download recording on each question to keep the audio files with it." }),
+    h("div", { class: "row" }, h("button", { class: "btn pri", type: "button", onclick: () => { closeModal(); setTimeout(() => window.print(), 300); } }, "Print / Save as PDF"), h("button", { class: "btn", type: "button", onclick: closeModal }, "Close")));
+}
+
+/* ---------- settings, backup ---------- */
+function viewSettings() {
+  app.replaceChildren(h("button", { class: "btn sm", type: "button", onclick: viewHome }, "← Home"), h("h1", { text: "Settings" }),
+    h("div", { class: "card" }, h("h2", { text: "Question language", style: "margin-top:0" }), h("div", { class: "row" },
+      h("button", { class: "btn" + (prefs.lang === "en" ? " pri" : ""), type: "button", onclick: () => { prefs.lang = "en"; savePrefs(); viewSettings(); } }, "English"),
+      h("button", { class: "btn" + (prefs.lang === "ur" ? " pri" : ""), type: "button", onclick: () => { prefs.lang = "ur"; savePrefs(); viewSettings(); } }, "اردو Urdu")),
+      h("p", { class: "muted small", text: "Answers can be written or spoken in any language." })),
+    h("div", { class: "card", style: "margin-top:14px" }, h("h2", { text: "Backup & restore", style: "margin-top:0" }),
+      PRO ? [h("p", { text: "Save a backup file with every storyteller, answer, recording and photo. Keep it somewhere safe, or use it to move your stories to another device." }),
+        h("div", { class: "row" }, h("button", { class: "btn pri", type: "button", onclick: backup }, "Download backup"), h("label", { class: "btn", style: "margin:0;font-weight:600" }, "Restore from backup", h("input", { type: "file", accept: ".json,application/json", hidden: true, onchange: (e) => restore(e.target.files[0]) })))]
+        : [h("p", { text: "Backup and restore is part of Pro. In Lite, your stories are kept in this browser. Clearing your browser data will delete them." }), proCard()]),
+    h("div", { class: "card", style: "margin-top:14px" }, h("h2", { text: "Your privacy", style: "margin-top:0" }),
+      h("p", { text: "Family Story Keeper has no account and no server. Stories, recordings and photos are stored only in this browser on this device. Nobody else can see them, including us." }),
+      h("button", { class: "btn sm", type: "button", onclick: async () => { if (confirm("Delete ALL storytellers, answers and recordings on this device? This can't be undone.")) { for (const s of ["people", "answers", "custom"]) await tx(s, "readwrite", (st) => st.clear()); customQs = []; viewHome(); toast("Everything deleted"); } } }, "Delete everything")),
+    h("p", { class: "muted small", style: "margin-top:16px", text: `Edition: ${PRO ? "Pro" : "Lite (free)"} · Works best in an up-to-date Chrome, Edge, Firefox or Safari.` }));
+}
+const b64 = (blob) => new Promise((r) => { const f = new FileReader(); f.onload = () => r(f.result); f.readAsDataURL(blob); });
+const unb64 = async (d) => (await fetch(d)).blob();
+async function backup() {
+  const out = { app: "family-story-keeper", v: 1, at: new Date().toISOString(), people: [], answers: [], custom: await all("custom") };
+  for (const p of await all("people")) out.people.push({ ...p, photo: p.photo ? await b64(p.photo) : null });
+  for (const a of await all("answers")) out.answers.push({ ...a, audio: a.audio ? await b64(a.audio) : null, photo: a.photo ? await b64(a.photo) : null });
+  download(new Blob([JSON.stringify(out)], { type: "application/json" }), `family-stories-backup-${new Date().toISOString().slice(0, 10)}.json`); toast("Backup downloaded");
+}
+async function restore(file) {
+  if (!file) return;
+  try { const d = JSON.parse(await file.text()); if (d.app !== "family-story-keeper") throw 0;
+    if (!confirm("Restore this backup? Stories with the same names on this device will be replaced by the backup copy.")) return;
+    for (const p of d.people) { if (p.photo) p.photo = await unb64(p.photo); else delete p.photo; await put("people", p); }
+    for (const a of d.answers) { if (a.audio) a.audio = await unb64(a.audio); else delete a.audio; if (a.photo) a.photo = await unb64(a.photo); else delete a.photo; await put("answers", a); }
+    for (const c of d.custom || []) await put("custom", c);
+    customQs = await all("custom"); viewHome(); toast("Backup restored");
+  } catch { toast("That file isn't a Family Story Keeper backup."); }
+}
+
+/* ---------- utilities ---------- */
+function download(blob, name) { const a = h("a", { download: name }); a.href = URL.createObjectURL(blob); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); }
+const safe = (s) => s.replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-") || "recording";
+const ext = (t) => (t.includes("mp4") ? "m4a" : t.includes("ogg") ? "ogg" : "webm");
+function shrink(file, max = 1200) { return new Promise((res) => { const img = new Image(); img.onload = () => { const s = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement("canvas"); c.width = img.width * s; c.height = img.height * s; c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); c.toBlob((b) => res(b || file), "image/jpeg", 0.82); URL.revokeObjectURL(img.src); }; img.onerror = () => res(file); img.src = URL.createObjectURL(file); }); }
+let modalEl = null;
+function modal(title, ...kids) { closeModal(); modalEl = h("div", { class: "modal", role: "dialog", "aria-modal": "true", "aria-label": title, onclick: (e) => e.target === modalEl && closeModal() }, h("div", { class: "card" }, h("h2", { text: title, style: "margin-top:0" }), ...kids)); document.body.append(modalEl); }
+function closeModal() { modalEl && modalEl.remove(); modalEl = null; }
+document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
+
+/* ---------- start ---------- */
+$("#edtag").textContent = PRO ? "PRO" : "LITE";
+$("#home").onclick = () => { stopRec(true); viewHome(); };
+$("#setBtn").onclick = () => { stopRec(true); viewSettings(); };
+$("#bigBtn").onclick = () => { prefs.big = !prefs.big; savePrefs(); applyPrefs(); };
+$("#langBtn").onclick = () => { prefs.lang = prefs.lang === "ur" ? "en" : "ur"; savePrefs(); toast(prefs.lang === "ur" ? "سوالات اب اردو میں ہیں" : "Questions are now in English"); viewHome(); };
+applyPrefs();
+openDB().then(async () => { customQs = await all("custom"); viewHome(); }).catch(() => {
+  app.replaceChildren(h("h1", { text: "Storage isn't available" }), h("p", { text: "This browser is blocking storage (for example, in a private window). Open Family Story Keeper in a normal window of Chrome, Edge, Firefox or Safari." }));
+});
+</script>
+</body>
+</html>
