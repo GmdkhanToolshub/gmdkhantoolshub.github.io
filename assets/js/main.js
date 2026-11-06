@@ -55,7 +55,7 @@
     loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(C.gaMeasurementId));
   }
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
-  /* The AdSense loader itself is in <head> (see build.py). Ads stay non-personalised until the visitor accepts. */
+  /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
   function initAds() {
     var slots = $$('.ad-slot');
     if (/[?&]adpreview=1/.test(location.search)) {
@@ -76,7 +76,7 @@
   function showBanner() {
     if ($('#consent')) return;
     var b = doc.createElement('div'); b.className = 'consent'; b.id = 'consent'; b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', 'Cookie preferences');
-    b.innerHTML = '<p>Ads keep these tools free. Accept to allow analytics and personalised ads; choose Essential only and any ads you see are not personalised. See the <a href="' + base + 'cookie-policy/">Cookie Policy</a> and <a href="' + base + 'privacy-policy/">Privacy Policy</a>.</p><div class="btn-row"><button type="button" class="btn btn-primary btn-sm" id="c-all">Accept all</button><button type="button" class="btn btn-ghost btn-sm" id="c-ess">Essential only</button></div>';
+    b.innerHTML = '<p>Ads keep these tools free. Choose whether ads may be personalised to your interests, or show only non-personalised ads based on the page you are viewing. See the <a href="' + base + 'cookie-policy/">Cookie Policy</a> and <a href="' + base + 'privacy-policy/">Privacy Policy</a>.</p><div class="btn-row"><button type="button" class="btn btn-primary btn-sm" id="c-all">Allow personalised ads</button><button type="button" class="btn btn-ghost btn-sm" id="c-ess">Non-personalised only</button></div>';
     doc.body.appendChild(b);
     $('#c-all').addEventListener('click', function () { var had = consent; consent = 'all'; save(CK, 'all'); closeBanner(); loadAnalytics(); if (had === 'essential') location.reload(); });
     $('#c-ess').addEventListener('click', function () { var had = consent; consent = 'essential'; save(CK, 'essential'); closeBanner(); if (had === 'all') location.reload(); });
@@ -84,8 +84,26 @@
   var needsConsent = !!(C.gaMeasurementId || C.adsensePublisherId);
   initAds();
   if (consent === 'all') loadAnalytics();
-  if (consent == null && needsConsent) showBanner();
-  $$('[data-open-consent]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); showBanner(); }); });
+  /* No banner pops up by itself. Visitors in the EEA, UK and Switzerland get Google's certified consent
+     message through the AdSense tag; everyone else can choose from the "Cookie settings" link. */
+  function openSettings() {
+    var done = false;
+    function own() { if (!done) { done = true; showBanner(); } }
+    try {
+      if (typeof window.__tcfapi === 'function') {
+        window.__tcfapi('ping', 2, function (r) {
+          if (done) return; done = true;
+          if (r && r.gdprApplies) {
+            var fc = window.googlefc = window.googlefc || {}; fc.callbackQueue = fc.callbackQueue || [];
+            fc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+          } else showBanner();
+        });
+        setTimeout(own, 1000); return;
+      }
+    } catch (e) { /* fall back to the site's own choice panel */ }
+    own();
+  }
+  $$('[data-open-consent]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); openSettings(); }); });
   if (!needsConsent) $$('[data-open-consent]').forEach(function (a) { var li = a.closest('li'); if (li) li.hidden = true; });
 
   /* ---------- tools data: favourites & recents ---------- */
