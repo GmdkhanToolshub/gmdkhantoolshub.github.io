@@ -606,3 +606,55 @@ ol.steps li::before { background: var(--grad); color: #fff; border-radius: 10px;
 .consent { border-radius: 18px; }
 @media (prefers-reduced-motion: reduce) { .card:hover, .btn:hover, .stat:hover, .hero-tiles a:hover { transform: none !important; } }
 @media print { .site-footer::before, .tool-panel::before, .page-hero::after, .hero::before, .product-card::before { display: none; } }
+
+/* ---------- Motion (only when the visitor allows animation) ---------- */
+.scroll-progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--grad); z-index: 120; pointer-events: none; }
+.site-header { transition: box-shadow .25s, background .25s; }
+.site-header.scrolled { box-shadow: 0 8px 30px -18px rgba(11, 27, 52, .45); }
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll reveal: content is hidden only after the script marks the page ready. */
+  html.motion .rv { opacity: 0; transform: translateY(26px) scale(.985); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1), box-shadow .2s, border-color .2s; transition-delay: var(--d, 0s); }
+  html.motion .rv.rv-left { transform: translateX(-28px); }
+  html.motion .rv.in { opacity: 1; transform: none; }
+
+  /* Living hero: drifting colour glows */
+  .hero::after { content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; border-radius: 50%; right: -120px; top: -160px; background: radial-gradient(circle, rgba(124, 58, 237, .38), transparent 65%); filter: blur(10px); animation: drift 14s ease-in-out infinite alternate; pointer-events: none; }
+  .hero-grid::before { content: ""; position: absolute; z-index: -1; width: 460px; height: 460px; border-radius: 50%; left: -140px; bottom: -220px; background: radial-gradient(circle, rgba(37, 99, 235, .4), transparent 65%); filter: blur(10px); animation: drift 18s ease-in-out infinite alternate-reverse; pointer-events: none; }
+  @keyframes drift { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-60px, 40px) scale(1.12); } 100% { transform: translate(30px, 80px) scale(.95); } }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes riseT { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+  .hero-tiles a { animation: fadein .7s cubic-bezier(.2, .7, .2, 1) both, bob 6s ease-in-out infinite; }
+  .hero-tiles a:nth-child(1) { animation-delay: .2s, 1s; } .hero-tiles a:nth-child(2) { animation-delay: .28s, 1.6s; }
+  .hero-tiles a:nth-child(3) { animation-delay: .36s, 2.2s; } .hero-tiles a:nth-child(4) { animation-delay: .44s, 2.8s; }
+  .hero-tiles a:nth-child(5) { animation-delay: .52s, 3.4s; } .hero-tiles a:nth-child(6) { animation-delay: .6s, 4s; }
+  .hero-tiles a:hover { animation-play-state: paused; }
+  @keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+  .hero-cats a { animation: riseT .6s cubic-bezier(.2, .7, .2, 1) both; animation-delay: .3s; }
+  .hero-cats a:nth-child(2) { animation-delay: .36s; } .hero-cats a:nth-child(3) { animation-delay: .42s; } .hero-cats a:nth-child(4) { animation-delay: .48s; } .hero-cats a:nth-child(5) { animation-delay: .54s; }
+
+  /* Inner page headers glide in */
+  .page-hero .container > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .page-hero .container > *:nth-child(2) { animation-delay: .06s; } .page-hero .container > *:nth-child(3) { animation-delay: .12s; } .page-hero .container > *:nth-child(4) { animation-delay: .18s; } .page-hero .container > *:nth-child(5) { animation-delay: .24s; }
+
+  /* Flowing gradients */
+  .gradient-text, .brand-mark, .site-footer::before, .scroll-progress, .tool-panel::before, .product-card::before { background-size: 200% 200%; animation: flow 6s ease infinite; }
+  @keyframes flow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+  /* Button shine sweep */
+  .btn-primary { position: relative; overflow: hidden; }
+  .btn-primary::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent); transform: skewX(-20deg); transition: left .6s ease; pointer-events: none; }
+  .btn-primary:hover::after { left: 120%; }
+
+  /* Gentle pulse on the "New app" label */
+  .feature-card .tag { animation: pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, .45); } 50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); } }
+
+  /* Section-title underline grows in */
+  html.motion .section-head.rv h2::after { width: 0; transition: width .8s .3s cubic-bezier(.2, .7, .2, 1); }
+  html.motion .section-head.rv.in h2::after { width: 48px; }
+
+  /* Timeline dots pop */
+  html.motion .t-item.rv::before { transform: scale(0); transition: transform .5s .25s cubic-bezier(.3, 1.6, .5, 1); }
+  html.motion .t-item.rv.in::before { transform: scale(1); }
+}
+@media print { .scroll-progress { display: none; } html.motion .rv { opacity: 1 !important; transform: none !important; } }

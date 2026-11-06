@@ -222,3 +222,72 @@
     });
   }
 })();
+
+/* ---------- Motion: scroll reveal, counters, header shadow and progress bar ---------- */
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header = document.querySelector('.site-header');
+  var bar = document.createElement('div'); bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, h.scrollTop / max) : 0) + ')';
+      if (header) header.classList.toggle('scrolled', h.scrollTop > 8);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var SEL = '.section-head, .card, .stat, .t-item, .trust li, .cta-band, details.faq, .side-card, .maker > div:first-child, .prose > h2, .prose > blockquote, .callout, ol.steps li';
+  var els = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
+    return !el.closest('#tool-root, .hero, .page-hero, .site-footer, .consent, .ad-slot, [data-list-section]');
+  });
+  els = els.filter(function (el) { return !els.some(function (o) { return o !== el && o.contains(el); }); });
+  els.forEach(function (el) {
+    var sibs = [].filter.call(el.parentElement.children, function (c) { return els.indexOf(c) > -1; });
+    var i = sibs.indexOf(el);
+    el.classList.add('rv');
+    if (i > 0) el.style.setProperty('--d', Math.min(i, 6) * 0.08 + 's');
+  });
+  var maker = document.querySelector('.maker > div:first-child.rv'); if (maker) maker.classList.add('rv-left');
+  document.documentElement.classList.add('motion');
+  var pending = els.slice();
+  function reveal(el) {
+    var k = pending.indexOf(el); if (k < 0) return;
+    pending.splice(k, 1); io.unobserve(el); el.classList.add('in');
+    // Hand control back to the normal hover styles once the entrance ends.
+    setTimeout(function () { el.classList.remove('rv', 'in', 'rv-left'); el.style.removeProperty('--d'); }, 1300);
+    if (el.classList.contains('stat')) count(el.querySelector('b'));
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) reveal(e.target); });
+    // The huge top margin counts anything already scrolled past as "seen", so a fast fling never leaves it hidden.
+  }, { rootMargin: '100000px 0px -6% 0px', threshold: 0.06 });
+  els.forEach(function (el) { io.observe(el); });
+  // A fast scroll or a jump link can skip past an element entirely: reveal anything already above the fold.
+  var sweep = null;
+  window.addEventListener('scroll', function () {
+    if (sweep || !pending.length) return;
+    sweep = setTimeout(function () {
+      sweep = null;
+      pending.slice().forEach(function (el) { if (el.offsetParent && el.getBoundingClientRect().top < innerHeight) reveal(el); });
+    }, 150);
+  }, { passive: true });
+
+  function count(b) {
+    if (!b) return;
+    var m = b.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+    var end = +m[1], suffix = m[2], t0 = null, dur = 1300;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      b.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    b.textContent = '0' + suffix; requestAnimationFrame(step);
+  }
+})();
