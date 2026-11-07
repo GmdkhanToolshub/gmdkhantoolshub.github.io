@@ -895,3 +895,14 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 .pw-meter i.neg { background: var(--err); } .pw-meter i.warn { background: var(--warn); }
 .jf-snip { font-family: var(--mono); font-size: .84rem; background: var(--surface-strong); padding: 10px 12px; border-radius: 10px; overflow-x: auto; }
 .tc-btns { gap: 6px; }
+
+/* ---------- Refinement 2026-11-07: calmer, no endless loops ---------- */
+/* Gradients stay static; drifting glows and pulsing badges stop. Entrance animations and hover feedback remain. */
+.gradient-text, .brand-mark, .site-footer::before, .scroll-progress, .tool-panel::before, .product-card::before,
+.feature-card .tag, .hero::after, .hero-grid::before { animation: none !important; }
+.section-head h2::after { width: 40px; height: 3px; }
+.hero-cats a.hero-cat-new { border-color: rgba(251, 191, 36, .55); color: #fde68a; }
+.hero-cats a.hero-cat-new:hover { background: rgba(251, 191, 36, .12); }
+.contact-tips { padding-left: 1.1em; color: var(--text-soft); }
+.contact-tips li { margin-bottom: 8px; }
+.contact-tips strong { color: var(--text); }
