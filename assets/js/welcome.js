@@ -30,7 +30,7 @@
   var o = d.createElement('div');
   o.className = 'welcome' + (reduce ? ' still' : '');
   o.setAttribute('role', 'dialog');
-  o.setAttribute('aria-label', 'Welcome to GM Niazi Free Tools');
+  o.setAttribute('aria-label', 'Welcome to GM Free Tools');
   o.style.setProperty('--wl-dur', DUR + 'ms');
   o.innerHTML =
     '<div class="wl-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
@@ -40,8 +40,8 @@
         '<div class="wl-bot-wrap wl-b"><span class="wl-bubble" aria-hidden="true">Welcome!</span>' + robot('wlg2', '#a78bfa', '#7c3aed') + '</div>' +
       '</div>' +
       '<p class="wl-kicker">Hello, and welcome to</p>' +
-      '<h2 class="wl-title">GM Niazi <span>Free Tools</span></h2>' +
-      '<p class="wl-sub">25 free tools for work, money and your career</p>' +
+      '<h2 class="wl-title">GM <span>Free Tools</span></h2>' +
+      '<p class="wl-sub">38 free tools for work, money, study and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<button type="button" class="wl-skip">Skip intro</button>' +
     '</div>';
