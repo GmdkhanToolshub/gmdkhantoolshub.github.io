@@ -1,4 +1,4 @@
-/* Welcome screen: two friendly robots greet first-time visitors to the home page (once per browser session).
+/* Welcome screen: two friendly robots greet visitors on every load of the home page (including refresh).
    The <head> snippet decides eligibility and adds html.wl; this file builds the overlay and closes it. */
 (function () {
   var d = document, h = d.documentElement;
