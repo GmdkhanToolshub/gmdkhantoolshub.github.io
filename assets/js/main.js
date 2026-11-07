@@ -164,6 +164,10 @@
       var cnt = $('#result-count'); if (cnt) cnt.textContent = n + (n === 1 ? ' tool' : ' tools');
     };
     if (search) search.addEventListener('input', apply);
+    // Press "/" anywhere outside a form field to jump to the tool search.
+    if (search) doc.addEventListener('keydown', function (e) {
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey && !/^(input|textarea|select)$/i.test(e.target.tagName) && !e.target.isContentEditable) { e.preventDefault(); search.focus(); }
+    });
     chips.forEach(function (ch) { ch.addEventListener('click', function () { cat = ch.getAttribute('data-cat'); chips.forEach(function (x) { x.setAttribute('aria-pressed', x === ch); }); apply(); }); });
     var cl = $('#clear-search'); if (cl) cl.addEventListener('click', function () { if (search) search.value = ''; cat = 'All'; chips.forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-cat') === 'All'); }); apply(); if (search) search.focus(); });
     /* deep links from the home page: ?q=salary and ?cat=Career */
