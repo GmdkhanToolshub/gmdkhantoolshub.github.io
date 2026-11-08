@@ -259,7 +259,7 @@
     };
     // Let the browser paint the page header first (better FCP/LCP on slow phones), then start the tool.
     var later = function () { if (window.requestAnimationFrame) requestAnimationFrame(function () { setTimeout(boot, 0); }); else setTimeout(boot, 0); };
-    if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) later(); else window.addEventListener('load', later);
+    if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) later(); else document.addEventListener('DOMContentLoaded', later); // deferred tool scripts have all run by DOMContentLoaded
   }
 })();
 
@@ -335,6 +335,6 @@
 /* Voice (welcome + spoken tool names): loaded after the page is interactive; skipped if Speech Synthesis is missing. */
 (function () {
   var s = document.currentScript; if (!s || !('speechSynthesis' in window)) return;
-  var go = function () { var v = document.createElement('script'); v.src = s.src.replace(/main\.js.*$/, 'voice.js?v=84973898'); v.async = true; document.head.appendChild(v); };
+  var go = function () { var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=84973898'); v.async = true; document.head.appendChild(v); };
   if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300);
 })();
