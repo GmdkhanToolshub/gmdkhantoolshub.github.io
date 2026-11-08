@@ -50,7 +50,7 @@
   /* ---------- welcome: once per session, retried after the first interaction if the browser blocks autoplay ---------- */
   // Home page (robot welcome screen): greet on every open. Any other entry page: once per session.
   var onHome = d.body && d.body.getAttribute('data-root') === './' && !/404/.test(location.pathname), greeted = false;
-  function due() { return on && !greeted && (onHome || get(WELCOMED) !== '1'); }
+  function due() { return on && !greeted && get(WELCOMED) !== '1'; } // once per browsing session
   function welcome() {
     if (!due()) return;
     speak(WELCOME, {

@@ -4,7 +4,7 @@
   var d = document, h = d.documentElement;
   if (!h.classList.contains('wl')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DUR = reduce ? 1200 : 2600;
+  var DUR = reduce ? 1000 : 2200; // shown once per browsing session, never on refresh; Skip closes it at once
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
@@ -48,7 +48,7 @@
     '</div>';
   d.body.appendChild(o);
   h.classList.remove('wl');
-  h.classList.add('wl-open');
+  h.classList.add('wl-open'); try { sessionStorage.setItem('gm.wl', '1'); } catch (e) { /* storage blocked: it may show again, which is harmless */ }
 
   var done = false, prev = d.activeElement;
   function close() {
