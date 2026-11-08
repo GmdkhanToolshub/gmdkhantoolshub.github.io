@@ -70,9 +70,9 @@
   }
 
   /* ---------- hover: pronounce the tool / gadget name ---------- */
-  var SEL = '.tool-card h3, .pop-chip, .hero-tiles a, .cat-list a';
+  var SEL = '.tool-card h3, .gm-card h3, .pop-chip, .hero-tiles a, .cat-list a';
   function nameOf(el) {
-    var h = el.closest('.tool-card h3') || el;
+    var h = el.closest('.tool-card h3, .gm-card h3') || el;
     var t = (h.getAttribute('data-voice') || h.textContent || '').replace(/\s+/g, ' ').trim();
     return t.length > 0 && t.length <= 60 ? t : '';
   }
