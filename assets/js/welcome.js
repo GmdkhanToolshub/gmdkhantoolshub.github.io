@@ -30,7 +30,7 @@
   var o = d.createElement('div');
   o.className = 'welcome' + (reduce ? ' still' : '');
   o.setAttribute('role', 'dialog');
-  o.setAttribute('aria-label', 'Welcome to GM Free Tools');
+  o.setAttribute('aria-label', 'Welcome to GM Free Tools & Gadgets');
   o.style.setProperty('--wl-dur', DUR + 'ms');
   o.innerHTML =
     '<div class="wl-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
@@ -39,9 +39,10 @@
         '<div class="wl-bot-wrap wl-a"><span class="wl-bubble" aria-hidden="true">Hi!</span>' + robot('wlg1', '#60a5fa', '#4f46e5') + '</div>' +
         '<div class="wl-bot-wrap wl-b"><span class="wl-bubble" aria-hidden="true">Welcome!</span>' + robot('wlg2', '#a78bfa', '#7c3aed') + '</div>' +
       '</div>' +
+      '<div class="wl-logo" aria-hidden="true"><svg viewBox="-2 0 42 22" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15.6 5.9A8 8 0 1 0 17.5 11H10.5"/><path d="M22.5 19V3.5l7 10 7-10V19"/></svg></div>' +
       '<p class="wl-kicker">Hello, and welcome to</p>' +
-      '<h2 class="wl-title">GM <span>Free Tools</span></h2>' +
-      '<p class="wl-sub">38 free tools for work, money, study and everyday life</p>' +
+      '<h2 class="wl-title">Free Tools <span>&amp; Gadgets</span></h2>' +
+      '<p class="wl-sub">58 free tools and gadgets for work, documents and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<button type="button" class="wl-skip">Skip intro</button>' +
     '</div>';
