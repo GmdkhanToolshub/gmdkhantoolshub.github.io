@@ -126,7 +126,7 @@
   function start() {
     build();
     if (synth.getVoices && !synth.getVoices().length && synth.addEventListener) synth.addEventListener('voiceschanged', function () { voice = null; }, { once: true });
-    if (!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)) setTimeout(welcome, 600);
+    if (!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)) welcome();
   }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
 })();

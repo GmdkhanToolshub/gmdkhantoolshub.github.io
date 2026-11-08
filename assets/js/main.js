@@ -332,9 +332,8 @@
   }
 })();
 
-/* Voice (welcome + spoken tool names): loaded after the page is interactive; skipped if Speech Synthesis is missing. */
+/* Voice (welcome + spoken tool names): starts straight away so the greeting is not late; skipped if Speech Synthesis is missing. */
 (function () {
-  var s = document.currentScript; if (!s || !('speechSynthesis' in window)) return;
-  var go = function () { var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=1de6fd37'); v.async = true; document.head.appendChild(v); };
-  if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300);
+  var s = document.currentScript; if (!s || !('speechSynthesis' in window) || document.querySelector('script[src*="voice.js"]')) return;
+  var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=4ce952bc'); v.async = true; document.head.appendChild(v);
 })();
