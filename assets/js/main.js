@@ -216,6 +216,7 @@
   var form = $('#contact-form');
   if (form) {
     var msg = $('#form-msg');
+    try { var qs = new URLSearchParams(location.search), pl = qs.get('plan'); if (pl) { form.elements['topic'].value = 'GM HCM early access or quotation'; if (!form.elements['message'].value) form.elements['message'].value = 'I would like early access to GM HCM (' + pl.slice(0, 40) + ' plan). Please tell me about availability and payment options.'; } } catch (x) { /* prefill is optional */ }
     form.addEventListener('submit', function (e) {
       e.preventDefault(); msg.className = 'form-error'; msg.textContent = '';
       var el = form.elements; // note: form.name would be the form's own name attribute, so always use form.elements
@@ -256,7 +257,9 @@
       }
       tr.setAttribute('data-ready', '');
     };
-    if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) boot(); else window.addEventListener('load', boot);
+    // Let the browser paint the page header first (better FCP/LCP on slow phones), then start the tool.
+    var later = function () { if (window.requestAnimationFrame) requestAnimationFrame(function () { setTimeout(boot, 0); }); else setTimeout(boot, 0); };
+    if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) later(); else window.addEventListener('load', later);
   }
 })();
 
