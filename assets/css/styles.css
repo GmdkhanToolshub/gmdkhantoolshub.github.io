@@ -1076,3 +1076,9 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 .wl-tap { display: none; margin: 14px 0 0; align-items: center; justify-content: center; gap: 8px; font-size: .9rem; font-weight: 600; color: #cfe0ff; }
 .wl-tap svg { width: 18px; height: 18px; }
 html.wl-needs-tap .wl-tap { display: flex; }
+
+/* founder photo (About Us and Contact Us) */
+.founder-card { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; align-items: start; margin: 12px 0 24px; }
+.founder-img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; box-shadow: var(--shadow); background: var(--surface-strong); }
+.founder-sm { width: 120px; margin-bottom: 12px; border-radius: 14px; }
+@media (max-width: 640px) { .founder-card { grid-template-columns: minmax(0, 1fr); } .founder-card .founder-img { max-width: 260px; } }
