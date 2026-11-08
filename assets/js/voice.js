@@ -60,13 +60,14 @@
       wait: 1800
     });
   }
+  var GESTURES = ['pointerdown', 'keydown', 'touchstart', 'touchend', 'click']; // iOS Safari accepts touchend and click, not touchstart, as a user gesture
   function armFirstGesture() {
     function go(ev) {
-      ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.removeEventListener(t, go, true); });
+      GESTURES.forEach(function (t) { d.removeEventListener(t, go, true); });
       if (ev && ev.target && ev.target.closest && ev.target.closest('.voice-btn')) { welcomePending = false; return; } // the toggle handles its own state
       if (due()) speak(WELCOME, { isWelcome: true, started: function () { greeted = true; set(WELCOMED, '1'); welcomePending = false; } });
     }
-    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.addEventListener(t, go, { capture: true, passive: true, once: false }); });
+    GESTURES.forEach(function (t) { d.addEventListener(t, go, { capture: true, passive: true }); });
   }
 
   /* ---------- hover: pronounce the tool / gadget name ---------- */
@@ -91,6 +92,17 @@
     }, HOVER_DELAY);
   }
   function out(e) { var el = e.target.closest ? e.target.closest(SEL) : null; if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) clearTimeout(hoverTimer); }
+  /* Touch screens have no hover, so a tap on a tool name says it first, then opens the page (waits at most 0.9 s). */
+  var lastType = 'mouse'; d.addEventListener('pointerdown', function (e) { lastType = e.pointerType || 'mouse'; }, { capture: true, passive: true });
+  d.addEventListener('click', function (e) {
+    if (!on || welcomeLive || e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || (lastType !== 'touch' && lastType !== 'pen')) return;
+    var el = e.target.closest ? e.target.closest(SEL) : null; if (!el) return;
+    var a = el.closest('a[href]') || el.querySelector('a[href]'); if (!a || a.target === '_blank' || /^(mailto|tel):/i.test(a.getAttribute('href'))) return;
+    var name = nameOf(el); if (!name) return;
+    e.preventDefault(); var go = false, href = a.href, nav = function () { if (!go) { go = true; location.href = href; } };
+    speak(name, { fast: true, started: function () { setTimeout(nav, 900); }, blocked: nav }); lastName = name; lastNameAt = Date.now();
+    setTimeout(nav, 1100); // safety: always continue to the page
+  });
   d.addEventListener('pointerover', over, { passive: true });
   d.addEventListener('pointerout', out, { passive: true });
 
