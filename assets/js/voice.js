@@ -48,11 +48,14 @@
   }
 
   /* ---------- welcome: once per session, retried after the first interaction if the browser blocks autoplay ---------- */
+  // Home page (robot welcome screen): greet on every open. Any other entry page: once per session.
+  var onHome = d.body && d.body.getAttribute('data-root') === './' && !/404/.test(location.pathname), greeted = false;
+  function due() { return on && !greeted && (onHome || get(WELCOMED) !== '1'); }
   function welcome() {
-    if (!on || get(WELCOMED) === '1') return;
+    if (!due()) return;
     speak(WELCOME, {
       isWelcome: true,
-      started: function () { set(WELCOMED, '1'); welcomePending = false; },
+      started: function () { greeted = true; set(WELCOMED, '1'); welcomePending = false; },
       blocked: function () { if (!welcomePending) { welcomePending = true; armFirstGesture(); } },
       wait: 1800
     });
@@ -61,7 +64,7 @@
     function go(ev) {
       ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.removeEventListener(t, go, true); });
       if (ev && ev.target && ev.target.closest && ev.target.closest('.voice-btn')) { welcomePending = false; return; } // the toggle handles its own state
-      if (on && get(WELCOMED) !== '1') speak(WELCOME, { isWelcome: true, started: function () { set(WELCOMED, '1'); welcomePending = false; } });
+      if (due()) speak(WELCOME, { isWelcome: true, started: function () { greeted = true; set(WELCOMED, '1'); welcomePending = false; } });
     }
     ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.addEventListener(t, go, { capture: true, passive: true, once: false }); });
   }

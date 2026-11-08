@@ -4,7 +4,7 @@
   var d = document, h = d.documentElement;
   if (!h.classList.contains('wl')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DUR = reduce ? 1500 : 3400;
+  var DUR = reduce ? 1200 : 2600;
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
