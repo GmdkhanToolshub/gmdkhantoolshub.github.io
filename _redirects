@@ -2,3 +2,12 @@
 /free-tools/  /tools/  301
 /free-tools/*  /tools/:splat  301
 /community/ /people-success-hub/ 301
+/interview-practice/ /growth/interview-practice/ 301
+/learn/interview-practice/ /growth/interview-practice/ 301
+/learn/interview/ /growth/interview-practice/ 301
+/growth/interview/ /growth/interview-practice/ 301
+/tools/interview-practice/ /growth/interview-practice/ 301
+/interview-preparation/ /growth/interview-practice/ 301
+/learn/interview-preparation/ /growth/interview-practice/ 301
+/tools/interview-prep/ /growth/interview-practice/ 301
+/learn/interview-prep/ /growth/interview-practice/ 301
