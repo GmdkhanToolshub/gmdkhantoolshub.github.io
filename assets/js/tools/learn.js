@@ -101,7 +101,7 @@
 
   /* ----- interview practice ----- */
   T['interview-practice'] = function (r, U) {
-    var esc = U.esc, cats = ['All', 'Common', 'Behavioural', 'Situational', 'Strengths', 'Your questions'], cat = 'All', mode = 'practice', cur = null, show = false, tm = null, left = 0, mock = [], mi = 0, ratings = [];
+    var esc = U.esc, cats = ['All', 'Common', 'Behavioural', 'Situational', 'Strengths', 'Your questions'], cat = 'All', mode = 'practice', reg = 'All', cur = null, show = false, tm = null, left = 0, mock = [], mi = 0, ratings = [];
     function pick() { var p = L.interview.filter(function (q) { return cat === 'All' || q[0] === cat; }), n; if (!p.length) return null; do { n = p[rnd(p.length)]; } while (n === cur && p.length > 1); return n; }
     function notes() { return ls('gm.interview', {}); }
     function stopT() { if (tm) { clearInterval(tm); tm = null; } }
@@ -114,7 +114,13 @@
     }
     function paint() {
       stopT(); var q = mode === 'practice' ? cur : mock[mi];
-      var tabs = '<div class="pill-row"><button type="button" class="pill" data-mode="practice" aria-pressed="' + (mode === 'practice') + '">Practice</button><button type="button" class="pill" data-mode="mock" aria-pressed="' + (mode === 'mock') + '">Mock round (5 questions)</button></div>';
+      var tabs = '<div class="pill-row"><button type="button" class="pill" data-mode="practice" aria-pressed="' + (mode === 'practice') + '">Practice</button><button type="button" class="pill" data-mode="mock" aria-pressed="' + (mode === 'mock') + '">Mock round (5 questions)</button><button type="button" class="pill" data-mode="samples" aria-pressed="' + (mode === 'samples') + '">30 sample interviews</button></div>';
+      if (mode === 'samples') {
+        var D = L.demo || [], regs = ['All', 'Pakistan', 'South and East Asia', 'Gulf and overseas', 'Global'], list = D.filter(function (x) { return reg === 'All' || x.region === reg; });
+        r.innerHTML = tabs + '<p class="muted">30 sample interviews with model answers for Pakistan, South and East Asia, the Gulf and worldwide. Replace the [brackets] with your own facts and speak every answer in your own words.</p><div class="pill-row" role="group" aria-label="Region">' + regs.map(function (g) { return '<button type="button" class="pill" data-reg="' + esc(g) + '" aria-pressed="' + (g === reg) + '">' + esc(g) + '</button>'; }).join('') + '</div>' +
+          list.map(function (x) { return '<details class="faq"><summary><b>' + esc(x.q) + '</b> <span class="small muted">· ' + esc(x.field) + ' · ' + esc(x.region) + '</span></summary><p><b>Sample answer:</b> ' + esc(x.a) + '</p><p class="qz-note"><b>Tip: </b>' + esc(x.tip) + '</p><button type="button" class="btn btn-ghost btn-sm" data-try="' + D.indexOf(x) + '">Practise this question</button></details>'; }).join('');
+        return;
+      }
       if (mode === 'practice') { r.innerHTML = tabs + '<div class="pill-row" role="group" aria-label="Question type">' + cats.map(function (c) { return '<button type="button" class="pill" data-cat="' + esc(c) + '" aria-pressed="' + (c === cat) + '">' + esc(c) + '</button>'; }).join('') + '</div><div class="qz">' + qBlock(q) + '<div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" data-a="new">🎲 New question</button></div></div>'; }
       else if (mi >= mock.length) { var avg = ratings.reduce(function (a, b) { return a + b; }, 0) / (ratings.length || 1); r.innerHTML = tabs + '<div class="qz"><div class="qz-score"><b>' + avg.toFixed(1) + ' / 5</b><p>Your average self-rating for this round.</p><p class="small muted">Review the questions you rated lowest and practise them again.</p></div><div class="row-btns"><button type="button" class="btn btn-primary" data-a="newmock">Start another mock round</button></div></div>'; }
       else { r.innerHTML = tabs + '<div class="qz"><div class="qz-bar"><span>Mock question ' + (mi + 1) + ' of ' + mock.length + '</span></div><div class="qz-meter"><i style="width:' + (mi / mock.length * 100) + '%"></i></div>' + qBlock(q) + '<p class="small" style="margin-top:14px"><b>How well did you answer?</b></p><div class="row-btns">' + [1, 2, 3, 4, 5].map(function (n) { return '<button type="button" class="btn btn-ghost" data-rate="' + n + '" aria-label="Rate ' + n + ' out of 5">' + n + '</button>'; }).join('') + '</div></div>'; }
@@ -122,6 +128,8 @@
     r.addEventListener('input', function (e) { if (e.target.id !== 'iv-notes') return; var q = mode === 'practice' ? cur : mock[mi]; if (!q) return; var n = notes(); if (e.target.value) n[q[1]] = e.target.value; else delete n[q[1]]; lsSet('gm.interview', n); });
     r.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.reg !== undefined) { reg = b.dataset.reg; paint(); return; }
+      if (b.dataset.try !== undefined) { var it = (L.demo || [])[+b.dataset.try]; if (it) { cur = [it.region, it.q, it.tip]; mode = 'practice'; show = false; paint(); } return; }
       if (b.dataset.mode) { mode = b.dataset.mode; show = false; if (mode === 'mock') { mock = shuffle(L.interview).slice(0, 5); mi = 0; ratings = []; } paint(); }
       else if (b.dataset.cat !== undefined) { cat = b.dataset.cat; cur = pick(); show = false; paint(); }
       else if (b.dataset.a === 'new') { cur = pick(); show = false; paint(); }

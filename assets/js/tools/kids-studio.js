@@ -24,7 +24,7 @@
   function P(c, f) { c.beginPath(); f(c); c.closePath(); c.stroke(); }
   function ell(c, x, y, rx, ry, rot) { P(c, function () { c.ellipse(x, y, rx, ry, rot || 0, 0, Math.PI * 2); }); }
   function poly(c, pts) { P(c, function () { c.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]); }); }
-  function rrect(c, x, y, w, h, r) { P(c, function () { c.roundRect ? c.roundRect(x, y, w, h, r) : c.rect(x, y, w, h); }); }
+  function rrect(c, x, y, w, h, r) { P(c, function () { r = Math.min(r, w / 2, h / 2); c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.arcTo(x + w, y, x + w, y + r, r); c.lineTo(x + w, y + h - r); c.arcTo(x + w, y + h, x + w - r, y + h, r); c.lineTo(x + r, y + h); c.arcTo(x, y + h, x, y + h - r, r); c.lineTo(x, y + r); c.arcTo(x, y, x + r, y, r); }); } // drawn by hand: roundRect() can leave a stray dot at the corner
   function open(c, pts) { c.beginPath(); c.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]); c.stroke(); }
   function starPts(cx, cy, R, r, n) { var a = []; for (var i = 0; i < n * 2; i++) { var ang = -Math.PI / 2 + i * Math.PI / n, rad = i % 2 ? r : R; a.push([cx + Math.cos(ang) * rad, cy + Math.sin(ang) * rad]); } return a; }
   var TEMPLATES = [
@@ -303,5 +303,47 @@
   NiaziTools['kids-colouring-pages'] = function (r, U) { studio(r, U, { template: 'cat' }); };
   NiaziTools['kids-drawing-challenges'] = function (r, U) { studio(r, U, { challenge: true }); };
   NiaziTools['kids-gallery'] = gallery;
+  /* ---------- Talking Buddy: an original friendly character that says whatever the child types (no microphone, nothing sent anywhere) ---------- */
+  function buddy(root, U) {
+    var BAD = /\b(fuck|shit|bitch|bastard|asshole|slut|whore|nigg|cunt|dick|idiot|stupid|moron|hate|kill|rape|sex)\w*/i;
+    var JOKES = ['What is a robot’s favourite snack? Computer chips!', 'Why did the cookie go to the doctor? Because it felt crumby!', 'What do you call a sleeping bull? A bulldozer!', 'Why do bees have sticky hair? Because they use honeycombs!', 'What do you call a dinosaur that is never late? A prontosaurus!'];
+    var PHRASES = ['Hello, friend!', 'Let’s draw something fun!', 'I love colours!', 'You are a great artist!', 'Time to dance!'];
+    var COLORS = ['#2dd4bf', '#a78bfa', '#f472b6', '#fbbf24', '#60a5fa', '#4ade80'];
+    root.innerHTML = '<div class="tb"><div class="tb-stage"><div class="tb-bubble" id="tb-bubble" aria-live="polite">Hi! I am Bolo. Type something and I will say it!</div>' +
+      '<svg id="tb-bolo" class="tb-bolo" viewBox="0 0 240 280" role="img" aria-label="Bolo, a friendly cartoon character"><g class="tb-all"><line x1="120" y1="22" x2="120" y2="56" stroke="#1f2937" stroke-width="6" stroke-linecap="round"/><circle cx="120" cy="18" r="11" fill="#fbbf24" stroke="#1f2937" stroke-width="6"/>' +
+      '<g class="tb-arm tb-l"><rect x="22" y="146" width="34" height="74" rx="17" fill="var(--bolo,#2dd4bf)" stroke="#1f2937" stroke-width="6"/></g><g class="tb-arm tb-r"><rect x="184" y="146" width="34" height="74" rx="17" fill="var(--bolo,#2dd4bf)" stroke="#1f2937" stroke-width="6"/></g>' +
+      '<rect x="62" y="206" width="42" height="44" rx="16" fill="#6366f1" stroke="#1f2937" stroke-width="6"/><rect x="136" y="206" width="42" height="44" rx="16" fill="#6366f1" stroke="#1f2937" stroke-width="6"/>' +
+      '<rect x="46" y="52" width="148" height="170" rx="64" fill="var(--bolo,#2dd4bf)" stroke="#1f2937" stroke-width="6"/><ellipse cx="120" cy="170" rx="46" ry="34" fill="#ffffff" opacity=".35"/>' +
+      '<g class="tb-eyes"><circle cx="92" cy="104" r="22" fill="#fff" stroke="#1f2937" stroke-width="6"/><circle cx="148" cy="104" r="22" fill="#fff" stroke="#1f2937" stroke-width="6"/><circle class="tb-pupil" cx="96" cy="108" r="9" fill="#1f2937"/><circle class="tb-pupil" cx="144" cy="108" r="9" fill="#1f2937"/></g>' +
+      '<g class="tb-mouth"><ellipse cx="120" cy="164" rx="26" ry="14" fill="#7f1d1d" stroke="#1f2937" stroke-width="6"/><ellipse cx="120" cy="170" rx="13" ry="6" fill="#f87171"/></g></g></svg></div>' +
+      '<div class="tb-panel"><form id="tb-form" class="tb-row"><label class="sr-only" for="tb-text">What should Bolo say?</label><input id="tb-text" maxlength="40" placeholder="Type a short message…" autocomplete="off"><button type="submit" class="btn btn-primary">Say it</button></form>' +
+      '<div class="tb-row"><button type="button" class="btn btn-ghost" data-j="1">Tell me a joke</button><button type="button" class="btn btn-ghost" data-hi="1">Wave hello</button></div>' +
+      '<p class="small muted" style="margin:10px 0 4px">Quick words</p><div class="tb-row">' + PHRASES.map(function (p) { return '<button type="button" class="pill" data-p="' + U.esc(p) + '">' + U.esc(p) + '</button>'; }).join('') + '</div>' +
+      '<p class="small muted" style="margin:12px 0 4px">Bolo’s colour</p><div class="tb-row" role="group" aria-label="Bolo colour">' + COLORS.map(function (c) { return '<button type="button" class="ks-sw" style="background:' + c + '" data-c="' + c + '" aria-label="Colour ' + c + '"></button>'; }).join('') + '</div>' +
+      '<p class="ks-msg" id="tb-msg" role="status" aria-live="polite"></p></div></div>';
+    var $ = function (s) { return root.querySelector(s); }, bolo = $('#tb-bolo'), bubble = $('#tb-bubble'), msg = $('#tb-msg'), synth = window.speechSynthesis, ji = 0;
+    function act(cls, ms) { bolo.classList.add(cls); setTimeout(function () { bolo.classList.remove(cls); }, ms); }
+    function say(text) {
+      text = String(text || '').replace(/\s+/g, ' ').trim(); if (!text) { msg.textContent = 'Type a word or two first.'; return; }
+      if (BAD.test(text)) { text = 'Let’s use kind words!'; }
+      bubble.textContent = text; msg.textContent = '';
+      if (!synth || typeof SpeechSynthesisUtterance === 'undefined') { act('tb-talk', 1800); msg.textContent = 'Your browser cannot speak, but Bolo is happy to show you the words.'; return; }
+      try { synth.cancel(); var u = new SpeechSynthesisUtterance(text), vs = synth.getVoices(), en = vs.filter(function (v) { return /^en/i.test(v.lang); }); if (en.length) u.voice = en.filter(function (v) { return v.localService; })[0] || en[0]; u.lang = 'en-US'; u.pitch = 1.9; u.rate = 1.08; u.onstart = function () { bolo.classList.add('tb-talk'); }; u.onend = u.onerror = function () { bolo.classList.remove('tb-talk'); }; synth.speak(u); act('tb-bounce', 600); } catch (e) { msg.textContent = 'Sound is not available right now.'; }
+    }
+    $('#tb-form').addEventListener('submit', function (e) { e.preventDefault(); say($('#tb-text').value); });
+    root.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (b && root.contains(b)) {
+        if (b.dataset.p) { say(b.dataset.p); $('#tb-text').value = b.dataset.p; }
+        else if (b.dataset.j) { say(JOKES[ji++ % JOKES.length]); }
+        else if (b.dataset.hi) { say('Hello, friend!'); act('tb-wave', 1400); }
+        else if (b.dataset.c) { bolo.style.setProperty('--bolo', b.dataset.c); act('tb-bounce', 600); }
+        return;
+      }
+      if (e.target.closest('#tb-bolo')) { act('tb-bounce', 600); say(['Hee hee, that tickles!', 'Boing!', 'Hello there!', 'Wheee!'][Math.floor(Math.random() * 4)]); }
+    });
+    setInterval(function () { bolo.classList.add('tb-blink'); setTimeout(function () { bolo.classList.remove('tb-blink'); }, 140); }, 3400);
+  }
+  NiaziTools['kids-talking-buddy'] = buddy;
+
   window.GMKids = { DB: DB, templates: TEMPLATES.map(function (t) { return { id: t.id, n: t.n, cat: t.cat }; }), pdfFromJpeg: pdfFromJpeg, W: W, H: H };
 })();

@@ -152,3 +152,23 @@
 .pr-tag { position: absolute; top: -12px; left: 18px; background: var(--blue); color: #fff; font-size: .72rem; font-weight: 800; padding: 3px 10px; border-radius: 99px; letter-spacing: .04em; text-transform: uppercase; }
 .pr-price { display: flex; flex-direction: column; margin: 4px 0; } .pr-amt { font-size: 1.9rem; font-weight: 800; line-height: 1.1; } .pr-per { font-size: .84rem; color: var(--text-soft); }
 @media (max-width: 760px) { .hd-two, .hd-kan { grid-template-columns: 1fr; } .hd-bar { grid-template-columns: 90px 1fr 48px; } }
+
+/* ---------- Talking Buddy ---------- */
+.tb { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 28px; align-items: center; }
+.tb-stage { display: grid; justify-items: center; gap: 10px; background: linear-gradient(180deg, #e0f2fe, #fef3c7); border-radius: 22px; padding: 18px 12px 10px; }
+.tb-bubble { background: #fff; color: #1f2937; border: 3px solid #1f2937; border-radius: 18px; padding: 10px 16px; font-weight: 700; text-align: center; max-width: 100%; min-height: 3.2em; display: grid; place-items: center; overflow-wrap: anywhere; }
+.tb-bolo { width: min(100%, 300px); height: auto; cursor: pointer; --bolo: #2dd4bf; touch-action: manipulation; }
+.tb-all { transform-origin: 120px 250px; }
+.tb-mouth { transform-origin: 120px 164px; }
+.tb-talk .tb-mouth { animation: tb-yap .22s ease-in-out infinite alternate; }
+.tb-bounce .tb-all { animation: tb-hop .6s ease-out; }
+.tb-wave .tb-r { transform-origin: 200px 160px; animation: tb-wave .35s ease-in-out 4 alternate; }
+.tb-blink .tb-eyes { transform: scaleY(.1); transform-origin: 120px 106px; }
+.tb-panel { display: grid; gap: 10px; }
+.tb-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tb-row input { flex: 1 1 200px; min-width: 0; padding: 11px 14px; border-radius: 12px; border: 2px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+@keyframes tb-yap { from { transform: scaleY(.45); } to { transform: scaleY(1.25); } }
+@keyframes tb-hop { 0% { transform: translateY(0) scale(1, 1); } 30% { transform: translateY(-34px) scale(.96, 1.06); } 60% { transform: translateY(0) scale(1.06, .94); } 100% { transform: translateY(0) scale(1, 1); } }
+@keyframes tb-wave { from { transform: rotate(0); } to { transform: rotate(-38deg); } }
+@media (max-width: 760px) { .tb { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .tb-talk .tb-mouth, .tb-bounce .tb-all, .tb-wave .tb-r { animation: none; } }

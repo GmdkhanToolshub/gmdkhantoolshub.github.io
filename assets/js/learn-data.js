@@ -274,3 +274,216 @@ window.GM_LEARN = {
     ['Your questions', 'When could you start?', 'Be clear about your notice period and show flexibility where you reasonably can.']
   ]
 };
+/* 30 sample interviews with model answers, written for job seekers in Pakistan, South and East Asia, the Gulf and worldwide. Fill the [brackets] with your own details. */
+window.GM_LEARN.demo = [
+ {
+  "region": "Pakistan",
+  "field": "Fresh graduate",
+  "q": "Tell me about yourself.",
+  "a": "I recently graduated in Business Administration from [your university], where I completed a final-year project on customer retention for a local retailer. During a three-month internship at [company] I helped prepare weekly sales reports and learned how to work to deadlines. I am organised, I learn quickly, and I would like to start my career in a role where I can support a team and keep growing. That is why this position interests me.",
+  "tip": "Keep it to about a minute: present, past, future. Mention one real result from a project or internship."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Any job",
+  "q": "What salary do you expect?",
+  "a": "I have looked at pay for similar roles in this city and for my level of experience, and I would expect a monthly package in the range of Rs. [lower figure] to Rs. [higher figure]. I am flexible and would like to understand the full package, including allowances, medical cover and growth opportunities. What matters most to me is the chance to contribute and learn here.",
+  "tip": "Research the market first and give a range. Never say a number you cannot defend, and avoid saying “whatever you offer”."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Any job",
+  "q": "When can you join us?",
+  "a": "My notice period at my current company is [30] days, and I want to leave properly by handing over my work. I could start on [date]. If you need someone sooner, I am happy to speak with my manager and see whether an earlier handover is possible.",
+  "tip": "State your real notice period honestly. Showing a respectful handover tells the employer how you will treat them later."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Sales and FMCG",
+  "q": "A distributor is paying late and threatening to stop selling your product. What do you do?",
+  "a": "First I would listen to find the real reason: cash-flow, a dispute over stock or a claim. Then I would check the facts in our records, agree a realistic payment date in writing and, if needed, offer a small staged plan approved by my manager. I would also protect the relationship by keeping the distributor informed and make sure their stock does not run out while we resolve it. Afterwards I would flag the pattern so we can prevent it.",
+  "tip": "Show relationship skills and process together: listen, verify, agree in writing, escalate when needed."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Banking",
+  "q": "A customer is angry at the branch because of a delayed transaction. How do you respond?",
+  "a": "I would stay calm, thank them for telling me, and apologise for the inconvenience without blaming anyone. I would check the transaction status, explain clearly what happened and what the next step and timeline are, and escalate to the operations team if I cannot fix it myself. I would follow up with the customer and record the case so we can improve the process.",
+  "tip": "Use calm language, take ownership, give a clear next step, and always follow up."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Software and IT",
+  "q": "Tell us about a project you built and your role in it.",
+  "a": "I built an inventory web app for a small shop using [technology]. I designed the database, wrote the login and stock modules, and tested it with the owner. It reduced counting time from two hours to twenty minutes each evening. The hardest part was handling duplicate entries, which I solved with validation rules and a unique product code. Next I would add reports and backups.",
+  "tip": "Use numbers, explain one real problem and how you solved it, and be honest about what you did yourself."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Human resources",
+  "q": "Two team members are in conflict and it is affecting the work. What do you do?",
+  "a": "I would speak to each person privately first and listen without taking sides. Then I would bring them together, focus on the work issue instead of personalities, and agree clear next steps and responsibilities. I would check in after a week. If the behaviour continued or broke company policy, I would involve their manager and follow the proper procedure.",
+  "tip": "Show fairness, confidentiality and a clear process, with escalation only when needed."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Accounts and finance",
+  "q": "How do you make sure your month-end figures are accurate?",
+  "a": "I follow a checklist: reconcile bank and ledger accounts, review unusual entries, check accruals and compare totals with last month. I keep supporting documents for every adjustment and ask a colleague to review my work before I submit it. If a figure looks wrong, I trace it to the source before reporting.",
+  "tip": "Accuracy answers should name specific checks: reconciliation, review, supporting documents."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Teaching",
+  "q": "How do you teach a class with students of very different abilities?",
+  "a": "I begin by finding out where each student is through a short activity or quiz. Then I plan the same topic at different levels, for example a core task for everyone, support for those who need it and an extension for faster learners. I use pair work so students help each other, praise effort, and keep checking understanding during the lesson.",
+  "tip": "Show that you assess first, plan in levels, and keep every student included and motivated."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Public sector and NGO",
+  "q": "Why do you want to work in this organisation?",
+  "a": "This organisation’s work on [its mission] matches what I care about. In my volunteer work with [group] I saw how reliable service changes people’s lives, and I want to build a career that serves the community. I have read about your recent project on [topic], and I believe my skills in [skill] can support it.",
+  "tip": "Show that you researched the mission and connect it to real experience, not only to job security."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Freelancing and remote work",
+  "q": "How can we trust you to work well remotely or as a freelancer?",
+  "a": "I agree deadlines and deliverables in writing, send short progress updates every few days, and ask questions early instead of guessing. I keep a simple tracker so you can see the status at any time. For my last client I delivered all milestones on time, and they asked me to continue the work.",
+  "tip": "Reassure with systems: written scope, regular updates, a tracker and examples of delivered work."
+ },
+ {
+  "region": "Pakistan",
+  "field": "Any job",
+  "q": "I see a gap in your CV. Can you explain it?",
+  "a": "Yes. From [month, year] to [month, year] I took time out for [family responsibilities, health or study]. During that time I kept learning by [a course or practice], and I am now fully ready to return and focused on my career. I am excited about this role because it uses the skills I have kept up to date.",
+  "tip": "Be brief, honest and positive. Say what you did to stay current and move the conversation to your readiness now."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Cross-border teams",
+  "q": "How do you work with colleagues or clients in other time zones?",
+  "a": "I agree overlapping hours at the start, share a clear written summary after each meeting, and use shared documents so work can continue while others sleep. I confirm deadlines using both time zones to avoid confusion. When something is urgent, I flag it early rather than waiting for the next day.",
+  "tip": "Mention written summaries, shared tools and double-checking times. Employers value clear communication over speed."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Customer support and BPO",
+  "q": "How do you stay patient with customers who call again and again with the same problem?",
+  "a": "I remind myself that a repeat call means the issue was not solved, so my job is to fix it properly this time. I read the case history before I speak, apologise for the trouble, explain the solution step by step and confirm that the customer is happy before closing. If the cause is a system fault, I report it so it stops happening.",
+  "tip": "Show empathy, preparation and a focus on solving the root cause."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Engineering",
+  "q": "Describe a time you solved a technical problem under pressure.",
+  "a": "During commissioning, a machine stopped just before a delivery deadline. I stayed calm, checked recent changes, tested the likely causes one by one and found a faulty sensor. I replaced it, tested again and documented the fix. Production restarted within three hours, and we added a weekly sensor check to prevent a repeat.",
+  "tip": "Use the STAR method: Situation, Task, Action, Result, and end with what you improved."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Healthcare",
+  "q": "Tell us about a time you had to stay calm in a stressful patient situation.",
+  "a": "On a busy night shift, a patient’s condition changed suddenly. I followed the protocol, called the doctor straight away, kept the family informed in simple words and recorded everything accurately. The patient was stabilised. Afterwards I reviewed what went well with my supervisor and learned to prepare equipment earlier.",
+  "tip": "Show that you follow protocol, communicate clearly, and reflect afterwards. Never include patient names."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Any job",
+  "q": "How would you give feedback to a senior colleague who made a mistake?",
+  "a": "I would choose a private moment and speak respectfully, starting with the shared goal. I would describe what I noticed and its effect, ask for their view, and offer a suggestion rather than a criticism. If they disagreed, I would listen, check the facts together and, if needed, ask our manager for guidance.",
+  "tip": "Showing respect for seniority while still raising a real issue is a strength. Be calm, factual and private."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "International clients",
+  "q": "English is not your first language. How will you communicate with international clients?",
+  "a": "I use English every day at work and in my studies, and I prepare for important calls by writing key points in advance. If I do not understand something, I ask politely for clarification and repeat back what I heard. I confirm decisions in writing afterwards, so there is no misunderstanding. I also keep improving through reading and practice.",
+  "tip": "Be confident and honest. Show practical habits: preparing, clarifying, confirming in writing."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Panel interview",
+  "q": "Three managers give you urgent tasks at the same time. How do you decide what to do first?",
+  "a": "I would quickly check each deadline and impact, then speak to the managers together or share a short list of my priorities and ask them to confirm the order. I would deliver the most important task first, update the others on timing, and ask for help if needed. Clear communication stops the surprise.",
+  "tip": "Never say you will do everything at once. Show that you clarify priorities and communicate."
+ },
+ {
+  "region": "South and East Asia",
+  "field": "Any job",
+  "q": "Are you willing to relocate to another city for this job?",
+  "a": "Yes, I am open to relocating. I have discussed it with my family, and I would need about [four weeks] to move. I would like to understand the support available for the move, such as accommodation or relocation allowance, and the long-term plan for the role in that city.",
+  "tip": "Answer honestly, ask about support in a polite way, and avoid promising something you cannot do."
+ },
+ {
+  "region": "Gulf and overseas",
+  "field": "Working abroad",
+  "q": "Why do you want to work abroad?",
+  "a": "I want to grow my skills in an international environment and contribute to a company with high standards. I have researched this country’s market for [industry] and I am prepared for the change in culture and distance from home. I plan to build my experience and bring valuable skills to the team for the long term.",
+  "tip": "Focus on skills, growth and contribution, not only on salary. Show that you researched the country and company."
+ },
+ {
+  "region": "Gulf and overseas",
+  "field": "Multicultural teams",
+  "q": "How will you adapt to a multicultural workplace?",
+  "a": "I respect different customs and communication styles, so I listen carefully, avoid assumptions and ask when I am unsure. In my last job I worked with colleagues from three countries and learned to confirm instructions in writing and to be flexible with working styles. I think a team is strongest when everyone feels respected.",
+  "tip": "Give a real example and show curiosity and respect, not stereotypes."
+ },
+ {
+  "region": "Gulf and overseas",
+  "field": "Technical and quality roles",
+  "q": "Do you have experience with international standards or certifications?",
+  "a": "Yes. In my current role we follow [ISO 9001 or another standard], and I helped prepare documents for the audit. I understand the importance of records and corrective actions. I am also studying for [certification] and can learn any additional standard your company requires.",
+  "tip": "Name only standards you have really worked with. Offer to learn others instead of exaggerating."
+ },
+ {
+  "region": "Gulf and overseas",
+  "field": "Visa and documents",
+  "q": "Do you need visa sponsorship, and are your documents ready?",
+  "a": "Yes, I would need sponsorship for a work visa. My passport is valid until [year], and I have my degree and experience certificates ready, and I can have them attested as required. I will follow your guidance on the process and timing.",
+  "tip": "Be honest and organised. Prepare passport, certificates and references before the interview."
+ },
+ {
+  "region": "Gulf and overseas",
+  "field": "Video interviews",
+  "q": "How do you prepare for an online interview?",
+  "a": "I test my internet, camera and microphone beforehand, sit in a quiet, well-lit place with a neutral background, and keep a copy of my CV and a notepad nearby. I join five minutes early, look at the camera when I speak, and have a phone ready as a backup in case the connection drops.",
+  "tip": "Employers notice preparation: technology check, quiet place, backup plan, punctuality."
+ },
+ {
+  "region": "Global",
+  "field": "Any job",
+  "q": "What is your biggest weakness?",
+  "a": "I used to take on too much myself instead of asking for help, which sometimes slowed projects. I now set weekly priorities, share tasks with the team and ask for support early. My last project finished a week early using this approach, and I continue to work on it.",
+  "tip": "Choose a real, manageable weakness and show how you are improving it. Avoid “I work too hard”."
+ },
+ {
+  "region": "Global",
+  "field": "Any job",
+  "q": "Tell us about a time you failed and what you learned.",
+  "a": "In a previous project I missed a deadline because I underestimated the testing time. I told my manager immediately, we agreed a new date and I worked extra hours to deliver. Since then I add a time buffer to every plan and check progress midway. My next three projects were delivered on time.",
+  "tip": "Own the mistake, show quick action and a lasting lesson. Do not blame others."
+ },
+ {
+  "region": "Global",
+  "field": "Any job",
+  "q": "Where do you see yourself in five years?",
+  "a": "I want to become a skilled professional in this field, take on more responsibility and perhaps lead a small team. In the next few years I plan to master the main tools, earn a relevant certification and support colleagues who are new. I hope to build that growth here.",
+  "tip": "Link your plans to growth inside the role. Do not mention leaving or wanting the interviewer’s job."
+ },
+ {
+  "region": "Global",
+  "field": "Any job",
+  "q": "Why should we hire you?",
+  "a": "You need someone who can [key requirement from the advert], and I have done this: in my last role I [one result with numbers]. I learn fast, I communicate clearly and I take ownership of my work. I would bring that reliability to your team and help it reach its goals.",
+  "tip": "Match your best proof to the employer’s top need. Keep it confident, specific and short."
+ },
+ {
+  "region": "Global",
+  "field": "Any job",
+  "q": "Do you have any questions for us?",
+  "a": "Yes. What would success look like in the first six months? How is the team structured, and who would I work with most? What training or growth opportunities are there? And what are the next steps in the process?",
+  "tip": "Always ask two or three questions about the work, team and growth. Avoid asking only about salary and leave."
+ }
+];
