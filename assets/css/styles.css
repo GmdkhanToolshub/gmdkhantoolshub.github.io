@@ -1065,3 +1065,9 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 @media (max-width: 1360px) and (min-width: 1101px) { .nav-links a { padding: 8px 8px; font-size: .86rem; gap: 6px; } .nav-links .nav-ic { width: 15px; height: 15px; } }
 .gm-card .emoji { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 16%, var(--surface)), color-mix(in srgb, #7c3aed 14%, var(--surface))); color: var(--blue); font-size: 0; }
 .gm-card .emoji svg { width: 24px; height: 24px; }
+
+/* promo films on About Us: load only on play */
+.gm-videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; margin: 14px 0 26px; }
+.gm-videos figure { margin: 0; }
+.gm-videos video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: #0b1b34; display: block; }
+.gm-videos figcaption { font-size: .88rem; color: var(--text-soft); margin-top: 6px; }
