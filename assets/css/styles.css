@@ -1107,3 +1107,8 @@ html.wl-needs-tap .wl-tap { display: flex; }
 .about-photo figcaption span { color: var(--accent, var(--blue)); font-weight: 600; font-size: .9rem; }
 .about-photo figcaption em { color: var(--text-soft); font-size: .8rem; font-style: normal; }
 @media (max-width: 860px) { .about-top { grid-template-columns: minmax(0, 1fr); } .about-photo { position: static; max-width: 320px; order: -1; } }
+
+/* About Us: founder introduction above "Who we are" */
+.founder-intro { padding: 0 0 22px; margin-bottom: 26px; border-bottom: 1px solid var(--border); }
+.founder-intro .kicker { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent, var(--blue)); margin-bottom: 8px; }
+.founder-intro p { font-size: 1.08rem; line-height: 1.7; margin: 0; }
