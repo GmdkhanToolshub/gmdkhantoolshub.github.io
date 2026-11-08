@@ -612,25 +612,41 @@ window.SITE_CONFIG = {
   }
 })();
 
-/* Photo pop-up: click or press Enter on a photo that has data-full to see the untouched original in a larger view. */
+/* Photo pop-up: click or press Enter on a photo that has data-full. The photo grows from where it sits to a large view and shows the untouched original. */
 (function () {
-  var doc = document, box = null, last = null;
-  function close() { if (!box) return; box.remove(); box = null; doc.documentElement.classList.remove('lb-open'); if (last && last.focus) last.focus(); }
+  var doc = document, box = null, big = null, from = null, last = null, busy = false, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function target(img) {
+    var ratio = (img.naturalWidth || 3) / (img.naturalHeight || 4), vw = innerWidth, vh = innerHeight, maxW = Math.min(vw * 0.94, 920), maxH = vh * 0.82, w = Math.min(maxW, maxH * ratio), h = w / ratio;
+    return { w: w, h: h, l: (vw - w) / 2, t: Math.max(12, (vh - h) / 2 - 18) };
+  }
+  function place(tg) { big.style.cssText = 'left:' + tg.l + 'px;top:' + tg.t + 'px;width:' + tg.w + 'px;height:' + tg.h + 'px;'; }
+  function pose(r, tg) { return 'translate(' + (r.left - tg.l) + 'px,' + (r.top - tg.t) + 'px) scale(' + (r.width / tg.w) + ',' + (r.height / tg.h) + ')'; }
+  function finish() { if (box) box.remove(); box = null; big = null; busy = false; doc.documentElement.classList.remove('lb-open'); if (last && last.focus) try { last.focus({ preventScroll: true }); } catch (e) { last.focus(); } }
+  function close() {
+    if (!box || busy) return; busy = true;
+    if (reduce || !from) { finish(); return; }
+    var r = from.getBoundingClientRect(), tg = target(from); box.classList.remove('lb-on'); big.style.transform = pose(r, tg); setTimeout(finish, 420);
+  }
   function open(img) {
-    var src = img.getAttribute('data-full'); if (!src) return; last = img; close(); last = img;
+    var full = img.getAttribute('data-full'); if (!full || box) return; last = img; from = img; busy = true;
+    var r = img.getBoundingClientRect(), tg = target(img);
     box = doc.createElement('div'); box.className = 'lightbox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', img.alt || 'Photo');
-    var big = doc.createElement('img'); big.src = new URL(src, location.href).href; big.alt = img.alt || '';
+    big = doc.createElement('img'); big.className = 'lb-img'; big.src = img.currentSrc || img.src; big.alt = img.alt || ''; place(tg);
     var x = doc.createElement('button'); x.type = 'button'; x.className = 'lb-close'; x.setAttribute('aria-label', 'Close photo'); x.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
     var cap = doc.createElement('p'); cap.className = 'lb-cap'; cap.textContent = img.alt || '';
-    box.appendChild(big); box.appendChild(x); box.appendChild(cap); doc.body.appendChild(box); doc.documentElement.classList.add('lb-open'); x.focus();
+    box.appendChild(big); box.appendChild(x); box.appendChild(cap); doc.body.appendChild(box); doc.documentElement.classList.add('lb-open');
+    var hi = new Image(); hi.onload = function () { if (big) big.src = hi.src; }; hi.src = new URL(full, location.href).href; // sharp original replaces the small copy as soon as it loads
+    if (reduce) { box.classList.add('lb-on'); busy = false; x.focus(); }
+    else { big.style.transform = pose(r, tg); void big.offsetWidth; box.classList.add('lb-on'); big.style.transform = 'none'; setTimeout(function () { busy = false; x.focus(); }, 420); }
     box.addEventListener('click', function (e) { if (e.target !== big) close(); });
   }
   doc.addEventListener('click', function (e) { var im = e.target.closest && e.target.closest('img[data-full]'); if (im) { e.preventDefault(); open(im); } });
   doc.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') close();
     else if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.matches && e.target.matches('img[data-full]')) { e.preventDefault(); open(e.target); }
-    else if (e.key === 'Tab' && box) { e.preventDefault(); box.querySelector('.lb-close').focus(); }
+    else if (e.key === 'Tab' && box) { e.preventDefault(); var c = box.querySelector('.lb-close'); if (c) c.focus(); }
   });
+  addEventListener('resize', function () { if (box && big && from && !busy) place(target(from)); });
 })();
 
 /* Voice (welcome + spoken tool names): starts straight away so the greeting is not late; skipped if Speech Synthesis is missing. */
