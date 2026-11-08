@@ -8,13 +8,13 @@
   var d = document;
   var KEY = 'gm.voice', WELCOMED = 'gm.voice.welcomed';
   var WELCOME = 'Welcome to GM. Explore our free tools and smart gadgets.';
-  var HOVER_DELAY = 250, COOLDOWN = 1500, SAME_NAME_GAP = 4000;
+  var HOVER_DELAY = 40, COOLDOWN = 200, SAME_NAME_GAP = 1500; // quick: follows the cursor, newest name replaces the old one
 
   function get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
   function set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* storage blocked: preference lasts for this page only */ } }
 
   var on = get(KEY) !== 'off';
-  var busy = false, welcomePending = false, lastEnd = 0, lastName = '', lastNameAt = 0, hoverTimer = 0, voice = null;
+  var busy = false, welcomePending = false, lastEnd = 0, lastName = '', lastNameAt = 0, hoverTimer = 0, voice = null, token = 0, welcomeLive = false;
   window.__gmVoice = { speak: speak, enabled: function () { return on; } };
 
   function pickVoice() {
@@ -23,6 +23,8 @@
     var lang = (d.documentElement.lang || 'en').toLowerCase();
     var en = list.filter(function (v) { return /^en([-_]|$)/i.test(v.lang); });
     if (!en.length) return null;
+    // On-device voices start instantly; online voices add a noticeable delay before each word.
+    var local = en.filter(function (v) { return v.localService; }); if (local.length) en = local;
     // Prefer a clear male/neutral English voice; it sounds closest to a "robotic" assistant once pitch is lowered.
     var pref = [/google uk english male/i, /microsoft (guy|david|mark|ryan|christopher)/i, /daniel|alex|fred|ralph|aaron/i, /google us english/i, /microsoft/i];
     for (var i = 0; i < pref.length; i++) { var m = en.filter(function (v) { return pref[i].test(v.name); })[0]; if (m) return m; }
@@ -33,14 +35,14 @@
   function speak(text, opts) {
     opts = opts || {};
     try {
-      synth.cancel();
+      synth.cancel(); var my = ++token; welcomeLive = !!opts.isWelcome;
       var u = new SpeechSynthesisUtterance(text);
       voice = voice || pickVoice(); if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = 'en-US';
-      u.pitch = 0.6; u.rate = 0.95; u.volume = 1; // lower pitch + steady pace for a futuristic, robotic tone
+      u.pitch = 0.6; u.rate = opts.fast ? 1.25 : 1.05; u.volume = 1; // lower pitch + steady pace for a futuristic, robotic tone
       var started = false, timer = setTimeout(function () { if (!started) { try { synth.cancel(); } catch (e) {} busy = false; if (opts.blocked) opts.blocked(); } }, opts.wait || 2500);
-      u.onstart = function () { started = true; clearTimeout(timer); busy = true; if (opts.started) opts.started(); };
-      u.onend = function () { clearTimeout(timer); busy = false; lastEnd = Date.now(); };
-      u.onerror = function (e) { clearTimeout(timer); busy = false; if (!started && e && e.error === 'not-allowed' && opts.blocked) opts.blocked(); };
+      u.onstart = function () { if (my !== token) return; started = true; clearTimeout(timer); busy = true; if (opts.started) opts.started(); };
+      u.onend = function () { clearTimeout(timer); if (my !== token) return; busy = false; welcomeLive = false; lastEnd = Date.now(); };
+      u.onerror = function (e) { clearTimeout(timer); if (my !== token) return; busy = false; welcomeLive = false; if (!started && e && e.error === 'not-allowed' && opts.blocked) opts.blocked(); };
       synth.speak(u);
     } catch (e) { busy = false; }
   }
@@ -49,6 +51,7 @@
   function welcome() {
     if (!on || get(WELCOMED) === '1') return;
     speak(WELCOME, {
+      isWelcome: true,
       started: function () { set(WELCOMED, '1'); welcomePending = false; },
       blocked: function () { if (!welcomePending) { welcomePending = true; armFirstGesture(); } },
       wait: 1800
@@ -58,7 +61,7 @@
     function go(ev) {
       ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.removeEventListener(t, go, true); });
       if (ev && ev.target && ev.target.closest && ev.target.closest('.voice-btn')) { welcomePending = false; return; } // the toggle handles its own state
-      if (on && get(WELCOMED) !== '1') speak(WELCOME, { started: function () { set(WELCOMED, '1'); welcomePending = false; } });
+      if (on && get(WELCOMED) !== '1') speak(WELCOME, { isWelcome: true, started: function () { set(WELCOMED, '1'); welcomePending = false; } });
     }
     ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { d.addEventListener(t, go, { capture: true, passive: true, once: false }); });
   }
@@ -78,10 +81,10 @@
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(function () {
       var now = Date.now();
-      if (!on || busy || (lastEnd && now - lastEnd < COOLDOWN)) return;
+      if (!on || welcomeLive || (lastEnd && !busy && now - lastEnd < COOLDOWN)) return;
       if (name === lastName && now - lastNameAt < SAME_NAME_GAP) return;
       if (get(WELCOMED) !== '1' && !welcomePending) return; // never talk over the welcome message
-      lastName = name; lastNameAt = now; speak(name);
+      lastName = name; lastNameAt = now; speak(name, { fast: true }); // replaces any name still being spoken
     }, HOVER_DELAY);
   }
   function out(e) { var el = e.target.closest ? e.target.closest(SEL) : null; if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) clearTimeout(hoverTimer); }
