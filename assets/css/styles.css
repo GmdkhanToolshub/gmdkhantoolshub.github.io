@@ -1071,3 +1071,8 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 .gm-videos figure { margin: 0; }
 .gm-videos video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: #0b1b34; display: block; }
 .gm-videos figcaption { font-size: .88rem; color: var(--text-soft); margin-top: 6px; }
+
+/* shown on the welcome screen only when the browser blocks sound until the first tap */
+.wl-tap { display: none; margin: 14px 0 0; align-items: center; justify-content: center; gap: 8px; font-size: .9rem; font-weight: 600; color: #cfe0ff; }
+.wl-tap svg { width: 18px; height: 18px; }
+html.wl-needs-tap .wl-tap { display: flex; }

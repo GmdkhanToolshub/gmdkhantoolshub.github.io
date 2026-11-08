@@ -44,6 +44,7 @@
       '<h2 class="wl-title">Free Tools <span>&amp; Gadgets</span></h2>' +
       '<p class="wl-sub">58 free tools and gadgets for work, documents and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
+      '<p class="wl-tap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere to hear the welcome</p>' +
       '<button type="button" class="wl-skip">Skip intro</button>' +
     '</div>';
   d.body.appendChild(o);

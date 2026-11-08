@@ -335,5 +335,5 @@
 /* Voice (welcome + spoken tool names): starts straight away so the greeting is not late; skipped if Speech Synthesis is missing. */
 (function () {
   var s = document.currentScript; if (!s || !('speechSynthesis' in window) || document.querySelector('script[src*="voice.js"]')) return;
-  var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=4ce952bc'); v.async = true; document.head.appendChild(v);
+  var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=16435879'); v.async = true; document.head.appendChild(v);
 })();

@@ -55,8 +55,8 @@
     if (!due()) return;
     speak(WELCOME, {
       isWelcome: true,
-      started: function () { greeted = true; set(WELCOMED, '1'); welcomePending = false; },
-      blocked: function () { if (!welcomePending) { welcomePending = true; armFirstGesture(); } },
+      started: function () { greeted = true; set(WELCOMED, '1'); welcomePending = false; d.documentElement.classList.remove('wl-needs-tap'); },
+      blocked: function () { if (!welcomePending) { welcomePending = true; armFirstGesture(); } d.documentElement.classList.add('wl-needs-tap'); },
       wait: 1800
     });
   }
