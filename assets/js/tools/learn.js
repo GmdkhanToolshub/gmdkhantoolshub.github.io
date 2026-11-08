@@ -176,6 +176,30 @@
     paint();
   };
 
+  /* ----- Men & Women Corner: moderated story submission (nothing is published automatically) ----- */
+  T['community-submit'] = function (r, U) {
+    var C = window.SITE_CONFIG || {};
+    var BAD = /\b(fuck|shit|bitch|bastard|asshole|slut|whore|nigg|cunt|dick|idiot|stupid|moron|kill yourself|rape)\w*/i;
+    r.innerHTML = '<form class="form-stack" id="cs" novalidate><label>Section<select id="cs-sec"><option>Women’s Corner</option><option>Men’s Corner</option></select></label><label>Type of story<select id="cs-type"><option>Professional success story</option><option>Career experience</option><option>Personal achievement</option><option>Advice and lessons learned</option><option>Positive review or recommendation</option></select></label><label>Name to show (first name or initials)<input id="cs-name" maxlength="30" required></label><label>Your story<textarea id="cs-text" maxlength="1500" required placeholder="Tell us what happened, what you learned, and how it can help others. Please leave out phone numbers, emails, links and other people’s private details."></textarea></label><label>Your email, only so we can reach you about your story (not published)<input id="cs-mail" type="email" maxlength="120" autocomplete="email"></label><label class="small" style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input id="cs-ok" type="checkbox" style="margin-top:4px"><span>I wrote this story myself, it is true, and I agree to it being published with the name above if it is approved. I understand I can ask for it to be removed.</span></label><div class="hp" aria-hidden="true"><label>Leave empty<input id="cs-hp" tabindex="-1" autocomplete="off"></label></div><div><button class="btn btn-primary" type="submit">Send for review</button></div><p class="ks-msg" id="cs-out" role="status" aria-live="polite"></p></form>';
+    var out = r.querySelector('#cs-out'); function say(t, bad) { out.textContent = t; out.className = 'ks-msg' + (bad ? ' bad' : ''); }
+    r.querySelector('#cs').addEventListener('submit', function (e) {
+      e.preventDefault(); if (r.querySelector('#cs-hp').value) return;
+      var name = r.querySelector('#cs-name').value.trim(), text = r.querySelector('#cs-text').value.trim(), mail = r.querySelector('#cs-mail').value.trim();
+      if (name.length < 2) return say('Please enter a first name or initials to show.', true);
+      if (text.length < 50) return say('Please write at least 50 characters so the story is useful to others.', true);
+      if (BAD.test(text) || BAD.test(name)) return say('Please remove abusive or offensive language. Our guidelines require respectful writing.', true);
+      if (/https?:\/\/|www\.|\.com\b|\.pk\b/i.test(text)) return say('Please remove links. Stories cannot include web addresses.', true);
+      if (/[\w.+-]+@[\w-]+\.[\w.]+/.test(text) || /(\+?\d[\s-]?){9,}/.test(text)) return say('Please remove email addresses and phone numbers from the story.', true);
+      if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return say('That email address does not look right. Fix it or leave it empty.', true);
+      if (!r.querySelector('#cs-ok').checked) return say('Please tick the box to confirm the story is yours and may be published if approved.', true);
+      var log = ls('gm.cs.times', []).filter(function (t) { return Date.now() - t < 3600000; }); if (log.length >= 3) return say('You have sent several stories recently. Please wait before sending another.', true);
+      log.push(Date.now()); lsSet('gm.cs.times', log);
+      var data = { section: r.querySelector('#cs-sec').value, type: r.querySelector('#cs-type').value, name: name, story: text, email: mail, sent: new Date().toISOString() };
+      if (C.formEndpoint && /^https:\/\//.test(C.formEndpoint)) { say('Sending…'); fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) }).then(function (res) { if (!res.ok) throw new Error('x'); say('Thank you. Your story was sent for review. It will appear only if it is approved.'); r.querySelector('#cs').reset(); }).catch(function () { say('Sorry, it could not be sent. Please try again later or use the contact page.', true); }); }
+      else { var body = 'Section: ' + data.section + '\nType: ' + data.type + '\nShow name: ' + name + '\nReply email: ' + (mail || '-') + '\n\n' + text; location.href = 'mailto:' + (C.contactEmail || '') + '?subject=' + encodeURIComponent('Story for review: ' + data.section) + '&body=' + encodeURIComponent(body); say('Your email app should open with the story ready. Press Send there to submit it for review.'); }
+    });
+  };
+
   /* ----- feedback form ----- */
   T['feedback-form'] = function (r, U) {
     var esc = U.esc, rating = 0, C = window.SITE_CONFIG || {};

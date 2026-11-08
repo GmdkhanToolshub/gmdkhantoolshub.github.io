@@ -137,7 +137,7 @@ ul, ol { padding-left: 1.2em; margin: 0 0 1em; }
 .menu-toggle[aria-expanded="true"] .i-x { display: block; }
 .menu-toggle[aria-expanded="true"] .i-menu { display: none; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .menu-toggle { display: inline-grid; }
   .nav-links { position: absolute; left: 0; right: 0; top: 66px; flex-direction: column; align-items: stretch; gap: 2px; background: var(--bg); border-bottom: 1px solid var(--border); padding: 10px 20px 18px; display: none; box-shadow: var(--shadow-lg); }
   .nav-links.open { display: flex; }
@@ -496,7 +496,7 @@ a.stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; border
 .brand span.name { font-size: 1.08rem; font-weight: 800; letter-spacing: -0.02em; }
 .nav-links a { border-radius: 999px; transition: background .15s, color .15s; }
 .nav-links a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
-@media (max-width: 900px) { .nav-links { border-radius: 0 0 18px 18px; } .nav-links a { border-radius: 10px; } }
+@media (max-width: 1100px) { .nav-links { border-radius: 0 0 18px 18px; } .nav-links a { border-radius: 10px; } }
 
 /* Buttons */
 .btn { border-radius: 12px; transition: transform .15s, box-shadow .15s, background .15s, border-color .15s, color .15s; }
@@ -913,7 +913,7 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 .site-footer .gm-logo { width: 28px; }
 @media (max-width: 640px) { .site-header .brand .brand-mark { width: 38px; height: 38px; } .site-header .gm-logo { width: 23px; } }
 .nav-links a { white-space: nowrap; }
-@media (max-width: 1040px) and (min-width: 901px) { .nav-links a { padding: 8px 9px; font-size: .9rem; } }
+@media (max-width: 1240px) and (min-width: 1101px) { .nav-links a { padding: 8px 9px; font-size: .88rem; } }
 
 /* Hub */
 .hub-sub { font-size: 1.15rem; margin: 0 0 12px; }
