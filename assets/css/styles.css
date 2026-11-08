@@ -1056,3 +1056,12 @@ main p a:not(.btn):not(.stretch):not(.link-arrow), main li > p a, .result-note a
 .wl-logo svg { width: 38px; height: auto; display: block; }
 @media (prefers-reduced-motion: no-preference) { .wl-logo { animation: wl-rise .6s cubic-bezier(.3, 1.4, .5, 1) .8s both; } }
 @media (max-height: 640px) { .wl-logo { width: 50px; height: 50px; margin-bottom: 8px; } .wl-logo svg { width: 30px; } .wl-bot-wrap { width: clamp(80px, 20vw, 120px); } }
+
+/* ---------- menu icons (Lucide-style, 1.85 stroke) ---------- */
+.nav-links a { display: flex; align-items: center; gap: 7px; }
+.nav-links .nav-ic { width: 16px; height: 16px; flex: none; opacity: .85; }
+.nav-links a[aria-current="page"] .nav-ic, .nav-links a:hover .nav-ic { opacity: 1; }
+@media (max-width: 1100px) { .nav-links .nav-ic { width: 20px; height: 20px; } .nav-links a { gap: 12px; } }
+@media (max-width: 1360px) and (min-width: 1101px) { .nav-links a { padding: 8px 8px; font-size: .86rem; gap: 6px; } .nav-links .nav-ic { width: 15px; height: 15px; } }
+.gm-card .emoji { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 16%, var(--surface)), color-mix(in srgb, #7c3aed 14%, var(--surface))); color: var(--blue); font-size: 0; }
+.gm-card .emoji svg { width: 24px; height: 24px; }
