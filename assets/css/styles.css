@@ -1082,3 +1082,12 @@ html.wl-needs-tap .wl-tap { display: flex; }
 .founder-img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; box-shadow: var(--shadow); background: var(--surface-strong); }
 .founder-sm { width: 120px; margin-bottom: 12px; border-radius: 14px; }
 @media (max-width: 640px) { .founder-card { grid-template-columns: minmax(0, 1fr); } .founder-card .founder-img { max-width: 260px; } }
+
+/* photo pop-up */
+.founder-img { cursor: zoom-in; }
+.lb-open { overflow: hidden; }
+.lightbox { position: fixed; inset: 0; z-index: 10000; background: rgba(5, 10, 24, .88); display: grid; place-items: center; align-content: center; gap: 10px; padding: 16px; cursor: zoom-out; }
+.lightbox img { max-width: min(96vw, 900px); max-height: 86vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 24px 80px rgba(0, 0, 0, .6); cursor: default; }
+.lb-close { position: absolute; top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .12); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, .25); outline: 2px solid #fff; outline-offset: 2px; }
+.lb-cap { margin: 0; color: #dbe4f3; font-size: .9rem; text-align: center; }

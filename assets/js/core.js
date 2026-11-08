@@ -612,6 +612,27 @@ window.SITE_CONFIG = {
   }
 })();
 
+/* Photo pop-up: click or press Enter on a photo that has data-full to see the untouched original in a larger view. */
+(function () {
+  var doc = document, box = null, last = null;
+  function close() { if (!box) return; box.remove(); box = null; doc.documentElement.classList.remove('lb-open'); if (last && last.focus) last.focus(); }
+  function open(img) {
+    var src = img.getAttribute('data-full'); if (!src) return; last = img; close(); last = img;
+    box = doc.createElement('div'); box.className = 'lightbox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', img.alt || 'Photo');
+    var big = doc.createElement('img'); big.src = new URL(src, location.href).href; big.alt = img.alt || '';
+    var x = doc.createElement('button'); x.type = 'button'; x.className = 'lb-close'; x.setAttribute('aria-label', 'Close photo'); x.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+    var cap = doc.createElement('p'); cap.className = 'lb-cap'; cap.textContent = img.alt || '';
+    box.appendChild(big); box.appendChild(x); box.appendChild(cap); doc.body.appendChild(box); doc.documentElement.classList.add('lb-open'); x.focus();
+    box.addEventListener('click', function (e) { if (e.target !== big) close(); });
+  }
+  doc.addEventListener('click', function (e) { var im = e.target.closest && e.target.closest('img[data-full]'); if (im) { e.preventDefault(); open(im); } });
+  doc.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+    else if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.matches && e.target.matches('img[data-full]')) { e.preventDefault(); open(e.target); }
+    else if (e.key === 'Tab' && box) { e.preventDefault(); box.querySelector('.lb-close').focus(); }
+  });
+})();
+
 /* Voice (welcome + spoken tool names): starts straight away so the greeting is not late; skipped if Speech Synthesis is missing. */
 (function () {
   var s = document.currentScript; if (!s || !('speechSynthesis' in window) || document.querySelector('script[src*="voice.js"]')) return;
