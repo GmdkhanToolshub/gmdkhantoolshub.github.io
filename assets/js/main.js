@@ -114,6 +114,10 @@
     return '<article class="card tool-card hover" data-slug="' + t.slug + '" data-cat="' + esc(t.cat) + '"><button type="button" class="fav-btn" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Remove ' : 'Save ') + esc(t.name) + (fav ? ' from favourites' : ' to favourites') + '" data-fav="' + t.slug + '">' + (window.STAR_ICON || '') + '</button>' +
       '<div class="icon-chip ' + t.catClass + '" aria-hidden="true">' + t.icon + '</div><h3><a href="' + base + 'tools/' + t.slug + '/' + (location.protocol === 'file:' ? 'index.html' : '') + '" class="stretch">' + esc(t.name) + '</a></h3><p>' + esc(t.desc) + '</p><div class="meta"><span>' + esc(t.cat) + '</span><span>Free</span></div></article>';
   }
+  /* Compact link used by the Favourites and Recently Used rows on the tools hub, so no tool card appears twice. */
+  function chipHTML(t) {
+    return '<a class="pop-chip" href="' + base + 'tools/' + t.slug + '/' + (location.protocol === 'file:' ? 'index.html' : '') + '"><span class="icon-chip ' + t.catClass + '" aria-hidden="true">' + t.icon + '</span>' + esc(t.name) + '</a>';
+  }
   function setFavUI() {
     var favs = store(FAV, []);
     $$('[data-fav]').forEach(function (b) {
@@ -126,16 +130,16 @@
     var fb = $('#fav-tools'), rb = $('#recent-tools');
     if (fb) {
       var favs = store(FAV, []).map(toolBySlug).filter(Boolean), sec = fb.closest('[data-list-section]');
-      fb.innerHTML = favs.map(function (t) { return cardHTML(t, true); }).join('');
+      fb.innerHTML = favs.map(function (t) { return fb.hasAttribute('data-compact') ? chipHTML(t) : cardHTML(t, true); }).join('');
       if (sec) sec.hidden = !favs.length;
     }
     if (rb) {
       // Skip tools already shown as cards elsewhere on this page, and any repeated ids, so no card appears twice.
-      var shown = {}, seen = {};
-      $$('.tool-card[data-slug]').forEach(function (c) { if (!rb.contains(c)) shown[c.getAttribute('data-slug')] = 1; });
+      var shown = {}, seen = {}, compact = rb.hasAttribute('data-compact');
+      if (!compact) $$('.tool-card[data-slug]').forEach(function (c) { if (!rb.contains(c)) shown[c.getAttribute('data-slug')] = 1; });
       var rec = store(REC, []).filter(function (s) { if (seen[s] || shown[s]) return false; seen[s] = 1; return true; })
         .map(toolBySlug).filter(Boolean).slice(0, 4), s2 = rb.closest('[data-list-section]');
-      rb.innerHTML = rec.map(function (t) { return cardHTML(t, store(FAV, []).indexOf(t.slug) >= 0); }).join('');
+      rb.innerHTML = rec.map(function (t) { return compact ? chipHTML(t) : cardHTML(t, store(FAV, []).indexOf(t.slug) >= 0); }).join('');
       if (s2) s2.hidden = !rec.length;
     }
     setFavUI();
@@ -161,6 +165,9 @@
         c.hidden = !ok; if (ok) n++;
       });
       if (empty) empty.hidden = n > 0;
+      // On the hub, hide whole category sections that have no matching tool, and the shortcut rows while filtering.
+      $$('.hub-section').forEach(function (s) { s.hidden = !s.querySelector('.tool-card:not([hidden])'); });
+      doc.documentElement.classList.toggle('hub-filtering', cat !== 'All' || !!q);
       var cnt = $('#result-count'); if (cnt) cnt.textContent = n + (n === 1 ? ' tool' : ' tools');
     };
     if (search) search.addEventListener('input', apply);
