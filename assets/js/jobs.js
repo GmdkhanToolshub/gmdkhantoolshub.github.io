@@ -96,9 +96,12 @@
     function paint(reset) { var l = list(); if (reset) { shown = 0; ul.innerHTML = ''; } var part = l.slice(shown, shown + STEP); ul.insertAdjacentHTML('beforeend', part.map(function (j) { return card(j, m.now, ''); }).join('')); shown += part.length; more.hidden = shown >= l.length; res.textContent = l.length ? l.length + ' live vacancies' + (l.length > shown ? ', showing ' + shown : '') : 'No vacancies match. Try fewer filters.'; }
     f.addEventListener('input', function () { paint(true); }); f.addEventListener('submit', function (e) { e.preventDefault(); }); more.addEventListener('click', function () { paint(false); }); paint(true);
   }
+  /* The stylesheet loads only when a jobs section is about to appear, so it never delays the first paint of a page. */
+  var cssReady = null;
+  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + '9dc437fe'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
   function mount(host) {
-    var kind = host.getAttribute('data-jobs') || 'ticker'; host.classList.add('jt-loading');
-    function go() { fetchJobs().then(function (data) { if (kind === 'browse') { host.classList.remove('jt-loading'); browse(host, data); } else band(host, data); }); }
+    var kind = host.getAttribute('data-jobs') || 'ticker'; host.setAttribute('aria-busy', 'true');
+    function go() { Promise.all([css(), fetchJobs()]).then(function (r) { var data = r[1]; host.removeAttribute('aria-busy'); host.style.minHeight = ''; if (kind === 'browse') browse(host, data); else band(host, data); }); }
     if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); go(); } }, { rootMargin: '400px 0px' }); io.observe(host); } else go();
   }
   [].forEach.call(d.querySelectorAll('[data-jobs]'), mount);
