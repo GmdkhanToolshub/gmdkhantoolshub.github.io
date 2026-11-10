@@ -43,7 +43,9 @@
       '<div class="jt-dates"><span>Published ' + esc(fmt(j.p)) + ' (' + when(j.p, now) + ')</span><span>' + (j.d ? 'Apply by ' + esc(fmt(j.d)) : 'Closing date not provided') + '</span></div>' +
       '<div class="jt-badges">' + (fresh ? '<span class="jt-b jt-new">New today</span>' : '') + (tag ? '<span class="jt-b jt-tag">' + esc(tag) + '</span>' : '') + visa + '<span class="jt-b jt-src">via ' + esc((SRC[j.src] || [j.src])[0]) + '</span></div></div>' +
       '<a class="jt-apply" href="' + esc(j.u) + '" target="_blank" rel="nofollow noopener noreferrer" data-job="' + esc(j.src) + '" aria-label="Apply now: ' + esc(j.t) + ' at ' + esc(j.c) + '">Apply now</a></li>'; }
-  function fetchJobs() {
+  var inflight = null;
+  function fetchJobs() { return inflight || (inflight = fetchJobs0()); }
+  function fetchJobs0() {
     return new Promise(function (res) {
       var c = null; try { c = JSON.parse(sessionStorage.getItem(CK)); } catch (e) { c = null; }
       if (c && Date.now() - c.t < TTL) return res(c.d);
@@ -85,6 +87,17 @@
     wrap.appendChild(ticker('International jobs', 'Gulf, Europe, UK, USA, Canada, Australia and remote', 'World', m.intl, m.now, '', ''));
     host.appendChild(wrap); host.appendChild(footer(m));
   }
+  /* ---------- compact side panel (Home, Free Tools, GM HCM): one ticker per side ---------- */
+  function side(host, data, kind) {
+    host.innerHTML = '';
+    if (!data) { host.innerHTML = '<div class="jt-fallback"><b>Live jobs are temporarily unavailable.</b><p>Please check again soon.</p></div>'; return; }
+    var m = prep(data), p;
+    if (kind === 'side-pk') { var pl = m.pk.length >= 5 ? m.pk : m.pk.concat(m.pkr); p = ticker('Pakistan jobs', pl === m.pk ? 'Vacancies in Pakistani cities' : 'Open to candidates in Pakistan', 'Pakistan', pl, m.now, 'Remote', ''); }
+    else p = ticker('International jobs', 'Gulf, Europe, UK, USA, Canada, Australia, remote', 'World', m.intl, m.now, '', '');
+    p.classList.add('jt-side');
+    var f = d.createElement('div'); f.className = 'jt-sidefoot'; f.innerHTML = '<a href="' + base + 'jobs/">See all jobs and search</a><span>Listings open on the original site. Never pay to apply.</span>'; p.appendChild(f);
+    host.appendChild(p);
+  }
   /* ---------- searchable list ---------- */
   function browse(host, data) {
     var m = prep(data), all = m.pk.concat(m.pkr, m.intl).sort(function (a, b) { return Date.parse(b.p) - Date.parse(a.p); }), shown = 0, STEP = 24;
@@ -98,10 +111,14 @@
   }
   /* The stylesheet loads only when a jobs section is about to appear, so it never delays the first paint of a page. */
   var cssReady = null;
-  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + '9dc437fe'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
+  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + 'e4d05617'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
   function mount(host) {
     var kind = host.getAttribute('data-jobs') || 'ticker'; host.setAttribute('aria-busy', 'true');
-    function go() { Promise.all([css(), fetchJobs()]).then(function (r) { var data = r[1]; host.removeAttribute('aria-busy'); host.style.minHeight = ''; if (kind === 'browse') browse(host, data); else band(host, data); }); }
+    function go() { Promise.all([css(), fetchJobs()]).then(function (r) { var data = r[1]; host.removeAttribute('aria-busy'); host.style.minHeight = ''; if (kind === 'browse') browse(host, data); else if (kind.indexOf('side-') === 0) side(host, data, kind); else band(host, data); }); }
+    if (kind.indexOf('side-') === 0 && window.matchMedia && matchMedia('(min-width:1440px)').matches) { /* side panels are visible straight away on wide screens: wait until the page has finished loading so they never compete with the first paint */
+      var later = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(go); };
+      if (d.readyState === 'complete') later(); else window.addEventListener('load', later); return;
+    }
     if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); go(); } }, { rootMargin: '400px 0px' }); io.observe(host); } else go();
   }
   [].forEach.call(d.querySelectorAll('[data-jobs]'), mount);
