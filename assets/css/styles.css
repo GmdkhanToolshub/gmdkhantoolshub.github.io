@@ -1129,3 +1129,12 @@ html.wl-needs-tap .wl-tap { display: flex; }
 @media (max-width: 520px) { .shop-fab { width: 150px; height: 46px; right: 12px; bottom: 76px; } .sf-face { font-size: .85rem; } .sf-back { font-size: .78rem; } }
 @media (prefers-reduced-motion: reduce) { .shop-fab, .shop-fab::before, .sf-inner { animation: none; } .sf-inner { transition: none; } }
 @media print { .shop-fab { display: none; } }
+
+/* Contextual shop offer */
+.shop-promo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin: 28px 0; padding: 18px 20px; border: 1px solid var(--border); border-left: 4px solid #4f46e5; border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.shop-promo > div:first-child { flex: 1 1 320px; min-width: 0; }
+.shop-promo h2 { font-size: 1.15rem; margin: 4px 0 4px; }
+.shop-promo p { margin: 0; color: var(--text-soft); }
+.shop-promo .sp-tag { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4f46e5; }
+.shop-promo .sp-buy { display: flex; align-items: center; gap: 14px; }
+.shop-promo .sp-buy b { font-size: 1.2rem; }
