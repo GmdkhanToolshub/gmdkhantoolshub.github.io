@@ -7,7 +7,7 @@ window.SITE_CONFIG = {
     "inContent": "",
     "between": ""
   },
-  "gaMeasurementId": "",
+  "gaMeasurementId": "G-TNH5CHZ8YB",
   /* Google Tag Manager container ID, for example "GTM-XXXXXXX". Leave empty until you have a real one. */
   "gtmContainerId": "",
   /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.

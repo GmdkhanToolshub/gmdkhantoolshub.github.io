@@ -7,7 +7,7 @@ window.SITE_CONFIG = {
     "inContent": "",
     "between": ""
   },
-  "gaMeasurementId": "",
+  "gaMeasurementId": "G-TNH5CHZ8YB",
   /* Google Tag Manager container ID, for example "GTM-XXXXXXX". Leave empty until you have a real one. */
   "gtmContainerId": "",
   /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.
@@ -334,25 +334,31 @@ window.SITE_CONFIG = {
   function loadScript(src, attrs) { var s = doc.createElement('script'); s.async = true; s.src = src; for (var k in (attrs || {})) s.setAttribute(k, attrs[k]); doc.head.appendChild(s); return s; }
   var analyticsLoaded = false, inKids = /\/kids\//.test(location.pathname);
   /* Analytics never runs in Kids Corner. Elsewhere it runs only after the visitor allows it, and only when a real ID is set in config.js. */
+  var EEA = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
   function loadAnalytics() {
-    if (analyticsLoaded || inKids || !(C.gaMeasurementId || C.gtmContainerId)) return; analyticsLoaded = true;
-    window.dataLayer = window.dataLayer || [];
+    if (inKids || !(C.gaMeasurementId || C.gtmContainerId)) return;
+    if (analyticsLoaded) { if (window.gtag && consent === 'all') gtag('consent', 'update', { analytics_storage: 'granted' }); return; }
+    analyticsLoaded = true; window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    /* Google Consent Mode v2: analytics cookies are denied by default in the EEA, UK and Switzerland until the visitor agrees; advertising signals are always denied for analytics. */
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: EEA, wait_for_update: 500 });
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    if (consent === 'all') gtag('consent', 'update', { analytics_storage: 'granted' });
     if (C.gaMeasurementId) {
-      window.gtag = function () { dataLayer.push(arguments); };
-      gtag('js', new Date()); gtag('config', C.gaMeasurementId, { anonymize_ip: true });
+      gtag('js', new Date()); gtag('config', C.gaMeasurementId, { anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
       loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(C.gaMeasurementId));
     }
     if (C.gtmContainerId) { dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); loadScript('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(C.gtmContainerId)); }
   }
   /* Conversion events: shop orders, affiliate clicks, tool views. They do nothing until analytics is allowed and configured. */
-  function track(name, params) { if (!analyticsLoaded) return; try { if (window.gtag) gtag('event', name, params || {}); else if (window.dataLayer) dataLayer.push({ event: name, params: params || {} }); } catch (e) { /* ignore */ } }
+  function track(name, params) { if (!analyticsLoaded || consent === 'essential') return; try { if (window.gtag) gtag('event', name, params || {}); else if (window.dataLayer) dataLayer.push({ event: name, params: params || {} }); } catch (e) { /* ignore */ } }
   doc.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
     if (a.hasAttribute('data-aff')) track('affiliate_click', { item: a.getAttribute('data-aff'), page: location.pathname });
     else if (/\/shop\/$/.test(location.pathname) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('shop_order_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
     else if (a.classList.contains('shop-fab') || /shop\/#/.test(a.getAttribute('href') || '')) track('shop_cta_click', { page: location.pathname });
   });
-  (function () { var t = $('#tool-root'); if (t && consent === 'all') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
+  (function () { var t = $('#tool-root'); if (t && consent !== 'essential') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
   /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
   function initAds() {
@@ -382,7 +388,7 @@ window.SITE_CONFIG = {
   }
   var needsConsent = !!(C.gaMeasurementId || C.gtmContainerId || C.adsensePublisherId);
   initAds();
-  if (consent === 'all') loadAnalytics();
+  if (consent !== 'essential') loadAnalytics();
   /* No banner pops up by itself. Visitors in the EEA, UK and Switzerland get Google's certified consent
      message through the AdSense tag; everyone else can choose from the "Cookie settings" link. */
   function openSettings() {
