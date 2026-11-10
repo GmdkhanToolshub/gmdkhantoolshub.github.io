@@ -2,7 +2,7 @@
 // stale items, checks links, removes duplicates and writes data/jobs.json. No scraping. No invented data.
 // Run: node scripts/update-jobs.mjs           (GitHub Actions runs this on a schedule)
 // Optional keys (GitHub repository secrets): JOOBLE_KEY, ADZUNA_ID + ADZUNA_KEY
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 const OUT = new URL('../data/jobs.json', import.meta.url);
@@ -82,21 +82,29 @@ async function jobicy() {
     s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed';
   } catch (e) { s.error = String(e.message || e); }
 }
-// ---------- optional: Jooble (needs JOOBLE_KEY: free key from jooble.org/api/about). Covers Pakistan and the Gulf ----------
-async function jooble() {
+// ---------- optional: Jooble (needs JOOBLE_KEY: free key from jooble.org/api/about) ----------
+// The default key only serves the main jooble.org database. Pakistan and most Gulf countries return little or nothing unless Jooble
+// enables regional access for the key, so every result is kept only if its location really is in the country we asked for.
+// The free key allows about 500 requests in total, so Jooble is queried at most once every 20 hours and earlier results are carried forward.
+async function jooble(prev) {
   const key = process.env.JOOBLE_KEY, s = { id: 'jooble', name: 'Jooble', url: 'https://jooble.org/', ok: false, count: 0, configured: !!key }; sources.push(s);
   if (!key) { s.error = 'not configured (no API key)'; return; }
-  const LOCS = ['Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad', 'Multan', 'Peshawar', 'Quetta', 'Hyderabad Pakistan', 'Sialkot', 'Gujranwala', 'Dubai', 'Abu Dhabi', 'Riyadh', 'Jeddah', 'Dammam', 'Doha', 'Muscat', 'Manama', 'Kuwait City', 'London', 'Manchester', 'Toronto', 'Sydney', 'New York', 'Berlin'];
+  const last = prev && prev.joobleAt ? Date.parse(prev.joobleAt) : 0;
+  if (NOW - last < 20 * 3600e3 && prev) { const old = [...(prev.pk || []), ...(prev.pkr || []), ...(prev.intl || [])].filter(j => j.src === 'jooble'); old.forEach(j => all.push(J(j))); s.ok = true; s.count = old.length; s.note = 'carried forward (queried at most once every 20 hours)'; joobleAt = prev.joobleAt; return; }
+  const LOCS = [['Karachi, Pakistan', /pakistan/i], ['Lahore, Pakistan', /pakistan/i], ['Islamabad, Pakistan', /pakistan/i], ['Dubai, United Arab Emirates', /emirates|uae|dubai/i], ['Abu Dhabi, United Arab Emirates', /emirates|uae|abu dhabi/i], ['Riyadh, Saudi Arabia', /saudi/i], ['Jeddah, Saudi Arabia', /saudi/i], ['Doha, Qatar', /qatar/i], ['Muscat, Oman', /oman/i], ['Manama, Bahrain', /bahrain/i], ['Kuwait City, Kuwait', /kuwait/i]];
   let okc = 0, n = 0;
-  for (const loc of LOCS) {
+  for (const [loc, want] of LOCS) {
     try {
       const d = await get('https://jooble.org/api/' + encodeURIComponent(key), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ keywords: '', location: loc, page: 1 }) }); okc++;
-      for (const j of (d.jobs || []).slice(0, 25)) { const pl = place(j.location || loc); n++;
-        all.push(J({ id: 'jo-' + j.id, t: clean(j.title), c: clean(j.company), co: pl.country, ci: pl.city || loc.replace(' Pakistan', ''), loc: clean(j.location) || loc, ty: type(j.type), p: iso(j.updated), s: clean(j.salary).slice(0, 60) || null, u: j.link, src: 'jooble' })); }
+      for (const j of (d.jobs || []).slice(0, 25)) {
+        if (!want.test(String(j.location || ''))) continue;
+        const pl = place(j.location || loc); n++;
+        all.push(J({ id: 'jo-' + j.id, t: clean(j.title), c: clean(j.company), co: pl.country, ci: pl.city, loc: clean(j.location), ty: type(j.type), p: iso(j.updated), s: clean(j.salary).slice(0, 60) || null, u: j.link, src: 'jooble' }));
+      }
     } catch (e) { log('jooble', loc, 'failed', e.message); }
     await new Promise(r => setTimeout(r, 400));
   }
-  s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed';
+  s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed'; else joobleAt = new Date().toISOString();
 }
 // ---------- optional: Adzuna (needs ADZUNA_ID and ADZUNA_KEY). Covers UK, USA, Canada, Australia and Europe ----------
 async function adzuna() {
@@ -114,7 +122,9 @@ async function adzuna() {
   s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed';
 }
 
-await Promise.all([arbeitnow(), remotive()]); await jobicy(); await jooble(); await adzuna();
+let prevData = null, joobleAt = null;
+try { prevData = JSON.parse(await readFile(OUT, 'utf8')); } catch (e) { prevData = null; }
+await Promise.all([arbeitnow(), remotive()]); await jobicy(); await jooble(prevData); await adzuna();
 log('raw', all.length);
 // ---------- strict date filter, de-duplication, balancing ----------
 const live = all.filter(j => j.t && j.c && j.u && /^https?:\/\//.test(j.u) && j.p && new Date(j.p).getTime() <= NOW + DAY && (j.d ? new Date(j.d).getTime() + DAY > NOW : NOW - new Date(j.p).getTime() <= MAX_AGE_DAYS * DAY));
@@ -129,7 +139,7 @@ async function check(j) { for (const m of ['HEAD', 'GET']) { try { const r = awa
 await Promise.all(Array.from({ length: 8 }, async () => { while (idx < picked.length) await check(picked[idx++]); }));
 log('removed after link check:', dead.size);
 const fin = l => l.filter(j => !dead.has(j.id));
-const out = { updated: new Date().toISOString(), maxAgeDays: MAX_AGE_DAYS, sources, pk: fin(pick(pk, CAPS.pk)), pkr: fin(pick(pkr, CAPS.pkr)), intl: fin(pick(intl, CAPS.intl)) };
+const out = { updated: new Date().toISOString(), joobleAt, maxAgeDays: MAX_AGE_DAYS, sources, pk: fin(pick(pk, CAPS.pk)), pkr: fin(pick(pkr, CAPS.pkr)), intl: fin(pick(intl, CAPS.intl)) };
 const anyOk = sources.some(s => s.ok);
 if (!anyOk) { console.error('No source responded. Keeping the previous file.'); process.exit(0); }
 await mkdir(dirname(OUT.pathname.replace(/^\/([A-Za-z]:)/, '$1')), { recursive: true });
