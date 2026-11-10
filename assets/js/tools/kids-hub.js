@@ -19,5 +19,16 @@
       var dl = cert.querySelector('#kc-dl'); if (dl) dl.addEventListener('click', function () { var nm = cert.querySelector('#kc-name').value.replace(/[^\p{L}\p{N} .'-]/gu, '').trim(); G.certificate(G.stars(), nm); }); }
     paint(); window.addEventListener('storage', paint);
   }
+
+  /* Animated background and card entrances for the Kids Corner home page. Light, GPU-friendly, off when motion is reduced. */
+  (function () {
+    if (!document.getElementById('kids-rewards')) return; var b = document.body; b.classList.add('kc-page');
+    var bg = document.createElement('div'); bg.className = 'kc-bg'; bg.setAttribute('aria-hidden', 'true'); var h = '<i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i>';
+    var em = ['⭐', '🎈', '🚀', '🎨', '🪐', '🧩', '🦋', '🌈', '🎵', '✨', '🐾', '🔤']; for (var i = 0; i < em.length; i++) h += '<span class="fl" style="left:' + (4 + Math.round(i * 8.1)) + '%;font-size:' + (1.5 + (i % 3) * 0.45) + 'rem;animation-duration:' + (16 + (i * 7) % 13) + 's;animation-delay:-' + ((i * 5) % 17) + 's;--sx:' + ((i % 2 ? 1 : -1) * (24 + (i * 11) % 40)) + 'px">' + em[i] + '</span>';
+    bg.innerHTML = h; b.insertBefore(bg, b.firstChild);
+    var tiles = [].slice.call(document.querySelectorAll('.kc-tl')); tiles.forEach(function (t, k) { t.style.setProperty('--i', k % 5); });
+    if (!('IntersectionObserver' in window)) { tiles.forEach(function (t) { t.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 }); tiles.forEach(function (t) { io.observe(t); });
+  })();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
 })();

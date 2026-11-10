@@ -1261,3 +1261,34 @@ html.wl-needs-tap .wl-tap { display: flex; }
 .kc-cert input { min-height: 44px; max-width: 320px; width: 100%; }
 @media (prefers-reduced-motion: reduce) { .kc-orb, .kc-bolo, .kc-wave, .kc-eyes, .kc-floaters span, .kc-obj.floats, .kc-toast, .kc-card.pop { animation: none; } .kc-obj, .kc-stem, .kc-tl, .kc-track i { transition: none; } .kc-confetti { display: none; } }
 @media print { .kc-toast, .kc-confetti { display: none; } }
+
+/* ===== Kids hub: animated background and cards ===== */
+.kc-page main { position: relative; z-index: 1; }
+.kc-page .section, .kc-page .section.alt { background: transparent; }
+.kc-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: linear-gradient(180deg, #e0f2fe 0%, #fdf2f8 55%, #fef9c3 100%); }
+.kc-bg .blob { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(70px); opacity: .55; will-change: transform; animation: kc-drift 26s ease-in-out infinite alternate; }
+.kc-bg .b1 { background: #c4b5fd; left: -20vmax; top: -18vmax; } .kc-bg .b2 { background: #fbcfe8; right: -22vmax; top: 18vh; animation-duration: 32s; animation-delay: -8s; } .kc-bg .b3 { background: #a5f3fc; left: 20vw; bottom: -30vmax; animation-duration: 36s; animation-delay: -15s; } .kc-bg .b4 { background: #fde68a; right: 8vw; bottom: -26vmax; width: 46vmax; height: 46vmax; animation-duration: 29s; animation-delay: -4s; }
+@keyframes kc-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(9vmax, 6vmax) scale(1.18); } }
+.kc-bg .fl { position: absolute; bottom: -60px; font-size: 1.9rem; opacity: 0; will-change: transform, opacity; animation: kc-rise linear infinite; }
+@keyframes kc-rise { 0% { transform: translate3d(0, 0, 0) rotate(0); opacity: 0; } 10% { opacity: .85; } 50% { transform: translate3d(var(--sx, 30px), -55vh, 0) rotate(14deg); } 90% { opacity: .85; } 100% { transform: translate3d(calc(var(--sx, 30px) * -1), -115vh, 0) rotate(-12deg); opacity: 0; } }
+/* cards: pop in when they scroll into view, float gently, wiggle and shine on hover */
+.kc-page .kc-tl { position: relative; overflow: hidden; opacity: 0; transform: translateY(26px) scale(.92); box-shadow: 0 6px 16px rgba(79, 70, 229, .12); border: 2px solid rgba(255, 255, 255, .8); backdrop-filter: none; }
+.kc-page .kc-tl.in { animation: kc-card-in .65s cubic-bezier(.2, 1.2, .3, 1) both, kc-card-bob 5s ease-in-out 1s infinite; animation-delay: calc(var(--i, 0) * 70ms), calc(1s + var(--i, 0) * 120ms); }
+@keyframes kc-card-in { from { opacity: 0; transform: translateY(26px) scale(.92) rotate(-2deg); } to { opacity: 1; transform: none; } }
+@keyframes kc-card-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.kc-page .kc-tl::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .65), transparent); transform: skewX(-18deg); pointer-events: none; }
+.kc-page .kc-tl:hover, .kc-page .kc-tl:focus-visible { animation: kc-wiggle .6s ease both; border-color: #7c3aed; box-shadow: 0 14px 30px rgba(124, 58, 237, .28); }
+.kc-page .kc-tl:hover::after, .kc-page .kc-tl:focus-visible::after { animation: kc-shine .8s ease; }
+@keyframes kc-wiggle { 0% { transform: translateY(-4px) rotate(0); } 25% { transform: translateY(-8px) rotate(-1.6deg); } 50% { transform: translateY(-8px) rotate(1.6deg); } 75% { transform: translateY(-8px) rotate(-1deg); } 100% { transform: translateY(-6px) rotate(0); } }
+@keyframes kc-shine { to { left: 130%; } }
+.kc-page .kc-tl .kc-emoji { display: inline-block; animation: kc-emoji 3.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -300ms); } .kc-page .kc-tl:hover .kc-emoji { animation: kc-spinpop .7s ease; }
+@keyframes kc-emoji { 0%, 100% { transform: rotate(-6deg) scale(1); } 50% { transform: rotate(6deg) scale(1.1); } }
+@keyframes kc-spinpop { 0% { transform: scale(1); } 40% { transform: scale(1.5) rotate(15deg); } 100% { transform: scale(1) rotate(0); } }
+.kc-page .section-head h2 { text-shadow: 0 2px 0 rgba(255, 255, 255, .7); }
+.kc-page .kc-rw { background: rgba(255, 255, 255, .85); backdrop-filter: blur(6px); box-shadow: 0 10px 30px rgba(79, 70, 229, .12); }
+.kc-page .kc-badges li.got { animation: kc-glow 2.6s ease-in-out infinite; } @keyframes kc-glow { 50% { box-shadow: 0 0 0 4px rgba(250, 204, 21, .45); } }
+.kc-page .kc-welcome { background: transparent; }
+:root[data-theme="dark"] .kc-bg { background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 60%, #172554 100%); } :root[data-theme="dark"] .kc-bg .blob { opacity: .28; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kc-bg { background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 60%, #172554 100%); } :root:not([data-theme="light"]) .kc-bg .blob { opacity: .28; } }
+@media (prefers-reduced-motion: reduce) { .kc-bg .blob, .kc-bg .fl, .kc-page .kc-tl, .kc-page .kc-tl.in, .kc-page .kc-tl .kc-emoji, .kc-page .kc-badges li.got { animation: none !important; } .kc-page .kc-tl { opacity: 1; transform: none; } .kc-bg .fl { display: none; } }
+@media (max-width: 560px) { .kc-bg .blob { filter: blur(50px); } .kc-bg .fl:nth-child(n+9) { display: none; } }
