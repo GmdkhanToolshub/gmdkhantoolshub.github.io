@@ -395,7 +395,7 @@
     'common-interview-questions-pakistan': ['Interview Success Pack', '$12.99 · Rs 3,499', 'Model answers, STAR worksheets and salary scripts in one printable pack.', 'interview-success-pack'],
     'profit-margin-vs-markup': ['Inventory & Sales Tracker', '$14.99 · Rs 3,999', 'See profit and margin for every product you sell.']
   };
-  var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path)) return;
+  var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path) || document.querySelector('main a[href*="shop/#"]')) return;
   var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (path.match(/\/blog\/([^\/]+)\/?/) || [])[1], it = slug && P[slug]; if (!it) return;
   var base = document.body.getAttribute('data-root') || './', box = document.createElement('aside'); box.className = 'shop-promo no-print'; box.setAttribute('aria-label', 'Ready-made Excel template');
   box.innerHTML = '<div><span class="sp-tag">Ready-made template</span><h2>' + it[0] + '</h2><p>' + it[2] + (it[3] ? '' : ' Works in Microsoft Excel 2010 or later.') + '</p></div><div class="sp-buy"><b>' + it[1] + '</b><a class="btn btn-primary btn-sm" href="' + base + 'shop/#' + (it[3] || 'excel') + '">View in the shop</a></div>';
