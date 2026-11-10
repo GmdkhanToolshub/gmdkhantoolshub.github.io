@@ -103,7 +103,7 @@
   }
   var needsConsent = !!(C.gaMeasurementId || C.gtmContainerId || C.adsensePublisherId);
   initAds();
-  if (consent !== 'essential') loadAnalytics();
+  if (consent !== 'essential') { var go = function () { setTimeout(loadAnalytics, 1200); }; if (doc.readyState === 'complete') go(); else addEventListener('load', go); }
   /* No banner pops up by itself. Visitors in the EEA, UK and Switzerland get Google's certified consent
      message through the AdSense tag; everyone else can choose from the "Cookie settings" link. */
   function openSettings() {
