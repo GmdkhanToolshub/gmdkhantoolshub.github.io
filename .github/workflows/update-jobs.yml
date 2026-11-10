@@ -1,0 +1,31 @@
+name: Update live jobs
+on:
+  schedule:
+    - cron: '23 */6 * * *'   # every 6 hours (Remotive asks for no more than 4 calls a day)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: update-jobs
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch, filter and validate jobs
+        env:
+          JOOBLE_KEY: ${{ secrets.JOOBLE_KEY }}
+          ADZUNA_ID: ${{ secrets.ADZUNA_ID }}
+          ADZUNA_KEY: ${{ secrets.ADZUNA_KEY }}
+        run: node scripts/update-jobs.mjs
+      - name: Commit changes
+        run: |
+          git config user.name "gm-jobs-bot"
+          git config user.email "gm-jobs-bot@users.noreply.github.com"
+          git add data/jobs.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update live jobs"; git push; fi

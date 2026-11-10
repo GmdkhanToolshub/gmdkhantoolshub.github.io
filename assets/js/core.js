@@ -355,6 +355,7 @@ window.SITE_CONFIG = {
   doc.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
     if (a.hasAttribute('data-aff')) track('affiliate_click', { item: a.getAttribute('data-aff'), page: location.pathname });
+    else if (a.hasAttribute('data-job')) track('job_apply_click', { source: a.getAttribute('data-job'), page: location.pathname });
     else if (/\/shop\/$/.test(location.pathname) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('shop_order_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
     else if (a.classList.contains('shop-fab') || /shop\/#/.test(a.getAttribute('href') || '')) track('shop_cta_click', { page: location.pathname });
   });
