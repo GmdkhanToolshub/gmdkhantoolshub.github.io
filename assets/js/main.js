@@ -304,8 +304,8 @@
   if (reduce || !('IntersectionObserver' in window)) return;
   var SEL = '.section-head, .card, .stat, .t-item, .trust li, .cta-band, details.faq, .side-card, .maker > div:first-child, .prose > h2, .prose > blockquote, .callout, ol.steps li';
   var els = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
-    return !el.closest('#tool-root, .hero, .page-hero, .site-footer, .consent, .ad-slot, [data-list-section]');
-  });
+    return !el.closest('#tool-root, .hero, .page-hero, .site-footer, .consent, .ad-slot, [data-list-section]') && el.getBoundingClientRect().top > window.innerHeight * 0.92;
+  }); /* only content below the first screen is revealed on scroll, so nothing above the fold is hidden while loading */
   els = els.filter(function (el) { return !els.some(function (o) { return o !== el && o.contains(el); }); });
   els.forEach(function (el) {
     var sibs = [].filter.call(el.parentElement.children, function (c) { return els.indexOf(c) > -1; });

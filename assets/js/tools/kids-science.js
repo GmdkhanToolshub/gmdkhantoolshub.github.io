@@ -1,0 +1,59 @@
+/* Kids Corner: Little Scientist. Four safe virtual experiments: sink or float, colour mixing, plant lab, states of water. Browser only. */
+(function () {
+  'use strict';
+  var G = window.GMK, el = G.el, rnd = G.rnd, shuf = G.shuf;
+  var OBJ = [
+    { n: 'Wooden block', e: '🪵', f: true, w: 'Wood is lighter than the same amount of water, so it floats.', t: 1 }, { n: 'Coin', e: '🪙', f: false, w: 'A coin is made of metal, which is heavier than water, so it sinks.', t: 1 },
+    { n: 'Cork', e: '🍾', f: true, w: 'Cork is full of tiny air pockets, so it floats very well.', t: 1 }, { n: 'Stone', e: '🪨', f: false, w: 'A stone is much heavier than water, so it sinks.', t: 1 },
+    { n: 'Rubber duck', e: '🦆', f: true, w: 'A rubber duck is filled with air, so it floats.', t: 1 }, { n: 'Key', e: '🗝️', f: false, w: 'A metal key is heavier than water, so it sinks.', t: 1 },
+    { n: 'Leaf', e: '🍃', f: true, w: 'A leaf is light and thin, so it floats.', t: 1 }, { n: 'Marble', e: '🔮', f: false, w: 'A glass marble is heavier than water, so it sinks.', t: 1 },
+    { n: 'Apple', e: '🍎', f: true, w: 'An apple has air inside, so it floats.', t: 2 }, { n: 'Grape', e: '🍇', f: false, w: 'A grape is slightly heavier than water, so it sinks.', t: 2 },
+    { n: 'Empty plastic bottle', e: '🧴', f: true, w: 'The air inside an empty bottle makes it float.', t: 2 }, { n: 'Candle', e: '🕯️', f: true, w: 'Wax is a little lighter than water, so a candle floats.', t: 2 },
+    { n: 'Big steel ship', e: '🚢', f: true, w: 'A ship is shaped like a bowl and full of air, so it floats even though steel is heavy.', t: 3 }, { n: 'Steel nail', e: '🔩', f: false, w: 'A small piece of solid steel is heavier than water, so it sinks.', t: 3 },
+    { n: 'Orange with its peel', e: '🍊', f: true, w: 'The peel has tiny air pockets, so an orange with its peel floats.', t: 3 }, { n: 'Orange without its peel', e: '🍊', f: false, w: 'Without the airy peel, the orange is heavier than water and sinks.', t: 3 }
+  ];
+  var MIX = { 'Red+Yellow': ['Orange', '#f97316'], 'Blue+Yellow': ['Green', '#22c55e'], 'Blue+Red': ['Purple', '#8b5cf6'], 'Red+White': ['Pink', '#f9a8d4'], 'Blue+White': ['Light blue', '#93c5fd'], 'White+Yellow': ['Light yellow', '#fef08a'], 'Black+White': ['Grey', '#9ca3af'], 'Black+Red': ['Dark red', '#7f1d1d'], 'Black+Blue': ['Dark blue', '#1e3a8a'] };
+  var PAINT = { Red: '#ef4444', Yellow: '#facc15', Blue: '#3b82f6', White: '#f8fafc', Black: '#111827' };
+  function run(root) {
+    root.innerHTML = ''; G.starBar(root, 'science');
+    var exp = 'float', level = 'easy', locked = false, stage;
+    var top = el('div', 'kc-top'), pills = el('div', 'kg-pills'); pills.setAttribute('role', 'group'); pills.setAttribute('aria-label', 'Choose an experiment');
+    [['float', '🌊 Sink or float'], ['mix', '🎨 Mix colours'], ['plant', '🌱 Plant lab'], ['water', '🧊 Water states']].forEach(function (m) { var b = el('button', 'pill', m[1]); b.type = 'button'; b.dataset.m = m[0]; b.addEventListener('click', function () { exp = m[0]; view(); }); pills.appendChild(b); });
+    top.appendChild(pills); root.appendChild(top); G.levels(top, function (l) { level = l; view(); }, level);
+    stage = el('div', 'kg-area'); var msg = el('p', 'kg-msg'); msg.setAttribute('role', 'status'); msg.setAttribute('aria-live', 'polite'); root.appendChild(stage); root.appendChild(msg);
+    root.appendChild(el('p', 'small muted', 'These are safe, virtual experiments. Never taste or mix real chemicals at home without a grown-up.'));
+    function paint() { [].forEach.call(pills.children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.m === exp)); }); }
+    function view() { paint(); locked = false; msg.className = 'kg-msg'; msg.textContent = ''; ({ float: floatX, mix: mixX, plant: plantX, water: waterX })[exp](); }
+    function pts() { return { easy: 1, medium: 2, hard: 3 }[level]; }
+    function floatX() {
+      var tier = { easy: [1], medium: [1, 2], hard: [2, 3] }[level], pool = OBJ.filter(function (o) { return tier.indexOf(o.t) >= 0; }), o = pool[rnd(pool.length)];
+      stage.innerHTML = '<p class="kg-q">Will it sink or float?</p><div class="kc-tank"><div class="kc-water"></div><div class="kc-obj" aria-hidden="true">' + o.e + '</div></div><p class="kg-big" style="font-size:1.2rem">' + o.n + '</p>';
+      var g = el('div', 'kg-opts'); ['Float', 'Sink'].forEach(function (x) { var b = el('button', 'kg-btn', x === 'Float' ? '🛟 Float' : '⬇️ Sink'); b.type = 'button'; b.dataset.a = x; b.addEventListener('click', function () { if (locked) return; locked = true; var ok = (x === 'Float') === o.f, ob = stage.querySelector('.kc-obj'); ob.className = 'kc-obj ' + (o.f ? 'floats' : 'sinks'); msg.className = 'kg-msg ' + (ok ? 'ok' : 'no'); msg.textContent = (ok ? 'You were right! ' : 'Good guess, but not this time. ') + o.w; if (ok) G.award(pts(), 'science', stage, 'Great scientist!'); var nx = el('button', 'btn btn-primary kg-next', 'Next experiment ▶'); nx.type = 'button'; nx.addEventListener('click', view); stage.appendChild(nx); }); g.appendChild(b); }); stage.appendChild(g); root._obj = o; }
+    function mixX() {
+      var cols = level === 'hard' ? ['Red', 'Yellow', 'Blue', 'White', 'Black'] : ['Red', 'Yellow', 'Blue'], targets = level === 'easy' ? ['Orange', 'Green', 'Purple'] : level === 'medium' ? ['Orange', 'Green', 'Purple', 'Pink'] : ['Orange', 'Green', 'Purple', 'Pink', 'Grey', 'Light blue'], goal = targets[rnd(targets.length)], picked = [];
+      stage.innerHTML = '<p class="kg-q">Make <b>' + goal + '</b> by mixing two paints</p>'; var res = el('div', 'kc-mixres', '?'); res.setAttribute('aria-live', 'polite'); stage.appendChild(res); var cp = el('div', 'kc-colors'); cp.setAttribute('role', 'group'); cp.setAttribute('aria-label', 'Paints');
+      cols.forEach(function (n) { var b = el('button', 'kc-paint', '<i style="background:' + PAINT[n] + '"></i>' + n); b.type = 'button'; b.dataset.p = n; b.addEventListener('click', function () { if (locked) return; if (picked.length < 2) { picked.push(n); b.classList.add('sel'); } if (picked.length === 2) test(); else res.textContent = 'Pick one more paint'; }); cp.appendChild(b); }); stage.appendChild(cp);
+      var rs = el('button', 'btn btn-ghost btn-sm', 'Clear'); rs.type = 'button'; rs.addEventListener('click', function () { picked = []; res.style.background = ''; res.textContent = '?'; [].forEach.call(cp.children, function (x) { x.classList.remove('sel'); }); msg.textContent = ''; }); stage.appendChild(rs);
+      function test() { var a = picked[0], b = picked[1], r; if (a === b) r = [a, PAINT[a]]; else r = MIX[a + '+' + b] || MIX[b + '+' + a] || ['Brown', '#92400e']; res.style.background = r[1]; res.style.color = r[0] === 'Yellow' || r[0] === 'White' || /Light|Pink/.test(r[0]) ? '#111' : '#fff'; res.textContent = r[0];
+        if (r[0] === goal) { locked = true; msg.className = 'kg-msg ok'; msg.textContent = a + ' and ' + b + ' make ' + goal + '!'; G.award(pts(), 'science', stage, 'Colour scientist!'); var nx = el('button', 'btn btn-primary kg-next', 'New colour ▶'); nx.type = 'button'; nx.addEventListener('click', view); stage.appendChild(nx); } else { msg.className = 'kg-msg no'; msg.textContent = a + ' and ' + b + ' make ' + r[0] + '. Try a different pair!'; picked = []; [].forEach.call(cp.children, function (x) { x.classList.remove('sel'); }); } } root._goal = goal; }
+    function plantX() {
+      var water = 0, sun = 0, done = false;
+      stage.innerHTML = '<p class="kg-q">Help the plant grow</p><div class="kc-plant"><div class="kc-sun" aria-hidden="true">☀️</div><div class="kc-stem" aria-hidden="true"></div><div class="kc-pot" aria-hidden="true">🪴</div></div>';
+      var ctl = el('div', 'kc-sliders'); ctl.innerHTML = '<label>💧 Water: <b id="wv">0</b> cups<br><input type="range" min="0" max="4" step="1" value="0" id="ws" aria-label="Cups of water"></label><label>☀️ Sunshine: <b id="sv">0</b> hours<br><input type="range" min="0" max="4" step="1" value="0" id="ss" aria-label="Hours of sunshine"></label>'; stage.appendChild(ctl);
+      var stem = stage.querySelector('.kc-stem'), pot = stage.querySelector('.kc-pot');
+      function upd() { water = +ctl.querySelector('#ws').value; sun = +ctl.querySelector('#ss').value; ctl.querySelector('#wv').textContent = water; ctl.querySelector('#sv').textContent = sun;
+        var good = water >= 1 && water <= 3 && sun >= 2, h = 10; var state = 'ok'; if (water === 0 || sun === 0) { h = 14; state = 'weak'; msg.textContent = water === 0 ? 'The plant is thirsty. Plants need water.' : 'The plant is pale. Plants need sunlight to make food.'; } else if (water === 4) { h = 30; state = 'wet'; msg.textContent = 'Too much water! The roots cannot breathe.'; } else if (!good) { h = 45; state = 'ok'; msg.textContent = 'It is growing slowly. Try a little more sunshine.'; } else { h = 40 + water * 12 + sun * 6; state = 'great'; msg.textContent = 'The plant is healthy and growing tall!'; }
+        stem.style.height = h + '%'; stem.className = 'kc-stem ' + state; msg.className = 'kg-msg' + (state === 'great' ? ' ok' : state === 'ok' ? '' : ' no'); pot.textContent = state === 'great' ? '🌻' : state === 'weak' ? '🥀' : '🪴';
+        if (state === 'great' && !done) { done = true; G.award(pts(), 'science', stage, 'Green thumb!'); } }
+      ctl.addEventListener('input', upd); upd(); msg.textContent = 'Slide the water and sunshine to find the best recipe for the plant.'; msg.className = 'kg-msg'; }
+    function waterX() {
+      var asked = 0;
+      stage.innerHTML = '<p class="kg-q">Change the temperature of water</p><div class="kc-states"><div class="kc-ice" id="ice" aria-live="polite">💧</div></div><label class="small">Temperature: <b id="tv">20</b> °C<br><input type="range" min="-20" max="120" step="5" value="20" id="ts" aria-label="Temperature in degrees Celsius" style="width:100%;max-width:420px"></label><p id="sd" class="small muted"></p>';
+      var ts = stage.querySelector('#ts'), ice = stage.querySelector('#ice'), sd = stage.querySelector('#sd');
+      function upd() { var t = +ts.value; stage.querySelector('#tv').textContent = t; if (t <= 0) { ice.textContent = '🧊'; sd.textContent = 'Solid: below 0 °C water freezes into ice.'; } else if (t >= 100) { ice.textContent = '☁️'; sd.textContent = 'Gas: at 100 °C water boils and becomes steam.'; } else { ice.textContent = '💧'; sd.textContent = 'Liquid: between 0 °C and 100 °C water is a liquid.'; } }
+      ts.addEventListener('input', upd); upd();
+      var qs = [['At what temperature does water freeze?', '0 °C', ['0 °C', '20 °C', '100 °C']], ['At what temperature does water boil?', '100 °C', ['0 °C', '50 °C', '100 °C']], ['What do we call water as a gas?', 'Steam', ['Ice', 'Steam', 'Snow']], ['What is ice?', 'Solid water', ['Solid water', 'Water gas', 'Hot water']]], q = qs[rnd(qs.length)];
+      var box = el('div', 'kg-area'); box.style.marginTop = '12px'; box.appendChild(el('p', 'kg-q', 'Quick question: ' + q[0])); var g = el('div', 'kg-opts'); shuf(q[2]).forEach(function (o) { var b = el('button', 'kg-btn', o); b.type = 'button'; b.addEventListener('click', function () { if (locked) return; if (o === q[1]) { locked = true; b.classList.add('good'); msg.className = 'kg-msg ok'; msg.textContent = 'Correct! ' + o + '.'; G.award(pts(), 'science', box, 'Brilliant scientist!'); var nx = el('button', 'btn btn-primary kg-next', 'Another question ▶'); nx.type = 'button'; nx.addEventListener('click', view); box.appendChild(nx); } else { b.classList.add('bad'); msg.className = 'kg-msg no'; msg.textContent = 'Move the slider to check, then try again!'; } }); g.appendChild(b); }); box.appendChild(g); stage.appendChild(box); root._wq = q[1]; }
+    view(); }
+  window.NiaziTools = window.NiaziTools || {}; NiaziTools['kids-science'] = function (r) { run(r); };
+})();

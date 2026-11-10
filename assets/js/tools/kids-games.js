@@ -26,7 +26,7 @@
     bar = el('div', 'kg-bar'); area = el('div', 'kg-area'); msg = el('p', 'kg-msg'); msg.setAttribute('role', 'status'); msg.setAttribute('aria-live', 'polite');
     nextBtn = el('button', 'btn btn-primary kg-next', 'Next ▶'); nextBtn.type = 'button'; nextBtn.hidden = true; nextBtn.addEventListener('click', round);
     var foot = el('div', 'kg-foot');
-    foot.innerHTML = '<label class="small muted">Level <select id="kg-level"><option value="easy">Easy</option><option value="medium">Medium</option></select></label> <button type="button" class="btn btn-ghost btn-sm" id="kg-cert">Get my certificate</button> <button type="button" class="btn btn-ghost btn-sm" id="kg-reset">Reset my stars</button><p class="small muted" style="margin:8px 0 0">Stars are saved only on this device. No names or personal details are collected.</p>';
+    foot.innerHTML = '<label class="small muted">Level <select id="kg-level"><option value="easy">Beginner</option><option value="medium">Intermediate</option><option value="hard">Advanced</option></select></label> <button type="button" class="btn btn-ghost btn-sm" id="kg-cert">Get my certificate</button> <button type="button" class="btn btn-ghost btn-sm" id="kg-reset">Reset my stars</button><p class="small muted" style="margin:8px 0 0">Stars are saved only on this device. No names or personal details are collected.</p>';
     top.appendChild(pills); root.appendChild(top); root.appendChild(bar); root.appendChild(area); root.appendChild(msg); root.appendChild(nextBtn); root.appendChild(foot);
     $('#kg-level', foot).addEventListener('change', function (e) { level = e.target.value; round(); });
     $('#kg-reset', foot).addEventListener('click', function (e) { if (e.target.dataset.sure) { stars = 0; put(0); e.target.textContent = 'Reset my stars'; delete e.target.dataset.sure; paintBar(); } else { e.target.dataset.sure = 1; e.target.textContent = 'Tap again to reset'; } });
@@ -35,7 +35,7 @@
     function paintPills() { [].forEach.call(pills.children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.m === mode)); }); }
     function paintBar() { var inLevel = stars % GOAL, done = Math.floor(stars / GOAL); bar.innerHTML = '<span class="kg-star" aria-hidden="true">⭐</span><b>' + stars + ' stars</b><span class="kg-track" role="progressbar" aria-valuemin="0" aria-valuemax="' + GOAL + '" aria-valuenow="' + inLevel + '" aria-label="Progress to the next certificate"><i style="width:' + (inLevel / GOAL * 100) + '%"></i></span><span class="small muted">' + (GOAL - inLevel) + ' to the next certificate' + (done ? ' · ' + done + ' earned' : '') + '</span>'; }
     function win(n, text) {
-      stars += n || 1; put(stars); answered++; paintBar(); locked = true; nextBtn.hidden = false;
+      if (window.GMK) { GMK.award(n || 1, 'games', area, text); stars = GMK.stars(); } else { stars += n || 1; put(stars); } answered++; paintBar(); locked = true; nextBtn.hidden = false;
       msg.className = 'kg-msg ok'; msg.textContent = text || ['Great job!', 'Well done!', 'Super!', 'Brilliant!'][rnd(4)];
       if (stars % GOAL === 0) msg.textContent += ' You earned a certificate! Press “Get my certificate”.';
       if (answered > 0 && answered % BREAK_AFTER === 0) msg.textContent += ' Time for a little break: stretch, drink water and look away from the screen for a minute.';
@@ -47,7 +47,7 @@
     }
     function round() {
       locked = false; nextBtn.hidden = true; msg.className = 'kg-msg'; msg.textContent = ''; paintPills(); paintBar();
-      var max = level === 'easy' ? 10 : 20;
+      var max = level === 'easy' ? 10 : level === 'medium' ? 20 : 50;
       if (mode === 'abc') { var it = ABC[rnd(26)]; choices('Which letter does this word start with?', '<span class="kg-emoji">' + it[2] + '</span><span class="kg-word">' + it[1] + '</span>', options(it[0], ABC.map(function (x) { return x[0]; }), 4), it[0], it[1]); }
       else if (mode === 'count') { var n = 1 + rnd(level === 'easy' ? 6 : 10), e = ['🍎', '⭐', '🐟', '🎈', '🐥', '🌸'][rnd(6)]; choices('How many can you count?', '<span class="kg-emoji">' + new Array(n + 1).join(e + ' ') + '</span>', options(n, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4).sort(function (a, b) { return a - b; }), n); }
       else if (mode === 'math') { var a = 1 + rnd(max), b = 1 + rnd(max), plus = Math.random() < 0.6; if (!plus && b > a) { var t = a; a = b; b = t; } var ans = plus ? a + b : a - b, pool = []; for (var d = -3; d <= 3; d++) if (d && ans + d >= 0) pool.push(ans + d); choices('Solve it', a + ' ' + (plus ? '+' : '−') + ' ' + b + ' = ?', options(ans, pool, 4).sort(function (x, y) { return x - y; }), ans); }
@@ -66,7 +66,7 @@
       letters.forEach(function (L) { var bt = el('button', 'kg-btn', L); bt.type = 'button'; bt.addEventListener('click', function () { if (locked || bt.disabled) return; if (word.charAt(got.length) === L) { got += L; bt.disabled = true; draw(); if (got === word) { say(word.toLowerCase()); win(1, 'You spelled ' + word + '!'); } } else { bt.classList.add('bad'); oops(); setTimeout(function () { bt.classList.remove('bad'); }, 500); } }); g.appendChild(bt); });
     }
     function memory() {
-      var pool = shuf(['🐱', '🐶', '🐰', '🦊', '🐸', '🐼', '🦁', '🐧', '🐢', '🐠']).slice(0, level === 'easy' ? 6 : 8), cards = shuf(pool.concat(pool)), open = [], matched = 0;
+      var pool = shuf(['🐱', '🐶', '🐰', '🦊', '🐸', '🐼', '🦁', '🐧', '🐢', '🐠']).slice(0, level === 'easy' ? 6 : level === 'medium' ? 8 : 10), cards = shuf(pool.concat(pool)), open = [], matched = 0;
       area.innerHTML = ''; area.appendChild(el('p', 'kg-q', 'Find the matching pairs')); var g = el('div', 'kg-mem'); area.appendChild(g);
       cards.forEach(function (c) { var bt = el('button', 'kg-card', '<span>?</span>'); bt.type = 'button'; bt.setAttribute('aria-label', 'Hidden card'); bt.addEventListener('click', function () {
         if (locked || bt.classList.contains('up') || open.length === 2) return; bt.classList.add('up'); bt.innerHTML = '<span>' + c + '</span>'; bt.setAttribute('aria-label', 'Card ' + c); open.push([bt, c]);
@@ -91,6 +91,7 @@
         cv.toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'GM-Kids-Certificate.jpg'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }, 'image/jpeg', 0.92);
       });
     }
+    var hm = (location.hash || '').slice(1); if (MODES.some(function (m) { return m[0] === hm; })) mode = hm;
     paintPills(); round();
   }
   window.NiaziTools = window.NiaziTools || {};

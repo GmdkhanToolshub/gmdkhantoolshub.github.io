@@ -1,0 +1,48 @@
+/* Kids Corner: Mini Music Studio. Piano, instruments, drum pads, recording and learn-a-song. Web Audio, browser only. */
+(function () {
+  'use strict';
+  var G = window.GMK, el = G.el;
+  var NOTES = [['C', 261.63, 0], ['C#', 277.18, 1], ['D', 293.66, 0], ['D#', 311.13, 1], ['E', 329.63, 0], ['F', 349.23, 0], ['F#', 369.99, 1], ['G', 392.0, 0], ['G#', 415.3, 1], ['A', 440.0, 0], ['A#', 466.16, 1], ['B', 493.88, 0], ['C2', 523.25, 0]];
+  var KEYMAP = { a: 'C', w: 'C#', s: 'D', e: 'D#', d: 'E', f: 'F', t: 'F#', g: 'G', y: 'G#', h: 'A', u: 'A#', j: 'B', k: 'C2' };
+  var INST = { piano: 'Piano', flute: 'Flute', guitar: 'Guitar', xylophone: 'Xylophone', synth: 'Synth' };
+  var DRUMS = [['kick', 'Kick', '1'], ['snare', 'Snare', '2'], ['hat', 'Hi-hat', '3'], ['clap', 'Clap', '4'], ['tom', 'Tom', '5'], ['crash', 'Cymbal', '6']];
+  var SONGS = { easy: ['Twinkle Twinkle (first part)', 'C C G G A A G'.split(' ')], medium: ['Twinkle Twinkle (full)', 'C C G G A A G F F E E D D C'.split(' ')], hard: ['Ode to Joy', 'E E F G G F E D C C D E E D D'.split(' ')] };
+  function run(root) {
+    root.innerHTML = ''; G.starBar(root, 'music');
+    var ctx = null, inst = 'piano', vol = 0.6, rec = false, take = [], t0 = 0, level = 'easy', song = null, idx = 0, played = 0, master = null, noiseBuf = null;
+    function ac() { if (!ctx) { var C = window.AudioContext || window.webkitAudioContext; if (!C) return null; ctx = new C(); master = ctx.createGain(); master.gain.value = vol; master.connect(ctx.destination); } if (ctx.state === 'suspended') ctx.resume(); return ctx; }
+    function noise() { if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 1, ctx.sampleRate); var d = noiseBuf.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; } var s = ctx.createBufferSource(); s.buffer = noiseBuf; return s; }
+    function tone(freq, kind) {
+      var c = ac(); if (!c) return; var t = c.currentTime, o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter(); o.frequency.value = freq; f.type = 'lowpass'; f.frequency.value = 6000; var a = 0.02, dur = 1.1, type = 'triangle', peak = 0.6;
+      if (kind === 'flute') { type = 'sine'; a = 0.08; dur = 0.9; } else if (kind === 'guitar') { type = 'sawtooth'; f.frequency.setValueAtTime(3500, t); f.frequency.exponentialRampToValueAtTime(500, t + 0.6); dur = 0.8; peak = 0.35; } else if (kind === 'xylophone') { type = 'sine'; dur = 0.55; o.frequency.value = freq * 2; } else if (kind === 'synth') { type = 'square'; peak = 0.2; dur = 0.7; }
+      o.type = type; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); o.connect(f); f.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05); }
+    function drum(k) {
+      var c = ac(); if (!c) return; var t = c.currentTime, g = c.createGain(), o;
+      g.connect(master);
+      if (k === 'kick' || k === 'tom') { o = c.createOscillator(); o.frequency.setValueAtTime(k === 'kick' ? 150 : 220, t); o.frequency.exponentialRampToValueAtTime(k === 'kick' ? 40 : 90, t + 0.25); g.gain.setValueAtTime(0.9, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.35); o.connect(g); o.start(t); o.stop(t + 0.4); }
+      else { var n = noise(), f = c.createBiquadFilter(); f.type = k === 'hat' || k === 'crash' ? 'highpass' : 'bandpass'; f.frequency.value = k === 'hat' ? 7000 : k === 'crash' ? 5000 : k === 'clap' ? 1500 : 1800; var len = k === 'hat' ? 0.07 : k === 'crash' ? 0.9 : k === 'clap' ? 0.18 : 0.2; g.gain.setValueAtTime(k === 'hat' ? 0.4 : 0.7, t); g.gain.exponentialRampToValueAtTime(0.001, t + len); n.connect(f); f.connect(g); n.start(t); n.stop(t + len + 0.05); } }
+    var top = el('div', 'kc-top'); var sel = el('div', 'kg-pills'); sel.setAttribute('role', 'group'); sel.setAttribute('aria-label', 'Instrument');
+    Object.keys(INST).forEach(function (k) { var b = el('button', 'pill', INST[k]); b.type = 'button'; b.dataset.i = k; b.setAttribute('aria-pressed', String(k === inst)); b.addEventListener('click', function () { inst = k; [].forEach.call(sel.children, function (x) { x.setAttribute('aria-pressed', String(x.dataset.i === inst)); }); }); sel.appendChild(b); });
+    top.appendChild(sel); var vwrap = el('label', 'small', 'Volume <input type="range" min="0" max="1" step="0.05" value="0.6" aria-label="Volume">'); top.appendChild(vwrap); vwrap.querySelector('input').addEventListener('input', function (e) { vol = +e.target.value; if (master) master.gain.value = vol; }); root.appendChild(top);
+    var kb = el('div', 'kc-piano'); kb.setAttribute('role', 'group'); kb.setAttribute('aria-label', 'Piano keys'); var keys = {};
+    var white = NOTES.filter(function (n) { return !n[2]; }); var wi = 0;
+    NOTES.forEach(function (n) { var b = el('button', 'kc-key' + (n[2] ? ' black' : ''), '<span>' + n[0].replace('2', '') + '</span>'); b.type = 'button'; b.dataset.n = n[0]; b.setAttribute('aria-label', 'Note ' + n[0].replace('2', '')); if (n[2]) b.style.left = 'calc(' + (wi / white.length * 100) + '% - 3.2%)'; else { b.style.width = (100 / white.length) + '%'; wi++; } b.addEventListener('pointerdown', function (e) { e.preventDefault(); playNote(n[0]); }); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playNote(n[0]); } }); kb.appendChild(b); keys[n[0]] = b; }); root.appendChild(kb);
+    var dr = el('div', 'kc-drums'); dr.setAttribute('role', 'group'); dr.setAttribute('aria-label', 'Drum pads'); DRUMS.forEach(function (d) { var b = el('button', 'kc-drum', d[1] + '<i>' + d[2] + '</i>'); b.type = 'button'; b.dataset.d = d[0]; b.addEventListener('pointerdown', function (e) { e.preventDefault(); playDrum(d[0]); }); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playDrum(d[0]); } }); dr.appendChild(b); }); root.appendChild(dr);
+    function lit(b) { if (!b) return; b.classList.add('on'); setTimeout(function () { b.classList.remove('on'); }, 160); }
+    function playNote(n) { var f = NOTES.filter(function (x) { return x[0] === n; })[0][1]; tone(f, inst); lit(keys[n]); played++; root._played = played; if (rec) take.push({ t: Date.now() - t0, k: 'n', v: n, i: inst }); check(n); }
+    function playDrum(k) { drum(k); lit(dr.querySelector('[data-d="' + k + '"]')); played++; root._played = played; if (rec) take.push({ t: Date.now() - t0, k: 'd', v: k }); }
+    root._note = playNote; root._drum = playDrum;
+    var tools = el('div', 'kc-tools'); var rb = el('button', 'btn btn-ghost btn-sm', '⏺ Record'), pb = el('button', 'btn btn-ghost btn-sm', '▶ Play back'); rb.type = pb.type = 'button'; pb.disabled = true; tools.appendChild(rb); tools.appendChild(pb);
+    rb.addEventListener('click', function () { rec = !rec; if (rec) { take = []; t0 = Date.now(); rb.textContent = '⏹ Stop recording'; pb.disabled = true; } else { rb.textContent = '⏺ Record'; pb.disabled = !take.length; } });
+    pb.addEventListener('click', function () { take.forEach(function (e) { setTimeout(function () { if (e.k === 'n') { var f = NOTES.filter(function (x) { return x[0] === e.v; })[0][1]; tone(f, e.i); lit(keys[e.v]); } else { drum(e.v); lit(dr.querySelector('[data-d="' + e.v + '"]')); } }, e.t); }); });
+    root.appendChild(tools);
+    var learn = el('div', 'kg-area'); learn.style.marginTop = '14px'; learn.innerHTML = '<p class="kg-q">Learn a song</p>'; var lv = el('div'); G.levels(lv, function (l) { level = l; song = null; paintSong(); }, level); learn.appendChild(lv); var sb = el('button', 'btn btn-primary btn-sm', 'Start the song'); sb.type = 'button'; var sm = el('p', 'kg-msg'); sm.setAttribute('role', 'status'); sm.setAttribute('aria-live', 'polite'); learn.appendChild(sb); learn.appendChild(sm); root.appendChild(learn);
+    function paintSong() { [].forEach.call(root.querySelectorAll('.kc-key.next'), function (k) { k.classList.remove('next'); }); if (song) { var n = song[1][idx]; if (keys[n]) keys[n].classList.add('next'); sm.textContent = song[0] + ': note ' + (idx + 1) + ' of ' + song[1].length + '. Press the glowing key.'; } else sm.textContent = 'Press Start, then play the glowing keys.'; }
+    sb.addEventListener('click', function () { song = SONGS[level]; idx = 0; paintSong(); });
+    function check(n) { if (!song) return; if (song[1][idx] === n) { idx++; if (idx >= song[1].length) { sm.className = 'kg-msg ok'; sm.textContent = 'You played ' + song[0] + '! Well done!'; song = null; [].forEach.call(root.querySelectorAll('.kc-key.next'), function (k) { k.classList.remove('next'); }); G.award({ easy: 1, medium: 2, hard: 3 }[level], 'music', learn, 'Wonderful music!'); } else { sm.className = 'kg-msg'; paintSong(); } } else { sm.className = 'kg-msg no'; sm.textContent = 'Try the glowing key.'; } }
+    document.addEventListener('keydown', onKey);
+    function onKey(e) { if (!document.body.contains(root)) { document.removeEventListener('keydown', onKey); return; } if (e.ctrlKey || e.metaKey || e.altKey || /input|select|textarea/i.test((e.target.tagName || ''))) return; var k = e.key.toLowerCase(); if (KEYMAP[k] && !e.repeat) { playNote(KEYMAP[k]); } else { var di = DRUMS.filter(function (d) { return d[2] === e.key; })[0]; if (di && !e.repeat) playDrum(di[0]); } }
+    root.appendChild(el('p', 'small muted', 'Tip: use the keyboard too. A S D F G H J K play the white keys, and W E T Y U play the black keys. Number keys 1 to 6 play the drums. Sound starts after your first tap or key press.'));
+    paintSong(); }
+  window.NiaziTools = window.NiaziTools || {}; NiaziTools['kids-music'] = function (r) { run(r); };
+})();
