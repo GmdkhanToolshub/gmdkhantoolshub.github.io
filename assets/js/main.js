@@ -377,22 +377,28 @@
 /* Contextual "ready-made Excel template" offer on matching tools and articles */
 (function () {
   var P = {
-    'sales-target-calculator': ['Sales Target & Daily Run-Rate Tracker', '$6.99 · Rs 1,999', 'Track the whole month day by day, with a team sheet and a chart.'],
-    'kpi-performance-calculator': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'Score up to 50 people on up to 8 weighted KPIs, with ratings and ranking.'],
-    'profit-margin-calculator': ['Inventory & Sales Tracker', '$8.99 · Rs 2,499', 'Stock, reorder alerts, profit per sale and monthly sales in one workbook.'],
-    'business-report-generator': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'A ready-made performance workbook for monthly team reviews.'],
-    'salary-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Plan your salary month by month and see where the money goes.'],
-    'pakistan-salary-tax-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Plan your take-home pay with a budget, savings rate and yearly overview.'],
-    'loan-emi-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Fit your instalments into a monthly budget and track what is left.'],
-    'percentage-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Track budget used and savings rate automatically.'],
-    'sales-target-tracking': ['Sales Target & Daily Run-Rate Tracker', '$6.99 · Rs 1,999', 'The method in this article, built into a ready-to-use Excel workbook.'],
-    'weighted-kpi-scorecard': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'The scorecard in this article, built into a ready-to-use Excel workbook.'],
-    'profit-margin-vs-markup': ['Inventory & Sales Tracker', '$8.99 · Rs 2,499', 'See profit and margin for every product you sell.']
+    'sales-target-calculator': ['Sales Target & Daily Run-Rate Tracker', '$9.99 · Rs 2,799', 'Track the whole month day by day, with a team sheet and a chart.'],
+    'kpi-performance-calculator': ['Team KPI Scorecard', '$14.99 · Rs 3,999', 'Score up to 50 people on up to 8 weighted KPIs, with ratings and ranking.'],
+    'profit-margin-calculator': ['Inventory & Sales Tracker', '$14.99 · Rs 3,999', 'Stock, reorder alerts, profit per sale and monthly sales in one workbook.'],
+    'business-report-generator': ['Team KPI Scorecard', '$14.99 · Rs 3,999', 'A ready-made performance workbook for monthly team reviews.'],
+    'salary-calculator': ['Personal Monthly Budget Planner', '$6.99 · Rs 1,999', 'Plan your salary month by month and see where the money goes.'],
+    'pakistan-salary-tax-calculator': ['Personal Monthly Budget Planner', '$6.99 · Rs 1,999', 'Plan your take-home pay with a budget, savings rate and yearly overview.'],
+    'loan-emi-calculator': ['Personal Monthly Budget Planner', '$6.99 · Rs 1,999', 'Fit your instalments into a monthly budget and track what is left.'],
+    'percentage-calculator': ['Personal Monthly Budget Planner', '$6.99 · Rs 1,999', 'Track budget used and savings rate automatically.'],
+    'sales-target-tracking': ['Sales Target & Daily Run-Rate Tracker', '$9.99 · Rs 2,799', 'The method in this article, built into a ready-to-use Excel workbook.'],
+    'weighted-kpi-scorecard': ['Team KPI Scorecard', '$14.99 · Rs 3,999', 'The scorecard in this article, built into a ready-to-use Excel workbook.'],
+    'resume-builder': ['Professional CV Pack', '$9.99 · Rs 2,799', 'Four editable Word CV templates plus a writing guide.', 'cv-pack'],
+    'ats-resume-checker': ['Professional CV Pack', '$9.99 · Rs 2,799', 'Four ATS-friendly Word CV templates plus a writing guide.', 'cv-pack'],
+    'cover-letter-generator': ['Professional CV Pack', '$9.99 · Rs 2,799', 'Four editable Word CV templates plus a writing guide.', 'cv-pack'],
+    'write-cv-for-jobs-in-pakistan': ['Professional CV Pack', '$9.99 · Rs 2,799', 'The four templates this article describes, ready to edit in Word.', 'cv-pack'],
+    'interview-prep': ['Interview Success Pack', '$12.99 · Rs 3,499', 'A 41-page printable pack: 30 model answers, STAR worksheets and a 7-day plan.', 'interview-success-pack'],
+    'common-interview-questions-pakistan': ['Interview Success Pack', '$12.99 · Rs 3,499', 'Model answers, STAR worksheets and salary scripts in one printable pack.', 'interview-success-pack'],
+    'profit-margin-vs-markup': ['Inventory & Sales Tracker', '$14.99 · Rs 3,999', 'See profit and margin for every product you sell.']
   };
   var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path)) return;
   var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (path.match(/\/blog\/([^\/]+)\/?/) || [])[1], it = slug && P[slug]; if (!it) return;
   var base = document.body.getAttribute('data-root') || './', box = document.createElement('aside'); box.className = 'shop-promo no-print'; box.setAttribute('aria-label', 'Ready-made Excel template');
-  box.innerHTML = '<div><span class="sp-tag">Ready-made template</span><h2>' + it[0] + '</h2><p>' + it[2] + ' Works in Microsoft Excel 2010 or later.</p></div><div class="sp-buy"><b>' + it[1] + '</b><a class="btn btn-primary btn-sm" href="' + base + 'shop/#excel">View in the shop</a></div>';
+  box.innerHTML = '<div><span class="sp-tag">Ready-made template</span><h2>' + it[0] + '</h2><p>' + it[2] + (it[3] ? '' : ' Works in Microsoft Excel 2010 or later.') + '</p></div><div class="sp-buy"><b>' + it[1] + '</b><a class="btn btn-primary btn-sm" href="' + base + 'shop/#' + (it[3] || 'excel') + '">View in the shop</a></div>';
   var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
 })();
