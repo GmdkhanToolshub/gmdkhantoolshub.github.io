@@ -20,6 +20,7 @@ jobs:
       - name: Fetch, filter and validate jobs
         env:
           JOOBLE_KEY: ${{ secrets.JOOBLE_KEY }}
+          CAREERJET_KEY: ${{ secrets.CAREERJET_KEY }}
           ADZUNA_ID: ${{ secrets.ADZUNA_ID }}
           ADZUNA_KEY: ${{ secrets.ADZUNA_KEY }}
         run: node scripts/update-jobs.mjs

@@ -5,7 +5,7 @@
   'use strict';
   var d = document, base = d.body.getAttribute('data-root') || './', URL_ = base + 'data/jobs.json', CK = 'gm.jobs.v1', TTL = 15 * 60 * 1000, DAY = 864e5;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var SRC = { arbeitnow: ['Arbeitnow', 'https://www.arbeitnow.com/'], remotive: ['Remotive', 'https://remotive.com/'], jobicy: ['Jobicy', 'https://jobicy.com/'], jooble: ['Jooble', 'https://jooble.org/'], adzuna: ['Adzuna', 'https://www.adzuna.com/'] };
+  var SRC = { arbeitnow: ['Arbeitnow', 'https://www.arbeitnow.com/'], remotive: ['Remotive', 'https://remotive.com/'], jobicy: ['Jobicy', 'https://jobicy.com/'], jooble: ['Jooble', 'https://jooble.org/'], adzuna: ['Adzuna', 'https://www.adzuna.com/'], careerjet: ['Careerjet', 'https://www.careerjet.com.pk/'] };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   /* Simple vector flags. Countries without one show a globe. */
   var F = {

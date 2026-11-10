@@ -13,7 +13,7 @@ const CAPS = { intl: 90, pk: 60, pkr: 30 };
 const sources = [];
 const log = (...a) => console.log(...a);
 const clean = s => String(s == null ? '' : s).replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-const iso = x => { const d = new Date(typeof x === 'number' ? x : /[zZ]|[+-]\d\d:?\d\d$/.test(String(x)) ? x : String(x).replace(' ', 'T') + 'Z'); return isNaN(d) ? null : d.toISOString(); };
+const iso = x => { const t = typeof x === 'number' ? x : /[A-Za-z]{3},|GMT|UTC/.test(String(x)) || /[zZ]|[+-]\d\d:?\d\d$/.test(String(x)) ? x : String(x).replace(' ', 'T') + 'Z'; const d = new Date(t); return isNaN(d) ? null : d.toISOString(); };
 async function get(url, opts = {}, tries = 2) {
   for (let i = 0; i < tries; i++) {
     try { const r = await fetch(url, { ...opts, headers: { 'user-agent': UA, accept: 'application/json', ...(opts.headers || {}) }, signal: AbortSignal.timeout(30000) }); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); }
@@ -106,6 +106,30 @@ async function jooble(prev) {
   }
   s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed'; else joobleAt = new Date().toISOString();
 }
+// ---------- optional: Careerjet (best fit for Pakistan: it runs a Pakistan market). Needs CAREERJET_KEY from a free Careerjet publisher account ----------
+// API v4: GET https://search.api.careerjet.net/v4/query with HTTP Basic auth (API key as user name, empty password) and the required
+// user_ip and user_agent parameters. CAREERJET_URL can point to a test server. Results are kept only for Pakistan (locale en_PK).
+async function careerjet() {
+  const key = process.env.CAREERJET_KEY, s = { id: 'careerjet', name: 'Careerjet', url: 'https://www.careerjet.com.pk/', ok: false, count: 0, configured: !!key }; sources.push(s);
+  if (!key) { s.error = 'not configured (no API key)'; return; }
+  const base = process.env.CAREERJET_URL || 'https://search.api.careerjet.net/v4/query';
+  let ip = process.env.CAREERJET_USER_IP; if (!ip) { try { ip = (await get('https://api.ipify.org?format=json', {}, 1)).ip; } catch (e) { ip = '127.0.0.1'; } }
+  const CITIES = ['Pakistan', 'Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad', 'Multan', 'Peshawar', 'Quetta', 'Hyderabad', 'Sialkot', 'Gujranwala'];
+  const auth = 'Basic ' + Buffer.from(key + ':').toString('base64'); let okc = 0, n = 0;
+  for (const city of CITIES) {
+    try {
+      const q = new URLSearchParams({ locale_code: 'en_PK', location: city === 'Pakistan' ? 'Pakistan' : city + ', Pakistan', sort: 'date', page_size: '40', page: '1', user_ip: ip, user_agent: UA, keywords: '' });
+      const d = await get(base + '?' + q.toString(), { headers: { authorization: auth } }); okc++;
+      for (const j of d.jobs || []) {
+        const loc = clean(j.locations || city), pl = place(loc + ', Pakistan'); if (!j.url || !j.title) continue; n++;
+        const sal = j.salary ? clean(j.salary).slice(0, 60) : (j.salary_min && j.salary_max ? (j.salary_currency_code || '') + ' ' + Number(j.salary_min).toLocaleString('en-US') + ' to ' + Number(j.salary_max).toLocaleString('en-US') + (j.salary_type ? ' per ' + ({ Y: 'year', M: 'month', W: 'week', D: 'day', H: 'hour' }[j.salary_type] || String(j.salary_type).toLowerCase()) : '') : null);
+        all.push(J({ id: 'cj-' + String(j.url).replace(/\W+/g, '').slice(-40), t: clean(j.title), c: clean(j.company), co: 'Pakistan', ci: pl.city || (city !== 'Pakistan' ? city : null), loc: loc, ty: type(j.contract_type || j.work_hours), p: iso(j.date), s: sal, u: j.url, src: 'careerjet' }));
+      }
+    } catch (e) { log('careerjet', city, 'failed', e.message); }
+    await new Promise(r => setTimeout(r, 500));
+  }
+  s.ok = okc > 0; s.count = n; if (!okc) s.error = 'all requests failed';
+}
 // ---------- optional: Adzuna (needs ADZUNA_ID and ADZUNA_KEY). Covers UK, USA, Canada, Australia and Europe ----------
 async function adzuna() {
   const id = process.env.ADZUNA_ID, key = process.env.ADZUNA_KEY, s = { id: 'adzuna', name: 'Adzuna', url: 'https://www.adzuna.com/', ok: false, count: 0, configured: !!(id && key) }; sources.push(s);
@@ -124,7 +148,7 @@ async function adzuna() {
 
 let prevData = null, joobleAt = null;
 try { prevData = JSON.parse(await readFile(OUT, 'utf8')); } catch (e) { prevData = null; }
-await Promise.all([arbeitnow(), remotive()]); await jobicy(); await jooble(prevData); await adzuna();
+await Promise.all([arbeitnow(), remotive()]); await jobicy(); await jooble(prevData); await careerjet(); await adzuna();
 log('raw', all.length);
 // ---------- strict date filter, de-duplication, balancing ----------
 const live = all.filter(j => j.t && j.c && j.u && /^https?:\/\//.test(j.u) && j.p && new Date(j.p).getTime() <= NOW + DAY && (j.d ? new Date(j.d).getTime() + DAY > NOW : NOW - new Date(j.p).getTime() <= MAX_AGE_DAYS * DAY));
