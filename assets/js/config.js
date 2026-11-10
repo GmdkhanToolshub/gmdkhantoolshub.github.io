@@ -8,6 +8,11 @@ window.SITE_CONFIG = {
     "between": ""
   },
   "gaMeasurementId": "",
+  /* Google Tag Manager container ID, for example "GTM-XXXXXXX". Leave empty until you have a real one. */
+  "gtmContainerId": "",
+  /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.
+     Example: {"match": ["pdf-compressor"], "name": "Product name", "url": "https://...", "note": "Why you recommend it"} */
+  "affiliates": [],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
      While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",

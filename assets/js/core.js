@@ -8,6 +8,11 @@ window.SITE_CONFIG = {
     "between": ""
   },
   "gaMeasurementId": "",
+  /* Google Tag Manager container ID, for example "GTM-XXXXXXX". Leave empty until you have a real one. */
+  "gtmContainerId": "",
+  /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.
+     Example: {"match": ["pdf-compressor"], "name": "Product name", "url": "https://...", "note": "Why you recommend it"} */
+  "affiliates": [],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
      While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",
@@ -327,13 +332,27 @@ window.SITE_CONFIG = {
   var CK = 'niazi.consent';
   var consent = store(CK, null);
   function loadScript(src, attrs) { var s = doc.createElement('script'); s.async = true; s.src = src; for (var k in (attrs || {})) s.setAttribute(k, attrs[k]); doc.head.appendChild(s); return s; }
-  var analyticsLoaded = false;
+  var analyticsLoaded = false, inKids = /\/kids\//.test(location.pathname);
+  /* Analytics never runs in Kids Corner. Elsewhere it runs only after the visitor allows it, and only when a real ID is set in config.js. */
   function loadAnalytics() {
-    if (analyticsLoaded || !C.gaMeasurementId) return; analyticsLoaded = true;
-    window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
-    gtag('js', new Date()); gtag('config', C.gaMeasurementId, { anonymize_ip: true });
-    loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(C.gaMeasurementId));
+    if (analyticsLoaded || inKids || !(C.gaMeasurementId || C.gtmContainerId)) return; analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    if (C.gaMeasurementId) {
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date()); gtag('config', C.gaMeasurementId, { anonymize_ip: true });
+      loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(C.gaMeasurementId));
+    }
+    if (C.gtmContainerId) { dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); loadScript('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(C.gtmContainerId)); }
   }
+  /* Conversion events: shop orders, affiliate clicks, tool views. They do nothing until analytics is allowed and configured. */
+  function track(name, params) { if (!analyticsLoaded) return; try { if (window.gtag) gtag('event', name, params || {}); else if (window.dataLayer) dataLayer.push({ event: name, params: params || {} }); } catch (e) { /* ignore */ } }
+  doc.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    if (a.hasAttribute('data-aff')) track('affiliate_click', { item: a.getAttribute('data-aff'), page: location.pathname });
+    else if (/\/shop\/$/.test(location.pathname) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('shop_order_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
+    else if (a.classList.contains('shop-fab') || /shop\/#/.test(a.getAttribute('href') || '')) track('shop_cta_click', { page: location.pathname });
+  });
+  (function () { var t = $('#tool-root'); if (t && consent === 'all') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
   /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
   function initAds() {
@@ -361,7 +380,7 @@ window.SITE_CONFIG = {
     $('#c-all').addEventListener('click', function () { var had = consent; consent = 'all'; save(CK, 'all'); closeBanner(); loadAnalytics(); if (had === 'essential') location.reload(); });
     $('#c-ess').addEventListener('click', function () { var had = consent; consent = 'essential'; save(CK, 'essential'); closeBanner(); if (had === 'all') location.reload(); });
   }
-  var needsConsent = !!(C.gaMeasurementId || C.adsensePublisherId);
+  var needsConsent = !!(C.gaMeasurementId || C.gtmContainerId || C.adsensePublisherId);
   initAds();
   if (consent === 'all') loadAnalytics();
   /* No banner pops up by itself. Visitors in the EEA, UK and Switzerland get Google's certified consent
@@ -619,6 +638,19 @@ window.SITE_CONFIG = {
   var bag = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
   a.innerHTML = '<span class="sf-inner"><span class="sf-face sf-front">' + bag + '<b>Shop Now</b></span><span class="sf-face sf-back"><b>Premium Templates</b><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>';
   document.body.appendChild(a);
+})();
+
+/* Affiliate recommendations: shown only for items listed in config.js (SITE_CONFIG.affiliates). Always disclosed. */
+(function () {
+  var C = window.SITE_CONFIG || {}, L = C.affiliates || []; if (!L.length || /\/kids\//.test(location.pathname)) return;
+  var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (location.pathname.match(/\/blog\/([^\/]+)\/?/) || [])[1]; if (!slug) return;
+  var items = L.filter(function (x) { return x && x.url && /^https:\/\//.test(x.url) && (x.match || []).indexOf(slug) >= 0; }).slice(0, 3); if (!items.length) return;
+  var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
+  var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
+  items.forEach(function (x) { var a = document.createElement('a'); a.textContent = x.name; h += '<li><a href="' + x.url.replace(/"/g, '%22') + '" target="_blank" rel="sponsored nofollow noopener noreferrer" data-aff="' + String(x.name).replace(/[<>"&]/g, '') + '">' + a.innerHTML + '</a>' + (x.note ? ' <span class="muted">– ' + String(x.note).replace(/[<>&]/g, '') + '</span>' : '') + '</li>'; });
+  box.innerHTML = h + '</ul>';
+  var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
+  if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
 })();
 
 /* Contextual "ready-made Excel template" offer on matching tools and articles */
