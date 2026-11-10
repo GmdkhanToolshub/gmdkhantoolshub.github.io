@@ -111,7 +111,7 @@
   }
   /* The stylesheet loads only when a jobs section is about to appear, so it never delays the first paint of a page. */
   var cssReady = null;
-  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + 'e4d05617'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
+  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + 'f849e122'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
   function mount(host) {
     var kind = host.getAttribute('data-jobs') || 'ticker'; host.setAttribute('aria-busy', 'true');
     function go() { Promise.all([css(), fetchJobs()]).then(function (r) { var data = r[1]; host.removeAttribute('aria-busy'); host.style.minHeight = ''; if (kind === 'browse') browse(host, data); else if (kind.indexOf('side-') === 0) side(host, data, kind); else band(host, data); }); }

@@ -19,6 +19,29 @@
   });
   applyThemeLabel();
 
+  /* ---------- colour palette (saved in localStorage as niazi.accent; applied before first paint by the head script) ---------- */
+  var palBtn = $('#palette-btn'), palPop = null;
+  var PAL = [['navy', 'Navy Blue', '#1d5bd8'], ['royal', 'Royal Blue', '#3355e8'], ['emerald', 'Emerald Green', '#0a8a5c'], ['teal', 'Teal', '#0e7490'], ['purple', 'Purple', '#7c3aed'], ['graphite', 'Graphite', '#3f4a5c']];
+  function curAccent() { return root.getAttribute('data-accent') || 'navy'; }
+  function markPal() { if (palPop) [].forEach.call(palPop.querySelectorAll('.pal-opt'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-a') === curAccent())); }); }
+  function setAccent(a) { if (a === 'navy') root.removeAttribute('data-accent'); else root.setAttribute('data-accent', a); save('niazi.accent', a); markPal(); }
+  function closePal() { if (palPop && !palPop.hidden) { palPop.hidden = true; palBtn.setAttribute('aria-expanded', 'false'); } }
+  if (palBtn) {
+    palBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!palPop) {
+        palPop = doc.createElement('div'); palPop.className = 'pal-pop'; palPop.id = 'palette-pop'; palPop.setAttribute('role', 'dialog'); palPop.setAttribute('aria-label', 'Colour theme'); palPop.hidden = true;
+        palPop.innerHTML = '<h2>Colour theme</h2><div class="pal-grid">' + PAL.map(function (p) { return '<button type="button" class="pal-opt" data-a="' + p[0] + '" aria-pressed="false"><i style="background:' + p[2] + '"></i>' + p[1] + '</button>'; }).join('') + '</div><p class="pal-note">Works with light and dark mode. Saved on this device.</p>';
+        palPop.addEventListener('click', function (ev) { var b = ev.target.closest && ev.target.closest('.pal-opt'); if (b) setAccent(b.getAttribute('data-a')); });
+        palBtn.parentNode.appendChild(palPop); palBtn.setAttribute('aria-controls', 'palette-pop');
+      }
+      var open = palPop.hidden; palPop.hidden = !open; palBtn.setAttribute('aria-expanded', String(open)); markPal();
+      if (open) { var first = palPop.querySelector('.pal-opt[aria-pressed="true"]') || palPop.querySelector('.pal-opt'); if (first) first.focus(); }
+    });
+    doc.addEventListener('click', function (e) { if (palPop && !palPop.hidden && !palPop.contains(e.target) && e.target !== palBtn) closePal(); });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && palPop && !palPop.hidden) { closePal(); palBtn.focus(); } });
+  }
+
   /* ---------- mobile menu ---------- */
   var mt = $('#menu-toggle'), nl = $('#nav-links');
   if (mt && nl) {
