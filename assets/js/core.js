@@ -662,17 +662,17 @@ window.SITE_CONFIG = {
 /* Contextual "ready-made Excel template" offer on matching tools and articles */
 (function () {
   var P = {
-    'sales-target-calculator': ['Sales Target & Daily Run-Rate Tracker', 'Rs 1,999', 'Track the whole month day by day, with a team sheet and a chart.'],
-    'kpi-performance-calculator': ['Team KPI Scorecard', 'Rs 2,499', 'Score up to 50 people on up to 8 weighted KPIs, with ratings and ranking.'],
-    'profit-margin-calculator': ['Inventory & Sales Tracker', 'Rs 2,499', 'Stock, reorder alerts, profit per sale and monthly sales in one workbook.'],
-    'business-report-generator': ['Team KPI Scorecard', 'Rs 2,499', 'A ready-made performance workbook for monthly team reviews.'],
-    'salary-calculator': ['Personal Monthly Budget Planner', 'Rs 1,499', 'Plan your salary month by month and see where the money goes.'],
-    'pakistan-salary-tax-calculator': ['Personal Monthly Budget Planner', 'Rs 1,499', 'Plan your take-home pay with a budget, savings rate and yearly overview.'],
-    'loan-emi-calculator': ['Personal Monthly Budget Planner', 'Rs 1,499', 'Fit your instalments into a monthly budget and track what is left.'],
-    'percentage-calculator': ['Personal Monthly Budget Planner', 'Rs 1,499', 'Track budget used and savings rate automatically.'],
-    'sales-target-tracking': ['Sales Target & Daily Run-Rate Tracker', 'Rs 1,999', 'The method in this article, built into a ready-to-use Excel workbook.'],
-    'weighted-kpi-scorecard': ['Team KPI Scorecard', 'Rs 2,499', 'The scorecard in this article, built into a ready-to-use Excel workbook.'],
-    'profit-margin-vs-markup': ['Inventory & Sales Tracker', 'Rs 2,499', 'See profit and margin for every product you sell.']
+    'sales-target-calculator': ['Sales Target & Daily Run-Rate Tracker', '$6.99 · Rs 1,999', 'Track the whole month day by day, with a team sheet and a chart.'],
+    'kpi-performance-calculator': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'Score up to 50 people on up to 8 weighted KPIs, with ratings and ranking.'],
+    'profit-margin-calculator': ['Inventory & Sales Tracker', '$8.99 · Rs 2,499', 'Stock, reorder alerts, profit per sale and monthly sales in one workbook.'],
+    'business-report-generator': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'A ready-made performance workbook for monthly team reviews.'],
+    'salary-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Plan your salary month by month and see where the money goes.'],
+    'pakistan-salary-tax-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Plan your take-home pay with a budget, savings rate and yearly overview.'],
+    'loan-emi-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Fit your instalments into a monthly budget and track what is left.'],
+    'percentage-calculator': ['Personal Monthly Budget Planner', '$4.99 · Rs 1,499', 'Track budget used and savings rate automatically.'],
+    'sales-target-tracking': ['Sales Target & Daily Run-Rate Tracker', '$6.99 · Rs 1,999', 'The method in this article, built into a ready-to-use Excel workbook.'],
+    'weighted-kpi-scorecard': ['Team KPI Scorecard', '$8.99 · Rs 2,499', 'The scorecard in this article, built into a ready-to-use Excel workbook.'],
+    'profit-margin-vs-markup': ['Inventory & Sales Tracker', '$8.99 · Rs 2,499', 'See profit and margin for every product you sell.']
   };
   var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path)) return;
   var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (path.match(/\/blog\/([^\/]+)\/?/) || [])[1], it = slug && P[slug]; if (!it) return;
