@@ -1112,3 +1112,20 @@ html.wl-needs-tap .wl-tap { display: flex; }
 .founder-intro { padding: 0 0 22px; margin-bottom: 26px; border-bottom: 1px solid var(--border); }
 .founder-intro .kicker { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent, var(--blue)); margin-bottom: 8px; }
 .founder-intro p { font-size: 1.08rem; line-height: 1.7; margin: 0; }
+
+/* Floating Shop Now flip button */
+.shop-fab { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 140; width: 176px; height: 52px; perspective: 700px; text-decoration: none; color: #fff; animation: sf-float 3.2s ease-in-out infinite; }
+.shop-fab::before { content: ""; position: absolute; inset: 0; border-radius: 999px; background: linear-gradient(135deg, #4f46e5, #7c3aed); opacity: .5; animation: sf-ring 2.6s ease-out infinite; z-index: -1; }
+.sf-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+.shop-fab:hover .sf-inner, .shop-fab:focus-visible .sf-inner { transform: rotateX(180deg); }
+.sf-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; backface-visibility: hidden; -webkit-backface-visibility: hidden; font-size: .95rem; letter-spacing: .01em; box-shadow: 0 10px 28px rgba(79, 70, 229, .45), inset 0 1px 0 rgba(255, 255, 255, .35); }
+.sf-front { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+.sf-back { background: linear-gradient(135deg, #0ea5e9, #4f46e5); transform: rotateX(180deg); font-size: .88rem; }
+.shop-fab:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #4f46e5; border-radius: 999px; }
+@keyframes sf-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes sf-ring { 0% { transform: scale(1); opacity: .5; } 70%, 100% { transform: scale(1.35, 1.7); opacity: 0; } }
+@keyframes sf-auto { 0%, 70% { transform: rotateX(0); } 78%, 92% { transform: rotateX(180deg); } 100% { transform: rotateX(360deg); } }
+@media (hover: none) { .sf-inner { animation: sf-auto 8s ease-in-out infinite; } }
+@media (max-width: 520px) { .shop-fab { width: 150px; height: 46px; right: 12px; bottom: 76px; } .sf-face { font-size: .85rem; } .sf-back { font-size: .78rem; } }
+@media (prefers-reduced-motion: reduce) { .shop-fab, .shop-fab::before, .sf-inner { animation: none; } .sf-inner { transition: none; } }
+@media print { .shop-fab { display: none; } }

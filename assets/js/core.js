@@ -612,6 +612,15 @@ window.SITE_CONFIG = {
   }
 })();
 
+/* Floating "Shop Now" flip button (not on Kids Corner, the Shop itself, or the print view) */
+(function () {
+  var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path) || document.querySelector('.shop-fab')) return;
+  var a = document.createElement('a'); a.className = 'shop-fab no-print'; a.href = (document.body.getAttribute('data-root') || './') + 'shop/'; a.setAttribute('aria-label', 'Shop now: premium Excel templates and printable PDFs');
+  var bag = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+  a.innerHTML = '<span class="sf-inner"><span class="sf-face sf-front">' + bag + '<b>Shop Now</b></span><span class="sf-face sf-back"><b>Premium Templates</b><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>';
+  document.body.appendChild(a);
+})();
+
 /* Photo pop-up: click or press Enter on a photo that has data-full. The photo grows from where it sits to a large view and shows the untouched original. */
 (function () {
   var doc = document, box = null, big = null, from = null, last = null, busy = false, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
