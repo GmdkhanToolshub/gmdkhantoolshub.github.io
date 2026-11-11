@@ -1356,3 +1356,29 @@ html.wl-needs-tap .wl-tap { display: flex; }
 :root { --accent: #2563eb; --accent-soft: #eaf1ff; --blue: #2563eb; --blue-dark: #1d4ed8; --bg-alt: #f5f8ff; --grad: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); --grad-soft: linear-gradient(135deg, #eef4ff 0%, #f5f8ff 100%); --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, .5); --glow-a: 59, 130, 246; --glow-b: 37, 99, 235; --glow-c: 37, 99, 235; --c-mid: #2563eb; --radius: 16px; }
 .btn-primary { box-shadow: 0 10px 24px -12px rgba(37, 99, 235, .6); }
 .card { border-radius: 18px; }
+
+/* === unified layer === */
+.section { padding: clamp(36px, 5vw, 64px) 0; }
+.section-head { margin-bottom: clamp(20px, 3vw, 30px); }
+h1, h2, h3 { letter-spacing: -.02em; text-wrap: balance; }
+.page-hero { background: radial-gradient(760px 260px at 85% -20%, rgba(var(--glow-b), .12), transparent 70%), var(--bg-alt); }
+.page-hero h1 { letter-spacing: -.03em; }
+.site-footer { padding: 44px 0 24px; }
+input, select, textarea { border-radius: 12px; }
+@media (max-width: 640px) {
+  .btn { min-height: 44px; }
+  .nav-links a { min-height: 44px; display: flex; align-items: center; }
+  .chip, .pop-chip, .site-footer li a { min-height: 36px; display: inline-flex; align-items: center; }
+  .site-footer li { margin-bottom: 4px; }
+}
+
+/* === motion layer === */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; animation-timing-function: ease; }
+.btn:active, .icon-btn:active { transform: scale(.97); }
+main .hero::before { display: block; content: ""; position: absolute; z-index: -1; inset: auto; left: -120px; top: 40px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--glow-b), .16), transparent 68%); -webkit-mask-image: none; mask-image: none; background-size: auto; animation: gm-float 14s ease-in-out infinite alternate; }
+main .hero::after { display: block; content: ""; position: absolute; z-index: -1; right: -100px; top: -60px; left: auto; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--glow-a), .16), transparent 68%); filter: none; animation: gm-float 17s ease-in-out infinite alternate-reverse; }
+@keyframes gm-float { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(26px, 22px, 0); } }
+@media (prefers-reduced-motion: reduce) { main .hero::before, main .hero::after { animation: none; } @view-transition { navigation: none; } }
+main .hero-cats { display: none; }
