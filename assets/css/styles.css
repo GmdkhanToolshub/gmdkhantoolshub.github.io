@@ -1526,7 +1526,7 @@ html.wl body::before { background: #010a29; }
 .welcome .wl-title { min-height: 1.15em; }
 .wl-caret { display: inline-block; width: 3px; height: .9em; margin-left: 4px; vertical-align: -0.08em; background: #67e8f9; animation: wl-caret .8s steps(2) infinite; }
 .wl-actions { display: flex; gap: 12px; align-items: center; justify-content: center; min-height: 48px; flex-wrap: wrap; }
-.wl-enter { font: inherit; font-weight: 700; font-size: 1rem; color: #fff; padding: 11px 28px; border-radius: 999px; border: 1px solid rgba(125, 211, 252, .55); background: linear-gradient(135deg, #2563eb, #4f46e5 60%, #7c3aed); cursor: pointer; opacity: 0; transform: translateY(10px) scale(.96); pointer-events: none; transition: opacity .45s ease, transform .45s ease, box-shadow .25s ease; }
+.wl-enter { display: none; font: inherit; font-weight: 700; font-size: 1rem; color: #fff; padding: 11px 28px; border-radius: 999px; border: 1px solid rgba(125, 211, 252, .55); background: linear-gradient(135deg, #2563eb, #4f46e5 60%, #7c3aed); cursor: pointer; opacity: 0; transform: translateY(10px) scale(.96); pointer-events: none; transition: opacity .45s ease, transform .45s ease, box-shadow .25s ease; }
 .welcome.ready .wl-enter { opacity: 1; transform: none; pointer-events: auto; }
 .welcome.ready .wl-enter:hover, .welcome.ready .wl-enter:focus-visible { box-shadow: 0 0 0 3px rgba(125, 211, 252, .25), 0 0 28px rgba(56, 189, 248, .65); outline: none; transform: translateY(-2px); }
 .welcome.ready .wl-bar { animation: none !important; opacity: 0; transition: opacity .4s ease; }
@@ -1545,19 +1545,19 @@ html.wl body::before { background: #010a29; }
   .welcome.go .wl-a { animation: wl-emerge .95s cubic-bezier(.2, .9, .25, 1.25) .05s both; }
   .welcome.go .wl-b { animation: wl-emerge .95s cubic-bezier(.2, .9, .25, 1.25) .18s both; }
   .welcome.go .wl-c { animation: wl-emerge .95s cubic-bezier(.2, .9, .25, 1.25) .31s both; }
-  .welcome .wl-bot-wrap .wl-bot { animation: wl-float 2.6s ease-in-out 1.1s infinite; }
-  .welcome .wl-b .wl-bot { animation-name: wl-float-m; animation-delay: 1.4s; }
-  .welcome .wl-c .wl-bot { animation-delay: 1.7s; }
-  .welcome .wl-arm { animation: wl-wave .7s ease-in-out 1s 4 alternate; }
-  .welcome .wl-a .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.1s both; }
-  .welcome .wl-b .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.4s both; }
-  .welcome .wl-c .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.7s both; }
+  .welcome .wl-bot-wrap .wl-bot { animation: wl-float 2.6s ease-in-out .9s infinite; }
+  .welcome .wl-b .wl-bot { animation-name: wl-float-m; animation-delay: 1.1s; }
+  .welcome .wl-c .wl-bot { animation-delay: 1.3s; }
+  .welcome .wl-arm { animation: wl-wave .6s ease-in-out .8s 4 alternate; }
+  .welcome .wl-a .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) .9s both; }
+  .welcome .wl-b .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.15s both; }
+  .welcome .wl-c .wl-bubble { animation: wl-pop .45s cubic-bezier(.3, 1.6, .5, 1) 1.4s both; }
   .welcome .wl-bubble { opacity: 0; }
-  .welcome .wl-kicker { animation: wl-rise .6s ease 1.8s both; }
-  .welcome .wl-sub { animation: wl-rise .7s ease 3.4s both; }
-  .welcome .wl-bar { animation: wl-rise .6s ease .6s both; }
+  .welcome .wl-kicker { animation: wl-rise .5s ease .6s both; }
+  .welcome .wl-sub { animation: wl-rise .6s ease 1.7s both; }
+  .welcome .wl-bar { animation: wl-rise .5s ease .2s both; }
   .welcome .wl-bar i { animation-duration: var(--wl-ready, 4500ms); animation-timing-function: linear; }
-  .welcome .wl-skip { animation: wl-rise .6s ease .6s both; }
+  .welcome .wl-skip { animation: wl-rise .5s ease .2s both; }
   .welcome .wl-logo { animation: none; }
 }
 .welcome.still .wl-bubble { opacity: 1; }

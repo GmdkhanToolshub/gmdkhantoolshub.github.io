@@ -1,13 +1,13 @@
 /* Welcome screen: an animated HUD ring with original robot characters. Shown once per browsing session on the home page (never to crawlers).
    The <head> snippet decides eligibility and adds html.wl; this file builds the overlay, runs the sequence and closes it.
-   Timeline: ring spins from the start, flash and robots emerge at 1 s, text types in, "Get started" appears at 4.5 s. Skip is always available.
+   Timeline: ring spins from the start, flash and robots emerge at 0.5 s, the name types in, and after about 3 s the screen enters the home page by itself. Skip is always available.
    Only transform and opacity are animated. With reduced motion the screen is static. */
 (function () {
   var d = document, h = d.documentElement;
   if (!h.classList.contains('wl')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var base = d.body.getAttribute('data-root') || './', NAME = 'GM AI Tools HUB';
-  var T_GO = reduce ? 0 : 1000, T_READY = reduce ? 800 : 4500, T_AUTO = 14000;
+  var T_GO = reduce ? 0 : 500, T_AUTO = reduce ? 1500 : 2900; /* robots emerge at 0.5 s, the screen enters the site by itself at 2.9 s */
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
@@ -56,9 +56,9 @@
       '<p class="wl-sub">58 free tools and gadgets for work, documents and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<p class="wl-tap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere to hear the welcome</p>' +
-      '<div class="wl-actions"><button type="button" class="wl-enter" tabindex="-1">Get started</button><button type="button" class="wl-skip">Skip</button></div>' +
+      '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
     '</div>';
-  o.style.setProperty('--wl-ready', T_READY + 'ms');
+  o.style.setProperty('--wl-ready', T_AUTO + 'ms');
   d.body.appendChild(o);
   h.classList.remove('wl');
   h.classList.add('wl-open'); try { sessionStorage.setItem('gm.wl', '1'); } catch (e) { /* storage blocked: it may show again, which is harmless */ }
@@ -67,7 +67,7 @@
   var stage = o.querySelector('.wl-stage'), sr = stage.getBoundingClientRect(), cx = sr.left + sr.width / 2, cy = sr.top + sr.height / 2;
   [].forEach.call(o.querySelectorAll('.wl-bot-wrap'), function (b) { var r = b.getBoundingClientRect(); b.style.setProperty('--ex', Math.round(cx - (r.left + r.width / 2)) + 'px'); b.style.setProperty('--ey', Math.round(cy - (r.top + r.height / 2)) + 'px'); });
 
-  var timers = [], done = false, prev = d.activeElement, enter = o.querySelector('.wl-enter');
+  var timers = [], done = false, prev = d.activeElement;
   function later(f, ms) { timers.push(setTimeout(f, ms)); }
   function type() {
     var el = o.querySelector('.wl-type'), caret = o.querySelector('.wl-caret'), i = 0;
@@ -75,20 +75,18 @@
     (function step() { if (done) return; el.textContent = NAME.slice(0, ++i); if (i < NAME.length) later(step, 55); else later(function () { caret.style.display = 'none'; }, 900); })();
   }
   later(function () { o.classList.add('go'); }, T_GO);
-  later(type, T_GO + 900);
-  later(function () { o.classList.add('ready'); enter.tabIndex = 0; try { enter.focus({ preventScroll: true }); } catch (e) {} }, T_READY);
+  later(type, T_GO + 800);
   later(function () { close(true); }, T_AUTO);
 
   function remove() { if (o.parentNode) o.parentNode.removeChild(o); if (prev && prev.focus) try { prev.focus({ preventScroll: true }); } catch (e) {} }
   function close(entering) {
     if (done) return; done = true; timers.forEach(clearTimeout);
     d.removeEventListener('keydown', onKey);
-    if (entering && !reduce) { o.classList.add('leaving'); later2(function () { o.classList.add('out'); h.classList.remove('wl-open'); }, 650); later2(remove, 1350); }
+    if (entering && !reduce) { o.classList.add('leaving'); later2(function () { o.classList.add('out'); h.classList.remove('wl-open'); }, 550); later2(remove, 1100); }
     else { o.classList.add('out'); h.classList.remove('wl-open'); later2(remove, 600); }
   }
   function later2(f, ms) { setTimeout(f, ms); }
   function onKey(e) { if (e.key === 'Escape') close(false); }
   d.addEventListener('keydown', onKey);
   o.querySelector('.wl-skip').addEventListener('click', function () { close(false); });
-  enter.addEventListener('click', function () { close(true); });
 })();
