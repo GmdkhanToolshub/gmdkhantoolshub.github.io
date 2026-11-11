@@ -64,3 +64,7 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .jt-card { background: #111b34; } :root:not([data-theme="light"]) .jt-title { color: #e6ecff; } :root:not([data-theme="light"]) .jt-note { background: #3a2f10; color: #f3d98a; border-color: #5a4a1b; } }
 @media (prefers-reduced-motion: reduce) { .jt-anim .jt-track { animation: none; } .jt-vp { overflow-y: auto; -webkit-mask-image: none; mask-image: none; } .jt-pause { display: none; } }
 @media print { .jt-pause { display: none; } .jt-vp { height: auto; overflow: visible; } .jt-anim .jt-track { animation: none; } }
+
+/* panel headers follow the site blue */
+.jt-panel .jt-head { background: linear-gradient(135deg, var(--accent, #2563eb) 0%, #3b82f6 100%); }
+.jt-count { background: #fff; color: var(--accent, #2563eb); }

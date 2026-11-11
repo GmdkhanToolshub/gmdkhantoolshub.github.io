@@ -1352,3 +1352,7 @@ html.wl-needs-tap .wl-tap { display: flex; }
 /* header stays on one line with the colour button added */
 @media (min-width: 1101px) and (max-width: 1500px) { .nav { gap: 8px; } .nav-links a { padding: 8px 8px; font-size: .88rem; } }
 @media (min-width: 1101px) and (max-width: 1215px) { .nav-links a svg { display: none; } }
+/* === crun blue === */
+:root { --accent: #2563eb; --accent-soft: #eaf1ff; --blue: #2563eb; --blue-dark: #1d4ed8; --bg-alt: #f5f8ff; --grad: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); --grad-soft: linear-gradient(135deg, #eef4ff 0%, #f5f8ff 100%); --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, .5); --glow-a: 59, 130, 246; --glow-b: 37, 99, 235; --glow-c: 37, 99, 235; --c-mid: #2563eb; --radius: 16px; }
+.btn-primary { box-shadow: 0 10px 24px -12px rgba(37, 99, 235, .6); }
+.card { border-radius: 18px; }
