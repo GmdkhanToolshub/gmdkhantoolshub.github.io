@@ -7,7 +7,7 @@
   if (!h.classList.contains('wl')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var base = d.body.getAttribute('data-root') || './', NAME = 'GM AI Tools HUB';
-  var T_GO = reduce ? 0 : 500, T_AUTO = reduce ? 1500 : 2900; /* robots emerge at 0.5 s, the screen enters the site by itself at 2.9 s */
+  var T_GO = reduce ? 0 : 250, T_AUTO = reduce ? 1200 : 1600; /* robots emerge at 0.5 s, the screen enters the site by itself at 1.6 s, about 2 s in total */
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
@@ -72,17 +72,17 @@
   function type() {
     var el = o.querySelector('.wl-type'), caret = o.querySelector('.wl-caret'), i = 0;
     if (reduce) { el.textContent = NAME; caret.style.display = 'none'; return; }
-    (function step() { if (done) return; el.textContent = NAME.slice(0, ++i); if (i < NAME.length) later(step, 55); else later(function () { caret.style.display = 'none'; }, 900); })();
+    (function step() { if (done) return; el.textContent = NAME.slice(0, ++i); if (i < NAME.length) later(step, 30); else later(function () { caret.style.display = 'none'; }, 300); })();
   }
   later(function () { o.classList.add('go'); }, T_GO);
-  later(type, T_GO + 800);
+  later(type, T_GO + 250);
   later(function () { close(true); }, T_AUTO);
 
   function remove() { if (o.parentNode) o.parentNode.removeChild(o); if (prev && prev.focus) try { prev.focus({ preventScroll: true }); } catch (e) {} }
   function close(entering) {
     if (done) return; done = true; timers.forEach(clearTimeout);
     d.removeEventListener('keydown', onKey);
-    if (entering && !reduce) { o.classList.add('leaving'); later2(function () { o.classList.add('out'); h.classList.remove('wl-open'); }, 550); later2(remove, 1100); }
+    if (entering && !reduce) { o.classList.add('leaving'); later2(function () { o.classList.add('out'); h.classList.remove('wl-open'); }, 330); later2(remove, 650); }
     else { o.classList.add('out'); h.classList.remove('wl-open'); later2(remove, 600); }
   }
   function later2(f, ms) { setTimeout(f, ms); }
