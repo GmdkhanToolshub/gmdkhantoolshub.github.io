@@ -68,3 +68,10 @@
 /* panel headers follow the site blue */
 .jt-panel .jt-head { background: linear-gradient(135deg, var(--accent, #2563eb) 0%, #3b82f6 100%); }
 .jt-count { background: #fff; color: var(--accent, #2563eb); }
+
+/* tidy job cards: no 'visa not specified' noise, blue apply buttons, calm note */
+.jt-nv { display: none; }
+.jt-apply { background: var(--accent, #2563eb); box-shadow: 0 8px 18px -10px rgba(37, 99, 235, .7); }
+.jt-apply:hover, .jt-apply:focus-visible { filter: brightness(1.1); }
+.jt-note { background: var(--accent-soft, #eaf1ff); color: var(--text-soft, #475569); border-bottom: 1px solid var(--border, #e2e8f0); font-size: .8rem; }
+.jt-title { font-size: 1rem; }
