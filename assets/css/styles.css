@@ -1382,3 +1382,35 @@ main .hero::after { display: block; content: ""; position: absolute; z-index: -1
 @keyframes gm-float { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(26px, 22px, 0); } }
 @media (prefers-reduced-motion: reduce) { main .hero::before, main .hero::after { animation: none; } @view-transition { navigation: none; } }
 main .hero-cats { display: none; }
+
+/* === tab identity === */
+body[data-tab="tools"] { --tab: #2563eb; --tab2: #06b6d4; }
+body[data-tab="hcm"] { --tab: #4f46e5; --tab2: #8b5cf6; }
+body[data-tab="kids"] { --tab: #db2777; --tab2: #f59e0b; }
+body[data-tab="learn"] { --tab: #047857; --tab2: #14b8a6; }
+body[data-tab="people"] { --tab: #b45309; --tab2: #f43f5e; }
+body[data-tab="about"] { --tab: #1e40af; --tab2: #6366f1; }
+body[data-tab="contact"] { --tab: #0369a1; --tab2: #6366f1; }
+body[data-tab="shop"] { --tab: #7c3aed; --tab2: #ec4899; }
+body[data-tab="jobs"] { --tab: #0f766e; --tab2: #2563eb; }
+body[data-tab="business"] { --tab: #4338ca; --tab2: #2563eb; }
+:root:not([data-accent]) body[data-tab] { --tab-t: var(--tab); }
+:root[data-theme="dark"]:not([data-accent]) body[data-tab] { --tab-t: color-mix(in srgb, var(--tab) 55%, #fff); }
+:root:not([data-accent]) body[data-tab] .page-hero:not([class*="kc-"]) { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(640px 260px at 8% -12%, color-mix(in srgb, var(--tab) 18%, transparent), transparent 70%), radial-gradient(560px 240px at 96% 0%, color-mix(in srgb, var(--tab2) 18%, transparent), transparent 70%), var(--bg-alt); }
+:root:not([data-accent]) body[data-tab] .page-hero:not([class*="kc-"])::before { content: ""; position: absolute; z-index: -1; right: 6%; top: -50px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--tab2) 28%, transparent), transparent 68%); animation: gm-float 13s ease-in-out infinite alternate; }
+:root:not([data-accent]) body[data-tab] .page-hero .eyebrow { color: var(--tab-t); background: color-mix(in srgb, var(--tab) 12%, transparent); }
+:root:not([data-accent]) body[data-tab] .gradient-text { background: linear-gradient(110deg, var(--tab), var(--tab2), var(--tab)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gm-shimmer 8s linear infinite; }
+:root:not([data-accent]) body[data-tab] .btn-primary { background: linear-gradient(135deg, var(--tab), var(--tab2)); box-shadow: 0 10px 24px -12px var(--tab); }
+:root:not([data-accent]) body[data-tab] a.card:hover, :root:not([data-accent]) body[data-tab] .card.hover:hover, :root:not([data-accent]) body[data-tab] .tool-card:hover { border-color: color-mix(in srgb, var(--tab) 55%, var(--border)); box-shadow: 0 16px 34px -18px color-mix(in srgb, var(--tab) 55%, transparent); }
+:root:not([data-accent]) body[data-tab] .icon-chip:not([class*="cat-"]):not(.ftd-chip) { background: color-mix(in srgb, var(--tab) 12%, var(--surface)); color: var(--tab-t); }
+body[data-tab] .page-hero .ft-feat { background: color-mix(in srgb, var(--surface) 72%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.page-hero { position: relative; }
+.page-hero > .container { position: relative; z-index: 1; }
+.tab-float { position: absolute; z-index: 1; right: max(20px, calc((100% - var(--maxw)) / 2 + 20px)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 10px; pointer-events: none; }
+.tab-float span { padding: 8px 15px; border-radius: 999px; font-size: .84rem; font-weight: 600; color: var(--tab-t, var(--accent)); background: color-mix(in srgb, var(--surface) 70%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid color-mix(in srgb, var(--tab, var(--accent)) 25%, var(--border)); box-shadow: 0 10px 22px -14px var(--tab, var(--accent)); animation: gm-bob 6s ease-in-out infinite alternate; }
+.tab-float span:nth-child(2n) { margin-right: 34px; animation-delay: -2s; }
+.tab-float span:nth-child(3n) { margin-right: 14px; animation-delay: -4s; }
+@keyframes gm-bob { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes gm-shimmer { to { background-position: 200% center; } }
+@media (max-width: 1100px) { .tab-float { display: none; } }
+@media (prefers-reduced-motion: reduce) { .tab-float span, body[data-tab] .gradient-text, body[data-tab] .page-hero::before { animation: none !important; } }
