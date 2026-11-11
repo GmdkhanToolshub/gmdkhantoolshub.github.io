@@ -97,7 +97,7 @@ ul, ol { padding-left: 1.2em; margin: 0 0 1em; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 .section { padding: clamp(48px, 7vw, 88px) 0; position: relative; }
-.section.alt { background: var(--bg-alt); }
+.section.alt { background: color-mix(in srgb, var(--bg-alt) 78%, transparent); }
 .eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .section-head { max-width: 680px; margin-bottom: 32px; }
 .section-head p { color: var(--text-soft); font-size: 1.05rem; margin-bottom: 0; }
@@ -1361,7 +1361,7 @@ html.wl-needs-tap .wl-tap { display: flex; }
 .section { padding: clamp(36px, 5vw, 64px) 0; }
 .section-head { margin-bottom: clamp(20px, 3vw, 30px); }
 h1, h2, h3 { letter-spacing: -.02em; text-wrap: balance; }
-.page-hero { background: radial-gradient(760px 260px at 85% -20%, rgba(var(--glow-b), .12), transparent 70%), var(--bg-alt); }
+.page-hero { background: radial-gradient(760px 260px at 85% -20%, rgba(var(--glow-b), .12), transparent 70%), color-mix(in srgb, var(--bg-alt) 70%, transparent); }
 .page-hero h1 { letter-spacing: -.03em; }
 .site-footer { padding: 44px 0 24px; }
 input, select, textarea { border-radius: 12px; }
@@ -1396,7 +1396,7 @@ body[data-tab="jobs"] { --tab: #0f766e; --tab2: #2563eb; }
 body[data-tab="business"] { --tab: #4338ca; --tab2: #2563eb; }
 :root:not([data-accent]) body[data-tab] { --tab-t: var(--tab); }
 :root[data-theme="dark"]:not([data-accent]) body[data-tab] { --tab-t: color-mix(in srgb, var(--tab) 55%, #fff); }
-:root:not([data-accent]) body[data-tab] .page-hero:not([class*="kc-"]) { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(640px 260px at 8% -12%, color-mix(in srgb, var(--tab) 18%, transparent), transparent 70%), radial-gradient(560px 240px at 96% 0%, color-mix(in srgb, var(--tab2) 18%, transparent), transparent 70%), var(--bg-alt); }
+:root:not([data-accent]) body[data-tab] .page-hero:not([class*="kc-"]) { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(640px 260px at 8% -12%, color-mix(in srgb, var(--tab) 18%, transparent), transparent 70%), radial-gradient(560px 240px at 96% 0%, color-mix(in srgb, var(--tab2) 18%, transparent), transparent 70%), color-mix(in srgb, var(--bg-alt) 70%, transparent); }
 :root:not([data-accent]) body[data-tab] .page-hero:not([class*="kc-"])::before { content: ""; position: absolute; z-index: -1; right: 6%; top: -50px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--tab2) 28%, transparent), transparent 68%); animation: gm-float 13s ease-in-out infinite alternate; }
 :root:not([data-accent]) body[data-tab] .page-hero .eyebrow { color: var(--tab-t); background: color-mix(in srgb, var(--tab) 12%, transparent); }
 :root:not([data-accent]) body[data-tab] .gradient-text { background: linear-gradient(110deg, var(--tab), var(--tab2), var(--tab)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gm-shimmer 8s linear infinite; }
@@ -1447,3 +1447,30 @@ body[data-tab] .page-hero .ft-feat { background: color-mix(in srgb, var(--surfac
   .ho-conv { font-family: var(--display); font-weight: 700; font-size: .95rem; } .ho-conv em { font-style: normal; color: var(--accent); }
 }
 @media (prefers-reduced-motion: reduce) { .ho-card, .ho-bar i { animation: none !important; } }
+
+/* === tech theme === */
+html.tech { background: var(--bg); }
+html.tech body { background: transparent; }
+.tech-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.tech-bg canvas { position: absolute; inset: 0; }
+.tb-grid { position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 15%, transparent 72%); mask-image: radial-gradient(ellipse at 50% 0%, #000 15%, transparent 72%); }
+.tb-wave { position: absolute; left: -15%; right: -15%; top: -10%; height: 70vh; background: radial-gradient(55% 75% at 20% 10%, rgba(var(--glow-b), .11), transparent 70%), radial-gradient(48% 70% at 82% 14%, rgba(var(--glow-a), .1), transparent 70%); animation: tb-wave 20s ease-in-out infinite alternate; will-change: transform; }
+@keyframes tb-wave { to { transform: translate3d(7%, 5%, 0); } }
+main .hero { background: radial-gradient(900px 420px at 50% -8%, rgba(var(--glow-b), .1), transparent 70%); }
+/* navigation: gradient tabs, glow and an animated indicator */
+.nav-links a { position: relative; }
+.nav-links li:nth-child(1) a { --nt: #2563eb; } .nav-links li:nth-child(2) a { --nt: #0891b2; } .nav-links li:nth-child(3) a { --nt: #4f46e5; } .nav-links li:nth-child(4) a { --nt: #db2777; }
+.nav-links li:nth-child(5) a { --nt: #047857; } .nav-links li:nth-child(6) a { --nt: #b45309; } .nav-links li:nth-child(7) a { --nt: #1e40af; } .nav-links li:nth-child(8) a { --nt: #0369a1; }
+.nav-links a::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 3px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--nt, var(--accent)), #22d3ee); transform: scaleX(0); transform-origin: left; transition: transform .28s ease; }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-links a:hover { background: color-mix(in srgb, var(--nt, var(--accent)) 9%, transparent); color: var(--text); }
+.nav-links a[aria-current="page"] { background: linear-gradient(135deg, color-mix(in srgb, var(--nt, var(--accent)) 17%, transparent), color-mix(in srgb, #22d3ee 14%, transparent)); color: var(--nt, var(--accent)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nt, var(--accent)) 26%, transparent), 0 8px 18px -10px var(--nt, var(--accent)); }
+:root[data-theme="dark"] .nav-links a[aria-current="page"] { color: color-mix(in srgb, var(--nt, var(--accent)) 55%, #fff); }
+.site-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), #22d3ee, transparent); opacity: .45; }
+@media (max-width: 1100px) { .nav-links a::after { display: none; } }
+/* entrance animations */
+@keyframes gm-rise { from { opacity: 0; transform: translateY(14px); } }
+body:not([data-tab="kids"]) .page-hero > .container, body:not([data-tab="kids"]) main .hero > .container { animation: gm-rise .6s cubic-bezier(.2, .7, .2, 1) both; }
+@media (prefers-reduced-motion: reduce) { .tb-wave { animation: none; } body .page-hero > .container, body main .hero > .container { animation: none !important; } }
+/* kids stays independent of the technology theme */
+body[data-tab="kids"] .page-hero { background: var(--bg-alt) !important; }

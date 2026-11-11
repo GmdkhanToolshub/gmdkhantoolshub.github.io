@@ -469,3 +469,26 @@
   var s = document.currentScript; if (!s || !('speechSynthesis' in window) || document.querySelector('script[src*="voice.js"]')) return;
   var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=16435879'); v.async = true; document.head.appendChild(v);
 })();
+
+/* ---------- technology background: grid, light waves, particles and network lines. Skipped on Kids Corner; the particles are skipped for reduced motion and weak devices ---------- */
+(function () {
+  var b = document.body; if (!b || b.getAttribute('data-tab') === 'kids' || /\/kids\//.test(location.pathname)) return;
+  var w = document.createElement('div'); document.documentElement.classList.add('tech'); w.className = 'tech-bg'; w.setAttribute('aria-hidden', 'true'); w.innerHTML = '<i class="tb-grid"></i><i class="tb-wave"></i>'; b.insertBefore(w, b.firstChild);
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, nav = navigator, c = nav.connection || {};
+  if (rm || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) || (nav.deviceMemory && nav.deviceMemory <= 2) || c.saveData) return;
+  var cv = document.createElement('canvas'); w.appendChild(cv); var x = cv.getContext('2d'); if (!x) return;
+  var W = 0, H = 0, P = [], N = 0, col = '37,99,235', last = 0, raf = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  function tone() { var v = getComputedStyle(document.documentElement).getPropertyValue('--glow-b').trim(); if (/^\d+\s*,\s*\d+\s*,\s*\d+$/.test(v)) col = v; }
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; x.setTransform(dpr, 0, 0, dpr, 0, 0); N = W < 700 ? 16 : 34; while (P.length < N) P.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 }); P.length = N; }
+  function frame(t) {
+    raf = requestAnimationFrame(frame); if (document.hidden || t - last < 33) return; last = t; x.clearRect(0, 0, W, H);
+    for (var i = 0; i < N; i++) {
+      var a = P[i]; a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx = -a.vx; if (a.y < 0 || a.y > H) a.vy = -a.vy;
+      x.fillStyle = 'rgba(' + col + ',.45)'; x.beginPath(); x.arc(a.x, a.y, 1.5, 0, 6.283); x.fill();
+      for (var j = i + 1; j < N; j++) { var d = P[j], dx = a.x - d.x, dy = a.y - d.y, q = dx * dx + dy * dy; if (q < 16900) { x.strokeStyle = 'rgba(' + col + ',' + (0.16 * (1 - q / 16900)).toFixed(3) + ')'; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(d.x, d.y); x.stroke(); } }
+    }
+  }
+  tone(); size(); raf = requestAnimationFrame(frame);
+  var rt = 0; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
+  new MutationObserver(tone).observe(document.documentElement, { attributes: true, attributeFilter: ['data-accent', 'data-theme'] });
+})();
