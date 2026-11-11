@@ -755,25 +755,38 @@ window.SITE_CONFIG = {
   var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=16435879'); v.async = true; document.head.appendChild(v);
 })();
 
-/* ---------- technology background: grid, light waves, particles and network lines. Skipped on Kids Corner; the particles are skipped for reduced motion and weak devices ---------- */
+/* ---------- site-wide technology scene (light-blue tech picture with animated layers). Skipped on Kids Corner.
+   Layers: picture, globe shimmer, map nodes, HUD bars, floor light sweep, binary rain. Everything animates with transform and opacity only.
+   The picture loads after the page has loaded; reduced motion shows the still scene; the rain is skipped on weak devices and data saver. ---------- */
 (function () {
   var b = document.body; if (!b || b.getAttribute('data-tab') === 'kids' || /\/kids\//.test(location.pathname)) return;
-  var w = document.createElement('div'); document.documentElement.classList.add('tech'); w.className = 'tech-bg'; w.setAttribute('aria-hidden', 'true'); w.innerHTML = '<i class="tb-grid"></i><i class="tb-wave"></i>'; b.insertBefore(w, b.firstChild);
-  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, nav = navigator, c = nav.connection || {};
-  if (rm || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) || (nav.deviceMemory && nav.deviceMemory <= 2) || c.saveData) return;
+  var h = document.documentElement, base = b.getAttribute('data-root') || './'; h.classList.add('tech');
+  var w = document.createElement('div'); w.className = 'tech-bg'; w.setAttribute('aria-hidden', 'true');
+  w.innerHTML = '<div class="tb-scene"><i class="tb-img"></i><i class="tb-globe"></i><i class="tb-map"><u></u><u></u><u></u><u></u><u></u></i><i class="tb-bars"><u></u><u></u><u></u><u></u><u></u><u></u></i><i class="tb-floor"></i></div><i class="tb-veil"></i>';
+  b.insertBefore(w, b.firstChild);
+  function loadImg() { var im = new Image(); im.onload = function () { w.querySelector('.tb-img').style.backgroundImage = 'url(' + im.src + ')'; w.classList.add('ready'); }; im.src = base + 'assets/img/tech-bg.webp?v=1'; }
+  if (document.readyState === 'complete') setTimeout(loadImg, 60); else addEventListener('load', function () { setTimeout(loadImg, 60); });
+  var nav = navigator, c = nav.connection || {}, rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm) { w.classList.add('still'); return; }
+  var sc = w.querySelector('.tb-scene'), px = 0, py = 0, tk = false, touch = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+  function mv() { tk = false; sc.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px,0)'; }
+  if (!touch) addEventListener('mousemove', function (e) { px = (e.clientX / innerWidth - .5) * -18; py = (e.clientY / innerHeight - .5) * -12; if (!tk) { tk = true; requestAnimationFrame(mv); } }, { passive: true });
+  else addEventListener('scroll', function () { py = -Math.min(scrollY, 2400) * .012; if (!tk) { tk = true; requestAnimationFrame(mv); } }, { passive: true });
+  if (touch || innerWidth < 700) return; /* phones and small screens skip the binary rain */
+  if ((nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) || (nav.deviceMemory && nav.deviceMemory <= 2) || c.saveData) return;
+  /* binary rain */
   var cv = document.createElement('canvas'); w.appendChild(cv); var x = cv.getContext('2d'); if (!x) return;
-  var W = 0, H = 0, P = [], N = 0, col = '37,99,235', last = 0, raf = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-  function tone() { var v = getComputedStyle(document.documentElement).getPropertyValue('--glow-b').trim(); if (/^\d+\s*,\s*\d+\s*,\s*\d+$/.test(v)) col = v; }
-  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; x.setTransform(dpr, 0, 0, dpr, 0, 0); N = W < 700 ? 16 : 34; while (P.length < N) P.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 }); P.length = N; }
+  var W = 0, H = 0, cols = [], gap = 34, len = 9, last = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5), col = '37,99,235', fs = 14;
+  function tone() { var d = h.getAttribute('data-theme') === 'dark'; col = d ? '125,211,252' : (getComputedStyle(h).getPropertyValue('--glow-b').trim() || '37,99,235'); if (!/^\d+\s*,\s*\d+\s*,\s*\d+$/.test(col)) col = '37,99,235'; }
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; x.setTransform(dpr, 0, 0, dpr, 0, 0); gap = W < 700 ? 46 : 34; len = W < 700 ? 7 : 10; x.font = fs + 'px monospace'; cols = []; for (var i = 0; i < Math.floor(W / gap); i++) cols.push({ x: i * gap + 10, y: Math.random() * H, v: .5 + Math.random() * .9, t: Math.random() < .5 ? 0 : 1 }); }
   function frame(t) {
-    raf = requestAnimationFrame(frame); if (document.hidden || t - last < 33) return; last = t; x.clearRect(0, 0, W, H);
-    for (var i = 0; i < N; i++) {
-      var a = P[i]; a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx = -a.vx; if (a.y < 0 || a.y > H) a.vy = -a.vy;
-      x.fillStyle = 'rgba(' + col + ',.45)'; x.beginPath(); x.arc(a.x, a.y, 1.5, 0, 6.283); x.fill();
-      for (var j = i + 1; j < N; j++) { var d = P[j], dx = a.x - d.x, dy = a.y - d.y, q = dx * dx + dy * dy; if (q < 16900) { x.strokeStyle = 'rgba(' + col + ',' + (0.16 * (1 - q / 16900)).toFixed(3) + ')'; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(d.x, d.y); x.stroke(); } }
+    requestAnimationFrame(frame); if (document.hidden || t - last < 33) return; last = t; x.clearRect(0, 0, W, H);
+    for (var i = 0; i < cols.length; i++) {
+      var k = cols[i]; k.y += k.v * 2.2; if (k.y - len * 18 > H) { k.y = -20; k.v = .5 + Math.random() * .9; }
+      for (var j = 0; j < len; j++) { x.fillStyle = 'rgba(' + col + ',' + (0.2 * (1 - j / len)).toFixed(3) + ')'; x.fillText(((i + j + (k.y / 18 | 0)) & 1) ? '1' : '0', k.x, k.y - j * 18); }
     }
   }
-  tone(); size(); raf = requestAnimationFrame(frame);
+  tone(); size(); requestAnimationFrame(frame);
   var rt = 0; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
-  new MutationObserver(tone).observe(document.documentElement, { attributes: true, attributeFilter: ['data-accent', 'data-theme'] });
+  new MutationObserver(tone).observe(h, { attributes: true, attributeFilter: ['data-accent', 'data-theme'] });
 })();
