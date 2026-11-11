@@ -75,3 +75,5 @@
 .jt-apply:hover, .jt-apply:focus-visible { filter: brightness(1.1); }
 .jt-note { background: var(--accent-soft, #eaf1ff); color: var(--text-soft, #475569); border-bottom: 1px solid var(--border, #e2e8f0); font-size: .8rem; }
 .jt-title { font-size: 1rem; }
+
+.jt-note a { font-weight: 700; white-space: nowrap; }

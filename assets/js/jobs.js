@@ -83,7 +83,9 @@
     host.innerHTML = ''; host.classList.remove('jt-loading');
     if (!data) { host.innerHTML = '<div class="jt-fallback"><b>The live job feed is temporarily unavailable.</b><p>Please check again in a little while. You can also search official employer career pages directly. We never show made-up vacancies.</p></div>'; return; }
     var wrap = d.createElement('div'); wrap.className = 'jt-grid';
-    wrap.appendChild(ticker('Pakistan jobs', pkList === m.pk ? 'Vacancies in Pakistani cities' : 'Open to candidates in Pakistan', 'Pakistan', pkList, m.now, 'Remote', pkNote));
+    var pkPanel = ticker('Pakistan jobs', pkList === m.pk ? 'Vacancies in Pakistani cities' : 'Open to candidates in Pakistan', 'Pakistan', pkList, m.now, 'Remote', pkNote);
+    var nt = pkPanel.querySelector('.jt-note'); if (nt) { var lk = d.createElement('a'); lk.href = base + 'jobs/#pakistan-cities'; lk.textContent = ' See jobs in Pakistani cities →'; nt.appendChild(lk); }
+    wrap.appendChild(pkPanel);
     wrap.appendChild(ticker('International jobs', 'Gulf, Europe, UK, USA, Canada, Australia and remote', 'World', m.intl, m.now, '', ''));
     host.appendChild(wrap); host.appendChild(footer(m));
   }
@@ -111,7 +113,7 @@
   }
   /* The stylesheet loads only when a jobs section is about to appear, so it never delays the first paint of a page. */
   var cssReady = null;
-  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + '264d4c7d'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
+  function css() { if (cssReady) return cssReady; cssReady = new Promise(function (res) { var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'assets/css/jobs.css?v=' + 'c910f56c'; l.onload = l.onerror = function () { res(); }; d.head.appendChild(l); setTimeout(res, 3000); }); return cssReady; }
   function mount(host) {
     var kind = host.getAttribute('data-jobs') || 'ticker'; host.setAttribute('aria-busy', 'true');
     function go() { Promise.all([css(), fetchJobs()]).then(function (r) { var data = r[1]; host.removeAttribute('aria-busy'); host.style.minHeight = ''; if (kind === 'browse') browse(host, data); else if (kind.indexOf('side-') === 0) side(host, data, kind); else band(host, data); }); }
