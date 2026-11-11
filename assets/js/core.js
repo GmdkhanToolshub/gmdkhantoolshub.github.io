@@ -755,38 +755,39 @@ window.SITE_CONFIG = {
   var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=16435879'); v.async = true; document.head.appendChild(v);
 })();
 
-/* ---------- site-wide technology scene (light-blue tech picture with animated layers). Skipped on Kids Corner.
-   Layers: picture, globe shimmer, map nodes, HUD bars, floor light sweep, binary rain. Everything animates with transform and opacity only.
-   The picture loads after the page has loaded; reduced motion shows the still scene; the rain is skipped on weak devices and data saver. ---------- */
+/* ---------- site-wide background: soft tech picture, slow aurora light, perspective floor grid with a light sweep, sparse network lines.
+   Skipped on Kids Corner. Only transform and opacity animate. The picture loads after the page; reduced motion shows the still scene;
+   phones, weak devices and data saver skip the network lines. ---------- */
 (function () {
   var b = document.body; if (!b || b.getAttribute('data-tab') === 'kids' || /\/kids\//.test(location.pathname)) return;
   var h = document.documentElement, base = b.getAttribute('data-root') || './'; h.classList.add('tech');
   var w = document.createElement('div'); w.className = 'tech-bg'; w.setAttribute('aria-hidden', 'true');
-  w.innerHTML = '<div class="tb-scene"><i class="tb-img"></i><i class="tb-globe"></i><i class="tb-map"><u></u><u></u><u></u><u></u><u></u></i><i class="tb-bars"><u></u><u></u><u></u><u></u><u></u><u></u></i><i class="tb-floor"></i></div><i class="tb-veil"></i>';
+  w.innerHTML = '<div class="tb-scene"><i class="tb-img"></i><i class="tb-aurora tb-a1"></i><i class="tb-aurora tb-a2"></i><i class="tb-floor"></i></div><i class="tb-veil"></i>';
   b.insertBefore(w, b.firstChild);
   function loadImg() { var im = new Image(); im.onload = function () { w.querySelector('.tb-img').style.backgroundImage = 'url(' + im.src + ')'; w.classList.add('ready'); }; im.src = base + 'assets/img/tech-bg.webp?v=1'; }
   if (document.readyState === 'complete') setTimeout(loadImg, 60); else addEventListener('load', function () { setTimeout(loadImg, 60); });
   var nav = navigator, c = nav.connection || {}, rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (rm) { w.classList.add('still'); return; }
-  var sc = w.querySelector('.tb-scene'), px = 0, py = 0, tk = false, touch = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+  var touch = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+  if (touch || innerWidth < 700 || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) || (nav.deviceMemory && nav.deviceMemory <= 2) || c.saveData) return;
+  /* gentle mouse parallax on the picture layer */
+  var sc = w.querySelector('.tb-scene'), px = 0, py = 0, tk = false;
   function mv() { tk = false; sc.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px,0)'; }
-  if (!touch) addEventListener('mousemove', function (e) { px = (e.clientX / innerWidth - .5) * -18; py = (e.clientY / innerHeight - .5) * -12; if (!tk) { tk = true; requestAnimationFrame(mv); } }, { passive: true });
-  else addEventListener('scroll', function () { py = -Math.min(scrollY, 2400) * .012; if (!tk) { tk = true; requestAnimationFrame(mv); } }, { passive: true });
-  if (touch || innerWidth < 700) return; /* phones and small screens skip the binary rain */
-  if ((nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) || (nav.deviceMemory && nav.deviceMemory <= 2) || c.saveData) return;
-  /* binary rain */
+  addEventListener('mousemove', function (e) { px = (e.clientX / innerWidth - .5) * -12; py = (e.clientY / innerHeight - .5) * -8; if (!tk) { tk = true; requestAnimationFrame(mv); } }, { passive: true });
+  /* sparse network: slow nodes joined by thin lines when they are close */
   var cv = document.createElement('canvas'); w.appendChild(cv); var x = cv.getContext('2d'); if (!x) return;
-  var W = 0, H = 0, cols = [], gap = 34, len = 9, last = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5), col = '37,99,235', fs = 14;
+  var W = 0, H = 0, P = [], last = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5), col = '37,99,235', R = 150, R2 = R * R;
   function tone() { var d = h.getAttribute('data-theme') === 'dark'; col = d ? '125,211,252' : (getComputedStyle(h).getPropertyValue('--glow-b').trim() || '37,99,235'); if (!/^\d+\s*,\s*\d+\s*,\s*\d+$/.test(col)) col = '37,99,235'; }
-  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; x.setTransform(dpr, 0, 0, dpr, 0, 0); gap = W < 700 ? 46 : 34; len = W < 700 ? 7 : 10; x.font = fs + 'px monospace'; cols = []; for (var i = 0; i < Math.floor(W / gap); i++) cols.push({ x: i * gap + 10, y: Math.random() * H, v: .5 + Math.random() * .9, t: Math.random() < .5 ? 0 : 1 }); }
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; x.setTransform(dpr, 0, 0, dpr, 0, 0); var n = Math.max(18, Math.min(34, Math.round(W / 55))); while (P.length < n) P.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3 }); P.length = n; }
   function frame(t) {
     requestAnimationFrame(frame); if (document.hidden || t - last < 33) return; last = t; x.clearRect(0, 0, W, H);
-    for (var i = 0; i < cols.length; i++) {
-      var k = cols[i]; k.y += k.v * 2.2; if (k.y - len * 18 > H) { k.y = -20; k.v = .5 + Math.random() * .9; }
-      for (var j = 0; j < len; j++) { x.fillStyle = 'rgba(' + col + ',' + (0.2 * (1 - j / len)).toFixed(3) + ')'; x.fillText(((i + j + (k.y / 18 | 0)) & 1) ? '1' : '0', k.x, k.y - j * 18); }
+    for (var i = 0; i < P.length; i++) {
+      var a = P[i]; a.x += a.vx; a.y += a.vy; if (a.x < -10 || a.x > W + 10) a.vx = -a.vx; if (a.y < -10 || a.y > H + 10) a.vy = -a.vy;
+      for (var j = i + 1; j < P.length; j++) { var d = P[j], dx = a.x - d.x, dy = a.y - d.y, q = dx * dx + dy * dy; if (q < R2) { x.strokeStyle = 'rgba(' + col + ',' + (0.14 * (1 - q / R2)).toFixed(3) + ')'; x.lineWidth = 1; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(d.x, d.y); x.stroke(); } }
+      x.fillStyle = 'rgba(' + col + ',.38)'; x.beginPath(); x.arc(a.x, a.y, 1.7, 0, 6.283); x.fill();
     }
   }
-  tone(); size(); requestAnimationFrame(frame);
+  tone(); size(); requestAnimationFrame(frame); setTimeout(function () { cv.className = 'on'; }, 50);
   var rt = 0; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
   new MutationObserver(tone).observe(h, { attributes: true, attributeFilter: ['data-accent', 'data-theme'] });
 })();
