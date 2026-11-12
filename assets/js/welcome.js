@@ -1,13 +1,16 @@
-/* Welcome screen: an animated HUD ring with original robot characters. Shown once per browsing session on the home page (never to crawlers).
-   The <head> snippet decides eligibility and adds html.wl; this file builds the overlay, runs the sequence and closes it.
-   Timeline: ring spins from the start, flash and robots emerge at 0.5 s, the name types in, and after about 3 s the screen enters the home page by itself. Skip is always available.
-   Only transform and opacity are animated. With reduced motion the screen is static. */
+/* Welcome screen: animated HUD ring with original robot characters, then the GM intro video, then straight to the home page.
+   Shown once per browsing session on the home page (never to crawlers). The <head> snippet decides eligibility and adds html.wl;
+   this file builds the overlay, runs the sequence and closes it.
+   Timeline: ring and robots greet for about 2 s, the robots retreat into the ring, the intro video plays (muted; the sound button turns it on),
+   and the moment the video ends the home page is shown. Skip works at any time. If the video cannot play (reduced motion, data saver, slow
+   connection, not loaded in time, any error) the screen goes straight to the home page after the robots. Only transform and opacity are animated. */
 (function () {
   var d = document, h = d.documentElement;
   if (!h.classList.contains('wl')) return;
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav = navigator, conn = nav.connection || {}, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var base = d.body.getAttribute('data-root') || './', NAME = 'GM AI Tools HUB';
-  var T_GO = reduce ? 0 : 250, T_AUTO = reduce ? 1200 : 1600; /* robots emerge at 0.5 s, the screen enters the site by itself at 1.6 s, about 2 s in total */
+  var T_GO = reduce ? 0 : 250, T_AUTO = reduce ? 1200 : 1600, T_MAX = 22000;
+  var canVideo = !reduce && !conn.saveData && !/^(slow-2g|2g)$/.test(conn.effectiveType || '');
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
@@ -57,8 +60,9 @@
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<p class="wl-tap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere to hear the welcome</p>' +
       '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
-    '</div>';
-  o.style.setProperty('--wl-ready', T_AUTO + 'ms');
+    '</div>' +
+    (canVideo ? '<div class="wl-video" aria-hidden="true"><div class="wl-vframe"><video class="wl-vid" muted playsinline preload="auto" poster="' + base + 'assets/video/gm-intro-poster.jpg" src="' + base + 'assets/video/gm-intro.mp4"></video><i class="wl-vbar"><b></b></i></div>' +
+      '<div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Sound off</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
   d.body.appendChild(o);
   h.classList.remove('wl');
   h.classList.add('wl-open'); try { sessionStorage.setItem('gm.wl', '1'); } catch (e) { /* storage blocked: it may show again, which is harmless */ }
@@ -66,27 +70,50 @@
   /* robots start at the centre of the ring: tell each one how far away its final spot is */
   var stage = o.querySelector('.wl-stage'), sr = stage.getBoundingClientRect(), cx = sr.left + sr.width / 2, cy = sr.top + sr.height / 2;
   [].forEach.call(o.querySelectorAll('.wl-bot-wrap'), function (b) { var r = b.getBoundingClientRect(); b.style.setProperty('--ex', Math.round(cx - (r.left + r.width / 2)) + 'px'); b.style.setProperty('--ey', Math.round(cy - (r.top + r.height / 2)) + 'px'); });
+  o.style.setProperty('--wl-ready', T_AUTO + 'ms');
 
-  var timers = [], done = false, prev = d.activeElement;
-  function later(f, ms) { timers.push(setTimeout(f, ms)); }
+  var timers = [], done = false, prev = d.activeElement, v = o.querySelector('.wl-vid'), vbar = o.querySelector('.wl-vbar b');
+  function later(f, ms) { var t = setTimeout(f, ms); timers.push(t); return t; }
   function type() {
     var el = o.querySelector('.wl-type'), caret = o.querySelector('.wl-caret'), i = 0;
     if (reduce) { el.textContent = NAME; caret.style.display = 'none'; return; }
     (function step() { if (done) return; el.textContent = NAME.slice(0, ++i); if (i < NAME.length) later(step, 30); else later(function () { caret.style.display = 'none'; }, 300); })();
   }
-  later(function () { o.classList.add('go'); }, T_GO);
-  later(type, T_GO + 250);
-  later(function () { close(true); }, T_AUTO);
-
   function remove() { if (o.parentNode) o.parentNode.removeChild(o); if (prev && prev.focus) try { prev.focus({ preventScroll: true }); } catch (e) {} }
-  function close(entering) {
+  /* fast = leave at once (video ended, skipped or failed); the home page is already underneath */
+  function close(fast) {
     if (done) return; done = true; timers.forEach(clearTimeout);
     d.removeEventListener('keydown', onKey);
-    if (entering && !reduce) { o.classList.add('leaving'); later2(function () { o.classList.add('out'); h.classList.remove('wl-open'); }, 330); later2(remove, 650); }
-    else { o.classList.add('out'); h.classList.remove('wl-open'); later2(remove, 600); }
+    if (v) { try { v.pause(); } catch (e) {} }
+    if (fast) o.style.transitionDuration = '.3s';
+    o.classList.add('out'); h.classList.remove('wl-open');
+    setTimeout(remove, fast ? 360 : 620);
   }
-  function later2(f, ms) { setTimeout(f, ms); }
-  function onKey(e) { if (e.key === 'Escape') close(false); }
+  function onKey(e) { if (e.key === 'Escape') close(true); }
   d.addEventListener('keydown', onKey);
-  o.querySelector('.wl-skip').addEventListener('click', function () { close(false); });
+  [].forEach.call(o.querySelectorAll('.wl-skip'), function (b) { b.addEventListener('click', function () { close(true); }); });
+
+  /* ---- the video stage ---- */
+  function playVideo() {
+    if (done) return; o.classList.add('vid');
+    var snd = o.querySelector('.wl-snd');
+    snd.addEventListener('click', function () { v.muted = !v.muted; snd.textContent = v.muted ? 'Sound off' : 'Sound on'; snd.setAttribute('aria-pressed', String(!v.muted)); });
+    v.addEventListener('timeupdate', function () { if (v.duration) vbar.style.transform = 'scaleX(' + (v.currentTime / v.duration).toFixed(3) + ')'; });
+    v.addEventListener('ended', function () { close(true); });
+    v.addEventListener('error', function () { close(true); });
+    var lastT = -1; (function watch() { if (done) return; if (!v.paused && v.currentTime === lastT) { close(true); return; } lastT = v.currentTime; later(watch, 4500); })();
+    var p = v.play(); if (p && p.catch) p.catch(function () { close(true); });
+  }
+  function afterRobots() {
+    if (done) return;
+    if (!v) { close(false); return; }
+    if (v.readyState >= 3) { playVideo(); return; }
+    var w = later(function () { close(true); }, 3000);
+    v.addEventListener('canplay', function () { clearTimeout(w); playVideo(); }, { once: true });
+  }
+
+  later(function () { o.classList.add('go'); }, T_GO);
+  later(type, T_GO + 250);
+  later(function () { if (done) return; if (reduce || !v) { close(false); return; } o.classList.add('leaving'); later(afterRobots, 700); }, T_AUTO);
+  later(function () { close(true); }, T_MAX);
 })();
