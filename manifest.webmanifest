@@ -1,0 +1,43 @@
+{
+ "name": "GM AI Tools HUB",
+ "short_name": "GM Tools",
+ "description": "Free tools and gadgets for documents, money, career and everyday life.",
+ "start_url": "/?source=pwa",
+ "scope": "/",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#0b1b34",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/img/pwa/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/img/pwa/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Free tools",
+   "url": "/tools/"
+  },
+  {
+   "name": "Smart Assistant",
+   "url": "/assistant/"
+  },
+  {
+   "name": "Jobs",
+   "url": "/jobs/"
+  },
+  {
+   "name": "Tasks & Planner",
+   "url": "/workspace/planner/"
+  }
+ ]
+}
