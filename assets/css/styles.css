@@ -1573,3 +1573,8 @@ html.wl body::before { background: #010a29; }
 .wl-vctl button { pointer-events: auto; font: inherit; font-size: .86rem; font-weight: 600; color: #fff; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .32); background: rgba(0, 0, 0, .42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); cursor: pointer; transition: background .2s, border-color .2s; }
 .wl-vctl button:hover, .wl-vctl button:focus-visible { background: rgba(0, 0, 0, .65); border-color: rgba(125, 211, 252, .7); outline: none; }
 @media (max-width: 600px) { .wl-vframe { height: 100vh; height: 100dvh; width: 100vw; max-width: none; aspect-ratio: auto; border-radius: 0; box-shadow: none; } }
+.wl-hint { position: absolute; left: 50%; top: max(64px, calc(env(safe-area-inset-top) + 56px)); translate: -50% 0; display: none; align-items: center; gap: 8px; margin: 0; padding: 9px 18px; border-radius: 999px; font-size: .9rem; font-weight: 700; color: #fff; white-space: nowrap; background: rgba(15, 23, 42, .62); border: 1px solid rgba(125, 211, 252, .6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); pointer-events: none; }
+.wl-hint svg { width: 18px; height: 18px; }
+.welcome.vid.muted .wl-hint { display: inline-flex; }
+@media (prefers-reduced-motion: no-preference) { .welcome.vid.muted .wl-hint { animation: wl-hintpulse 1.8s ease-in-out infinite; } }
+@keyframes wl-hintpulse { 0%, 100% { opacity: .75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }

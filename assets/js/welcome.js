@@ -61,7 +61,7 @@
       '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
     '</div>' +
     (canVideo ? '<div class="wl-video" aria-hidden="true"><div class="wl-vframe"><video class="wl-vid" muted playsinline preload="auto" poster="' + base + 'assets/video/gm-intro-poster.jpg" src="' + base + 'assets/video/gm-intro.mp4"></video><i class="wl-vbar"><b></b></i></div>' +
-      '<div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Tap for sound</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
+      '<p class="wl-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere for sound</p><div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Tap for sound</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
   d.body.appendChild(o);
   h.classList.remove('wl');
   h.classList.add('wl-open'); try { sessionStorage.setItem('gm.wl', '1'); } catch (e) { /* storage blocked: it may show again, which is harmless */ }
@@ -96,7 +96,9 @@
   function playVideo() {
     if (done) return; o.classList.add('vid');
     var snd = o.querySelector('.wl-snd');
-    function paintSnd() { snd.textContent = v.muted ? 'Tap for sound' : 'Sound on'; snd.setAttribute('aria-pressed', String(!v.muted)); }
+    function paintSnd() { snd.textContent = v.muted ? 'Sound off' : 'Sound on'; snd.setAttribute('aria-pressed', String(!v.muted)); o.classList.toggle('muted', v.muted); }
+    /* a tap anywhere on the video turns the sound on: browsers only allow sound after the visitor has interacted with the page */
+    o.querySelector('.wl-video').addEventListener('pointerdown', function (e) { if (e.target.closest('.wl-skip')) return; if (v.muted && !e.target.closest('.wl-snd')) { v.muted = false; paintSnd(); } });
     snd.addEventListener('click', function () { v.muted = !v.muted; paintSnd(); });
     v.addEventListener('timeupdate', function () { if (v.duration) vbar.style.transform = 'scaleX(' + (v.currentTime / v.duration).toFixed(3) + ')'; });
     v.addEventListener('ended', function () { close(true); });
