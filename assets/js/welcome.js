@@ -60,7 +60,7 @@
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
     '</div>' +
-    (canVideo ? '<div class="wl-video" aria-hidden="true"><div class="wl-vframe"><video class="wl-vid" muted playsinline preload="auto" poster="' + base + 'assets/video/gm-intro-poster.jpg" src="' + base + 'assets/video/gm-intro.mp4"></video><i class="wl-vbar"><b></b></i></div>' +
+    (canVideo ? '<div class="wl-video" aria-hidden="true"><div class="wl-vframe"><video class="wl-vid" muted playsinline preload="none" poster="' + base + 'assets/video/gm-intro-poster.jpg" data-src="' + base + 'assets/video/gm-intro.mp4"></video><i class="wl-vbar"><b></b></i></div>' +
       '<p class="wl-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere for sound</p><div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Tap for sound</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
   d.body.appendChild(o);
   h.classList.remove('wl');
@@ -112,10 +112,13 @@
     if (done) return;
     if (!v) { close(false); return; }
     if (v.readyState >= 3) { playVideo(); return; }
-    var w = later(function () { close(true); }, 3000);
+    fetchVideo(); var w = later(function () { close(true); }, 4000);
     v.addEventListener('canplay', function () { clearTimeout(w); playVideo(); }, { once: true });
   }
 
+  /* the video file is fetched once the page itself has loaded (or after 1.2 s at the latest), so it never competes with the page's own files */
+  var vstart = false; function fetchVideo() { if (vstart || !v || done) return; vstart = true; v.preload = 'auto'; v.src = v.getAttribute('data-src'); try { v.load(); } catch (e) { /* ignore */ } }
+  if (v) { if (d.readyState === 'complete') later(fetchVideo, 0); else window.addEventListener('load', function () { later(fetchVideo, 0); }); later(fetchVideo, 1200); }
   later(function () { o.classList.add('go'); }, T_GO);
   later(type, T_GO + 250);
   later(function () { if (done) return; if (reduce || !v) { close(false); return; } o.classList.add('leaving'); later(afterRobots, 700); }, T_AUTO);
