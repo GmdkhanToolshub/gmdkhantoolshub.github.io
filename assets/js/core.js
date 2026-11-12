@@ -752,7 +752,7 @@ window.SITE_CONFIG = {
 /* Voice (welcome + spoken tool names): starts straight away so the greeting is not late; skipped if Speech Synthesis is missing. */
 (function () {
   var s = document.currentScript; if (!s || !('speechSynthesis' in window) || document.querySelector('script[src*="voice.js"]')) return;
-  var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=16435879'); v.async = true; document.head.appendChild(v);
+  var v = document.createElement('script'); v.src = s.src.replace(/[^\/]*$/, 'voice.js?v=d261f850'); v.async = true; document.head.appendChild(v);
 })();
 
 /* ---------- site-wide background: soft tech picture, slow aurora light, perspective floor grid with a light sweep, sparse network lines.

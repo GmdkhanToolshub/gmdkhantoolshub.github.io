@@ -58,11 +58,10 @@
       '<h2 class="wl-title"><span class="wl-type" aria-hidden="true"></span><span class="wl-caret" aria-hidden="true"></span></h2>' +
       '<p class="wl-sub">58 free tools and gadgets for work, documents and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
-      '<p class="wl-tap" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Tap anywhere to hear the welcome</p>' +
       '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
     '</div>' +
     (canVideo ? '<div class="wl-video" aria-hidden="true"><div class="wl-vframe"><video class="wl-vid" muted playsinline preload="auto" poster="' + base + 'assets/video/gm-intro-poster.jpg" src="' + base + 'assets/video/gm-intro.mp4"></video><i class="wl-vbar"><b></b></i></div>' +
-      '<div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Sound off</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
+      '<div class="wl-vctl"><button type="button" class="wl-snd" aria-pressed="false">Tap for sound</button><button type="button" class="wl-skip wl-vskip">Skip</button></div></div>' : '');
   d.body.appendChild(o);
   h.classList.remove('wl');
   h.classList.add('wl-open'); try { sessionStorage.setItem('gm.wl', '1'); } catch (e) { /* storage blocked: it may show again, which is harmless */ }
@@ -97,12 +96,15 @@
   function playVideo() {
     if (done) return; o.classList.add('vid');
     var snd = o.querySelector('.wl-snd');
-    snd.addEventListener('click', function () { v.muted = !v.muted; snd.textContent = v.muted ? 'Sound off' : 'Sound on'; snd.setAttribute('aria-pressed', String(!v.muted)); });
+    function paintSnd() { snd.textContent = v.muted ? 'Tap for sound' : 'Sound on'; snd.setAttribute('aria-pressed', String(!v.muted)); }
+    snd.addEventListener('click', function () { v.muted = !v.muted; paintSnd(); });
     v.addEventListener('timeupdate', function () { if (v.duration) vbar.style.transform = 'scaleX(' + (v.currentTime / v.duration).toFixed(3) + ')'; });
     v.addEventListener('ended', function () { close(true); });
     v.addEventListener('error', function () { close(true); });
     var lastT = -1; (function watch() { if (done) return; if (!v.paused && v.currentTime === lastT) { close(true); return; } lastT = v.currentTime; later(watch, 4500); })();
-    var p = v.play(); if (p && p.catch) p.catch(function () { close(true); });
+    /* try with sound first (allowed when the visitor has interacted with the site); otherwise play muted and offer the sound button */
+    v.muted = false; paintSnd();
+    var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; paintSnd(); var q = v.play(); if (q && q.catch) q.catch(function () { close(true); }); });
   }
   function afterRobots() {
     if (done) return;

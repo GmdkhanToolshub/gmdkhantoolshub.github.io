@@ -126,7 +126,8 @@
   function start() {
     build();
     if (synth.getVoices && !synth.getVoices().length && synth.addEventListener) synth.addEventListener('voiceschanged', function () { voice = null; }, { once: true });
-    if (!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)) welcome();
+    /* the spoken robot welcome was removed on request: the intro video carries the only welcome voice. Hover names stay available. */
+    set(WELCOMED, '1');
   }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
 })();
