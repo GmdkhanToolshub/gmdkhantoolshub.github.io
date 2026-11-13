@@ -56,7 +56,7 @@
       '</div>' +
       '<p class="wl-kicker">Welcome to</p>' +
       '<h2 class="wl-title"><span class="wl-type" aria-hidden="true"></span><span class="wl-caret" aria-hidden="true"></span></h2>' +
-      '<p class="wl-sub">58 free tools and gadgets for work, documents and everyday life</p>' +
+      '<p class="wl-sub">59 free tools and gadgets for work, documents and everyday life</p>' +
       '<div class="wl-bar" aria-hidden="true"><i></i></div>' +
       '<div class="wl-actions"><button type="button" class="wl-skip">Skip</button></div>' +
     '</div>' +
