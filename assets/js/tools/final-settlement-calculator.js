@@ -46,15 +46,24 @@ NiaziTools['final-settlement-calculator'] = function (root, U) {
     for (var i = 0; i < checks.length; i++) { var c = checks[i]; if (!(c[1] >= c[2] && c[1] <= c[3])) { ctx.error(c[0] + ' must be between ' + c[2] + ' and ' + c[3] + '.'); return null; } }
     if (!(add >= 0) || !(ded >= 0)) { ctx.error('Other additions and deductions must be zero or more.'); return null; }
     if (J && L) service = span(J, addDays(L, 1));
+    var gmult = U.num(v.gmult === '' || v.gmult == null ? '1' : v.gmult);
+    if (!(gmult >= 0 && gmult <= 12)) { ctx.error('Gratuity months of gross salary per year must be between 0 and 12.'); return null; }
+    /* gratuity = gross monthly salary x gratuity months per year x (years + months / 12 + days / 360 of service) */
+    var gratYears = service ? service.y + service.m / 12 + service.d / 360 : 0, gratuity = 0, gratNote = '';
+    if (v.grat !== 'no') {
+      if (service) gratuity = gross * gmult * gratYears; else gratNote = ' Enter the joining date and the last working day to calculate gratuity.';
+    }
     var rate = gross / div, cur = v.currency, m = function (n) { return U.money(n, cur); };
     var rows = [
       { k: 'Salary for ' + U.fmt(worked, 2) + ' days worked' + (workedAuto ? ' (from the dates)' : ''), amt: worked * rate, type: 'earn' },
       { k: 'Leave encashment (' + U.fmt(leave, 2) + ' days)', amt: leave * rate, type: 'earn' },
+      { k: 'Gratuity (' + (service ? plural(service.y, 'year') + ', ' + plural(service.m, 'month') + ', ' + plural(service.d, 'day') + ' of service' : 'needs the dates') + (gmult !== 1 ? ' at ' + U.fmt(gmult, 2) + ' month(s) of gross per year' : '') + ')', amt: gratuity, type: 'earn' },
       { k: 'Notice pay owed by the employer (' + U.fmt(notice, 2) + ' days)', amt: notice * rate, type: 'earn' },
       { k: 'Other additions (bonus, allowance and so on)', amt: add, type: 'earn' },
       { k: 'Notice not served by the employee (' + U.fmt(short, 2) + ' days' + (shortAuto ? ', from the dates' : '') + ')', amt: short * rate, type: 'ded' },
       { k: 'Other deductions (advance, loan and so on)', amt: ded, type: 'ded' }
     ];
+    if (v.grat === 'no') rows = rows.filter(function (r) { return r.k.indexOf('Gratuity') !== 0; });
     var earn = 0, dd = 0; rows.forEach(function (r) { if (r.type === 'earn') earn += r.amt; else dd += r.amt; });
     var net = earn - dd;
     last = { cur: cur, div: div, gross: gross, rate: rate, rows: rows, earn: earn, ded: dd, net: net, name: (v.name || '').trim(), J: J, RS: RS, L: L, service: service, served: served, req: req };
@@ -65,7 +74,8 @@ NiaziTools['final-settlement-calculator'] = function (root, U) {
     if (L) info.push(['Last working day', U.esc(fd(L))]);
     if (service) info.push(['Length of service', U.esc(plural(service.y, 'year') + ', ' + plural(service.m, 'month') + ', ' + plural(service.d, 'day'))]);
     if (served != null) info.push(['Notice served (resignation to last day)', U.esc(plural(served, 'day')) + (req > 0 ? ' of ' + U.esc(String(req)) + ' required' : '')]);
-    var dayNote = workedAuto ? ' Days worked are counted from ' + (J && L && J > new Date(L.getFullYear(), L.getMonth(), 1) ? 'the joining date' : '1 ' + MON[L.getMonth()]) + ' to the last working day' + (offDay >= 0 ? ', skipping the weekly off day' : '') + ', both days included.' : '';
+    var gratText = v.grat !== 'no' && service ? ' Gratuity = ' + m(gross) + (gmult !== 1 ? ' × ' + U.fmt(gmult, 2) : '') + ' × (' + service.y + ' years + ' + service.m + '/12 + ' + service.d + '/360) = ' + m(gratuity) + '.' : gratNote;
+    var dayNote = gratText + (workedAuto ? ' Days worked are counted from ' + (J && L && J > new Date(L.getFullYear(), L.getMonth(), 1) ? 'the joining date' : '1 ' + MON[L.getMonth()]) + ' to the last working day' + (offDay >= 0 ? ', skipping the weekly off day' : '') + ', both days included.' : '');
     ctx.html(U.grid([U.box('Net final settlement', m(net), net < 0 ? 'neg' : '', true), U.box('Daily rate (' + (div === 30 ? 'gross / 30' : 'gross / 26') + ')', m(rate)), U.box('Total earnings', m(earn)), U.box('Total deductions', m(dd))]) +
       (info.length ? '<div style="margin-top:16px">' + U.table(['Service details', 'Date or period'], info, 9) + '</div>' : '') +
       '<div style="margin-top:16px">' + U.table(['Settlement item', 'Amount'], body) + '</div>' +
@@ -79,6 +89,7 @@ NiaziTools['final-settlement-calculator'] = function (root, U) {
     L.push('Final settlement' + (last.name ? ' for ' + last.name : ''));
     if (last.J) L.push('Joining date: ' + fd(last.J)); if (last.RS) L.push('Resignation date: ' + fd(last.RS)); if (last.L) L.push('Last working day: ' + fd(last.L));
     if (last.service) L.push('Length of service: ' + plural(last.service.y, 'year') + ', ' + plural(last.service.m, 'month') + ', ' + plural(last.service.d, 'day'));
+    if (last.service) L.push('Service for gratuity: ' + last.service.y + ' years, ' + last.service.m + ' months, ' + last.service.d + ' days');
     L.push('Gross monthly salary: ' + m(last.gross) + ' | Divisor: ' + last.div + ' days | Daily rate: ' + m(last.rate));
     last.rows.forEach(function (r) { if (r.amt) L.push((r.type === 'ded' ? '- ' : '+ ') + r.k + ': ' + m(r.amt)); });
     L.push('Total earnings: ' + m(last.earn)); L.push('Total deductions: ' + m(last.ded)); L.push('Net final settlement: ' + m(last.net));
@@ -95,6 +106,8 @@ NiaziTools['final-settlement-calculator'] = function (root, U) {
       { id: 'last', label: 'Last working day', type: 'date', value: '', hint: 'The last day the employee works.' },
       { id: 'req', label: 'Notice period required (days)', type: 'number', placeholder: 'e.g. 30', value: '', hint: 'From the contract. Used with the dates to find any notice not served.' },
       { id: 'off', label: 'Weekly off day (26-day basis only)', type: 'select', options: [{ value: '0', label: 'Sunday' }, { value: '5', label: 'Friday' }, { value: '6', label: 'Saturday' }, { value: 'none', label: 'None' }], value: '0', hint: 'Skipped when days worked are counted from the dates.' },
+      { id: 'grat', label: 'Include gratuity', type: 'select', options: [{ value: 'yes', label: 'Yes: gross salary for each year of service' }, { value: 'no', label: 'No gratuity' }], value: 'yes', hint: 'Gratuity = gross monthly salary x the years, months and days of service, from the joining date to the last working day.' },
+      { id: 'gmult', label: 'Gratuity: months of gross salary per year', type: 'number', value: '1', hint: '1 means one month of gross salary for each year of service. Change it if your policy differs.' },
       { id: 'worked', label: 'Days worked in the last month', type: 'number', placeholder: 'Leave blank to count from the dates', value: '', hint: 'Type a number to override the count from the dates.' },
       { id: 'leave', label: 'Unused leave days to pay out', type: 'number', value: '0' },
       { id: 'notice', label: 'Notice pay days owed by the employer', type: 'number', value: '0', hint: 'Only if the employer pays in place of notice.' },
