@@ -673,7 +673,11 @@ window.SITE_CONFIG = {
 /* Affiliate recommendations: shown only for items listed in config.js (SITE_CONFIG.affiliates). Always disclosed. */
 (function () {
   var C = window.SITE_CONFIG || {}, L = C.affiliates || []; if (!L.length || /\/kids\//.test(location.pathname)) return;
-  var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (location.pathname.match(/\/blog\/([^\/]+)\/?/) || [])[1]; if (!slug) return;
+  var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (location.pathname.match(/\/blog\/([^\/]+)\/?/) || [])[1];
+  /* Academy lessons and the studio pages match as academy-<lesson> and page-<name> */
+  var am = location.pathname.match(/\/academy\/([^\/]+)\/?(?:index\.html)?$/), hm = location.pathname.match(/\/(career-studio|creative-studio|developer-playground|academy)\/?(?:index\.html)?$/);
+  if (!slug && am && am[1] !== 'index.html') slug = 'academy-' + am[1]; else if (!slug && hm) slug = 'page-' + hm[1];
+  if (!slug) return;
   var items = L.filter(function (x) { return x && x.url && /^https:\/\//.test(x.url) && (x.match || []).indexOf(slug) >= 0; }).slice(0, 3); if (!items.length) return;
   var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
   var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
@@ -681,6 +685,7 @@ window.SITE_CONFIG = {
   box.innerHTML = h + '</ul>';
   var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
+  else { var mainEl = document.getElementById('main'); if (mainEl) { var sec = document.createElement('section'), cont = document.createElement('div'); sec.className = 'section'; cont.className = 'container'; cont.style.maxWidth = '900px'; cont.appendChild(box); sec.appendChild(cont); mainEl.appendChild(sec); } }
 })();
 
 /* Contextual "ready-made Excel template" offer on matching tools and articles */
