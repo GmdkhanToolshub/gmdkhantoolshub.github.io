@@ -397,7 +397,8 @@
   var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
   var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
   items.forEach(function (x) { var a = document.createElement('a'); a.textContent = x.name; h += '<li><a href="' + x.url.replace(/"/g, '%22') + '" target="_blank" rel="sponsored nofollow noopener noreferrer" data-aff="' + String(x.name).replace(/[<>"&]/g, '') + '">' + a.innerHTML + '</a>' + (x.note ? ' <span class="muted">– ' + String(x.note).replace(/[<>&]/g, '') + '</span>' : '') + '</li>'; });
-  box.innerHTML = h + '</ul>';
+  h += '</ul>'; if (items.some(function (x) { return /^https:\/\/(www\.)?amazon\./.test(x.url); })) h += '<p class="small muted">As an Amazon Associate I earn from qualifying purchases.</p>';
+  box.innerHTML = h;
   var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
   else { var mainEl = document.getElementById('main'); if (mainEl) { var sec = document.createElement('section'), cont = document.createElement('div'); sec.className = 'section'; cont.className = 'container'; cont.style.maxWidth = '900px'; cont.appendChild(box); sec.appendChild(cont); mainEl.appendChild(sec); } }

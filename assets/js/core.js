@@ -12,7 +12,75 @@ window.SITE_CONFIG = {
   "gtmContainerId": "",
   /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.
      Example: {"match": ["pdf-compressor"], "name": "Product name", "url": "https://...", "note": "Why you recommend it"} */
-  "affiliates": [],
+  "affiliates": [
+      {
+          "match": [
+              "academy-html-basics",
+              "academy-css-basics",
+              "academy-javascript-basics",
+              "academy-javascript-dom",
+              "page-developer-playground"
+          ],
+          "name": "Amazon: web development books",
+          "url": "https://www.amazon.com/s?k=html+css+javascript+beginner+book&tag=gmtoolshub-20",
+          "note": "Beginner-friendly web development books"
+      },
+      {
+          "match": [
+              "academy-git-and-github-pages"
+          ],
+          "name": "Amazon: Git and GitHub books",
+          "url": "https://www.amazon.com/s?k=git+github+beginners+book&tag=gmtoolshub-20",
+          "note": "Books on Git and GitHub"
+      },
+      {
+          "match": [
+              "academy-prompt-writing-for-work"
+          ],
+          "name": "Amazon: AI prompt writing books",
+          "url": "https://www.amazon.com/s?k=chatgpt+prompt+writing+book&tag=gmtoolshub-20",
+          "note": "Books on working with AI tools"
+      },
+      {
+          "match": [
+              "page-career-studio",
+              "resume-builder",
+              "ats-resume-checker",
+              "cover-letter-generator",
+              "interview-practice",
+              "interview-prep"
+          ],
+          "name": "Amazon: career and interview books",
+          "url": "https://www.amazon.com/s?k=job+interview+resume+career+book&tag=gmtoolshub-20",
+          "note": "Career, resume and interview books"
+      },
+      {
+          "match": [
+              "page-creative-studio",
+              "color-contrast-checker",
+              "color-picker"
+          ],
+          "name": "Amazon: design and creativity books",
+          "url": "https://www.amazon.com/s?k=graphic+design+color+theory+book&tag=gmtoolshub-20",
+          "note": "Books on design and colour"
+      },
+      {
+          "match": [
+              "page-academy"
+          ],
+          "name": "Amazon: learning and productivity",
+          "url": "https://www.amazon.com/s?k=learning+productivity+book&tag=gmtoolshub-20",
+          "note": "Books for learning and study habits"
+      },
+      {
+          "match": [
+              "typing-speed-test"
+          ],
+          "name": "Amazon: ergonomic keyboards",
+          "url": "https://www.amazon.com/s?k=ergonomic+keyboard&tag=gmtoolshub-20",
+          "note": "Comfortable keyboards for typing practice"
+      }
+  ],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
      While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",
@@ -682,7 +750,8 @@ window.SITE_CONFIG = {
   var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
   var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
   items.forEach(function (x) { var a = document.createElement('a'); a.textContent = x.name; h += '<li><a href="' + x.url.replace(/"/g, '%22') + '" target="_blank" rel="sponsored nofollow noopener noreferrer" data-aff="' + String(x.name).replace(/[<>"&]/g, '') + '">' + a.innerHTML + '</a>' + (x.note ? ' <span class="muted">– ' + String(x.note).replace(/[<>&]/g, '') + '</span>' : '') + '</li>'; });
-  box.innerHTML = h + '</ul>';
+  h += '</ul>'; if (items.some(function (x) { return /^https:\/\/(www\.)?amazon\./.test(x.url); })) h += '<p class="small muted">As an Amazon Associate I earn from qualifying purchases.</p>';
+  box.innerHTML = h;
   var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
   else { var mainEl = document.getElementById('main'); if (mainEl) { var sec = document.createElement('section'), cont = document.createElement('div'); sec.className = 'section'; cont.className = 'container'; cont.style.maxWidth = '900px'; cont.appendChild(box); sec.appendChild(cont); mainEl.appendChild(sec); } }

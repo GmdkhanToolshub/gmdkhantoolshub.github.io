@@ -12,7 +12,75 @@ window.SITE_CONFIG = {
   "gtmContainerId": "",
   /* Affiliate items shown on matching tools or articles. Add only real links from your own approved affiliate accounts, over https.
      Example: {"match": ["pdf-compressor"], "name": "Product name", "url": "https://...", "note": "Why you recommend it"} */
-  "affiliates": [],
+  "affiliates": [
+      {
+          "match": [
+              "academy-html-basics",
+              "academy-css-basics",
+              "academy-javascript-basics",
+              "academy-javascript-dom",
+              "page-developer-playground"
+          ],
+          "name": "Amazon: web development books",
+          "url": "https://www.amazon.com/s?k=html+css+javascript+beginner+book&tag=gmtoolshub-20",
+          "note": "Beginner-friendly web development books"
+      },
+      {
+          "match": [
+              "academy-git-and-github-pages"
+          ],
+          "name": "Amazon: Git and GitHub books",
+          "url": "https://www.amazon.com/s?k=git+github+beginners+book&tag=gmtoolshub-20",
+          "note": "Books on Git and GitHub"
+      },
+      {
+          "match": [
+              "academy-prompt-writing-for-work"
+          ],
+          "name": "Amazon: AI prompt writing books",
+          "url": "https://www.amazon.com/s?k=chatgpt+prompt+writing+book&tag=gmtoolshub-20",
+          "note": "Books on working with AI tools"
+      },
+      {
+          "match": [
+              "page-career-studio",
+              "resume-builder",
+              "ats-resume-checker",
+              "cover-letter-generator",
+              "interview-practice",
+              "interview-prep"
+          ],
+          "name": "Amazon: career and interview books",
+          "url": "https://www.amazon.com/s?k=job+interview+resume+career+book&tag=gmtoolshub-20",
+          "note": "Career, resume and interview books"
+      },
+      {
+          "match": [
+              "page-creative-studio",
+              "color-contrast-checker",
+              "color-picker"
+          ],
+          "name": "Amazon: design and creativity books",
+          "url": "https://www.amazon.com/s?k=graphic+design+color+theory+book&tag=gmtoolshub-20",
+          "note": "Books on design and colour"
+      },
+      {
+          "match": [
+              "page-academy"
+          ],
+          "name": "Amazon: learning and productivity",
+          "url": "https://www.amazon.com/s?k=learning+productivity+book&tag=gmtoolshub-20",
+          "note": "Books for learning and study habits"
+      },
+      {
+          "match": [
+              "typing-speed-test"
+          ],
+          "name": "Amazon: ergonomic keyboards",
+          "url": "https://www.amazon.com/s?k=ergonomic+keyboard&tag=gmtoolshub-20",
+          "note": "Comfortable keyboards for typing practice"
+      }
+  ],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
      While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",
