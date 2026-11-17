@@ -447,6 +447,39 @@
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
 })();
 
+/* Optional email-updates box on tool pages and articles (never on Kids Corner, shop, services or legal pages) */
+(function () {
+  var path = location.pathname; if (/\/(kids|shop|services|membership|workspace)\//.test(path)) return;
+  var root = document.getElementById('tool-root'), isPost = /\/blog\/[^\/]+\/?(index\.html)?$/.test(path);
+  if (!root && !isPost) return;
+  var done = false; try { done = localStorage.getItem('niazi.news') === '1'; } catch (e) { /* ignore */ }
+  if (done || document.querySelector('.news-box')) return;
+  var SC = window.SITE_CONFIG || {}, cfg = SC.newsletter || {}, ep = cfg.endpoint || '';
+  var base = document.body.getAttribute('data-root') || './', mail = SC.contactEmail || 'asmarkniazi@gmail.com';
+  var box = document.createElement('aside'); box.className = 'news-box no-print'; box.setAttribute('aria-label', 'Email updates');
+  box.innerHTML = '<div class="nb-text"><span class="sp-tag">Free email updates</span><h2>Get new free tools and templates by email</h2><p>A short note when a new tool, template or guide is added. No spam, and you can unsubscribe at any time.</p></div>' +
+    '<form class="nb-form" novalidate><label class="sr-only" for="nb-email">Your email address</label><input id="nb-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>' +
+    '<button class="btn btn-primary btn-sm" type="submit">Subscribe</button>' +
+    '<p class="nb-note small muted">By subscribing you agree to receive these emails. Read the <a href="' + base + 'privacy-policy/">Privacy Policy</a>.</p><p class="nb-msg small" role="status" aria-live="polite"></p></form>';
+  var form = box.querySelector('form'), msg = box.querySelector('.nb-msg'), input = box.querySelector('input');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault(); var em = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) || em.length > 120) { msg.textContent = 'Please enter a valid email address.'; msg.className = 'nb-msg small nb-bad'; input.focus(); return; }
+    if (!ep || !/^https:\/\//.test(ep)) {
+      location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Please add me to the GM Tools email updates') + '&body=' + encodeURIComponent('Hello, please add this email address to your free updates list: ' + em);
+      msg.textContent = 'Your email app should open with a ready message. Press Send to join the list.'; msg.className = 'nb-msg small'; return;
+    }
+    var fd = new FormData(); fd.append(cfg.field || 'email', em); var hid = cfg.hidden || {}; Object.keys(hid).forEach(function (k) { fd.append(k, hid[k]); });
+    var btn = form.querySelector('button'); btn.disabled = true; msg.textContent = 'Sending…'; msg.className = 'nb-msg small';
+    fetch(ep, { method: 'POST', body: fd, mode: 'no-cors', referrerPolicy: 'no-referrer' }).then(function () {
+      msg.textContent = 'Thank you! Please check your inbox and confirm your email address.'; msg.className = 'nb-msg small nb-ok'; input.value = ''; input.disabled = true;
+      try { localStorage.setItem('niazi.news', '1'); } catch (e) { /* ignore */ }
+    }).catch(function () { btn.disabled = false; msg.textContent = 'Sorry, that did not go through. Please try again later.'; msg.className = 'nb-msg small nb-bad'; });
+  });
+  var shares = document.querySelectorAll('main .share-row'), last = shares.length ? shares[shares.length - 1] : null, anchor = last ? (last.closest('.content-block') || last) : null;
+  if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
+})();
+
 /* Photo pop-up: click or press Enter on a photo that has data-full. The photo grows from where it sits to a large view and shows the untouched original. */
 (function () {
   var doc = document, box = null, big = null, from = null, last = null, busy = false, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;

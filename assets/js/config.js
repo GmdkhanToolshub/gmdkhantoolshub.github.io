@@ -225,6 +225,9 @@ window.SITE_CONFIG = {
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
      While empty, the contact form opens the visitor's email app instead (mailto fallback). Never put secret keys here. */
   "formEndpoint": "",
+  /* EMAIL UPDATES BOX: paste the form-post URL of a free email service (for example a Buttondown or MailerLite embed form) in "endpoint".
+     "field" is the name of its email input and "hidden" holds any extra fields it needs. While "endpoint" is empty, the box opens the visitor's email app instead. */
+  "newsletter": { "endpoint": "", "field": "email", "hidden": {} },
   "currencyApiUrl": "https://open.er-api.com/v6/latest/USD",
   "contactEmail": "asmarkniazi@gmail.com"
 };

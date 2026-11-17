@@ -1578,3 +1578,16 @@ html.wl body::before { background: #010a29; }
 .welcome.vid.muted .wl-hint { display: inline-flex; }
 @media (prefers-reduced-motion: no-preference) { .welcome.vid.muted .wl-hint { animation: wl-hintpulse 1.8s ease-in-out infinite; } }
 @keyframes wl-hintpulse { 0%, 100% { opacity: .75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+/* Email updates box */
+.news-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin: 28px 0; padding: 18px 20px; border: 1px solid var(--border); border-left: 4px solid var(--c-mid); border-radius: var(--radius, 14px); background: var(--surface, transparent); }
+.news-box .nb-text { flex: 1 1 300px; min-width: 0; }
+.news-box h2 { font-size: 1.15rem; margin: 4px 0 4px; }
+.news-box p { margin: 0; color: var(--text-soft); }
+.news-box .sp-tag { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-mid); }
+.news-box .nb-form { flex: 1 1 320px; min-width: 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.news-box .nb-form input { flex: 1 1 200px; min-width: 0; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg, #fff); color: var(--text); font: inherit; }
+.news-box .nb-form input:focus-visible { outline: 2px solid var(--c-mid); outline-offset: 1px; }
+.news-box .nb-note, .news-box .nb-msg { flex: 1 1 100%; }
+.news-box .nb-msg:empty { display: none; }
+.news-box .nb-ok { color: var(--ok, #15803d); font-weight: 600; }
+.news-box .nb-bad { color: var(--err, #b91c1c); font-weight: 600; }
