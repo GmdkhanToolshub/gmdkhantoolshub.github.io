@@ -235,11 +235,43 @@
 
 /* Mango v2: shaded fur, waving paws */
 .kc-svg { width: min(100%, 360px); }
-.kc-armL, .kc-armR { transform-origin: 50% 8%; transition: transform .2s; }
-.kc-wave .kc-armR { animation: kc-wavearm .36s ease-in-out 4 alternate; transform-origin: 50% 90%; }
+.kc-armL, .kc-armR { transform-box: view-box; transform-origin: 0 0; transition: transform .2s; }
+.kc-wave .kc-armR { animation: kc-wavearm .36s ease-in-out 4 alternate; }
 .kc-talk .kc-armL { animation: kc-armsway .5s ease-in-out infinite alternate; }
 .kc-talk .kc-armR { animation: kc-armsway .5s ease-in-out .25s infinite alternate-reverse; }
 .kc-svg [data-zone] { cursor: pointer; }
 @keyframes kc-wavearm { from { transform: rotate(-8deg); } to { transform: rotate(-62deg); } }
 @keyframes kc-armsway { from { transform: rotate(-3deg); } to { transform: rotate(4deg); } }
 @media (prefers-reduced-motion: reduce) { .kc-wave .kc-armR, .kc-talk .kc-armL, .kc-talk .kc-armR { animation: none; } }
+
+/* Mango wardrobe + poses */
+.kc-armL, .kc-armR { transform-box: view-box; transform-origin: 0 0; transition: transform .35s ease; }
+.kc-head { transition: transform .35s ease; }
+.kc-tail { transition: transform .35s; }
+.kc-swap .kc-head, .kc-swap .kc-all { animation: kc-swapjump .45s ease-out; }
+.kc-zzz { opacity: 0; transition: opacity .3s; }
+.kc-pose-sleep .kc-zzz { opacity: 1; animation: kc-zfloat 2s ease-in-out infinite; }
+.kc-pose-sleep .kc-lid { transform: scaleY(1); }
+.kc-pose-sleep .kc-head { transform: rotate(12deg) translate(8px, 14px); }
+.kc-pose-wave .kc-armR { transform: rotate(-142deg); animation: kc-wiggle .42s ease-in-out infinite alternate; --a: -142deg; }
+.kc-pose-cheer .kc-armL { transform: rotate(152deg); } .kc-pose-cheer .kc-armR { transform: rotate(-152deg); }
+.kc-pose-cheer .kc-all { animation: kc-cheer .5s ease-in-out infinite alternate; }
+.kc-pose-hero .kc-armL { transform: rotate(104deg); } .kc-pose-hero .kc-armR { transform: rotate(-104deg); }
+.kc-pose-hero .kc-head { transform: rotate(-4deg) translateY(-5px); } .kc-pose-hero .kc-tail { transform: rotate(-16deg); }
+.kc-pose-think .kc-armR { transform: rotate(128deg); } .kc-pose-think .kc-head { transform: rotate(5deg); }
+.kc-pose-dance .kc-all { animation: kc-dance .5s ease-in-out infinite alternate; }
+.kc-pose-dance .kc-armL { animation: kc-wiggle .5s ease-in-out infinite alternate; --a: 120deg; transform: rotate(120deg); }
+.kc-pose-dance .kc-armR { animation: kc-wiggle .5s ease-in-out infinite alternate-reverse; --a: -120deg; transform: rotate(-120deg); }
+.kc-pose-dance .kc-tail { animation-duration: .5s; }
+.kc-posed.kc-talk .kc-armL, .kc-posed.kc-talk .kc-armR { animation: none; }
+.kc-pose-dance.kc-talk .kc-armL { animation: kc-wiggle .5s ease-in-out infinite alternate; } .kc-pose-dance.kc-talk .kc-armR { animation: kc-wiggle .5s ease-in-out infinite alternate-reverse; }
+.kc-pose-wave.kc-talk .kc-armR { animation: kc-wiggle .42s ease-in-out infinite alternate; }
+.kc-ward { display: grid; gap: 6px; } .kc-wh { margin: 4px 0 0; }
+.kc-fit, .kc-pose { min-width: 44px; justify-content: center; font-size: 1.15rem; }
+.kc-fit[aria-pressed="true"], .kc-pose[aria-pressed="true"] { outline: 3px solid #fb923c; outline-offset: 1px; background: #ffedd5; }
+@keyframes kc-wiggle { from { transform: rotate(calc(var(--a) - 9deg)); } to { transform: rotate(calc(var(--a) + 9deg)); } }
+@keyframes kc-cheer { from { transform: translateY(0); } to { transform: translateY(-16px); } }
+@keyframes kc-dance { from { transform: rotate(-4deg) translateY(0); } to { transform: rotate(4deg) translateY(-10px); } }
+@keyframes kc-zfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes kc-swapjump { 0% { transform: scale(1); } 40% { transform: scale(1.06) rotate(-2deg); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .kc-pose-wave .kc-armR, .kc-pose-cheer .kc-all, .kc-pose-dance .kc-all, .kc-pose-dance .kc-armL, .kc-pose-dance .kc-armR, .kc-pose-sleep .kc-zzz, .kc-swap .kc-head, .kc-swap .kc-all { animation: none !important; } }

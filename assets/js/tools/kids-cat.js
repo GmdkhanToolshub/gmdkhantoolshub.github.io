@@ -84,19 +84,17 @@
   /* ---------------------------------------------------------------- the cat */
   function catSVG() {
     var eye = function (x) { return '<g class="kc-pup"><circle cx="' + x + '" cy="150" r="23" fill="url(#kcIris)"/><circle cx="' + x + '" cy="151" r="12.5" fill="#1f1308"/><circle cx="' + (x - 8) + '" cy="140" r="7" fill="#fff"/><circle cx="' + (x + 8) + '" cy="160" r="3.4" fill="#fff" opacity=".9"/></g>'; };
-    return '<svg id="kc-svg" class="kc-svg kc-happy" viewBox="0 0 340 400" role="img" aria-label="Mango, a friendly orange cartoon cat wearing a teal scarf"><defs>' +
+    return '<svg id="kc-svg" class="kc-svg kc-happy" viewBox="0 -50 340 450" role="img" aria-label="Mango, a friendly orange cartoon cat wearing a teal scarf"><defs>' +
       '<radialGradient id="kcFur" cx="45%" cy="30%" r="80%"><stop offset="0" stop-color="#fdba74"/><stop offset=".55" stop-color="#fb923c"/><stop offset="1" stop-color="#ea580c"/></radialGradient>' +
       '<radialGradient id="kcCream" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#fed7aa"/></radialGradient>' +
       '<radialGradient id="kcIris" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#fde68a"/><stop offset=".6" stop-color="#f59e0b"/><stop offset="1" stop-color="#b45309"/></radialGradient>' +
       '<linearGradient id="kcScarf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><g class="kc-all">' +
       '<ellipse cx="170" cy="392" rx="120" ry="9" fill="#0f172a" opacity=".18"/>' +
       '<path class="kc-tail" d="M262 346 Q338 336 326 256 Q320 226 292 240" fill="none" stroke="url(#kcFur)" stroke-width="32" stroke-linecap="round"/><path class="kc-tail" d="M318 270 Q326 250 310 238 M308 304 Q324 296 330 280" fill="none" stroke="#9a3412" stroke-width="7" stroke-linecap="round" opacity=".5"/>' +
-      '<ellipse cx="170" cy="328" rx="102" ry="64" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse data-zone="belly" cx="170" cy="342" rx="58" ry="42" fill="url(#kcCream)"/>' +
-      '<g class="kc-armL" data-zone="paw"><ellipse cx="82" cy="326" rx="23" ry="44" transform="rotate(14 82 326)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="74" cy="364" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g>' +
-      '<g class="kc-armR" data-zone="paw"><ellipse cx="258" cy="326" rx="23" ry="44" transform="rotate(-14 258 326)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="266" cy="364" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g>' +
+      '<g id="kc-fit-back"></g><ellipse data-zone="body" cx="170" cy="328" rx="102" ry="64" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse data-zone="belly" cx="170" cy="342" rx="58" ry="42" fill="url(#kcCream)"/>' +
       '<ellipse cx="128" cy="386" rx="34" ry="14" fill="url(#kcCream)" stroke="#9a3412" stroke-width="5"/><ellipse cx="212" cy="386" rx="34" ry="14" fill="url(#kcCream)" stroke="#9a3412" stroke-width="5"/>' +
-      '<path d="M98 270 Q170 306 242 270 L238 298 Q170 330 102 298Z" fill="url(#kcScarf)" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/><path d="M120 286 L124 308 M150 296 L152 318 M190 296 L188 318 M220 286 L216 308" stroke="#99f6e4" stroke-width="5" stroke-linecap="round" opacity=".85"/>' +
-      '<path d="M214 298 L252 296 L246 346 L206 336Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/>' +
+      '<g id="kc-scarf0" data-zone="outfit"><path d="M98 270 Q170 306 242 270 L238 298 Q170 330 102 298Z" fill="url(#kcScarf)" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/><path d="M120 286 L124 308 M150 296 L152 318 M190 296 L188 318 M220 286 L216 308" stroke="#99f6e4" stroke-width="5" stroke-linecap="round" opacity=".85"/>' +
+      '<path d="M214 298 L252 296 L246 346 L206 336Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/></g><g id="kc-fit-body" data-zone="outfit"></g>' +
       '<g class="kc-head" data-zone="head">' +
       '<g class="kc-ear kc-earL"><polygon points="70,112 78,16 148,78" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="90,98 94,44 128,78" fill="#fda4af"/></g>' +
       '<g class="kc-ear kc-earR"><polygon points="270,112 262,16 192,78" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="250,98 246,44 212,78" fill="#fda4af"/></g>' +
@@ -111,9 +109,57 @@
       '<path id="kc-mc" d="M170 202 L170 212 M170 212 Q154 228 136 216 M170 212 Q186 228 204 216" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
       '<g id="kc-mo" style="display:none"><ellipse id="kc-mo-e" cx="170" cy="224" rx="22" ry="12" fill="#7f1d1d" stroke="#7c2d12" stroke-width="4"/><ellipse id="kc-mo-t" cx="170" cy="231" rx="12" ry="5" fill="#f87171"/></g>' +
       '<path class="kc-tongue" d="M160 220 Q170 250 180 220Z" fill="#f87171" stroke="#7c2d12" stroke-width="3"/>' +
-      '<g stroke="#9a3412" stroke-width="3" stroke-linecap="round" opacity=".75"><line x1="116" y1="210" x2="36" y2="194"/><line x1="116" y1="218" x2="30" y2="220"/><line x1="120" y1="226" x2="44" y2="246"/><line x1="224" y1="210" x2="304" y2="194"/><line x1="224" y1="218" x2="310" y2="220"/><line x1="220" y1="226" x2="296" y2="246"/></g></g>' +
-      '<g class="kc-think" aria-hidden="true"><circle cx="300" cy="86" r="6"/><circle cx="318" cy="60" r="9"/><circle cx="330" cy="26" r="12"/></g></g></svg>';
+      '<g stroke="#9a3412" stroke-width="3" stroke-linecap="round" opacity=".75"><line x1="116" y1="210" x2="36" y2="194"/><line x1="116" y1="218" x2="30" y2="220"/><line x1="120" y1="226" x2="44" y2="246"/><line x1="224" y1="210" x2="304" y2="194"/><line x1="224" y1="218" x2="310" y2="220"/><line x1="220" y1="226" x2="296" y2="246"/></g><g id="kc-fit-head" data-zone="outfit"></g></g>' +
+      '<g transform="translate(82 290)"><g class="kc-armL" data-zone="paw"><ellipse cx="0" cy="38" rx="23" ry="44" transform="rotate(14 0 38)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="-8" cy="76" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g></g>' +
+      '<g transform="translate(258 290)"><g class="kc-armR" data-zone="paw"><ellipse cx="0" cy="38" rx="23" ry="44" transform="rotate(-14 0 38)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="8" cy="76" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g></g>' +
+      '<g class="kc-zzz" aria-hidden="true"><text x="250" y="52" font-size="34" font-weight="800" fill="#475569" font-family="sans-serif">z</text><text x="282" y="18" font-size="46" font-weight="800" fill="#475569" font-family="sans-serif">Z</text></g><g class="kc-think" aria-hidden="true"><circle cx="300" cy="86" r="6"/><circle cx="318" cy="60" r="9"/><circle cx="330" cy="26" r="12"/></g></g></svg>';
   }
+
+  /* ---------------------------------------------------------------- wardrobe: outfits and poses */
+  var STAR = function (cx, cy, r, f) { var p = []; for (var i = 0; i < 10; i++) { var rr = i % 2 ? r * .45 : r, a = -Math.PI / 2 + i * Math.PI / 5; p.push((cx + rr * Math.cos(a)).toFixed(1) + ',' + (cy + rr * Math.sin(a)).toFixed(1)); } return '<polygon points="' + p.join(' ') + '" fill="' + f + '" stroke="#92400e" stroke-width="2.5" stroke-linejoin="round"/>'; };
+  var OUTFITS = [
+    { n: 'Explorer', e: '🧣', f: 'happy', say: 'Back to my favourite teal scarf. Cozy!', back: '', body: '', head: '' },
+    { n: 'Party', e: '🎉', f: 'laugh', say: 'Party time! Who brought the fish cake?', back: '',
+      body: `<polygon points="138,276 170,292 138,308" fill="#ef4444" stroke="#7f1d1d" stroke-width="3" stroke-linejoin="round"/><polygon points="202,276 170,292 202,308" fill="#ef4444" stroke="#7f1d1d" stroke-width="3" stroke-linejoin="round"/><circle cx="170" cy="292" r="9" fill="#fca5a5" stroke="#7f1d1d" stroke-width="3"/>`,
+      head: `<polygon points="128,76 170,-16 212,76" fill="#a855f7" stroke="#6b21a8" stroke-width="5" stroke-linejoin="round"/><path d="M146 52 L194 52 M156 28 L184 28" stroke="#fde047" stroke-width="8" stroke-linecap="round"/><circle cx="170" cy="-18" r="11" fill="#fde047" stroke="#b45309" stroke-width="3"/><circle cx="134" cy="66" r="4" fill="#fde047"/><circle cx="206" cy="66" r="4" fill="#fde047"/>` },
+    { n: 'Chef', e: '👨‍🍳', f: 'silly', say: 'I am a master chef! Today’s special: fish soup!', back: '',
+      body: `<path d="M126 284 L214 284 L222 392 L118 392Z" fill="#fff" stroke="#94a3b8" stroke-width="4" stroke-linejoin="round"/><rect x="146" y="338" width="48" height="30" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/><path d="M140 276 L200 276 L170 312Z" fill="#ef4444" stroke="#7f1d1d" stroke-width="3" stroke-linejoin="round"/>`,
+      head: `<rect x="120" y="50" width="100" height="30" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="4"/><circle cx="132" cy="38" r="24" fill="#fff" stroke="#94a3b8" stroke-width="4"/><circle cx="170" cy="22" r="30" fill="#fff" stroke="#94a3b8" stroke-width="4"/><circle cx="208" cy="38" r="24" fill="#fff" stroke="#94a3b8" stroke-width="4"/><rect x="122" y="52" width="96" height="26" rx="8" fill="#fff"/>` },
+    { n: 'Hero', e: '🦸', f: 'laugh', say: 'I am Super Mango! Faster than a ball of wool!',
+      back: `<path d="M94 280 Q54 350 80 392 L260 392 Q286 350 246 280Z" fill="#dc2626" stroke="#7f1d1d" stroke-width="5" stroke-linejoin="round"/>`,
+      body: `<circle cx="116" cy="284" r="9" fill="#fbbf24" stroke="#92400e" stroke-width="3"/><circle cx="224" cy="284" r="9" fill="#fbbf24" stroke="#92400e" stroke-width="3"/><circle cx="170" cy="342" r="26" fill="#2563eb" stroke="#1e3a8a" stroke-width="4"/>` + STAR(170, 342, 17, '#fde047'),
+      head: `<path fill-rule="evenodd" d="M78 112 Q124 88 170 112 Q216 88 262 112 L264 184 Q216 204 170 176 Q124 204 76 184Z M90 148 a34 38 0 1 0 68 0 a34 38 0 1 0 -68 0 M182 148 a34 38 0 1 0 68 0 a34 38 0 1 0 -68 0" fill="#2563eb" stroke="#1e3a8a" stroke-width="4" stroke-linejoin="round"/>` },
+    { n: 'Cowboy', e: '🤠', f: 'happy', say: 'Howdy, partner! Yee-meow!', back: '',
+      body: `<path d="M126 272 L214 272 L170 320Z" fill="#dc2626" stroke="#7f1d1d" stroke-width="4" stroke-linejoin="round"/><circle cx="160" cy="288" r="3" fill="#fff"/><circle cx="180" cy="288" r="3" fill="#fff"/><circle cx="170" cy="302" r="3" fill="#fff"/>` + STAR(170, 352, 14, '#fde047'),
+      head: `<path d="M120 74 Q122 14 170 18 Q218 14 220 74Z" fill="#b45309" stroke="#451a03" stroke-width="5" stroke-linejoin="round"/><rect x="121" y="56" width="98" height="12" fill="#451a03"/><ellipse cx="170" cy="76" rx="104" ry="17" fill="#92400e" stroke="#451a03" stroke-width="5"/>` },
+    { n: 'Wizard', e: '🧙', f: 'surprised', say: 'Abra-cat-abra! Poof! Did you see that?', back: '',
+      body: `<path d="M96 270 Q170 308 244 270 L240 302 Q170 336 100 302Z" fill="#7c3aed" stroke="#3b0764" stroke-width="4" stroke-linejoin="round"/><circle cx="130" cy="294" r="5" fill="#fde047"/><circle cx="170" cy="310" r="5" fill="#fde047"/><circle cx="210" cy="294" r="5" fill="#fde047"/>`,
+      head: `<polygon points="118,78 170,-40 222,78" fill="#6d28d9" stroke="#3b0764" stroke-width="5" stroke-linejoin="round"/><ellipse cx="170" cy="78" rx="82" ry="15" fill="#5b21b6" stroke="#3b0764" stroke-width="5"/>` + STAR(166, 26, 12, '#fde047') + STAR(188, 50, 8, '#fde047') + STAR(150, 52, 7, '#fde047') },
+    { n: 'Pirate', e: '🏴‍☠️', f: 'silly', say: 'Arr! Where be the tuna treasure?', back: '',
+      body: `<path d="M126 272 L214 272 L170 316Z" fill="#dc2626" stroke="#7f1d1d" stroke-width="4" stroke-linejoin="round"/><path d="M118 330 L222 330 M114 350 L226 350 M112 370 L228 370" stroke="#1f2937" stroke-width="9" stroke-linecap="round" opacity=".85"/>`,
+      head: `<path d="M92 80 Q130 4 170 10 Q210 4 248 80 Q170 64 92 80Z" fill="#111827" stroke="#000" stroke-width="4" stroke-linejoin="round"/>` + STAR(170, 40, 13, '#fde047') + `<ellipse cx="124" cy="148" rx="36" ry="40" fill="#111827" stroke="#000" stroke-width="3"/><path d="M86 118 L254 128" stroke="#111827" stroke-width="7" stroke-linecap="round"/>` },
+    { n: 'Cool', e: '😎', f: 'silly', say: 'Too cool for school. And way too cool for mice!', back: '',
+      body: `<path d="M108 288 Q170 334 232 288" fill="none" stroke="#fbbf24" stroke-width="7" stroke-linecap="round"/><circle cx="170" cy="326" r="12" fill="#fbbf24" stroke="#92400e" stroke-width="3"/>`,
+      head: `<path d="M110 78 Q170 14 230 78Z" fill="#2563eb" stroke="#1e3a8a" stroke-width="5" stroke-linejoin="round"/><path d="M110 78 L62 90 L112 90Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="4" stroke-linejoin="round"/><path d="M86 126 h74 v42 q0 10 -10 10 h-54 q-10 0 -10 -10z M180 126 h74 v42 q0 10 -10 10 h-54 q-10 0 -10 -10z" fill="#111827" stroke="#000" stroke-width="3"/><path d="M160 138 L180 138" stroke="#111827" stroke-width="7"/><path d="M96 136 l22 -4 M190 136 l22 -4" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".55"/>` },
+    { n: 'Royal', e: '👑', f: 'happy', say: 'All hail King Mango! Bring me cushions and fish!', back: '',
+      body: `<path d="M92 268 Q170 312 248 268 L240 304 Q170 338 100 304Z" fill="#b91c1c" stroke="#7f1d1d" stroke-width="4" stroke-linejoin="round"/>` + [112, 132, 152, 172, 192, 212, 232].map(function (x, i) { return '<circle cx="' + x + '" cy="' + (302 + Math.round(10 * Math.sin((x - 100) / 140 * Math.PI))) + '" r="9" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>'; }).join(''),
+      head: `<polygon points="116,76 122,22 146,50 170,10 194,50 218,22 224,76" fill="#fbbf24" stroke="#b45309" stroke-width="5" stroke-linejoin="round"/><circle cx="122" cy="22" r="6" fill="#ef4444"/><circle cx="170" cy="10" r="7" fill="#3b82f6"/><circle cx="218" cy="22" r="6" fill="#ef4444"/><rect x="118" y="62" width="104" height="12" fill="#f59e0b"/>` },
+    { n: 'Cricket fan', e: '🏏', f: 'laugh', say: 'Howzat?! Mango is ready to bat!', back: '',
+      body: `<path d="M100 296 Q170 332 240 296 L250 392 L90 392Z" fill="#16a34a" stroke="#14532d" stroke-width="4" stroke-linejoin="round"/><path d="M140 292 L170 316 L200 292" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><text x="170" y="372" font-size="46" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">7</text>`,
+      head: `<path d="M112 78 Q170 22 228 78Z" fill="#16a34a" stroke="#14532d" stroke-width="5" stroke-linejoin="round"/><ellipse cx="170" cy="82" rx="82" ry="9" fill="#15803d" stroke="#14532d" stroke-width="4"/><circle cx="170" cy="38" r="7" fill="#fff"/>` },
+    { n: 'Winter', e: '❄️', f: 'happy', say: 'Brrr! Now I am warm, fluffy and ready for snow!', back: '',
+      body: `<path d="M92 268 Q170 314 248 268 L244 306 Q170 346 96 306Z" fill="#3b82f6" stroke="#1e3a8a" stroke-width="4" stroke-linejoin="round"/><path d="M112 282 L116 318 M146 296 L148 332 M192 296 L190 332 M228 282 L224 318" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M220 304 L256 302 L250 356 L212 346Z" fill="#60a5fa" stroke="#1e3a8a" stroke-width="4" stroke-linejoin="round"/>`,
+      head: `<path d="M112 80 Q170 6 228 80Z" fill="#ef4444" stroke="#7f1d1d" stroke-width="5" stroke-linejoin="round"/><path d="M108 72 L232 72 L228 92 L112 92Z" fill="#fecaca" stroke="#7f1d1d" stroke-width="4" stroke-linejoin="round"/><circle cx="170" cy="8" r="17" fill="#fff" stroke="#cbd5e1" stroke-width="3"/>` },
+    { n: 'Bedtime', e: '🌙', f: 'sleepy', say: 'Yawn... pyjamas on. Time for a long cat nap.', back: '',
+      body: `<path d="M98 298 Q170 334 242 298 L250 392 L90 392Z" fill="#60a5fa" stroke="#1e3a8a" stroke-width="4" stroke-linejoin="round"/>` + STAR(130, 352, 9, '#fde047') + STAR(212, 340, 7, '#fde047') + STAR(186, 372, 8, '#fde047'),
+      head: `<path d="M108 80 Q138 8 232 30 Q250 36 246 54 Q240 72 226 80Z" fill="#3b82f6" stroke="#1e3a8a" stroke-width="5" stroke-linejoin="round"/><circle cx="246" cy="48" r="13" fill="#fff" stroke="#cbd5e1" stroke-width="3"/>` + STAR(150, 52, 8, '#fde047') + STAR(184, 36, 6, '#fde047') }
+  ];
+  var POSES = [
+    { n: 'sit', e: '🙂', say: 'Back to sitting nicely. Purr.', f: 'happy' }, { n: 'wave', e: '👋', say: 'Hello! Wave wave wave!', f: 'happy' },
+    { n: 'cheer', e: '🙌', say: 'Hooray! Yippee! Meow-hoo!', f: 'laugh' }, { n: 'hero', e: '💪', say: 'Look at my muscles! Mighty Mango!', f: 'silly' },
+    { n: 'think', e: '🤔', say: 'Hmm... let me think about that for a moment.', f: 'thinking' }, { n: 'sleep', e: '😴', say: 'Zzz... five more minutes...', f: 'sleepy' },
+    { n: 'dance', e: '💃', say: 'Let us dance! Shake, shake, shake the tail!', f: 'laugh' }
+  ];
 
   function mount(root, U) {
     root.innerHTML = '<div class="kcat"><div class="kc-stage"><div class="kc-bubble" id="kc-bubble" aria-live="polite">Meow! Tap me, or type something below.</div>' + catSVG() +
@@ -121,7 +167,7 @@
       '<div class="kc-chat"><div class="kc-log" id="kc-log" role="log" aria-live="polite" aria-label="Conversation with Mango"></div>' +
       '<form id="kc-form" class="kc-form" autocomplete="off"><label class="sr-only" for="kc-text">Type a message to Mango</label><input id="kc-text" maxlength="90" placeholder="Say something to Mango…" enterkeyhint="send"><button type="submit" class="btn btn-primary" id="kc-send">Send</button></form>' +
       '<div class="kc-chips" role="group" aria-label="Quick choices"><button type="button" class="pill" data-q="tell me a joke">😹 Joke</button><button type="button" class="pill" data-q="give me a riddle">🧩 Riddle</button><button type="button" class="pill" data-q="let us play guess the animal">🦁 Guess the animal</button><button type="button" class="pill" data-q="tell me a story">📖 Story</button><button type="button" class="pill" data-q="tell me a fun fact">💡 Fun fact</button><button type="button" class="pill" data-q="guess my number game">🔢 Number game</button><button type="button" class="pill" data-q="would you rather">🤔 Would you rather</button></div>' +
-      '<div class="kc-tools"><button type="button" class="btn btn-ghost btn-sm" id="kc-mute" aria-pressed="false">🔊 Sound on</button><button type="button" class="btn btn-ghost btn-sm" id="kc-reset">New chat</button></div>' +
+      '<div class="kc-ward"><p class="small muted kc-wh">Outfits (or tap Mango’s clothes)</p><div class="kc-chips" id="kc-fits" role="group" aria-label="Outfits">' + OUTFITS.map(function (o, i) { return '<button type="button" class="pill kc-fit" data-fit="' + i + '" aria-label="' + o.n + ' outfit" title="' + o.n + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '">' + o.e + '</button>'; }).join('') + '</div><p class="small muted kc-wh">Poses (or tap Mango’s tummy area)</p><div class="kc-chips" id="kc-poses" role="group" aria-label="Poses">' + POSES.map(function (o, i) { return '<button type="button" class="pill kc-pose" data-pose="' + o.n + '" aria-label="' + o.n + ' pose" title="' + o.n + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '">' + o.e + '</button>'; }).join('') + '</div></div><div class="kc-tools"><button type="button" class="btn btn-primary btn-sm" id="kc-nextfit">👕 Change outfit</button><button type="button" class="btn btn-primary btn-sm" id="kc-nextpose">🕺 Change pose</button><button type="button" class="btn btn-ghost btn-sm" id="kc-mute" aria-pressed="false">🔊 Sound on</button><button type="button" class="btn btn-ghost btn-sm" id="kc-reset">New chat</button></div>' +
       '<p class="small muted kc-note">Mango cannot hear you. Type or tap! Please do not share your real name, address or phone number. Nothing you type is saved or sent anywhere.</p></div></div>';
     var $ = function (s) { return root.querySelector(s); };
     var svg = $('#kc-svg'), bubble = $('#kc-bubble'), logEl = $('#kc-log'), stateEl = $('#kc-state'), inp = $('#kc-text'), muteBtn = $('#kc-mute');
@@ -171,11 +217,11 @@
     function respond(r) {
       busy = true; var dots = document.createElement('div'); dots.className = 'kc-msg kc-cat kc-typing'; dots.innerHTML = '<span></span><span></span><span></span>'; logEl.appendChild(dots); logEl.scrollTop = logEl.scrollHeight;
       svg.classList.add('kc-think-on'); face('thinking'); stateEl.textContent = 'Thinking…'; if (canSpeak) try { synth.cancel(); } catch (e) { } stopTalk(); stateEl.textContent = 'Thinking…';
-      setTimeout(function () { svg.classList.remove('kc-think-on'); if (dots.parentNode) dots.parentNode.removeChild(dots); reply(r.t, r.f, r.ms); }, reduced ? 120 : 520 + Math.random() * 520);
+      setTimeout(function () { svg.classList.remove('kc-think-on'); if (dots.parentNode) dots.parentNode.removeChild(dots); reply(r.t, r.f, r.ms); if (r.act) r.act(); }, reduced ? 120 : 520 + Math.random() * 520);
     }
 
     /* ----- the conversation engine ----- */
-    function R(t, f, ms) { return { t: t, f: f, ms: ms }; }
+    function R(t, f, ms, act) { return { t: t, f: f, ms: ms, act: act }; }
     function remember(text) {
       var m;
       if ((m = text.match(/(?:favou?rite colou?r is|i like the colou?r|my colou?r is) (\w+)/))) { S.likes.color = m[1]; return R(rnd(['Ooh, ' + m[1] + '! That is a lovely colour. I will remember it for this chat.', m[1] + ' is so pretty! I wish my fur was ' + m[1] + ' too.']), 'happy'); }
@@ -238,6 +284,17 @@
       if (SAFETY.test(t)) return R('I am really sorry you feel that way. Please tell a grown-up you trust, like a parent, a teacher or a family member, right now. I am only a cartoon cat, but you matter a lot.', 'sad', 3500);
       if (PERSONAL.test(raw.toLowerCase())) return R('Whoa, let us keep personal things like names, addresses and phone numbers secret online. That is a super rule! What is your favourite animal instead?', 'surprised', 2200);
       if (S.game) { var gr = gameTurn(t, raw); if (gr) return gr; }
+      var fitKey = t.match(/\b(party|chef|cook|hero|superhero|cape|cowboy|wizard|magic|pirate|cool|sunglasses|royal|king|crown|cricket|jersey|winter|snow|bedtime|pyjamas|pajamas|explorer|scarf)\b/);
+      if (/\b(outfit|outfits|clothes|costume|dress up|wardrobe|change (your )?(look|clothes))\b/.test(t) || (/\b(wear|put on|dress|become)\b/.test(t) && fitKey)) {
+        var map = { party: 1, chef: 2, cook: 2, hero: 3, superhero: 3, cape: 3, cowboy: 4, wizard: 5, magic: 5, pirate: 6, cool: 7, sunglasses: 7, royal: 8, king: 8, crown: 8, cricket: 9, jersey: 9, winter: 10, snow: 10, bedtime: 11, pyjamas: 11, pajamas: 11, explorer: 0, scarf: 0 };
+        var want = fitKey ? map[fitKey[1]] : (fitIdx + 1) % OUTFITS.length; return R(OUTFITS[want].say, OUTFITS[want].f, 2200, function () { setOutfit(want, true); });
+      }
+      var poseKey = t.match(/\b(dance|dancing|wave|cheer|hooray|flex|muscles|think|sleep|nap|sit|strike a pose|change (your )?pose|new pose|pose)\b/);
+      if (poseKey && !/\b(i am|im) (sleepy|tired)\b/.test(t)) {
+        var pm = { dance: 'dance', dancing: 'dance', wave: 'wave', cheer: 'cheer', hooray: 'cheer', flex: 'hero', muscles: 'hero', think: 'think', sleep: 'sleep', nap: 'sleep', sit: 'sit' }; var pn = pm[poseKey[1]] || POSES[1 + Math.floor(Math.random() * (POSES.length - 1))].n; var pz = POSES.filter(function (x) { return x.n === pn; })[0];
+        return R(pz.say, pz.f, 2400, function () { setPose(pn, true); });
+      }
+
       if (/\b(my name is|i am called|call me)\b/.test(t)) return R('Nice to meet you! But it is best not to share your real name online, so I will call you Super Star. What do you like to do for fun?', 'happy');
       if (/\b(hello|hi|hey|hiya|salam|assalam|assalamualaikum|aoa|good morning|good afternoon|good evening|yo)\b/.test(t) && t.split(' ').length < 9) return R(/salam|assalam|aoa/.test(t) ? 'Walaikum assalam! Meow! How are you today?' : pick(GREET, 'greet'), 'happy');
       if (/\b(how are you|how r u|how do you feel|whats up|what is up|sup)\b/.test(t)) return R(rnd(['I am purr-fectly happy now that you are here! How are you?', 'Super! I just had a nap and a snack. How about you?', 'Fluffy and fantastic! And you?']), 'happy');
@@ -287,17 +344,39 @@
       return R(rnd(FALLBACK), 'happy');
     }
 
+    /* ----- wardrobe ----- */
+    var fitIdx = 0, poseName = 'sit', gBack = $('#kc-fit-back'), gBody = $('#kc-fit-body'), gHead = $('#kc-fit-head'), scarf0 = $('#kc-scarf0');
+    function say2(text, fc, ms) { if (busy) return; bubble.textContent = text; add('cat', text); face(fc || 'happy', ms || 2000); speak(text); }
+    function setOutfit(i, quiet) {
+      fitIdx = (i + OUTFITS.length) % OUTFITS.length; var o = OUTFITS[fitIdx]; gBack.innerHTML = o.back; gBody.innerHTML = o.body; gHead.innerHTML = o.head; scarf0.style.display = fitIdx === 0 ? '' : 'none';
+      [].forEach.call(root.querySelectorAll('.kc-fit'), function (b) { b.setAttribute('aria-pressed', String(+b.dataset.fit === fitIdx)); });
+      svg.classList.remove('kc-swap'); void svg.offsetWidth; svg.classList.add('kc-swap'); setTimeout(function () { svg.classList.remove('kc-swap'); }, 500);
+      if (!quiet) say2(o.say, o.f, 2200);
+    }
+    function setPose(name, quiet) {
+      var idx = POSES.map(function (p) { return p.n; }).indexOf(name); if (idx < 0) return; var pz = POSES[idx];
+      POSES.forEach(function (p) { svg.classList.remove('kc-pose-' + p.n); }); svg.classList.add('kc-pose-' + name); svg.classList.toggle('kc-posed', name !== 'sit'); poseName = name;
+      [].forEach.call(root.querySelectorAll('.kc-pose'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.pose === name)); });
+      if (!quiet) say2(pz.say, pz.f, (name === 'sleep' || name === 'think') ? 0 : 2400); else face(pz.f, 0);
+    }
+    function nextOutfit() { setOutfit(fitIdx + 1); }
+    function nextPose() { var order = POSES.map(function (p) { return p.n; }); setPose(order[(order.indexOf(poseName) + 1) % order.length]); }
+    window.__kcWard = { setOutfit: setOutfit, setPose: setPose };
     /* ----- wiring ----- */
     function send(text) {
       text = String(text || '').replace(/\s+/g, ' ').trim(); if (!text) { stateEl.textContent = 'Type a word or two first.'; return; } if (busy) return;
-      add('me', text); inp.value = ''; respond(think(text));
+      if (poseName === 'sleep') setPose('sit', true); add('me', text); inp.value = ''; respond(think(text));
     }
     $('#kc-form').addEventListener('submit', function (e) { e.preventDefault(); send(inp.value); });
     root.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-q]'); if (b && root.contains(b)) { send(b.dataset.q); return; }
+      var fb = e.target.closest('button[data-fit]'); if (fb && root.contains(fb)) { setOutfit(+fb.dataset.fit); return; }
+      var pb = e.target.closest('button[data-pose]'); if (pb && root.contains(pb)) { setPose(pb.dataset.pose); return; }
+      if (e.target.closest('#kc-nextfit')) { nextOutfit(); return; } if (e.target.closest('#kc-nextpose')) { nextPose(); return; }
       if (e.target.closest('#kc-svg')) {
         var now = Date.now(); if (now - lastTouch < 350) return; lastTouch = now;
         var zone = (e.target.closest('[data-zone]') || {}).getAttribute ? e.target.closest('[data-zone]').getAttribute('data-zone') : '';
+        if (zone === 'outfit') { nextOutfit(); return; } if (zone === 'body') { nextPose(); return; }
         var Z = { head: [['Purrrrr... that feels lovely.', 'sleepy'], ['Mmm, right behind the ears!', 'sleepy'], ['Head pats? Yes, please!', 'happy']], belly: [['Hee hee hee! That tickles!', 'laugh'], ['Not the tummy! Ha ha ha!', 'laugh'], ['Belly rubs cost one fish. Just kidding!', 'silly']], paw: [['High five! Meow!', 'happy'], ['Nice to meet you, paw to paw!', 'happy'], ['Hello! Wave wave wave!', 'happy']] };
         var L = rnd(Z[zone] || [['Meow! You found me!', 'surprised'], ['Boing! I am a bouncy cat!', 'silly'], ['Hee hee, hello!', 'laugh']]);
         svg.classList.remove('kc-hop'); void svg.offsetWidth; if (zone !== 'head') svg.classList.add('kc-hop'); if (zone === 'paw') svg.classList.add('kc-wave'); setTimeout(function () { svg.classList.remove('kc-hop'); svg.classList.remove('kc-wave'); }, 1500);
@@ -305,7 +384,7 @@
       }
     });
     muteBtn.addEventListener('click', function () { muted = !muted; muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false'); muteBtn.textContent = muted ? '🔇 Sound off' : '🔊 Sound on'; if (muted && canSpeak) try { synth.cancel(); } catch (e) { } if (muted) stopTalk(); });
-    $('#kc-reset').addEventListener('click', function () { resetState(); logEl.innerHTML = ''; if (canSpeak) try { synth.cancel(); } catch (e) { } stopTalk(); busy = false; var g = pick(GREET, 'greet'); bubble.textContent = g; add('cat', g); face('happy'); });
+    $('#kc-reset').addEventListener('click', function () { setOutfit(0, true); setPose('sit', true); resetState(); logEl.innerHTML = ''; if (canSpeak) try { synth.cancel(); } catch (e) { } stopTalk(); busy = false; var g = pick(GREET, 'greet'); bubble.textContent = g; add('cat', g); face('happy'); });
     /* eyes follow the pointer */
     var pups = svg.querySelectorAll('.kc-pup');
     function look(dx, dy) { for (var i = 0; i < pups.length; i++) pups[i].style.transform = 'translate(' + dx + 'px,' + dy + 'px)'; }
@@ -313,6 +392,7 @@
     /* life: blinking and ear twitches */
     (function loop() { svg.classList.add('kc-blink'); setTimeout(function () { svg.classList.remove('kc-blink'); }, 130); setTimeout(loop, 2200 + Math.random() * 2600); })();
     if (!reduced) (function twitch() { var e = svg.querySelector(Math.random() < .5 ? '.kc-earL' : '.kc-earR'); e.classList.add('kc-twitch'); setTimeout(function () { e.classList.remove('kc-twitch'); }, 420); setTimeout(twitch, 4500 + Math.random() * 5000); })();
+    setPose('sit', true);
     window.addEventListener('pagehide', function () { if (canSpeak) try { synth.cancel(); } catch (e) { } });
     var g0 = pick(GREET, 'greet'); bubble.textContent = g0; add('cat', g0);
     if (canSpeak) stateEl.textContent = 'Ready (tap Send to hear Mango)'; else stateEl.textContent = 'Ready (this browser cannot speak, so Mango shows words)';
