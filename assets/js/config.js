@@ -227,7 +227,7 @@ window.SITE_CONFIG = {
   "formEndpoint": "",
   /* EMAIL UPDATES BOX: paste the form-post URL of a free email service (for example a Buttondown or MailerLite embed form) in "endpoint".
      "field" is the name of its email input and "hidden" holds any extra fields it needs. While "endpoint" is empty, the box opens the visitor's email app instead. */
-  "newsletter": { "endpoint": "", "field": "email", "hidden": {} },
+  "newsletter": { "endpoint": "https://buttondown.com/api/emails/embed-subscribe/gmdkhantoolshub", "field": "email", "hidden": {} },
   "currencyApiUrl": "https://open.er-api.com/v6/latest/USD",
   "contactEmail": "asmarkniazi@gmail.com"
 };
