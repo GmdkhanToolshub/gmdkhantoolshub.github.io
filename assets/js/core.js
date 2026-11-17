@@ -983,6 +983,7 @@ window.SITE_CONFIG = {
   var R = ['Resume writing & review', 'A professionally written, ATS-friendly CV for your target job.'], X = ['Excel dashboards & reports', 'A custom Excel workbook, dashboard or report built for your business.'], S = ['Sales operations consulting', 'Practical help with sales targets, KPIs, reporting and distribution.'];
   var M = { 'resume-builder': R, 'ats-resume-checker': R, 'cover-letter-generator': R, 'linkedin-headline-generator': R, 'write-cv-for-jobs-in-pakistan': R, 'ats-friendly-resume': R, 'ats-resume-check-free': R,
     'excel-formula-generator': X, 'excel-to-pdf': X, 'pdf-to-excel': X, 'loan-emi-formula-excel': X, 'excel-formulas-sales-ops': X, 'business-report-generator': X, 'kpi-performance-calculator': X, 'weighted-kpi-scorecard': X,
+    'tola-gold-converter': ['Custom calculators for your website', 'A calculator built for your business and branding, such as plot price, gold price or fee calculators.'], 'land-area-converter': ['Custom calculators for your website', 'A calculator built for your business and branding, such as plot price, gold price or fee calculators.'],
     'sales-target-calculator': S, 'sales-target-tracking': S, 'sales-operations-explained': S, 'secondary-vs-primary-sales-fmcg': S, 'digital-transformation-start-with-data': S };
   var path = location.pathname; if (/\/(kids|shop|services)\//.test(path)) return;
   var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (path.match(/\/blog\/([^\/]+)\/?/) || [])[1], it = slug && M[slug]; if (!it) return;
@@ -990,6 +991,18 @@ window.SITE_CONFIG = {
   box.innerHTML = '<div><span class="sp-tag">Done for you</span><h2>' + it[0] + '</h2><p>' + it[1] + '</p></div><div class="sp-buy"><a class="btn btn-primary btn-sm" href="' + base + 'services/">Get a quote</a></div>';
   var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
+})();
+
+/* "Copy embed code" button on the embed boxes of tool pages */
+(function () {
+  document.addEventListener('click', function (e) {
+    var ta = e.target && e.target.closest && e.target.closest('.embed-block textarea'); if (ta) { ta.select(); return; }
+    var b = e.target && e.target.closest && e.target.closest('[data-embed-copy]'); if (!b) return;
+    var box = b.closest('.embed-block'), t = box && box.querySelector('textarea'); if (!t) return;
+    var done = function () { b.textContent = 'Copied!'; setTimeout(function () { b.textContent = 'Copy embed code'; }, 2200); };
+    var old = function () { t.select(); try { document.execCommand('copy'); } catch (er) { /* ignore */ } done(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t.value).then(done, old); else old();
+  });
 })();
 
 /* Optional email-updates box on tool pages and articles (never on Kids Corner, shop, services or legal pages) */

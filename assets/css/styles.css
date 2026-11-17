@@ -1591,3 +1591,6 @@ html.wl body::before { background: #010a29; }
 .news-box .nb-msg:empty { display: none; }
 .news-box .nb-ok { color: var(--ok, #15803d); font-weight: 600; }
 .news-box .nb-bad { color: var(--err, #b91c1c); font-weight: 600; }
+/* Embed boxes */
+.embed-block .embed-code { display: block; width: 100%; box-sizing: border-box; margin: 12px 0 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-soft, var(--surface)); color: var(--text); font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; resize: vertical; }
+.embed-block code { font-size: .85em; }
