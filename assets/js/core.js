@@ -43,19 +43,6 @@ window.SITE_CONFIG = {
       },
       {
           "match": [
-              "page-career-studio",
-              "resume-builder",
-              "ats-resume-checker",
-              "cover-letter-generator",
-              "interview-practice",
-              "interview-prep"
-          ],
-          "name": "Amazon: career and interview books",
-          "url": "https://www.amazon.com/s?k=job+interview+resume+career+book&tag=gmtoolshub-20",
-          "note": "Career, resume and interview books"
-      },
-      {
-          "match": [
               "page-creative-studio",
               "color-contrast-checker",
               "color-picker"
@@ -79,6 +66,141 @@ window.SITE_CONFIG = {
           "name": "Amazon: ergonomic keyboards",
           "url": "https://www.amazon.com/s?k=ergonomic+keyboard&tag=gmtoolshub-20",
           "note": "Comfortable keyboards for typing practice"
+      },
+      {
+          "match": [
+              "page-career-studio",
+              "resume-builder",
+              "ats-resume-checker",
+              "cover-letter-generator",
+              "interview-practice",
+              "interview-prep",
+              "linkedin-headline-generator",
+              "ats-friendly-resume",
+              "ats-resume-check-free",
+              "write-cv-for-jobs-in-pakistan",
+              "common-interview-questions-pakistan"
+          ],
+          "name": "Amazon: career and interview books",
+          "url": "https://www.amazon.com/s?k=job+interview+resume+career+book&tag=gmtoolshub-20",
+          "note": "Career, resume and interview books"
+      },
+      {
+          "match": [
+              "excel-formula-generator",
+              "excel-to-pdf",
+              "pdf-to-excel",
+              "excel-formulas-sales-ops",
+              "loan-emi-formula-excel",
+              "business-report-generator",
+              "kpi-performance-calculator",
+              "weighted-kpi-scorecard",
+              "sales-target-calculator",
+              "sales-target-tracking",
+              "sales-operations-explained",
+              "secondary-vs-primary-sales-fmcg",
+              "digital-transformation-start-with-data"
+          ],
+          "name": "Amazon: Excel and business analysis books",
+          "url": "https://www.amazon.com/s?k=excel+formulas+data+analysis+book&tag=gmtoolshub-20",
+          "note": "Books on Excel and business analysis"
+      },
+      {
+          "match": [
+              "monthly-budget-50-30-20-pakistan",
+              "gross-vs-net-salary-take-home-pay",
+              "salary-calculator",
+              "pakistan-salary-tax-calculator",
+              "loan-emi-calculator",
+              "flat-rate-vs-reducing-balance-loans",
+              "percentage-discount-sales-tax-guide",
+              "salary-tax-pakistan-2026-27",
+              "final-settlement-calculator"
+          ],
+          "name": "Amazon: personal finance books",
+          "url": "https://www.amazon.com/s?k=personal+finance+budgeting+book&tag=gmtoolshub-20",
+          "note": "Books on budgeting and personal finance"
+      },
+      {
+          "match": [
+              "profit-margin-calculator",
+              "profit-margin-vs-markup",
+              "qr-codes-small-business"
+          ],
+          "name": "Amazon: small business and margin books",
+          "url": "https://www.amazon.com/s?k=small+business+accounting+profit+book&tag=gmtoolshub-20",
+          "note": "Books on running a small business"
+      },
+      {
+          "match": [
+              "pomodoro-timer",
+              "countdown-timer",
+              "notepad",
+              "stopwatch",
+              "alarm-clock"
+          ],
+          "name": "Amazon: focus and productivity books",
+          "url": "https://www.amazon.com/s?k=deep+work+focus+productivity+book&tag=gmtoolshub-20",
+          "note": "Books on focus and time management"
+      },
+      {
+          "match": [
+              "effective-minutes-of-meeting",
+              "meeting-minutes-generator",
+              "message-writer"
+          ],
+          "name": "Amazon: business writing books",
+          "url": "https://www.amazon.com/s?k=business+writing+communication+book&tag=gmtoolshub-20",
+          "note": "Books on clear business writing"
+      },
+      {
+          "match": [
+              "gpa-calculator",
+              "gpa-cgpa-calculation-guide"
+          ],
+          "name": "Amazon: study skills books",
+          "url": "https://www.amazon.com/s?k=study+skills+student+book&tag=gmtoolshub-20",
+          "note": "Study skills for students"
+      },
+      {
+          "match": [
+              "pdf-merge-split",
+              "images-to-pdf",
+              "pdf-to-word",
+              "word-to-pdf",
+              "pdf-compressor",
+              "pdf-rotator",
+              "pdf-to-jpg"
+          ],
+          "name": "Amazon: document scanners",
+          "url": "https://www.amazon.com/s?k=portable+document+scanner&tag=gmtoolshub-20",
+          "note": "Scan paper documents to PDF"
+      },
+      {
+          "match": [
+              "barcode-generator",
+              "qr-code-generator",
+              "qr-code-scanner"
+          ],
+          "name": "Amazon: barcode and QR scanners",
+          "url": "https://www.amazon.com/s?k=barcode+scanner+usb&tag=gmtoolshub-20",
+          "note": "Scanners for small shops"
+      },
+      {
+          "match": [
+              "password-generator"
+          ],
+          "name": "Amazon: security keys",
+          "url": "https://www.amazon.com/s?k=yubikey+security+key&tag=gmtoolshub-20",
+          "note": "Hardware security keys for stronger logins"
+      },
+      {
+          "match": [
+              "bmi-calculator"
+          ],
+          "name": "Amazon: body weight scales",
+          "url": "https://www.amazon.com/s?k=digital+body+weight+scale&tag=gmtoolshub-20",
+          "note": "Digital bathroom scales"
       }
   ],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
