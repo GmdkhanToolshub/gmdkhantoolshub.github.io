@@ -457,7 +457,7 @@
   var SC = window.SITE_CONFIG || {}, cfg = SC.newsletter || {}, ep = cfg.endpoint || '';
   var base = document.body.getAttribute('data-root') || './', mail = SC.contactEmail || 'asmarkniazi@gmail.com';
   var box = document.createElement('aside'); box.className = 'news-box no-print'; box.setAttribute('aria-label', 'Email updates');
-  box.innerHTML = '<div class="nb-text"><span class="sp-tag">Free email updates</span><h2>Get new free tools and templates by email</h2><p>A short note when a new tool, template or guide is added. No spam, and you can unsubscribe at any time.</p></div>' +
+  box.innerHTML = '<div class="nb-text"><span class="sp-tag">Free email updates</span><h2>Get new free tools and templates by email</h2><p>A short note when a new tool, template or guide is added. Join now and get the free Monthly Budget Planner (Excel) after you confirm your email. No spam, and you can unsubscribe at any time.</p></div>' +
     '<form class="nb-form" novalidate><label class="sr-only" for="nb-email">Your email address</label><input id="nb-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>' +
     '<button class="btn btn-primary btn-sm" type="submit">Subscribe</button>' +
     '<p class="nb-note small muted">By subscribing you agree to receive these emails. Read the <a href="' + base + 'privacy-policy/">Privacy Policy</a>.</p><p class="nb-msg small" role="status" aria-live="polite"></p></form>';
@@ -472,7 +472,7 @@
     var fd = new FormData(); fd.append(cfg.field || 'email', em); var hid = cfg.hidden || {}; Object.keys(hid).forEach(function (k) { fd.append(k, hid[k]); });
     var btn = form.querySelector('button'); btn.disabled = true; msg.textContent = 'Sending…'; msg.className = 'nb-msg small';
     fetch(ep, { method: 'POST', body: fd, mode: 'no-cors', referrerPolicy: 'no-referrer' }).then(function () {
-      msg.textContent = 'Thank you! Please check your inbox and confirm your email address.'; msg.className = 'nb-msg small nb-ok'; input.value = ''; input.disabled = true;
+      msg.textContent = 'Thank you! Please check your inbox and confirm your email address. Your free budget template opens after you confirm.'; msg.className = 'nb-msg small nb-ok'; input.value = ''; input.disabled = true;
       try { localStorage.setItem('niazi.news', '1'); } catch (e) { /* ignore */ }
     }).catch(function () { btn.disabled = false; msg.textContent = 'Sorry, that did not go through. Please try again later.'; msg.className = 'nb-msg small nb-bad'; });
   });

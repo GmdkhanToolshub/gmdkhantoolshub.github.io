@@ -220,6 +220,54 @@ window.SITE_CONFIG = {
           "name": "Markaz: Pakistani online marketplace",
           "url": "https://www.markaz.app/shop?afd=11133",
           "note": "Shop in PKR with cash on delivery"
+      },
+      {
+          "match": [
+              "fuel-cost-calculator"
+          ],
+          "name": "Amazon: tyre pressure gauges",
+          "url": "https://www.amazon.com/s?k=digital+tyre+pressure+gauge&tag=gmtoolshub-20",
+          "note": "Digital tyre pressure gauges"
+      },
+      {
+          "match": [
+              "electricity-bill-calculator"
+          ],
+          "name": "Amazon: plug-in energy monitors",
+          "url": "https://www.amazon.com/s?k=plug+in+energy+monitor+watt+meter&tag=gmtoolshub-20",
+          "note": "See what each appliance really uses"
+      },
+      {
+          "match": [
+              "land-area-converter"
+          ],
+          "name": "Amazon: laser distance measurers",
+          "url": "https://www.amazon.com/s?k=laser+distance+measurer&tag=gmtoolshub-20",
+          "note": "Measure a plot or room quickly"
+      },
+      {
+          "match": [
+              "tola-gold-converter"
+          ],
+          "name": "Amazon: digital jewellery scales",
+          "url": "https://www.amazon.com/s?k=digital+jewelry+scale+0.01g&tag=gmtoolshub-20",
+          "note": "Precise scales for small weights"
+      },
+      {
+          "match": [
+              "board-marks-calculator"
+          ],
+          "name": "Amazon: student planners",
+          "url": "https://www.amazon.com/s?k=student+planner+study+organizer&tag=gmtoolshub-20",
+          "note": "Plan your revision week by week"
+      },
+      {
+          "match": [
+              "amount-in-words"
+          ],
+          "name": "Amazon: bookkeeping and accounting books",
+          "url": "https://www.amazon.com/s?k=bookkeeping+accounting+basics+book&tag=gmtoolshub-20",
+          "note": "Learn accounts and record-keeping"
       }
   ],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
