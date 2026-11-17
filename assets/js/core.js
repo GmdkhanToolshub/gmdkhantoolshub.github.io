@@ -201,6 +201,25 @@ window.SITE_CONFIG = {
           "name": "Amazon: body weight scales",
           "url": "https://www.amazon.com/s?k=digital+body+weight+scale&tag=gmtoolshub-20",
           "note": "Digital bathroom scales"
+      },
+      {
+          "match": [
+              "profit-margin-calculator",
+              "profit-margin-vs-markup",
+              "qr-codes-small-business",
+              "barcode-generator",
+              "qr-code-generator",
+              "monthly-budget-50-30-20-pakistan",
+              "percentage-discount-sales-tax-guide",
+              "percentage-calculator",
+              "typing-speed-test",
+              "gpa-calculator",
+              "salary-calculator",
+              "pakistan-salary-tax-calculator"
+          ],
+          "name": "Markaz: Pakistani online marketplace",
+          "url": "https://www.markaz.app/shop?afd=11133",
+          "note": "Shop in PKR with cash on delivery"
       }
   ],
   /* CONTACT FORM ENDPOINT (placeholder): paste your form service URL here, for example "https://formspree.io/f/your-form-id".
