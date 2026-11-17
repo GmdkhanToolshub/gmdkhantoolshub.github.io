@@ -1,4 +1,4 @@
-/* Kids Corner: Mango the Talking Cat.
+﻿/* Kids Corner: Mango the Talking Cat.
    An original cartoon cat. Everything runs on this device: no microphone, no accounts, nothing typed is stored or sent.
    Conversation = an on-device engine (intents, memory of this chat, games, generated stories). Voice = the browser's built-in speech. */
 (function () {
@@ -83,25 +83,36 @@
 
   /* ---------------------------------------------------------------- the cat */
   function catSVG() {
-    return '<svg id="kc-svg" class="kc-svg kc-happy" viewBox="0 0 320 360" role="img" aria-label="Mango, a friendly orange cartoon cat"><g class="kc-all">' +
-      '<path class="kc-tail" d="M236 306 Q306 296 298 222 Q294 196 270 208" fill="none" stroke="#fb923c" stroke-width="28" stroke-linecap="round"/><path class="kc-tail" d="M290 236 Q296 216 282 206" fill="none" stroke="#9a3412" stroke-width="8" stroke-linecap="round" opacity=".55"/>' +
-      '<ellipse cx="150" cy="300" rx="92" ry="62" fill="#fb923c" stroke="#9a3412" stroke-width="5"/><ellipse cx="150" cy="310" rx="52" ry="42" fill="#fff7ed"/>' +
-      '<ellipse cx="108" cy="346" rx="30" ry="15" fill="#fff7ed" stroke="#9a3412" stroke-width="5"/><ellipse cx="192" cy="346" rx="30" ry="15" fill="#fff7ed" stroke="#9a3412" stroke-width="5"/>' +
-      '<g class="kc-head"><g class="kc-ear kc-earL"><polygon points="62,98 72,16 130,68" fill="#fb923c" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="78,84 82,40 112,68" fill="#fda4af"/></g>' +
-      '<g class="kc-ear kc-earR"><polygon points="238,98 228,16 170,68" fill="#fb923c" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="222,84 218,40 188,68" fill="#fda4af"/></g>' +
-      '<ellipse cx="150" cy="142" rx="110" ry="94" fill="#fb923c" stroke="#9a3412" stroke-width="5"/><path d="M150 52 L150 80 M120 58 L128 82 M180 58 L172 82" stroke="#c2410c" stroke-width="7" stroke-linecap="round" opacity=".8"/>' +
-      '<ellipse cx="150" cy="186" rx="64" ry="42" fill="#fff7ed"/><ellipse class="kc-blush" cx="74" cy="172" rx="17" ry="11" fill="#fb7185"/><ellipse class="kc-blush" cx="226" cy="172" rx="17" ry="11" fill="#fb7185"/>' +
-      '<g class="kc-eyes"><ellipse class="kc-white" cx="108" cy="134" rx="26" ry="30" fill="#fff" stroke="#9a3412" stroke-width="4"/><ellipse class="kc-white" cx="192" cy="134" rx="26" ry="30" fill="#fff" stroke="#9a3412" stroke-width="4"/>' +
-      '<circle class="kc-pup" cx="108" cy="138" r="14" fill="#1f2937"/><circle class="kc-pup" cx="192" cy="138" r="14" fill="#1f2937"/><circle class="kc-glint" cx="103" cy="131" r="5" fill="#fff"/><circle class="kc-glint" cx="187" cy="131" r="5" fill="#fff"/>' +
-      '<ellipse class="kc-lid" cx="108" cy="134" rx="28" ry="32" fill="#fb923c"/><ellipse class="kc-lid" cx="192" cy="134" rx="28" ry="32" fill="#fb923c"/></g>' +
-      '<path class="kc-brow kc-bL" d="M82 96 Q108 84 132 96" fill="none" stroke="#9a3412" stroke-width="6" stroke-linecap="round"/><path class="kc-brow kc-bR" d="M168 96 Q192 84 218 96" fill="none" stroke="#9a3412" stroke-width="6" stroke-linecap="round"/>' +
-      '<path d="M139 172 Q150 164 161 172 Q150 186 139 172Z" fill="#f472b6" stroke="#9d174d" stroke-width="3" stroke-linejoin="round"/>' +
-      '<path id="kc-mc" d="M150 180 L150 190 M150 190 Q136 204 120 194 M150 190 Q164 204 180 194" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<g id="kc-mo" style="display:none"><ellipse id="kc-mo-e" cx="150" cy="200" rx="22" ry="12" fill="#7f1d1d" stroke="#7c2d12" stroke-width="4"/><ellipse id="kc-mo-t" cx="150" cy="206" rx="12" ry="5" fill="#f87171"/></g>' +
-      '<path class="kc-tongue" d="M142 196 Q150 222 158 196Z" fill="#f87171" stroke="#7c2d12" stroke-width="3"/>' +
-      '<g stroke="#9a3412" stroke-width="3" stroke-linecap="round" opacity=".8"><line x1="104" y1="188" x2="30" y2="170"/><line x1="104" y1="196" x2="28" y2="198"/><line x1="106" y1="204" x2="36" y2="226"/><line x1="196" y1="188" x2="270" y2="170"/><line x1="196" y1="196" x2="272" y2="198"/><line x1="194" y1="204" x2="264" y2="226"/></g></g>' +
-      '<path d="M96 236 Q150 262 204 236" fill="none" stroke="#dc2626" stroke-width="14" stroke-linecap="round"/><circle cx="150" cy="256" r="12" fill="#fbbf24" stroke="#92400e" stroke-width="4"/>' +
-      '<g class="kc-think" aria-hidden="true"><circle cx="262" cy="70" r="6"/><circle cx="280" cy="48" r="9"/><circle cx="296" cy="20" r="12"/></g></g></svg>';
+    var eye = function (x) { return '<g class="kc-pup"><circle cx="' + x + '" cy="150" r="23" fill="url(#kcIris)"/><circle cx="' + x + '" cy="151" r="12.5" fill="#1f1308"/><circle cx="' + (x - 8) + '" cy="140" r="7" fill="#fff"/><circle cx="' + (x + 8) + '" cy="160" r="3.4" fill="#fff" opacity=".9"/></g>'; };
+    return '<svg id="kc-svg" class="kc-svg kc-happy" viewBox="0 0 340 400" role="img" aria-label="Mango, a friendly orange cartoon cat wearing a teal scarf"><defs>' +
+      '<radialGradient id="kcFur" cx="45%" cy="30%" r="80%"><stop offset="0" stop-color="#fdba74"/><stop offset=".55" stop-color="#fb923c"/><stop offset="1" stop-color="#ea580c"/></radialGradient>' +
+      '<radialGradient id="kcCream" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#fed7aa"/></radialGradient>' +
+      '<radialGradient id="kcIris" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#fde68a"/><stop offset=".6" stop-color="#f59e0b"/><stop offset="1" stop-color="#b45309"/></radialGradient>' +
+      '<linearGradient id="kcScarf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><g class="kc-all">' +
+      '<ellipse cx="170" cy="392" rx="120" ry="9" fill="#0f172a" opacity=".18"/>' +
+      '<path class="kc-tail" d="M262 346 Q338 336 326 256 Q320 226 292 240" fill="none" stroke="url(#kcFur)" stroke-width="32" stroke-linecap="round"/><path class="kc-tail" d="M318 270 Q326 250 310 238 M308 304 Q324 296 330 280" fill="none" stroke="#9a3412" stroke-width="7" stroke-linecap="round" opacity=".5"/>' +
+      '<ellipse cx="170" cy="328" rx="102" ry="64" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse data-zone="belly" cx="170" cy="342" rx="58" ry="42" fill="url(#kcCream)"/>' +
+      '<g class="kc-armL" data-zone="paw"><ellipse cx="82" cy="326" rx="23" ry="44" transform="rotate(14 82 326)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="74" cy="364" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g>' +
+      '<g class="kc-armR" data-zone="paw"><ellipse cx="258" cy="326" rx="23" ry="44" transform="rotate(-14 258 326)" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/><ellipse cx="266" cy="364" rx="21" ry="15" fill="url(#kcCream)" stroke="#9a3412" stroke-width="4"/></g>' +
+      '<ellipse cx="128" cy="386" rx="34" ry="14" fill="url(#kcCream)" stroke="#9a3412" stroke-width="5"/><ellipse cx="212" cy="386" rx="34" ry="14" fill="url(#kcCream)" stroke="#9a3412" stroke-width="5"/>' +
+      '<path d="M98 270 Q170 306 242 270 L238 298 Q170 330 102 298Z" fill="url(#kcScarf)" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/><path d="M120 286 L124 308 M150 296 L152 318 M190 296 L188 318 M220 286 L216 308" stroke="#99f6e4" stroke-width="5" stroke-linecap="round" opacity=".85"/>' +
+      '<path d="M214 298 L252 296 L246 346 L206 336Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="4" stroke-linejoin="round"/>' +
+      '<g class="kc-head" data-zone="head">' +
+      '<g class="kc-ear kc-earL"><polygon points="70,112 78,16 148,78" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="90,98 94,44 128,78" fill="#fda4af"/></g>' +
+      '<g class="kc-ear kc-earR"><polygon points="270,112 262,16 192,78" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5" stroke-linejoin="round"/><polygon points="250,98 246,44 212,78" fill="#fda4af"/></g>' +
+      '<ellipse cx="170" cy="162" rx="126" ry="102" fill="url(#kcFur)" stroke="#9a3412" stroke-width="5"/>' +
+      '<polygon points="58,178 20,186 54,198 26,212 64,218" fill="url(#kcFur)" stroke="#9a3412" stroke-width="4" stroke-linejoin="round"/><polygon points="282,178 320,186 286,198 314,212 276,218" fill="url(#kcFur)" stroke="#9a3412" stroke-width="4" stroke-linejoin="round"/>' +
+      '<path d="M170 62 L170 92 M138 68 L146 96 M202 68 L194 96" stroke="#c2410c" stroke-width="8" stroke-linecap="round" opacity=".75"/>' +
+      '<ellipse cx="170" cy="214" rx="72" ry="46" fill="url(#kcCream)"/><ellipse class="kc-blush" cx="82" cy="200" rx="18" ry="12" fill="#fb7185"/><ellipse class="kc-blush" cx="258" cy="200" rx="18" ry="12" fill="#fb7185"/>' +
+      '<g class="kc-eyes"><ellipse class="kc-white" cx="124" cy="148" rx="31" ry="36" fill="#fff" stroke="#9a3412" stroke-width="4"/><ellipse class="kc-white" cx="216" cy="148" rx="31" ry="36" fill="#fff" stroke="#9a3412" stroke-width="4"/>' + eye(124) + eye(216) +
+      '<ellipse class="kc-lid" cx="124" cy="148" rx="33" ry="38" fill="#f9893a" stroke="#9a3412" stroke-width="4"/><ellipse class="kc-lid" cx="216" cy="148" rx="33" ry="38" fill="#f9893a" stroke="#9a3412" stroke-width="4"/></g>' +
+      '<path class="kc-brow kc-bL" d="M90 106 Q124 88 156 106" fill="none" stroke="#9a3412" stroke-width="7" stroke-linecap="round"/><path class="kc-brow kc-bR" d="M184 106 Q216 88 250 106" fill="none" stroke="#9a3412" stroke-width="7" stroke-linecap="round"/>' +
+      '<path d="M156 190 Q170 180 184 190 Q170 206 156 190Z" fill="#f472b6" stroke="#9d174d" stroke-width="3" stroke-linejoin="round"/><ellipse cx="164" cy="188" rx="4" ry="2.5" fill="#fff" opacity=".7"/>' +
+      '<path id="kc-mc" d="M170 202 L170 212 M170 212 Q154 228 136 216 M170 212 Q186 228 204 216" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<g id="kc-mo" style="display:none"><ellipse id="kc-mo-e" cx="170" cy="224" rx="22" ry="12" fill="#7f1d1d" stroke="#7c2d12" stroke-width="4"/><ellipse id="kc-mo-t" cx="170" cy="231" rx="12" ry="5" fill="#f87171"/></g>' +
+      '<path class="kc-tongue" d="M160 220 Q170 250 180 220Z" fill="#f87171" stroke="#7c2d12" stroke-width="3"/>' +
+      '<g stroke="#9a3412" stroke-width="3" stroke-linecap="round" opacity=".75"><line x1="116" y1="210" x2="36" y2="194"/><line x1="116" y1="218" x2="30" y2="220"/><line x1="120" y1="226" x2="44" y2="246"/><line x1="224" y1="210" x2="304" y2="194"/><line x1="224" y1="218" x2="310" y2="220"/><line x1="220" y1="226" x2="296" y2="246"/></g></g>' +
+      '<g class="kc-think" aria-hidden="true"><circle cx="300" cy="86" r="6"/><circle cx="318" cy="60" r="9"/><circle cx="330" cy="26" r="12"/></g></g></svg>';
   }
 
   function mount(root, U) {
@@ -126,7 +137,7 @@
     }
     function mouth(level) {
       if (!level) { mc.style.display = ''; mo.style.display = 'none'; return; }
-      var rx = [0, 17, 22, 25, 12][level], ry = [0, 6, 12, 18, 14][level]; mc.style.display = 'none'; mo.style.display = ''; moe.setAttribute('rx', rx); moe.setAttribute('ry', ry); moe.setAttribute('cy', 190 + ry); mot.setAttribute('cy', 190 + ry * 1.6); mot.setAttribute('rx', Math.max(6, rx * .55)); mot.setAttribute('ry', Math.max(2, ry * .3));
+      var rx = [0, 17, 22, 25, 12][level], ry = [0, 6, 12, 18, 14][level]; mc.style.display = 'none'; mo.style.display = ''; moe.setAttribute('rx', rx); moe.setAttribute('ry', ry); moe.setAttribute('cy', 212 + ry); mot.setAttribute('cy', 212 + ry * 1.6); mot.setAttribute('rx', Math.max(6, rx * .55)); mot.setAttribute('ry', Math.max(2, ry * .3));
     }
     function startTalk(est) {
       talking = true; svg.classList.add('kc-talk'); stateEl.textContent = 'Speaking…'; clearInterval(mouthTimer); var seq = [2, 1, 3, 2, 4, 1, 2, 0, 3, 1], i = 0;
@@ -285,17 +296,20 @@
     root.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-q]'); if (b && root.contains(b)) { send(b.dataset.q); return; }
       if (e.target.closest('#kc-svg')) {
-        var now = Date.now(); if (now - lastTouch < 350) return; lastTouch = now; svg.classList.remove('kc-hop'); void svg.offsetWidth; svg.classList.add('kc-hop'); setTimeout(function () { svg.classList.remove('kc-hop'); }, 650);
-        var lines = [['Hee hee, that tickles!', 'laugh'], ['Purrrrr... that feels nice.', 'sleepy'], ['Meow! You found me!', 'surprised'], ['Boing! I am a bouncy cat!', 'silly'], ['Pet me again! Just kidding. Maybe.', 'happy']]; var L = rnd(lines);
+        var now = Date.now(); if (now - lastTouch < 350) return; lastTouch = now;
+        var zone = (e.target.closest('[data-zone]') || {}).getAttribute ? e.target.closest('[data-zone]').getAttribute('data-zone') : '';
+        var Z = { head: [['Purrrrr... that feels lovely.', 'sleepy'], ['Mmm, right behind the ears!', 'sleepy'], ['Head pats? Yes, please!', 'happy']], belly: [['Hee hee hee! That tickles!', 'laugh'], ['Not the tummy! Ha ha ha!', 'laugh'], ['Belly rubs cost one fish. Just kidding!', 'silly']], paw: [['High five! Meow!', 'happy'], ['Nice to meet you, paw to paw!', 'happy'], ['Hello! Wave wave wave!', 'happy']] };
+        var L = rnd(Z[zone] || [['Meow! You found me!', 'surprised'], ['Boing! I am a bouncy cat!', 'silly'], ['Hee hee, hello!', 'laugh']]);
+        svg.classList.remove('kc-hop'); void svg.offsetWidth; if (zone !== 'head') svg.classList.add('kc-hop'); if (zone === 'paw') svg.classList.add('kc-wave'); setTimeout(function () { svg.classList.remove('kc-hop'); svg.classList.remove('kc-wave'); }, 1500);
         if (!busy) { bubble.textContent = L[0]; add('cat', L[0]); face(L[1], 1800); speak(L[0]); }
       }
     });
     muteBtn.addEventListener('click', function () { muted = !muted; muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false'); muteBtn.textContent = muted ? '🔇 Sound off' : '🔊 Sound on'; if (muted && canSpeak) try { synth.cancel(); } catch (e) { } if (muted) stopTalk(); });
     $('#kc-reset').addEventListener('click', function () { resetState(); logEl.innerHTML = ''; if (canSpeak) try { synth.cancel(); } catch (e) { } stopTalk(); busy = false; var g = pick(GREET, 'greet'); bubble.textContent = g; add('cat', g); face('happy'); });
     /* eyes follow the pointer */
-    var pups = svg.querySelectorAll('.kc-pup'), glints = svg.querySelectorAll('.kc-glint');
-    function look(dx, dy) { for (var i = 0; i < pups.length; i++) { pups[i].style.transform = 'translate(' + dx + 'px,' + dy + 'px)'; glints[i].style.transform = 'translate(' + dx + 'px,' + dy + 'px)'; } }
-    if (!reduced) document.addEventListener('pointermove', function (e) { var r = svg.getBoundingClientRect(); if (!r.width) return; var cx = r.left + r.width * .47, cy = r.top + r.height * .38, dx = (e.clientX - cx) / Math.max(200, r.width), dy = (e.clientY - cy) / Math.max(200, r.height); look(Math.max(-1, Math.min(1, dx * 3)) * 7, Math.max(-1, Math.min(1, dy * 3)) * 6); }, { passive: true });
+    var pups = svg.querySelectorAll('.kc-pup');
+    function look(dx, dy) { for (var i = 0; i < pups.length; i++) pups[i].style.transform = 'translate(' + dx + 'px,' + dy + 'px)'; }
+    if (!reduced) document.addEventListener('pointermove', function (e) { var r = svg.getBoundingClientRect(); if (!r.width) return; var cx = r.left + r.width * .5, cy = r.top + r.height * .4, dx = (e.clientX - cx) / Math.max(200, r.width), dy = (e.clientY - cy) / Math.max(200, r.height); look(Math.max(-1, Math.min(1, dx * 3)) * 7, Math.max(-1, Math.min(1, dy * 3)) * 6); }, { passive: true });
     /* life: blinking and ear twitches */
     (function loop() { svg.classList.add('kc-blink'); setTimeout(function () { svg.classList.remove('kc-blink'); }, 130); setTimeout(loop, 2200 + Math.random() * 2600); })();
     if (!reduced) (function twitch() { var e = svg.querySelector(Math.random() < .5 ? '.kc-earL' : '.kc-earR'); e.classList.add('kc-twitch'); setTimeout(function () { e.classList.remove('kc-twitch'); }, 420); setTimeout(twitch, 4500 + Math.random() * 5000); })();
