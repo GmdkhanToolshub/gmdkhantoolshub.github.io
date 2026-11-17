@@ -908,6 +908,20 @@ window.SITE_CONFIG = {
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
 })();
 
+/* "Done for you" services link on matching CV, Excel and sales-operations tools and articles */
+(function () {
+  var R = ['Resume writing & review', 'A professionally written, ATS-friendly CV for your target job.'], X = ['Excel dashboards & reports', 'A custom Excel workbook, dashboard or report built for your business.'], S = ['Sales operations consulting', 'Practical help with sales targets, KPIs, reporting and distribution.'];
+  var M = { 'resume-builder': R, 'ats-resume-checker': R, 'cover-letter-generator': R, 'linkedin-headline-generator': R, 'write-cv-for-jobs-in-pakistan': R, 'ats-friendly-resume': R, 'ats-resume-check-free': R,
+    'excel-formula-generator': X, 'excel-to-pdf': X, 'pdf-to-excel': X, 'loan-emi-formula-excel': X, 'excel-formulas-sales-ops': X, 'business-report-generator': X, 'kpi-performance-calculator': X, 'weighted-kpi-scorecard': X,
+    'sales-target-calculator': S, 'sales-target-tracking': S, 'sales-operations-explained': S, 'secondary-vs-primary-sales-fmcg': S, 'digital-transformation-start-with-data': S };
+  var path = location.pathname; if (/\/(kids|shop|services)\//.test(path)) return;
+  var root = document.getElementById('tool-root'), slug = root ? root.getAttribute('data-tool-id') : (path.match(/\/blog\/([^\/]+)\/?/) || [])[1], it = slug && M[slug]; if (!it) return;
+  var base = document.body.getAttribute('data-root') || './', box = document.createElement('aside'); box.className = 'shop-promo no-print'; box.setAttribute('aria-label', 'Services');
+  box.innerHTML = '<div><span class="sp-tag">Done for you</span><h2>' + it[0] + '</h2><p>' + it[1] + '</p></div><div class="sp-buy"><a class="btn btn-primary btn-sm" href="' + base + 'services/">Get a quote</a></div>';
+  var anchor = root ? document.querySelector('.content-block') : document.querySelector('article.prose .share-row');
+  if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor);
+})();
+
 /* Photo pop-up: click or press Enter on a photo that has data-full. The photo grows from where it sits to a large view and shows the untouched original. */
 (function () {
   var doc = document, box = null, big = null, from = null, last = null, busy = false, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
