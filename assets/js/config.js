@@ -231,7 +231,8 @@ window.SITE_CONFIG = {
       },
       {
           "match": [
-              "electricity-bill-calculator"
+              "electricity-bill-calculator",
+              "group-appliance"
           ],
           "name": "Amazon: plug-in energy monitors",
           "url": "https://www.amazon.com/s?k=plug+in+energy+monitor+watt+meter&tag=gmtoolshub-20",
@@ -239,7 +240,8 @@ window.SITE_CONFIG = {
       },
       {
           "match": [
-              "land-area-converter"
+              "land-area-converter",
+              "group-plot"
           ],
           "name": "Amazon: laser distance measurers",
           "url": "https://www.amazon.com/s?k=laser+distance+measurer&tag=gmtoolshub-20",
@@ -247,7 +249,8 @@ window.SITE_CONFIG = {
       },
       {
           "match": [
-              "tola-gold-converter"
+              "tola-gold-converter",
+              "group-gold"
           ],
           "name": "Amazon: digital jewellery scales",
           "url": "https://www.amazon.com/s?k=digital+jewelry+scale+0.01g&tag=gmtoolshub-20",

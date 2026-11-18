@@ -392,8 +392,11 @@
   /* Academy lessons and the studio pages match as academy-<lesson> and page-<name> */
   var am = location.pathname.match(/\/academy\/([^\/]+)\/?(?:index\.html)?$/), hm = location.pathname.match(/\/(career-studio|creative-studio|developer-playground|academy)\/?(?:index\.html)?$/);
   if (!slug && am && am[1] !== 'index.html') slug = 'academy-' + am[1]; else if (!slug && hm) slug = 'page-' + hm[1];
+  /* Plot-size, conversion and appliance pages match by their own slug and by group tokens */
+  var groups = [], cm = location.pathname.match(/\/(convert|electricity)\/([^\/]+)\/?(?:index\.html)?$/);
+  if (!slug && cm && cm[2] !== 'index.html') { slug = cm[2]; if (cm[1] === 'electricity') groups.push('group-appliance'); else { if (/marla|kanal|square-feet|acre/.test(cm[2])) groups.push('group-plot'); if (/tola|nisab/.test(cm[2])) groups.push('group-gold'); } }
   if (!slug) return;
-  var items = L.filter(function (x) { return x && x.url && /^https:\/\//.test(x.url) && (x.match || []).indexOf(slug) >= 0; }).slice(0, 3); if (!items.length) return;
+  var items = L.filter(function (x) { var m = x && x.match || []; return x && x.url && /^https:\/\//.test(x.url) && (m.indexOf(slug) >= 0 || groups.some(function (g) { return m.indexOf(g) >= 0; })); }).slice(0, 3); if (!items.length) return;
   var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
   var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
   items.forEach(function (x) { var a = document.createElement('a'); a.textContent = x.name; h += '<li><a href="' + x.url.replace(/"/g, '%22') + '" target="_blank" rel="sponsored nofollow noopener noreferrer" data-aff="' + String(x.name).replace(/[<>"&]/g, '') + '">' + a.innerHTML + '</a>' + (x.note ? ' <span class="muted">– ' + String(x.note).replace(/[<>&]/g, '') + '</span>' : '') + '</li>'; });
