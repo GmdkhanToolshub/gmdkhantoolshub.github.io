@@ -425,3 +425,5 @@ body[data-tab]:not([data-tab="kids"]) { --tab: var(--blue); --tab2: var(--cyan);
 .gx-ann-x:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .gx-ann.gx-ann-out { height: 0 !important; padding-top: 0; padding-bottom: 0; opacity: 0; }
 @media (max-width: 560px) { .gx-ann { font-size: .78rem; padding: 7px 38px 7px 12px; } .gx-ann-d { display: none; } .gx-ann-tag { display: none; } }
+/* Dark-mode safety: apply buttons on job cards always use the accent gradient so white text keeps contrast */
+:root[data-theme="dark"] .jt-card .jt-apply { background: var(--grad-btn); color: #fff; }

@@ -1,4 +1,4 @@
-﻿/* GM sections: Kids Corner, Learn & Grow, Inspiration, Workspace, Feedback. Loaded only on those pages. */
+/* GM sections: Kids Corner, Learn & Grow, Inspiration, Workspace, Feedback. Loaded only on those pages. */
 /* ---------- Kids studio ---------- */
 .ks { display: grid; grid-template-columns: 112px minmax(0, 1fr) 270px; gap: 14px; align-items: start; }
 .ks-tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -64,8 +64,8 @@
 .gm-card h3 { margin: 4px 0 0; font-size: 1.1rem; }
 .gm-card p { margin: 0; color: var(--text-soft); font-size: .94rem; }
 .gm-card .go { margin-top: auto; font-weight: 700; color: var(--blue); font-size: .9rem; }
-.kids-hero { background: linear-gradient(135deg, #fde68a 0%, #fbcfe8 50%, #bae6fd 100%); color: #1f2937; }
-.kids-hero h1, .kids-hero .lead, .kids-hero a { color: #1f2937; }
+.kids-hero { background: var(--bg-alt); color: var(--text); }
+.kids-hero h1 { color: var(--text); }.kids-hero .lead { color: var(--text-soft); }.kids-hero a { color: var(--accent-text, var(--accent)); }.kids-hero .breadcrumb a { color: var(--text-soft); }
 .safety-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding: 0; list-style: none; margin: 0; }
 .safety-list li { padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); font-size: .94rem; }
 .safety-list b { display: block; margin-bottom: 2px; }
