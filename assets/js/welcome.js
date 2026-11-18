@@ -10,7 +10,8 @@
   var nav = navigator, conn = nav.connection || {}, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var base = d.body.getAttribute('data-root') || './', NAME = 'GM Tools Hub';
   var T_GO = reduce ? 0 : 250, T_AUTO = reduce ? 1200 : 1600, T_MAX = 22000;
-  var canVideo = !reduce && !conn.saveData && !/^(slow-2g|2g)$/.test(conn.effectiveType || '');
+  var lowEnd = (nav.hardwareConcurrency && nav.hardwareConcurrency < 4) || (nav.deviceMemory && nav.deviceMemory < 4);
+  var canVideo = !reduce && !lowEnd && !conn.saveData && !/^(slow-2g|2g|3g)$/.test(conn.effectiveType || '');
 
   function robot(id, c1, c2) {
     return '<svg class="wl-bot" viewBox="0 0 120 170" aria-hidden="true" focusable="false">' +
