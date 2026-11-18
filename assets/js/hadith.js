@@ -53,7 +53,7 @@
     '#gm-hadith:hover .hd-track,#gm-hadith:focus-within .hd-track{animation-play-state:paused}' +
     '#gm-hadith .hd-grp{display:flex;align-items:center;flex:none}' +
     '#gm-hadith .hd-item{display:inline-flex;align-items:center;gap:14px;padding:2px 0 2px 28px;white-space:nowrap;font-size:.76rem;line-height:1.7;color:var(--text-soft,#47556e)}' +
-    '#gm-hadith .hd-tag{font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#a67c00}' +
+    '#gm-hadith .hd-tag{font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7a5a00}' +
     '#gm-hadith .hd-ar{font:600 1.08rem/1.7 "Amiri","Scheherazade New","Noto Naskh Arabic","Traditional Arabic","Geeza Pro","Segoe UI",serif;color:var(--text,#0f1e38);unicode-bidi:isolate}' +
     '#gm-hadith .hd-ur{font:500 .95rem/1.8 "Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Noto Naskh Arabic","Segoe UI",Tahoma,serif;unicode-bidi:isolate}' +
     '#gm-hadith .hd-src{font-size:.66rem;color:var(--text-faint,#66738a)}' +

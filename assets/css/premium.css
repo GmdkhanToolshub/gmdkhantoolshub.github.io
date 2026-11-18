@@ -427,3 +427,22 @@ body[data-tab]:not([data-tab="kids"]) { --tab: var(--blue); --tab2: var(--cyan);
 @media (max-width: 560px) { .gx-ann { font-size: .78rem; padding: 7px 38px 7px 12px; } .gx-ann-d { display: none; } .gx-ann-tag { display: none; } }
 /* Dark-mode safety: apply buttons on job cards always use the accent gradient so white text keeps contrast */
 :root[data-theme="dark"] .jt-card .jt-apply { background: var(--grad-btn); color: #fff; }
+
+/* ---------- Performance and accessibility pass (Lighthouse) ---------- */
+/* Ambient glow: radial gradients instead of animated 90px blur filters (same look, far cheaper to paint) */
+.gm-ambient .orb { filter: none; will-change: auto; background-image: none; }
+.gm-ambient .orb-1 { background: radial-gradient(closest-side, rgba(var(--glow-a), .34), transparent); }
+.gm-ambient .orb-2 { background: radial-gradient(closest-side, rgba(var(--glow-b), .26), transparent); }
+.gm-ambient .orb-3 { background: radial-gradient(closest-side, rgba(var(--glow-a), .2), transparent); }
+@media (max-width: 760px) {
+  .gm-ambient .orb { animation: none; }
+  *:not(.site-header):not(.gx-pal):not(.gx-pal *) { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+}
+/* Skip rendering work for off-screen sections until they are near the viewport */
+main > section.section:not(:first-of-type) { content-visibility: auto; contain-intrinsic-size: auto 520px; }
+/* Kids rewards: locked badges stay readable (dim the icon, not the text) and the block reserves its space */
+.kc-badges li:not(.got) { opacity: 1; }
+.kc-badges li:not(.got) span { opacity: .5; }
+.kc-badges small { color: var(--text-soft); }
+#kids-rewards { min-height: 26rem; }
+.ftd-name { font-size: 1.1rem; margin: 0; letter-spacing: -0.02em; }

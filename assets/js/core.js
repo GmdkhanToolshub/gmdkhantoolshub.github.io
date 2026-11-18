@@ -932,7 +932,7 @@ window.SITE_CONFIG = {
 /* Floating "Shop Now" flip button (not on Kids Corner, the Shop itself, or the print view) */
 (function () {
   var path = location.pathname; if (/\/kids\//.test(path) || /\/shop\//.test(path) || document.querySelector('.shop-fab')) return;
-  var a = document.createElement('a'); a.className = 'shop-fab no-print'; a.href = (document.body.getAttribute('data-root') || './') + 'shop/'; a.setAttribute('aria-label', 'Shop now: premium Excel templates and printable PDFs');
+  var a = document.createElement('a'); a.className = 'shop-fab no-print'; a.href = (document.body.getAttribute('data-root') || './') + 'shop/'; a.setAttribute('aria-label', 'Shop Now Premium Templates: Excel templates and printable PDFs');
   var bag = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
   a.innerHTML = '<span class="sf-inner"><span class="sf-face sf-front">' + bag + '<b>Shop Now</b></span><span class="sf-face sf-back"><b>Premium Templates</b><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>';
   document.body.appendChild(a);
@@ -951,7 +951,7 @@ window.SITE_CONFIG = {
   if (!slug) return;
   var items = L.filter(function (x) { var m = x && x.match || []; return x && x.url && /^https:\/\//.test(x.url) && (m.indexOf(slug) >= 0 || groups.some(function (g) { return m.indexOf(g) >= 0; })); }).slice(0, 3); if (!items.length) return;
   var box = document.createElement('aside'); box.className = 'aff-box no-print'; box.setAttribute('aria-label', 'Recommended resources');
-  var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read more</a>.</p><ul>';
+  var base = document.body.getAttribute('data-root') || './', h = '<h2>Recommended resources</h2><p class="small muted">Affiliate disclosure: if you buy through these links, GM may earn a commission at no extra cost to you. <a href="' + base + 'affiliate-disclosure/">Read the full affiliate disclosure</a>.</p><ul>';
   items.forEach(function (x) { var a = document.createElement('a'); a.textContent = x.name; h += '<li><a href="' + x.url.replace(/"/g, '%22') + '" target="_blank" rel="sponsored nofollow noopener noreferrer" data-aff="' + String(x.name).replace(/[<>"&]/g, '') + '">' + a.innerHTML + '</a>' + (x.note ? ' <span class="muted">– ' + String(x.note).replace(/[<>&]/g, '') + '</span>' : '') + '</li>'; });
   h += '</ul>'; if (items.some(function (x) { return /^https:\/\/(www\.)?amazon\./.test(x.url); })) h += '<p class="small muted">As an Amazon Associate I earn from qualifying purchases.</p>';
   box.innerHTML = h;
