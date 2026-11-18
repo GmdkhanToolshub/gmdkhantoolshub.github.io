@@ -12,7 +12,12 @@
 
   /* ---------- theme ---------- */
   var themeBtn = $('#theme-toggle');
-  function applyThemeLabel() { if (themeBtn) themeBtn.setAttribute('aria-label', root.getAttribute('data-theme') === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+  function applyThemeLabel() {
+    if (!themeBtn) return;
+    var dark = root.getAttribute('data-theme') === 'dark';
+    if (themeBtn.getAttribute('role') === 'switch') { themeBtn.setAttribute('aria-checked', dark ? 'true' : 'false'); return; } /* day/night switch keeps a fixed label and reports its state */
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
   if (themeBtn) themeBtn.addEventListener('click', function () {
     var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     root.setAttribute('data-theme', next); save('niazi.theme', next); applyThemeLabel();

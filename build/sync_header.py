@@ -59,6 +59,11 @@ def section_of(rel):
 CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>'
 SEARCH = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
 
+# Day / night switch: sun and moon knob sliding on a sky track (styled in assets/css/premium.css)
+SWITCH = ('<button id="theme-toggle" class="gx-switch" type="button" role="switch" aria-checked="false" aria-label="Dark mode">'
+          '<span class="gx-sw-track" aria-hidden="true"><span class="gx-sw-stars"><i></i><i></i><i></i><i></i><i></i><i></i></span>'
+          '<span class="gx-sw-clouds"><i></i><i></i><i></i></span>'
+          '<span class="gx-sw-knob"><span class="gx-sw-craters"><i></i><i></i><i></i></span></span></span></button>')
 def build_header(pre, sec, rel, brand_svg, theme_btn, pal_btn, menu_btn):
     cur = lambda s: ' aria-current="page"' if sec == s else ''
     def link(label, href, s): return '<li><a class="nav-link" href="%s%s"%s>%s</a></li>' % (pre, href, cur(s), label)
@@ -88,7 +93,7 @@ for rel in pages:
     if True:
         pre = re.search(r'class="brand" href="([^"]*)"', old).group(1)
         svg = re.search(r'<svg class="gm-logo".*?</svg>', old, re.S).group(0)
-        tb = re.search(r'<button class="icon-btn" id="theme-toggle".*?</button>', old, re.S).group(0)
+        tb = SWITCH
         pb = re.search(r'<button class="icon-btn" id="palette-btn".*?</button>', old, re.S).group(0)
         mb = re.search(r'<button class="icon-btn menu-toggle".*?</button>', old, re.S).group(0)
         h = h[:hs] + build_header(pre, section_of(rel), rel, svg, tb, pb, mb) + h[he:]; stats['header'] += 1

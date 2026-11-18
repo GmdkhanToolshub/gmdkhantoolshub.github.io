@@ -1,4 +1,4 @@
-# GM AI Tools HUB
+# GM Tools Hub
 > Free browser-based tools, calculators, converters, templates and learning pages by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser and do not upload what you type.
 
 ## Main sections

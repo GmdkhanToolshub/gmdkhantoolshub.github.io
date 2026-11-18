@@ -20,7 +20,10 @@
   /* ---------- theme: follow the system until the visitor chooses, animate the switch, sync between tabs ---------- */
   (function () {
     var mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
-    function apply(t) { if (root.getAttribute('data-theme') !== t) root.setAttribute('data-theme', t); var b = $('#theme-toggle'); if (b) b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+    var sw = $('#theme-toggle');
+    function sync() { if (sw) sw.setAttribute('aria-checked', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+    function apply(t) { if (root.getAttribute('data-theme') !== t) root.setAttribute('data-theme', t); sync(); }
+    sync(); new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     function saved() { var t = store('niazi.theme', null); return t === 'light' || t === 'dark' ? t : null; }
     if (!saved() && mq) apply(mq.matches ? 'dark' : 'light');
     if (mq) { var onSys = function (e) { if (!saved()) apply(e.matches ? 'dark' : 'light'); }; if (mq.addEventListener) mq.addEventListener('change', onSys); else if (mq.addListener) mq.addListener(onSys); }
