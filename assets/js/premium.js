@@ -17,16 +17,14 @@
   root.classList.add('gx-js');
   var path = location.pathname, isKids = /\/kids\//.test(path), isEmbed = /\/embed\//.test(path);
 
-  /* ---------- theme: follow the system until the visitor chooses, animate the switch, sync between tabs ---------- */
+  /* ---------- theme: light by default, animate the switch, remember the visitor's choice, sync between tabs ---------- */
   (function () {
-    var mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
     var sw = $('#theme-toggle');
     function sync() { if (sw) sw.setAttribute('aria-checked', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
     function apply(t) { if (root.getAttribute('data-theme') !== t) root.setAttribute('data-theme', t); sync(); }
     sync(); new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     function saved() { var t = store('niazi.theme', null); return t === 'light' || t === 'dark' ? t : null; }
-    if (!saved() && mq) apply(mq.matches ? 'dark' : 'light');
-    if (mq) { var onSys = function (e) { if (!saved()) apply(e.matches ? 'dark' : 'light'); }; if (mq.addEventListener) mq.addEventListener('change', onSys); else if (mq.addListener) mq.addListener(onSys); }
+    if (!saved()) apply('light'); /* new visitors always start in light mode; a choice made with the switch is remembered */
     doc.addEventListener('click', function (e) {
       if (!(e.target.closest && e.target.closest('#theme-toggle'))) return;
       if (!reduce) { root.classList.add('gx-theme-anim'); clearTimeout(root._gxT); root._gxT = setTimeout(function () { root.classList.remove('gx-theme-anim'); }, 700); }
