@@ -446,3 +446,4 @@ main > section.section:not(:first-of-type) { content-visibility: auto; contain-i
 .kc-badges small { color: var(--text-soft); }
 #kids-rewards { min-height: 26rem; }
 .ftd-name { font-size: 1.1rem; margin: 0; letter-spacing: -0.02em; }
+.hub-section:not(:first-of-type) { content-visibility: auto; contain-intrinsic-size: auto 640px; }
