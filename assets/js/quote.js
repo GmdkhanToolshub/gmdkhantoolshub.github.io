@@ -2,7 +2,7 @@
    Nothing is sent automatically and nothing is stored by this page. A reference code and a simple lead score help GM reply faster. */
 (function () {
   'use strict';
-  var EMAIL = 'asmarkniazi@gmail.com', WA = '923032246269';
+  var EMAIL = 'gmkn16@yahoo.com', WA = '923158935101';
   var COUNTRIES = ['United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Oman', 'Bahrain', 'United Kingdom', 'Ireland', 'Germany', 'Netherlands', 'France', 'Spain', 'Italy', 'Sweden', 'United States', 'Canada', 'Australia', 'New Zealand', 'Singapore', 'Malaysia', 'South Africa', 'Pakistan', 'Other'];
   var SERVICES = ['Sales or distribution dashboard', 'KPI scorecard or performance reporting', 'HR attendance and leave system', 'Inventory or stock tracking', 'Monthly management reporting pack', 'Excel automation or cleanup', 'Simple business website or web tool', 'Customised version of a GM template', 'Something else'];
   var BUDGET = [['Under $300', 0], ['$300 to $1,000', 1], ['$1,000 to $3,000', 2], ['More than $3,000', 3], ['Not sure yet', 0]];
