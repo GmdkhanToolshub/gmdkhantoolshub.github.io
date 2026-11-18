@@ -24,7 +24,7 @@ def short(s, n=62):
 COLS = [
  ('AI &amp; assistants', [('Smart Assistant', 'assistant/'), ('AI &amp; Tech Briefing', 'tech-briefing/'), ('Creative Studio', 'creative-studio/'), ('Developer Playground', 'developer-playground/')]),
  ('Learn &amp; grow', [('Coding Academy', 'academy/'), ('Learn &amp; Grow', 'learn/'), ('Career Studio', 'career-studio/'), ('Professional Growth Hub', 'growth/'), ('Daily Inspiration', 'inspiration/'), ('Tasks &amp; Planner', 'workspace/planner/')]),
- ('Business &amp; resources', [('GM HCM', 'hcm/'), ('People &amp; Success Hub', 'people-success-hub/'), ('Blog &amp; Insights', 'blog/'), ('Free Excel templates', 'free-templates/'), ('Live jobs', 'jobs/'), ('Business solutions', 'solutions/')]),
+ ('Business &amp; resources', [('GM HCM', 'hcm/'), ('People &amp; Success Hub', 'people-success-hub/'), ('Blog &amp; Insights', 'blog/'), ('Free Excel templates', 'free-templates/'), ('Live jobs', 'jobs/'), ('Business solutions', 'solutions/'), ("What&#x27;s new", 'updates/')]),
 ]
 DESC = {}
 for col, items in COLS:
@@ -40,12 +40,12 @@ DESC = {
  'inspiration/': 'A thought and a productivity tip each day', 'workspace/planner/': 'Task manager and daily time-block planner',
  'hcm/': 'HR software for records and attendance', 'people-success-hub/': 'A moderated community for career stories',
  'blog/': 'Sales operations, money and career guides', 'free-templates/': 'Free Excel templates, no sign-up',
- 'jobs/': 'Live vacancies in Pakistan and worldwide', 'solutions/': 'Excel dashboards, KPI and sales reporting',
+ 'jobs/': 'Live vacancies in Pakistan and worldwide', 'solutions/': 'Excel dashboards, KPI and sales reporting', 'updates/': 'Latest tools, guides and features',
 }
 json.dump(DESC, open(os.environ['TEMP'] + '/nav_desc.json', 'w'), ensure_ascii=False, indent=1)
 
 TOOLS_SEG = {'tools', 'convert', 'salary-tax', 'loan-emi', 'electricity', 'free-tools'}
-AI_SEG = {'learn', 'academy', 'assistant', 'career-studio', 'creative-studio', 'developer-playground', 'workspace', 'tech-briefing', 'people-success-hub', 'hcm', 'inspiration', 'growth', 'solutions', 'blog', 'free-templates', 'jobs'}
+AI_SEG = {'learn', 'academy', 'assistant', 'career-studio', 'creative-studio', 'developer-playground', 'workspace', 'tech-briefing', 'people-success-hub', 'hcm', 'inspiration', 'growth', 'solutions', 'blog', 'free-templates', 'jobs', 'updates'}
 def section_of(rel):
     seg = rel.split('/')[0]
     if rel == 'index.html': return 'home'
