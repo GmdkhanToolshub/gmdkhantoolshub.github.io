@@ -8,7 +8,7 @@
   var d = document, h = d.documentElement;
   if (!h.classList.contains('wl')) return;
   var nav = navigator, conn = nav.connection || {}, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var base = d.body.getAttribute('data-root') || './', NAME = 'GM AI Tools HUB';
+  var base = d.body.getAttribute('data-root') || './', NAME = 'GM Tools Hub';
   var T_GO = reduce ? 0 : 250, T_AUTO = reduce ? 1200 : 1600, T_MAX = 22000;
   var canVideo = !reduce && !conn.saveData && !/^(slow-2g|2g)$/.test(conn.effectiveType || '');
 
