@@ -464,3 +464,8 @@ main :is(table:not([class]), .prose table, table.data) tr:last-child td { border
 main :is(table:not([class]), .prose table, table.data) td:not(:first-child) { white-space: normal; }
 @media (max-width: 640px) { main :is(table:not([class]), .prose table, table.data) th, main :is(table:not([class]), .prose table, table.data) td { padding: 10px 12px; font-size: .88rem; } }
 main :is(table:not([class]), .prose table, table.data) td:first-child { min-width: 9.5em; }
+
+/* Urdu text blocks on tool pages */
+.gx-urdu { direction: rtl; text-align: right; font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", "Segoe UI", serif; line-height: 2.2; font-size: 1.04rem; }
+.gx-urdu h2 { line-height: 1.8; letter-spacing: 0; }
+.gx-urdu ul { padding-right: 1.3em; padding-left: 0; }

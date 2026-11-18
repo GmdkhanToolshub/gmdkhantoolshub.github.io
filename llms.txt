@@ -2,7 +2,7 @@
 > Free browser-based tools, calculators, converters, templates and learning pages by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser and do not upload what you type.
 
 ## Main sections
-- [Free tools and gadgets](https://gmdkhantoolshub.github.io/tools/): 70 tools, including PDF and image converters, calculators, Pakistan salary tax, zakat, tola, marla, electricity bill, fuel cost and amount in words
+- [Free tools and gadgets](https://gmdkhantoolshub.github.io/tools/): 74 tools, including PDF and image converters, calculators, Pakistan salary tax, zakat, tola, marla, electricity bill, fuel cost and amount in words
 - [Unit conversions](https://gmdkhantoolshub.github.io/convert/): marla, kanal, tola, maund, seer and common unit conversions
 - [Pakistan salary tax tables](https://gmdkhantoolshub.github.io/salary-tax/): monthly tax by salary for 2026-27
 - [Blog and guides](https://gmdkhantoolshub.github.io/blog/): money, careers, Excel and sales operations
