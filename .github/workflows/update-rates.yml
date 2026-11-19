@@ -1,4 +1,4 @@
-name: Update daily exchange rates
+name: Update daily exchange and gold rates
 on:
   schedule:
     - cron: '17 6 * * *'   # once a day, 06:17 UTC
@@ -19,9 +19,11 @@ jobs:
           node-version: '24'
       - name: Fetch rates, record history and refresh the rate pages
         run: node scripts/update-rates.mjs
+      - name: Fetch the gold price and refresh the gold-rate pages
+        run: node scripts/update-gold.mjs
       - name: Commit changes
         run: |
           git config user.name "gm-rates-bot"
           git config user.email "gm-rates-bot@users.noreply.github.com"
-          git add data/rates.json rates sitemap.xml
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update daily exchange rates"; git pull --rebase origin main; git push; fi
+          git add data/rates.json data/gold.json rates gold-rate sitemap.xml
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update daily exchange and gold rates"; git pull --rebase origin main; git push; fi
