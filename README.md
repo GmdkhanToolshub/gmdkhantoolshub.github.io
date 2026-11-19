@@ -1,6 +1,6 @@
 # GM Tools Hub
 
-Free, private, in-browser tools, guides and a safe Kids Corner. Live at https://gmdkhantoolshub.github.io/
+Free, private, in-browser tools, guides and a safe Kids Corner. Live at https://gmtoolshub.com/
 
 Static site (HTML, CSS and vanilla JavaScript) deployed by GitHub Pages from the `main` branch. No build step is needed to publish; the `build/` scripts only maintain shared files.
 

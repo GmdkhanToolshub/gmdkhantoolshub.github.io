@@ -53,7 +53,7 @@ function setMeta(html, text) {
     .replace(/(<meta property="og:description" content=")[^"]*(")/, (m, a, b) => a + esc(text) + b)
     .replace(/(<meta name="twitter:description" content=")[^"]*(")/, (m, a, b) => a + esc(text) + b);
 }
-const SITE = 'https://gmdkhantoolshub.github.io';
+const SITE = 'https://gmtoolshub.com';
 function share(text, url) { return '<p><a class="btn btn-primary btn-sm" href="https://wa.me/?text=' + encodeURIComponent(text + '\n' + url) + '" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a></p>'; }
 const artImg = (kind, depth, alt) => '<figure class="rate-art"><img src="' + '../'.repeat(depth) + 'assets/img/' + kind + '-rate-art.svg" alt="' + alt + '" width="1024" height="1280" loading="lazy" decoding="async"></figure>';
 const split = (inner, kind, depth, alt) => '<div class="rate-split"><div>' + inner + '</div>' + artImg(kind, depth, alt) + '</div>';
@@ -92,7 +92,7 @@ if (fs.existsSync(hp)) {
 }
 if (fs.existsSync('sitemap.xml')) {
   let sm = fs.readFileSync('sitemap.xml', 'utf8');
-  for (const pth of jobs) { const loc = 'https://gmdkhantoolshub.github.io' + pth; const re = new RegExp('(<loc>' + loc.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&') + '</loc><lastmod>)[^<]*(</lastmod>)'); if (re.test(sm)) sm = sm.replace(re, (m, a, b) => a + cur.d + b); }
+  for (const pth of jobs) { const loc = 'https://gmtoolshub.com' + pth; const re = new RegExp('(<loc>' + loc.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&') + '</loc><lastmod>)[^<]*(</lastmod>)'); if (re.test(sm)) sm = sm.replace(re, (m, a, b) => a + cur.d + b); }
   fs.writeFileSync('sitemap.xml', sm);
 }
 console.log('Gold updated for', cur.d, 'US$' + cur.oz + '/oz', 'Rs ' + nin(tola(24)) + '/tola (24K)', 'Rs ' + nin(tola(22)) + '/tola (22K)');

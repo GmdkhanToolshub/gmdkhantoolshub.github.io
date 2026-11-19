@@ -50,7 +50,7 @@
     x.fillStyle = '#fffdf5'; x.fillRect(0, 0, 1200, 850); x.strokeStyle = '#4f46e5'; x.lineWidth = 14; x.strokeRect(30, 30, 1140, 790); x.strokeStyle = '#facc15'; x.lineWidth = 4; x.strokeRect(54, 54, 1092, 742);
     x.textAlign = 'center'; x.fillStyle = '#1e1b4b'; x.font = '800 62px Arial, sans-serif'; x.fillText('Certificate of Achievement', 600, 200); x.font = '30px Arial, sans-serif'; x.fillStyle = '#475569'; x.fillText('This certificate is proudly given to', 600, 290);
     x.font = '800 70px Georgia, serif'; x.fillStyle = '#4f46e5'; x.fillText(name || '____________________', 600, 400); x.font = '32px Arial, sans-serif'; x.fillStyle = '#1e1b4b'; x.fillText('for collecting ' + n + ' stars in learning and play', 600, 490); x.fillText('at GM Kids Corner', 600, 540);
-    x.font = '110px Arial, sans-serif'; x.fillText('⭐ ⭐ ⭐', 600, 690); x.font = '24px Arial, sans-serif'; x.fillStyle = '#64748b'; x.fillText(new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + '  ·  gmdkhantoolshub.github.io', 600, 775);
+    x.font = '110px Arial, sans-serif'; x.fillText('⭐ ⭐ ⭐', 600, 690); x.font = '24px Arial, sans-serif'; x.fillStyle = '#64748b'; x.fillText(new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + '  ·  gmtoolshub.com', 600, 775);
     cv.toBlob(function (b) { download(b, 'GM-Kids-Certificate.jpg'); }, 'image/jpeg', 0.92); }
   function download(blob, name) { var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 600); }
   /* Save an SVG element or canvas as PNG. */

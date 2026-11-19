@@ -14,7 +14,7 @@
     'Quote follow-up': 'Subject: Following up on quote {ref}\n\nHello {name},\n\nI hope you are well. I am following up on the quote I sent for {service}. Do you have any questions, or would you like me to adjust the scope or timeline?\n\nKind regards,\nGmd Khan Niazi',
     'Gentle nudge': 'Subject: Still interested? {ref}\n\nHello {name},\n\nI wanted to check whether the project for {company} is still a priority. If timing has changed, no problem. Tell me when to follow up and I will.\n\nKind regards,\nGmd Khan Niazi',
     'Won / onboarding': 'Subject: Welcome, and next steps for {ref}\n\nHello {name},\n\nThank you for choosing GM. To begin, please send: (1) a sample or anonymised export of your data, (2) the people who will use the workbook, and (3) your preferred review dates. I will confirm the schedule and payment steps from the quote.\n\nKind regards,\nGmd Khan Niazi',
-    'Lost / thank you': 'Subject: Thank you, {name}\n\nHello {name},\n\nThank you for considering GM for {service}. If your needs change, I would be glad to help. The free Lite templates are always available at gmdkhantoolshub.github.io/free-templates/\n\nKind regards,\nGmd Khan Niazi'
+    'Lost / thank you': 'Subject: Thank you, {name}\n\nHello {name},\n\nThank you for considering GM for {service}. If your needs change, I would be glad to help. The free Lite templates are always available at gmtoolshub.com/free-templates/\n\nKind regards,\nGmd Khan Niazi'
   };
   function $(s, r) { return (r || document).querySelector(s); }
   function el(t, c, h) { var e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; }

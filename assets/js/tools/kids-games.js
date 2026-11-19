@@ -87,7 +87,7 @@
         x.font = '800 70px Georgia, serif'; x.fillStyle = '#4f46e5'; x.fillText(nm || '____________________', 600, 400);
         x.font = '32px Arial, sans-serif'; x.fillStyle = '#1e1b4b'; x.fillText('for collecting ' + stars + ' stars in learning games', 600, 490); x.fillText('at GM Kids Corner', 600, 540);
         x.font = '110px Arial, sans-serif'; x.fillText('⭐ ⭐ ⭐', 600, 690);
-        x.font = '24px Arial, sans-serif'; x.fillStyle = '#64748b'; x.fillText(new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + '  ·  gmdkhantoolshub.github.io', 600, 775);
+        x.font = '24px Arial, sans-serif'; x.fillStyle = '#64748b'; x.fillText(new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + '  ·  gmtoolshub.com', 600, 775);
         cv.toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'GM-Kids-Certificate.jpg'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }, 'image/jpeg', 0.92);
       });
     }

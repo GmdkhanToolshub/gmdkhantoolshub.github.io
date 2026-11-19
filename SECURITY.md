@@ -1,6 +1,6 @@
 # Security policy
 
-This repository is the source of the static website https://gmdkhantoolshub.github.io/ (GM AI Tools HUB).
+This repository is the source of the static website https://gmtoolshub.com/ (GM AI Tools HUB).
 The site has no database, login or admin panel. Its tools run in the visitor's browser.
 
 ## Reporting a vulnerability or a scam
@@ -10,8 +10,8 @@ Please email asmarkniazi@gmail.com with:
 - what you saw, and screenshots if you can.
 
 Please do not publish details before the problem is fixed. The public contact file is at
-https://gmdkhantoolshub.github.io/.well-known/security.txt and the safety guide is at
-https://gmdkhantoolshub.github.io/security/.
+https://gmtoolshub.com/.well-known/security.txt and the safety guide is at
+https://gmtoolshub.com/security/.
 
 ## What is protected
 

@@ -19,7 +19,7 @@ const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct
 const nf = (n, d = 2) => n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
 const nin = n => Math.round(n).toLocaleString('en-IN');
 const longDate = iso => { const [y, m, d] = iso.split('-').map(Number); return d + ' ' + MON[m - 1] + ' ' + y; };
-const SITE = 'https://gmdkhantoolshub.github.io';
+const SITE = 'https://gmtoolshub.com';
 function share(text, url) { return '<p><a class="btn btn-primary btn-sm" href="https://wa.me/?text=' + encodeURIComponent(text + '\n' + url) + '" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a></p>'; }
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -106,7 +106,7 @@ if (fs.existsSync(hp)) {
 if (fs.existsSync('sitemap.xml')) {
   let sm = fs.readFileSync('sitemap.xml', 'utf8');
   for (const [path, d] of Object.entries(dates)) {
-    const loc = 'https://gmdkhantoolshub.github.io' + path;
+    const loc = 'https://gmtoolshub.com' + path;
     const re = new RegExp('(<loc>' + loc.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&') + '</loc><lastmod>)[^<]*(</lastmod>)');
     if (re.test(sm)) sm = sm.replace(re, (m, a, b) => a + d + b);
   }

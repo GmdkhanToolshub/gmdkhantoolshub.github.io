@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gmdkhantoolshub.github.io/sitemap.xml
+Sitemap: https://gmtoolshub.com/sitemap.xml

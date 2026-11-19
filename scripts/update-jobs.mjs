@@ -6,7 +6,7 @@ import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 const OUT = new URL('../data/jobs.json', import.meta.url);
-const UA = 'GM-Jobs-Updater/1.0 (+https://gmdkhantoolshub.github.io/jobs/)';
+const UA = 'GM-Jobs-Updater/1.0 (+https://gmtoolshub.com/jobs/)';
 const NOW = Date.now(), DAY = 864e5;
 const MAX_AGE_DAYS = 30;            // a vacancy with no published closing date is shown for at most 30 days after publication
 const CAPS = { intl: 90, pk: 60, pkr: 30 };
