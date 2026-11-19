@@ -20,10 +20,14 @@ jobs:
       - name: Fetch rates, record history and refresh the rate pages
         run: node scripts/update-rates.mjs
       - name: Fetch the gold price and refresh the gold-rate pages
+        continue-on-error: true
         run: node scripts/update-gold.mjs
+      - name: Fetch the silver price and refresh the silver-rate page
+        continue-on-error: true
+        run: node scripts/update-silver.mjs
       - name: Commit changes
         run: |
           git config user.name "gm-rates-bot"
           git config user.email "gm-rates-bot@users.noreply.github.com"
-          git add data/rates.json data/gold.json rates gold-rate sitemap.xml
+          git add data/rates.json data/gold.json data/silver.json rates gold-rate silver-rate sitemap.xml
           if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update daily exchange and gold rates"; git pull --rebase origin main; git push; fi

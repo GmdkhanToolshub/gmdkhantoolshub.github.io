@@ -19,6 +19,8 @@ const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct
 const nf = (n, d = 2) => n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
 const nin = n => Math.round(n).toLocaleString('en-IN');
 const longDate = iso => { const [y, m, d] = iso.split('-').map(Number); return d + ' ' + MON[m - 1] + ' ' + y; };
+const SITE = 'https://gmdkhantoolshub.github.io';
+function share(text, url) { return '<p><a class="btn btn-primary btn-sm" href="https://wa.me/?text=' + encodeURIComponent(text + '\n' + url) + '" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a></p>'; }
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 async function load() {
@@ -61,6 +63,7 @@ function pairBlocks(c) {
   const body =
     '<div id="rate-data" data-rate="' + r.toFixed(4) + '" data-code="' + c.code + '" data-date="' + cur.d + '" hidden></div>' +
     '<div class="pp-ans"><div><span>Rate today</span><b>1 ' + c.code + ' = ' + nf(r, 2) + ' PKR</b></div><div><span>Change vs previous day</span><b>' + chgTxt + '</b></div><div><span>1,000 ' + c.code + '</span><b>Rs ' + nin(r * 1000) + '</b></div><div><span>Updated</span><b>' + date + '</b></div></div>' +
+    share(c.code + ' to PKR today: 1 ' + c.code + ' = ' + nf(r, 2) + ' PKR (' + date + ')', SITE + '/rates/' + c.slug + '/') +
     '<h3>' + esc(c.code) + ' to PKR quick table</h3><div class="pp-wrap"><table><thead><tr><th>' + c.code + '</th><th>Pakistani rupees</th></tr></thead><tbody>' +
     amounts.map(a => '<tr><td>' + nf(a, 0) + ' ' + c.code + '</td><td>Rs ' + nin(a * r) + '</td></tr>').join('') + '</tbody></table></div>' +
     '<h3>PKR to ' + c.code + '</h3><div class="pp-wrap"><table><thead><tr><th>Pakistani rupees</th><th>' + c.code + '</th></tr></thead><tbody>' +
@@ -95,7 +98,7 @@ if (fs.existsSync(hp)) {
   let html = fs.readFileSync(hp, 'utf8');
   const rows = CUR.map(c => { const h = data.history[c.code], cur = h[h.length - 1], prev = h.length > 1 ? h[h.length - 2] : null; const d = prev ? cur.r - prev.r : null;
     return '<tr><td><a href="./' + c.slug + '/">' + c.code + ' to PKR</a></td><td>' + esc(c.name) + '</td><td>' + nf(cur.r, 2) + '</td><td>' + (d === null ? '-' : (d >= 0 ? '+' : '-') + nf(Math.abs(d), 2)) + '</td></tr>'; }).join('');
-  html = patch(html, 'rate-hub', null, '<p class="small muted">Rates for ' + longDate(live.date) + '. Mid-market reference rates, updated daily.</p><div class="pp-wrap"><table><thead><tr><th>Pair</th><th>Currency</th><th>Rs per 1 unit</th><th>Change vs previous day</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
+  html = patch(html, 'rate-hub', null, share('Rates in Pakistan today (' + longDate(live.date) + '): ' + CUR.map(c => c.code + ' ' + nf(data.history[c.code][data.history[c.code].length - 1].r, 2)).join(', ') + ' PKR', SITE + '/rates/') + '<p class="small muted">Rates for ' + longDate(live.date) + '. Mid-market reference rates, updated daily.</p><div class="pp-wrap"><table><thead><tr><th>Pair</th><th>Currency</th><th>Rs per 1 unit</th><th>Change vs previous day</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
   html = html.replace(/(<meta name="description" content=")[^"]*(")/, (m, a, b) => a + esc("Today's exchange rates in Pakistan: USD, GBP, EUR, AED, SAR, CAD, AUD and QAR to PKR with quick tables, history and a free converter. Updated " + longDate(live.date) + '.') + b);
   fs.writeFileSync(hp, html); dates['/rates/'] = live.date;
 }

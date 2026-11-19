@@ -12,12 +12,21 @@ const nf = (n, d = 2) => n.toLocaleString('en-US', { minimumFractionDigits: d, m
 const longDate = iso => { const [y, m, d] = iso.split('-').map(Number); return d + ' ' + MON[m - 1] + ' ' + y; };
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+async function getJson(url, ua) {
+  let last;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      const r = await fetch(url, { headers: { 'User-Agent': ua }, signal: AbortSignal.timeout(20000) });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    } catch (e) { last = e; await new Promise(res => setTimeout(res, 4000 * attempt)); }
+  }
+  throw new Error('Feed unavailable after 4 tries: ' + (last && last.message));
+}
 const rates = JSON.parse(fs.readFileSync('data/rates.json', 'utf8'));
 const usdHist = rates.history && rates.history.USD; if (!usdHist || !usdHist.length) throw new Error('data/rates.json has no USD history');
 const usdPkr = usdHist[usdHist.length - 1].r;
-const res = await fetch('https://api.gold-api.com/price/XAU', { headers: { 'User-Agent': 'gm-gold-bot' } });
-if (!res.ok) throw new Error('Gold feed returned HTTP ' + res.status);
-const g = await res.json();
+const g = await getJson('https://api.gold-api.com/price/XAU', 'gm-gold-bot');
 const oz = g && g.price;
 if (!(typeof oz === 'number' && isFinite(oz) && oz > 500 && oz < 20000)) throw new Error('Gold price out of range: ' + oz);
 const date = (g.updatedAt || new Date().toISOString()).slice(0, 10);
@@ -44,6 +53,8 @@ function setMeta(html, text) {
     .replace(/(<meta property="og:description" content=")[^"]*(")/, (m, a, b) => a + esc(text) + b)
     .replace(/(<meta name="twitter:description" content=")[^"]*(")/, (m, a, b) => a + esc(text) + b);
 }
+const SITE = 'https://gmdkhantoolshub.github.io';
+function share(text, url) { return '<p><a class="btn btn-primary btn-sm" href="https://wa.me/?text=' + encodeURIComponent(text + '\n' + url) + '" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a></p>'; }
 const wrap = s => '<div class="pp-wrap">' + s + '</div>';
 const histTable = k => '<h3>Estimated ' + k + ' karat price history (per tola)</h3>' + wrap('<table><thead><tr><th>Date</th><th>Per tola</th><th>Change</th></tr></thead><tbody>' +
   H.slice(-SHOW_DAYS).reverse().map((x, idx, arr) => { const p = arr[idx + 1]; const t = x.t24 * k / 24, pt = p ? p.t24 * k / 24 : null; return '<tr><td>' + longDate(x.d) + '</td><td>Rs ' + nin(t) + '</td><td>' + (pt === null ? '-' : (t - pt >= 0 ? '+' : '-') + 'Rs ' + nin(Math.abs(t - pt))) + '</td></tr>'; }).join('') + '</tbody></table>') +
@@ -57,7 +68,7 @@ for (const K of KARATS) {
   let html = fs.readFileSync(p, 'utf8'); const k = K.k;
   const lead = 'Estimated ' + k + ' karat gold price: Rs ' + nin(tola(k)) + ' per tola on ' + longDate(cur.d) + '. International price converted to rupees, not a jeweller\'s quote.';
   const rows = [['1 ratti', GRAMS_PER_TOLA / 96], ['1 masha', GRAMS_PER_TOLA / 12], ['Half tola', GRAMS_PER_TOLA / 2], ['1 tola', GRAMS_PER_TOLA], ['5 tola', GRAMS_PER_TOLA * 5], ['10 tola', GRAMS_PER_TOLA * 10], ['10 grams', 10], ['1 gram', 1], ['1 troy ounce', GRAMS_PER_OZ]];
-  const body = dataDiv(k) + ans(k) +
+  const body = dataDiv(k) + ans(k) + share('Estimated ' + k + ' karat gold in Pakistan today (' + longDate(cur.d) + '): Rs ' + nin(tola(k)) + ' per tola', SITE + '/gold-rate/' + K.slug + '/') +
     '<p class="small muted">International gold: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '. Updated once a day.</p>' +
     '<h3>' + k + ' karat gold price by weight</h3>' + wrap('<table><thead><tr><th>Weight</th><th>Grams</th><th>Estimated price</th></tr></thead><tbody>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + nf(r[1], 3).replace(/\.?0+$/, '') + '</td><td>Rs ' + nin(r[1] * gram(k)) + '</td></tr>').join('') + '</tbody></table>') +
     '<p><strong>Zakat nisab:</strong> 7.5 tola (87.48 g) of ' + k + ' karat gold is worth about Rs ' + nin(7.5 * tola(k)) + ' at this estimate. Use the <a href="../../tools/zakat-calculator/">Zakat Calculator</a> for the full calculation.</p>' + histTable(k);
@@ -69,7 +80,7 @@ const hp = 'gold-rate/index.html';
 if (fs.existsSync(hp)) {
   let html = fs.readFileSync(hp, 'utf8');
   const lead = 'Estimated 24 karat gold: Rs ' + nin(tola(24)) + ' per tola on ' + longDate(cur.d) + '. International gold price converted to rupees, not a jeweller\'s quote. Updated every day.';
-  const body = dataDiv(24) + ans(24) + '<p class="small muted">International gold: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '.</p>' +
+  const body = dataDiv(24) + ans(24) + share('Gold rate in Pakistan today (estimate, ' + longDate(cur.d) + '): 24K Rs ' + nin(tola(24)) + ' per tola, 22K Rs ' + nin(tola(22)) + ' per tola', SITE + '/gold-rate/') + '<p class="small muted">International gold: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '.</p>' +
     '<h3>Gold rate in Pakistan today by karat</h3>' + wrap('<table><thead><tr><th>Karat</th><th>Purity</th><th>Per tola</th><th>Per 10 grams</th><th>Per gram</th></tr></thead><tbody>' +
       KARATS.map(K => '<tr><td><a href="./' + K.slug + '/">' + K.k + ' karat</a></td><td>' + K.purity + '</td><td>Rs ' + nin(tola(K.k)) + '</td><td>Rs ' + nin(gram(K.k) * 10) + '</td><td>Rs ' + nin(gram(K.k)) + '</td></tr>').join('') + '</tbody></table>') +
     '<p><strong>Zakat nisab:</strong> 7.5 tola (87.48 g) of 24 karat gold is worth about Rs ' + nin(7.5 * tola(24)) + ' at this estimate.</p>' + histTable(24);
