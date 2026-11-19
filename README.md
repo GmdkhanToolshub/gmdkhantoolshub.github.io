@@ -4,6 +4,9 @@ Free, private, in-browser tools, guides and a safe Kids Corner. Live at https://
 
 Static site (HTML, CSS and vanilla JavaScript) deployed by GitHub Pages from the `main` branch. No build step is needed to publish; the `build/` scripts only maintain shared files.
 
+## Copyright
+Copyright (c) 2026 Gmd Khan Niazi. All rights reserved. See [LICENSE](LICENSE). Copying or reusing this code or content without written permission is not allowed.
+
 ## Structure
 - `assets/css/premium.css`: design tokens and the premium layer (light/dark themes, accents, motion). Kids Corner follows the same tokens.
 - `assets/js/`: `config.js`, `util.js`, `main.js`, `premium.js` are combined into `core.js` by `python build/make-core.py`.
