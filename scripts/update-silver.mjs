@@ -46,13 +46,15 @@ function patch(html, name, inner) {
   if (!re.test(html)) throw new Error('marker missing: ' + name);
   return html.replace(re, () => '<!--' + name + ':start-->' + inner + '<!--' + name + ':end-->');
 }
+const artImg = (kind, depth, alt) => '<figure class="rate-art"><img src="' + '../'.repeat(depth) + 'assets/img/' + kind + '-rate-art.svg" alt="' + alt + '" width="1024" height="1280" loading="lazy" decoding="async"></figure>';
+const split = (inner, kind, depth, alt) => '<div class="rate-split"><div>' + inner + '</div>' + artImg(kind, depth, alt) + '</div>';
 const wrap = s => '<div class="pp-wrap">' + s + '</div>';
 const rows = [['1 ratti', GRAMS_PER_TOLA / 96], ['1 masha', GRAMS_PER_TOLA / 12], ['Half tola', GRAMS_PER_TOLA / 2], ['1 tola', GRAMS_PER_TOLA], ['10 tola', GRAMS_PER_TOLA * 10], ['10 grams', 10], ['100 grams', 100], ['1 kilogram', 1000], ['1 troy ounce', GRAMS_PER_OZ]];
 const body = '<div id="gold-data" data-tola="' + tola.toFixed(2) + '" data-label="silver" data-date="' + cur.d + '" hidden></div>' +
   '<div class="pp-ans"><div><span>Silver per tola</span><b>Rs ' + nin(tola) + '</b></div><div><span>Per 10 grams</span><b>Rs ' + nin(gram * 10) + '</b></div><div><span>Per gram</span><b>Rs ' + nin(gram) + '</b></div><div><span>Change vs previous day</span><b>' + dTxt + '</b></div></div>' +
   share('Silver rate in Pakistan today (estimate, ' + longDate(cur.d) + '): Rs ' + nin(tola) + ' per tola', SITE + '/silver-rate/') +
   '<p class="small muted">International silver: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '. Updated once a day.</p>' +
-  '<h3>Silver price by weight (pure silver)</h3>' + wrap('<table><thead><tr><th>Weight</th><th>Grams</th><th>Estimated price</th></tr></thead><tbody>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + nf(r[1], 3).replace(/\.?0+$/, '') + '</td><td>Rs ' + nin(r[1] * gram) + '</td></tr>').join('') + '</tbody></table>') +
+  split('<h3>Silver price by weight (pure silver)</h3>' + wrap('<table><thead><tr><th>Weight</th><th>Grams</th><th>Estimated price</th></tr></thead><tbody>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + nf(r[1], 3).replace(/\.?0+$/, '') + '</td><td>Rs ' + nin(r[1] * gram) + '</td></tr>').join('') + '</tbody></table>'), 'silver', 1, 'Polished silver bars and silver coins') +
   '<h3>Silver by purity</h3>' + wrap('<table><thead><tr><th>Purity</th><th>Per tola</th><th>Per 10 grams</th></tr></thead><tbody><tr><td>Pure (999)</td><td>Rs ' + nin(tola) + '</td><td>Rs ' + nin(gram * 10) + '</td></tr><tr><td>Sterling (925)</td><td>Rs ' + nin(tola * 0.925) + '</td><td>Rs ' + nin(gram * 10 * 0.925) + '</td></tr></tbody></table>') +
   '<p><strong>Zakat nisab:</strong> 52.5 tola (612.36 g) of silver is worth about Rs ' + nin(52.5 * tola) + ' at this estimate. Use the <a href="../tools/zakat-calculator/">Zakat Calculator</a> for the full calculation.</p>' +
   '<h3>Estimated silver price history (per tola)</h3>' + wrap('<table><thead><tr><th>Date</th><th>Per tola</th><th>Change</th></tr></thead><tbody>' +

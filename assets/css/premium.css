@@ -469,3 +469,17 @@ main :is(table:not([class]), .prose table, table.data) td:first-child { min-widt
 .gx-urdu { direction: rtl; text-align: right; font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", "Segoe UI", serif; line-height: 2.2; font-size: 1.04rem; }
 .gx-urdu h2 { line-height: 1.8; letter-spacing: 0; }
 .gx-urdu ul { padding-right: 1.3em; padding-left: 0; }
+
+/* ---------- Rate pages: tables fill their card; price table beside a product image ---------- */
+main .pp-wrap { border: 1px solid var(--border); border-radius: 14px; overflow-x: auto; background: var(--surface); box-shadow: var(--shadow-sm, 0 1px 2px rgba(11, 18, 40, .06)); margin: .6em 0 1.2em; }
+main .pp-wrap table:not([class]) { display: table; width: 100%; min-width: 340px; margin: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+main .pp-wrap table:not([class]) tr:last-child td { border-bottom: 0; }
+.rate-split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 26px; align-items: stretch; margin: 10px 0 22px; }
+.rate-split > div > h3:first-child { margin-top: 0; }
+.rate-split .pp-wrap { margin-bottom: 0; }
+.rate-art { margin: 0; position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-lg, 0 24px 60px -28px rgba(11, 18, 40, .35)); min-height: 340px; background: var(--surface-strong); }
+.rate-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s var(--ease, ease); }
+.rate-art:hover img { transform: scale(1.04); }
+.rate-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(8, 11, 20, .28)); pointer-events: none; }
+@media (max-width: 860px) { .rate-split { grid-template-columns: 1fr; } .rate-art { min-height: 0; aspect-ratio: 16 / 10; order: -1; } }
+@media (prefers-reduced-motion: reduce) { .rate-art img { transition: none; } .rate-art:hover img { transform: none; } }
