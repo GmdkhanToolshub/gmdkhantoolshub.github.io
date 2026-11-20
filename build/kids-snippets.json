@@ -1,0 +1,44 @@
+[
+ {
+  "file": "index.html",
+  "label": "home kids section",
+  "snippet": "<section class=\"section\" id=\"kids-showcase\"><div class=\"container\"><div class=\"gx-kids\"><div><span class=\"eyebrow\">Kids Corner</span><h2>A safe, ad-free place to create and play</h2><p class=\"muted\">Drawing, colouring, games and Mango the talking cat. Nothing is recorded, no microphone is used and nothing is sent anywhere.</p><div class=\"gx-cta\" style=\"margin-top:22px\"><a class=\"btn btn-primary\" href=\"kids/\">Open Kids Corner</a><a class=\"btn btn-ghost\" href=\"kids/talking-cat/\">Meet Mango</a></div></div><div class=\"gx-kids-tiles\"><a href=\"./kids/learning-games/#math\"><span class=\"em\" aria-hidden=\"true\">🔢</span><b>Math Adventure</b><span class=\"d\">Counting, adding and taking away.</span></a><a href=\"./kids/animal-kingdom/\"><span class=\"em\" aria-hidden=\"true\">🐾</span><b>Animal Kingdom</b><span class=\"d\">Names, homes, food and sounds.</span></a><a href=\"./kids/drawing-studio/\"><span class=\"em\" aria-hidden=\"true\">🎨</span><b>Magic Drawing Studio</b><span class=\"d\">Paint, add stickers and shapes, save as PNG, JPEG or PDF.</span></a><a href=\"./kids/colouring-pages/\"><span class=\"em\" aria-hidden=\"true\">🖍️</span><b>Colouring Book</b><span class=\"d\">Ten pictures to colour and save.</span></a></div></div></div></section>",
+  "before": "rue\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg></span></a></div></div></section>\n"
+ },
+ {
+  "file": "about/index.html",
+  "label": "about kids card",
+  "snippet": "<a class=\"gm-card\" href=\"../kids/\"><span class=\"emoji\" aria-hidden=\"true\"><svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.85\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"13.5\" cy=\"6.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"17.5\" cy=\"10.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"8.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"6.5\" cy=\"12.5\" r=\".5\" fill=\"currentColor\"/><path d=\"M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z\"/></svg></span><h3>Kids Corner</h3><p>A private, ad-free drawing studio and colouring pages for children.</p><span class=\"go\">Visit Kids Corner →</span></a>",
+  "before": "career guidance and interview preparation.</p><span class=\"go\">Start learning →</span></a>"
+ },
+ {
+  "file": "about/index.html",
+  "label": "about safe-for-children bullet",
+  "snippet": "<li><b>Safe for children.</b> Kids Corner has no accounts, no chat and no adverts.</li>",
+  "before": "e free tools are not trials. Paid products, like GM HCM, are always labelled clearly.</li>"
+ },
+ {
+  "file": "advertise/index.html",
+  "label": "advertise kids bullet",
+  "snippet": "<li><b>Kids Corner stays clean.</b> There are no adverts, sponsorships or affiliate links in Kids Corner.</li>",
+  "before": "pons, get-rich-quick or misleading finance offers, and anything illegal or deceptive.</li>"
+ },
+ {
+  "file": "404.html",
+  "label": "404 kids link",
+  "snippet": " · <a href=\"/kids/\">Kids Corner</a>",
+  "before": "rgin-top:22px\">Popular pages: <a href=\"/growth/interview-practice/\">Interview Practice</a>"
+ },
+ {
+  "file": "updates/index.html",
+  "label": "updates kids entry 1",
+  "snippet": "<li class=\"upd\"><div class=\"upd-meta\"><time datetime=\"2026-11-17\">17 November 2026</time><span class=\"upd-tag\">Kids Corner</span></div><div class=\"upd-body\"><h2>Meet Mango, the talking cat</h2><p>Kids Corner has a new friend: Mango, an original cartoon cat who tells jokes, asks riddles, plays guessing games and tells stories. He has 12 outfits and 7 poses you change by tapping. Nothing is recorded, there is no microphone, and nothing leaves the device.</p><div class=\"btn-row\"><a class=\"btn btn-ghost btn-sm\" href=\"../kids/talking-cat/\">Meet Mango</a><a class=\"btn btn-ghost btn-sm\" href=\"../kids/\">Kids Corner</a></div></div></li>",
+  "before": " btn-ghost btn-sm\" href=\"../tools/zakat-calculator/\">Zakat Calculator</a></div></div></li>"
+ },
+ {
+  "file": "updates/index.html",
+  "label": "updates kids entry 2",
+  "snippet": "<li class=\"upd\"><div class=\"upd-meta\"><time datetime=\"2026-11-17\">17 November 2026</time><span class=\"upd-tag\">Kids Corner</span></div><div class=\"upd-body\"><h2>Gmd &amp; Emma cartoons</h2><p>Watch the Gmd &amp; Emma story cartoons from Kids Corner. They are plain links to YouTube, so no third-party code runs on our pages.</p><div class=\"btn-row\"><a class=\"btn btn-ghost btn-sm\" href=\"../kids/#watch\">Watch</a></div></div></li>",
+  "before": " Mango</a><a class=\"btn btn-ghost btn-sm\" href=\"../kids/\">Kids Corner</a></div></div></li>"
+ }
+]
