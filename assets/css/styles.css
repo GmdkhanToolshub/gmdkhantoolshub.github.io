@@ -1127,6 +1127,8 @@ html.wl-needs-tap .wl-tap { display: flex; }
 @keyframes sf-auto { 0%, 70% { transform: rotateX(0); } 78%, 92% { transform: rotateX(180deg); } 100% { transform: rotateX(360deg); } }
 @media (hover: none) { .sf-inner { animation: sf-auto 8s ease-in-out infinite; } }
 @media (max-width: 520px) { .shop-fab { width: 150px; height: 46px; right: 12px; bottom: 76px; } .sf-face { font-size: .85rem; } .sf-back { font-size: .78rem; } }
+/* On phones and tablets the floating button would sit on top of the tool's own input fields, so it is hidden on tool pages. */
+@media (max-width: 900px) { body[data-tool] .shop-fab, body:has(#tool-root) .shop-fab { display: none; } }
 @media (prefers-reduced-motion: reduce) { .shop-fab, .shop-fab::before, .sf-inner { animation: none; } .sf-inner { transition: none; } }
 @media print { .shop-fab { display: none; } }
 

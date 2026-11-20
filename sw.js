@@ -1,6 +1,6 @@
 /* GM AI Tools HUB service worker: makes the site installable and lets pages and tools you have already opened work offline.
    It only handles same-site GET requests. Ads, analytics, jobs data and anything cross-site go straight to the network, untouched. */
-var VERSION = 'gm-pwa-v1';
+var VERSION = 'gm-pwa-v2';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (ks) { return Promise.all(ks.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));

@@ -101,7 +101,11 @@
     else if (a.hasAttribute('data-job')) track('job_apply_click', { source: a.getAttribute('data-job'), page: location.pathname });
     else if (/\/shop\/$/.test(location.pathname) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('shop_order_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
     else if (a.classList.contains('shop-fab') || /shop\/#/.test(a.getAttribute('href') || '')) track('shop_cta_click', { page: location.pathname });
+    else if (/gumroad\.com/i.test(a.getAttribute('href') || '')) track('purchase_click', { product: (a.getAttribute('href') || '').replace(/^https?:\/\/[^/]+\//, '').split(/[?#]/)[0].slice(0, 60), page: location.pathname });
+    else if (/\.(xlsx|xls|pdf|zip|docx|csv)(\?|#|$)/i.test(a.getAttribute('href') || '') || a.hasAttribute('download')) track('file_download', { file: (a.getAttribute('href') || '').split(/[?#]/)[0].split('/').pop().slice(0, 60), page: location.pathname });
+    else if (/^(solutions|services|advertise|media-kit|partners)$/.test(location.pathname.replace(/^\/|\/$/g, '')) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('enquiry_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
   });
+  window.GM_track = track; /* lets tools and forms report events (downloads, sign-ups, quote requests) */
   (function () { var t = $('#tool-root'); if (t && consent !== 'essential') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
   /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
@@ -320,7 +324,9 @@
       tr.setAttribute('data-ready', '');
     };
     // Let the browser paint the page header first (better FCP/LCP on slow phones), then start the tool.
-    var later = function () { if (window.requestAnimationFrame) requestAnimationFrame(function () { setTimeout(boot, 0); }); else setTimeout(boot, 0); };
+    // A timer is the fallback in case animation frames are throttled (background tab, hidden window), so the tool never stays on "Loading tool…".
+    var started = false, go = function () { if (started) return; started = true; setTimeout(boot, 0); };
+    var later = function () { if (window.requestAnimationFrame) { requestAnimationFrame(go); setTimeout(go, 350); } else go(); };
     if (window.NiaziTools && NiaziTools[slug] && window.NiaziUtil) later(); else document.addEventListener('DOMContentLoaded', later); // deferred tool scripts have all run by DOMContentLoaded
   }
 })();
@@ -508,6 +514,7 @@
     fetch(ep, { method: 'POST', body: fd, mode: 'no-cors', referrerPolicy: 'no-referrer' }).then(function () {
       msg.textContent = 'Thank you! Please check your inbox and confirm your email address. Your free budget template opens after you confirm.'; msg.className = 'nb-msg small nb-ok'; input.value = ''; input.disabled = true;
       try { localStorage.setItem('niazi.news', '1'); } catch (e) { /* ignore */ }
+      if (window.GM_track) window.GM_track('newsletter_signup', { page: location.pathname });
     }).catch(function () { btn.disabled = false; msg.textContent = 'Sorry, that did not go through. Please try again later.'; msg.className = 'nb-msg small nb-bad'; });
   });
   var shares = document.querySelectorAll('main .share-row'), last = shares.length ? shares[shares.length - 1] : null, anchor = last ? (last.closest('.content-block') || last) : null;

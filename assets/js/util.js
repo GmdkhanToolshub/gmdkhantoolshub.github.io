@@ -71,6 +71,7 @@
     var blob = data instanceof Blob ? data : new Blob([data], { type: mime || 'text/plain;charset=utf-8' });
     var url = URL.createObjectURL(blob), a = document.createElement('a');
     a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    try { if (window.GM_track) { var tr = document.getElementById('tool-root'); window.GM_track('file_download', { file: String(filename || '').split('.').pop().slice(0, 8), tool: tr ? tr.getAttribute('data-tool-id') : '', page: location.pathname }); } } catch (e) { /* measurement must never break a download */ }
     setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
   };
 

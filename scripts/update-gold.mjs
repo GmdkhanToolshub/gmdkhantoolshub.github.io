@@ -58,7 +58,7 @@ function share(text, url) { return '<p><a class="btn btn-primary btn-sm" href="h
 const artImg = (kind, depth, alt) => '<figure class="rate-art"><img src="' + '../'.repeat(depth) + 'assets/img/' + kind + '-rate-art.svg" alt="' + alt + '" width="1024" height="1280" loading="lazy" decoding="async"></figure>';
 const split = (inner, kind, depth, alt) => '<div class="rate-split"><div>' + inner + '</div>' + artImg(kind, depth, alt) + '</div>';
 const wrap = s => '<div class="pp-wrap">' + s + '</div>';
-const histTable = k => '<h3>Estimated ' + k + ' karat price history (per tola)</h3>' + wrap('<table><thead><tr><th>Date</th><th>Per tola</th><th>Change</th></tr></thead><tbody>' +
+const histTable = k => '<h2>Estimated ' + k + ' karat price history (per tola)</h2>' + wrap('<table><thead><tr><th>Date</th><th>Per tola</th><th>Change</th></tr></thead><tbody>' +
   H.slice(-SHOW_DAYS).reverse().map((x, idx, arr) => { const p = arr[idx + 1]; const t = x.t24 * k / 24, pt = p ? p.t24 * k / 24 : null; return '<tr><td>' + longDate(x.d) + '</td><td>Rs ' + nin(t) + '</td><td>' + (pt === null ? '-' : (t - pt >= 0 ? '+' : '-') + 'Rs ' + nin(Math.abs(t - pt))) + '</td></tr>'; }).join('') + '</tbody></table>') +
   '<p class="small muted">History is recorded by this site once a day from ' + longDate(H[0].d) + ', so the table grows daily.</p>';
 const dataDiv = k => '<div id="gold-data" data-tola="' + tola(k).toFixed(2) + '" data-karat="' + k + '" data-date="' + cur.d + '" hidden></div>';
@@ -72,7 +72,7 @@ for (const K of KARATS) {
   const rows = [['1 ratti', GRAMS_PER_TOLA / 96], ['1 masha', GRAMS_PER_TOLA / 12], ['Half tola', GRAMS_PER_TOLA / 2], ['1 tola', GRAMS_PER_TOLA], ['5 tola', GRAMS_PER_TOLA * 5], ['10 tola', GRAMS_PER_TOLA * 10], ['10 grams', 10], ['1 gram', 1], ['1 troy ounce', GRAMS_PER_OZ]];
   const body = dataDiv(k) + ans(k) + share('Estimated ' + k + ' karat gold in Pakistan today (' + longDate(cur.d) + '): Rs ' + nin(tola(k)) + ' per tola', SITE + '/gold-rate/' + K.slug + '/') +
     '<p class="small muted">International gold: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '. Updated once a day.</p>' +
-    split('<h3>' + k + ' karat gold price by weight</h3>' + wrap('<table><thead><tr><th>Weight</th><th>Grams</th><th>Estimated price</th></tr></thead><tbody>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + nf(r[1], 3).replace(/\.?0+$/, '') + '</td><td>Rs ' + nin(r[1] * gram(k)) + '</td></tr>').join('') + '</tbody></table>'), 'gold', 2, 'Polished gold bars and gold coins') +
+    split('<h2>' + k + ' karat gold price by weight</h2>' + wrap('<table><thead><tr><th>Weight</th><th>Grams</th><th>Estimated price</th></tr></thead><tbody>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + nf(r[1], 3).replace(/\.?0+$/, '') + '</td><td>Rs ' + nin(r[1] * gram(k)) + '</td></tr>').join('') + '</tbody></table>'), 'gold', 2, 'Polished gold bars and gold coins') +
     '<p><strong>Zakat nisab:</strong> 7.5 tola (87.48 g) of ' + k + ' karat gold is worth about Rs ' + nin(7.5 * tola(k)) + ' at this estimate. Use the <a href="../../tools/zakat-calculator/">Zakat Calculator</a> for the full calculation.</p>' + histTable(k);
   html = patch(html, 'gold-lead', lead); html = patch(html, 'gold-body', body);
   html = setMeta(html, 'Estimated ' + k + ' karat gold rate in Pakistan: Rs ' + nin(tola(k)) + ' per tola, Rs ' + nin(gram(k) * 10) + ' per 10 g (' + longDate(cur.d) + '). Price by weight, history and calculator.');
@@ -83,7 +83,7 @@ if (fs.existsSync(hp)) {
   let html = fs.readFileSync(hp, 'utf8');
   const lead = 'Estimated 24 karat gold: Rs ' + nin(tola(24)) + ' per tola on ' + longDate(cur.d) + '. International gold price converted to rupees, not a jeweller\'s quote. Updated every day.';
   const body = dataDiv(24) + ans(24) + share('Gold rate in Pakistan today (estimate, ' + longDate(cur.d) + '): 24K Rs ' + nin(tola(24)) + ' per tola, 22K Rs ' + nin(tola(22)) + ' per tola', SITE + '/gold-rate/') + '<p class="small muted">International gold: US$ ' + nf(cur.oz, 2) + ' per troy ounce and 1 USD = ' + nf(cur.usd, 2) + ' PKR on ' + longDate(cur.d) + '.</p>' +
-    split('<h3>Gold rate in Pakistan today by karat</h3>' + wrap('<table><thead><tr><th>Karat</th><th>Purity</th><th>Per tola</th><th>Per 10 grams</th><th>Per gram</th></tr></thead><tbody>' +
+    split('<h2>Gold rate in Pakistan today by karat</h2>' + wrap('<table><thead><tr><th>Karat</th><th>Purity</th><th>Per tola</th><th>Per 10 grams</th><th>Per gram</th></tr></thead><tbody>' +
       KARATS.map(K => '<tr><td><a href="./' + K.slug + '/">' + K.k + ' karat</a></td><td>' + K.purity + '</td><td>Rs ' + nin(tola(K.k)) + '</td><td>Rs ' + nin(gram(K.k) * 10) + '</td><td>Rs ' + nin(gram(K.k)) + '</td></tr>').join('') + '</tbody></table>'), 'gold', 1, 'Polished gold bars and gold coins') +
     '<p><strong>Zakat nisab:</strong> 7.5 tola (87.48 g) of 24 karat gold is worth about Rs ' + nin(7.5 * tola(24)) + ' at this estimate.</p>' + histTable(24);
   html = patch(html, 'gold-lead', lead); html = patch(html, 'gold-body', body);
