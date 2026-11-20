@@ -133,8 +133,9 @@
   var needsConsent = !!(C.gaMeasurementId || C.gtmContainerId || C.adsensePublisherId);
   initAds();
   if (consent !== 'essential') { var go = function () { setTimeout(loadAnalytics, 1200); }; if (doc.readyState === 'complete') go(); else addEventListener('load', go); }
-  /* No banner pops up by itself. Visitors in the EEA, UK and Switzerland get Google's certified consent
-     message through the AdSense tag; everyone else can choose from the "Cookie settings" link. */
+  /* First visit: the site's own cookie choice bar appears once, unless Google's certified consent message
+     (EEA, UK, Switzerland) is already handling it. The choice is remembered, and anyone can change it
+     later from the "Cookie settings" link in the footer. */
   function openSettings() {
     var done = false;
     function own() { if (!done) { done = true; showBanner(); } }
@@ -152,6 +153,18 @@
     } catch (e) { /* fall back to the site's own choice panel */ }
     own();
   }
+  function autoPrompt() {
+    var done = false;
+    function own() { if (!done) { done = true; showBanner(); } }
+    try {
+      if (typeof window.__tcfapi === 'function') {
+        window.__tcfapi('ping', 2, function (r) { if (done) return; done = true; if (!(r && r.gdprApplies)) showBanner(); });
+        setTimeout(own, 1500); return;
+      }
+    } catch (e) { /* fall through to the site's own bar */ }
+    own();
+  }
+  if (needsConsent && consent === null && !inKids && !/[?&]adpreview=1/.test(location.search)) setTimeout(autoPrompt, 1500);
   $$('[data-open-consent]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); openSettings(); }); });
   if (!needsConsent) $$('[data-open-consent]').forEach(function (a) { var li = a.closest('li'); if (li) li.hidden = true; });
 
@@ -161,7 +174,7 @@
   function toolBySlug(s) { return TD.filter(function (t) { return t.slug === s; })[0]; }
   function cardHTML(t, fav) {
     return '<article class="card tool-card hover" data-slug="' + t.slug + '" data-cat="' + esc(t.cat) + '"><button type="button" class="fav-btn" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Remove ' : 'Save ') + esc(t.name) + (fav ? ' from favourites' : ' to favourites') + '" data-fav="' + t.slug + '">' + (window.STAR_ICON || '') + '</button>' +
-      '<div class="icon-chip ' + t.catClass + '" aria-hidden="true">' + t.icon + '</div><h3><a href="' + base + 'tools/' + t.slug + '/' + (location.protocol === 'file:' ? 'index.html' : '') + '" class="stretch">' + esc(t.name) + '</a></h3><p>' + esc(t.desc) + '</p><div class="meta"><span>' + esc(t.cat) + '</span><span>Free</span></div></article>';
+      '<div class="icon-chip ' + t.catClass + '" aria-hidden="true">' + t.icon + '</div><h3><a href="' + base + 'tools/' + t.slug + '/' + (location.protocol === 'file:' ? 'index.html' : '') + '" class="stretch">' + esc(t.name) + '</a></h3><p>' + esc(t.desc) + '</p><div class="meta"><span>' + esc(t.cat) + '</span></div></article>';
   }
   /* Compact link used by the Favourites and Recently Used rows on the tools hub, so no tool card appears twice. */
   function chipHTML(t) {

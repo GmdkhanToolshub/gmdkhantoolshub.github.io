@@ -32,10 +32,6 @@
    "url": "/assistant/"
   },
   {
-   "name": "Jobs",
-   "url": "/jobs/"
-  },
-  {
    "name": "Tasks & Planner",
    "url": "/workspace/planner/"
   }

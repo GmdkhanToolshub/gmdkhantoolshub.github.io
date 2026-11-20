@@ -1,7 +1,7 @@
 name: Update live jobs
 on:
-  schedule:
-    - cron: '23 */6 * * *'   # every 6 hours (Remotive asks for no more than 4 calls a day)
+  # The Live jobs feed is hidden from the site for now (see build/hide-features.mjs), so the
+  # six-hourly schedule is paused. To bring it back, restore: schedule: - cron: '23 */6 * * *'
   workflow_dispatch: {}
 permissions:
   contents: write
