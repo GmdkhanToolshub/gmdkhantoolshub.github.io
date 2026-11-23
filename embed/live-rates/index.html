@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Live Pakistan gold, silver and dollar rates (embed) | GM Tools Hub</title>
+<link rel="canonical" href="https://gmtoolshub.com/embed-rates/">
+<style>
+:root{--bg:transparent;--card:#fff;--text:#0f172a;--soft:#475569;--line:#e2e8f0;--accent:#0e7490;--up:#15803d;--down:#b91c1c;--gold:#b45309}
+[data-theme=dark]{--card:#0f1b30;--text:#e8eefc;--soft:#a5b4cf;--line:#223452;--up:#4ade80;--down:#f87171;--gold:#fbbf24}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{padding:8px}
+.wrap{max-width:720px;margin:0 auto;border:1px solid var(--line);background:var(--card);border-radius:16px;overflow:hidden}
+.head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.head b{font-size:1rem}.head span{font-size:.78rem;color:var(--soft)}
+.rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.row{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.row:last-child{border-right:0}
+.lab{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.val{font-size:1.45rem;font-weight:800;margin-top:2px;color:var(--text)}
+.row.gold .val{color:var(--gold)}
+.chg{font-size:.82rem;font-weight:700;margin-top:2px;unicode-bidi:plaintext}.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--soft)}
+.foot{padding:10px 16px;font-size:.76rem;color:var(--soft);text-align:center}
+.foot a{color:var(--accent);font-weight:700;text-decoration:none}.foot a:hover{text-decoration:underline}
+.err{padding:18px;text-align:center;color:var(--soft)}
+[dir=rtl] .row{text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap" id="w">
+<div class="head"><b id="t">Pakistan rates today</b><span id="d"></span></div>
+<div class="rows" id="r"><p class="err">Loading rates…</p></div>
+<p class="foot" id="f"></p>
+</div>
+<script>
+(function(){
+var Q=new URLSearchParams(location.search);
+var TH=Q.get('theme');if(TH==='dark'||TH==='light')document.documentElement.setAttribute('data-theme',TH);
+var AC=Q.get('accent');if(AC&&/^[0-9a-fA-F]{6}$/.test(AC))document.documentElement.style.setProperty('--accent','#'+AC);
+var LANG=Q.get('lang')==='ur'?'ur':'en';
+var SHOW=(Q.get('show')||'gold,silver,usd').split(',').filter(function(x){return /^(gold|silver|usd)$/.test(x)});
+if(!SHOW.length)SHOW=['gold','silver','usd'];
+var T={en:{title:'Pakistan rates today',gold:'Gold 24K, per tola',gold22:'Gold 22K, per tola',silver:'Silver, per tola',usd:'US dollar (USD to PKR)',upd:'Estimate, updated',note:'Estimates from international prices, not a jeweller quote.',by:'Rates by',vs:'vs previous day',err:'Rates are not available right now.'},
+ur:{title:'آج کے ریٹ',gold:'سونا 24 قیراط، فی تولہ',gold22:'سونا 22 قیراط، فی تولہ',silver:'چاندی، فی تولہ',usd:'امریکی ڈالر (روپے میں)',upd:'اندازہ، تاریخ',note:'یہ بین الاقوامی قیمتوں سے اندازہ ہے، جیولر کا ریٹ نہیں۔',by:'ریٹس از',vs:'پچھلے دن کے مقابلے',err:'ریٹ ابھی دستیاب نہیں۔'}}[LANG];
+if(LANG==='ur')document.documentElement.setAttribute('dir','rtl');
+function $(i){return document.getElementById(i)}
+function fmt(n){return 'Rs '+Math.round(n).toLocaleString('en-IN')}
+function chg(a,b,dec){if(!b)return '';var p=(a-b)/b*100;var c=Math.abs(p)<0.05?'flat':(p>0?'up':'down');var arrow=c==='up'?'▲ ':c==='down'?'▼ ':'';return '<div class="chg '+c+'">'+arrow+(p>0?'+':'')+p.toFixed(2)+'% '+T.vs+'</div>'}
+function get(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+$('t').textContent=T.title;
+$('f').innerHTML=esc(T.note)+' '+esc(T.by)+' <a href="https://gmtoolshub.com/embed-rates/" target="_blank" rel="noopener">GM Tools Hub</a>';
+Promise.all([get('../../data/gold.json'),get('../../data/silver.json'),get('../../data/rates.json')]).then(function(x){
+ var g=x[0].history,s=x[1].history,u=x[2].history.USD;
+ var g1=g[g.length-1],g0=g[g.length-2]||{},s1=s[s.length-1],s0=s[s.length-2]||{},u1=u[u.length-1],u0=u[u.length-2]||{};
+ var html='';
+ SHOW.forEach(function(k){
+  if(k==='gold')html+='<div class="row gold"><div class="lab">'+T.gold+'</div><div class="val">'+fmt(g1.t24)+'</div>'+chg(g1.t24,g0.t24)+'</div>'+
+   '<div class="row gold"><div class="lab">'+T.gold22+'</div><div class="val">'+fmt(g1.t24*22/24)+'</div>'+chg(g1.t24,g0.t24)+'</div>';
+  if(k==='silver')html+='<div class="row"><div class="lab">'+T.silver+'</div><div class="val">'+fmt(s1.tola)+'</div>'+chg(s1.tola,s0.tola)+'</div>';
+  if(k==='usd')html+='<div class="row"><div class="lab">'+T.usd+'</div><div class="val">Rs '+u1.r.toFixed(2)+'</div>'+chg(u1.r,u0.r)+'</div>';
+ });
+ $('r').innerHTML=html;
+ $('d').textContent=T.upd+' '+g1.d;
+ try{parent.postMessage({gmRatesHeight:document.documentElement.scrollHeight},'*')}catch(e){}
+}).catch(function(){$('r').innerHTML='<p class="err">'+esc(T.err)+'</p>'});
+})();
+</script>
+</body>
+</html>

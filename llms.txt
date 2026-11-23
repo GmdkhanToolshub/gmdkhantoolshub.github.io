@@ -1,4 +1,4 @@
-# GM Tools Hub
+﻿# GM Tools Hub
 > Free browser-based tools, calculators, converters, templates and learning pages by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser and do not upload what you type.
 
 ## Main sections
@@ -7,6 +7,7 @@
 - [Pakistan salary tax tables](https://gmtoolshub.com/salary-tax/): monthly tax by salary for 2026-27
 - [Blog and guides](https://gmtoolshub.com/blog/): money, careers, Excel and sales operations
 - [Free Excel templates](https://gmtoolshub.com/free-templates/): attendance, KPI scorecard and monthly budget planner
+- [Free live rates widget](https://gmtoolshub.com/embed-rates/): embeddable Pakistan gold, silver and USD to PKR estimates, updated daily, English or Urdu
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes
