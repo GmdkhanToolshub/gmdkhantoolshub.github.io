@@ -1,0 +1,288 @@
+# GM Tools Hub: full page map
+> GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
+
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 186 indexable pages, generated from the site files.
+
+## home (1)
+- [GM Tools Hub – Free Tools & Gadgets for Everyday Life](https://gmtoolshub.com/): 74 free tools and gadgets: merge and convert PDFs, convert images, calculators, clocks, resume builder and more. No sign-up.
+
+## tools (75)
+- [Free Tools & Gadgets: PDF, Image & Calculators](https://gmtoolshub.com/tools/): 74 free tools and gadgets: merge and convert PDFs, convert and resize images, calculators, clocks, timers, notepad, QR and barcode makers.
+- [Age Calculator by Date of Birth](https://gmtoolshub.com/tools/age-calculator/): Free age calculator: enter a date of birth to get exact age in years, months and days, total days, weeks and hours, next birthday and weekday born.
+- [Online Alarm Clock](https://gmtoolshub.com/tools/alarm-clock/): Free online alarm clock: set labelled alarms with repeat days, choose a sound and snooze. Alarms ring while the page is open; they are saved in your browser.
+- [Amount in Words Converter (Lakh & Crore)](https://gmtoolshub.com/tools/amount-in-words/): Free amount in words converter: write any number in words for cheques and vouchers, in lakh and crore or million and billion, in rupees or other currencies.
+- [Free ATS Resume Checker](https://gmtoolshub.com/tools/ats-resume-checker/): Free ATS resume checker: paste your resume and a job description to see a match score, missing keywords and formatting checks. Private, runs in your browser.
+- [Barcode Generator](https://gmtoolshub.com/tools/barcode-generator/): Free barcode generator: create Code 128, EAN-13, UPC-A and Code 39 barcodes with custom size and colours, and download them as SVG or PNG.
+- [Base64 Encode & Decode, URL Encoder](https://gmtoolshub.com/tools/base64-url-encoder/): Free Base64 and URL encoder/decoder: UTF-8 safe Base64, URL-safe Base64, URL percent-encoding, and file to Base64 data URL. Runs in your browser.
+- [BMI Calculator](https://gmtoolshub.com/tools/bmi-calculator/): Free BMI calculator for adults: enter weight and height in kg/cm or lb/feet to get your BMI, category and healthy weight range.
+- [Matric & FSc Marks Percentage Calculator](https://gmtoolshub.com/tools/board-marks-calculator/): Free Matric and FSc marks percentage calculator: find your percentage and grade, marks needed for a target, and a university merit aggregate with your own weights.
+- [Business Report Generator](https://gmtoolshub.com/tools/business-report-generator/): Free business report generator: enter highlights, metrics, risks and next steps to create a structured weekly or monthly report and download it as PDF.
+- [Calculator](https://gmtoolshub.com/tools/calculator/): Free online calculator with a basic mode and a scientific mode: brackets, percentages, powers, roots, logarithms, trigonometry in degrees or radians.
+- [Colour Contrast Checker: WCAG AA & AAA](https://gmtoolshub.com/tools/color-contrast-checker/): Free colour contrast checker: test text and background colours against WCAG 2.2 AA and AAA, see a live preview and get a suggested colour that passes.
+- [Color Picker – HEX, RGB, HSL Converter & Palette](https://gmtoolshub.com/tools/color-picker/): Free color picker and converter: switch between HEX, RGB, HSL, HSV and CMYK, pick colours from your screen or an image, and get matching palette ideas.
+- [Countdown Timer Online](https://gmtoolshub.com/tools/countdown-timer/): Free countdown timer: set hours, minutes and seconds with a sound alert, or count down the days, hours and minutes to any date and time.
+- [Cover Letter Generator: Free Template & PDF](https://gmtoolshub.com/tools/cover-letter-generator/): Free cover letter generator: enter the job, company, skills and one achievement to get an editable cover letter in a professional or enthusiastic tone.
+- [Currency Converter – Live Daily Exchange Rates](https://gmtoolshub.com/tools/currency-converter/): Free currency converter: convert between more than 160 currencies using daily reference exchange rates, with an offline manual-rate option. No sign-up.
+- [Date Difference Calculator – Days Between Dates](https://gmtoolshub.com/tools/date-difference-calculator/): Free date calculator: find the number of days, weeks, months and weekdays between two dates, or add or subtract days, weeks, months, years and business days.
+- [Digital Clock Online](https://gmtoolshub.com/tools/digital-clock/): Free online digital clock: see the current time and date in any time zone, switch 12 or 24 hour format, choose a colour and go full screen.
+- [ECAT Aggregate Calculator (UET)](https://gmtoolshub.com/tools/ecat-aggregate-calculator/): Free ECAT aggregate calculator for UET: enter Matric, FSc and ECAT marks with editable weights to see your aggregate and the ECAT marks you need.
+- [Electricity Bill & Units Calculator](https://gmtoolshub.com/tools/electricity-bill-calculator/): Free electricity bill calculator for Pakistan: add up units used by your fan, AC and fridge, estimate the bill at your own rate and see what using less saves.
+- [Excel Formula Generator](https://gmtoolshub.com/tools/excel-formula-generator/): Free Excel formula generator: choose a task, fill in your cell ranges and copy a ready-to-use formula for SUMIF, VLOOKUP, XLOOKUP, INDEX-MATCH, IF and more.
+- [Excel to PDF Converter: Free XLSX & CSV to PDF](https://gmtoolshub.com/tools/excel-to-pdf/): Free Excel to PDF converter: print .xlsx workbooks or CSV files as tidy PDF tables with your page size and fit options.
+- [Final Settlement Calculator: Salary Divided by 30 or 26 Days](https://gmtoolshub.com/tools/final-settlement-calculator/): Free final settlement calculator for employees and HR: joining and resignation dates, gratuity, leave and notice pay. Daily rate is gross pay divided by 30 or 26.
+- [Fuel Cost & Mileage Calculator](https://gmtoolshub.com/tools/fuel-cost-calculator/): Free fuel cost calculator: work out petrol or diesel cost for a trip, the cost per km, your monthly commute and what each person pays when sharing a ride.
+- [GPA & CGPA Calculator](https://gmtoolshub.com/tools/gpa-calculator/): Free GPA and CGPA calculator: add courses with credit hours and letter grades to get your semester GPA, then your updated CGPA. Saved only in your browser.
+- [Gulf End of Service Gratuity Calculator](https://gmtoolshub.com/tools/gulf-gratuity-calculator/): Free end of service gratuity calculator for the UAE and Saudi Arabia: estimate your gratuity from basic salary and years of service, with an optional rupee value.
+- [Hijri Date Converter](https://gmtoolshub.com/tools/hijri-date-converter/): Free Hijri date converter: change Gregorian dates to Islamic Hijri dates and back, see today's Hijri date in English and Urdu, and find your age in Hijri years.
+- [Image Compressor](https://gmtoolshub.com/tools/image-compressor/): Free image compressor: reduce JPEG, PNG and WebP sizes in your browser with adjustable quality and width. Images are not uploaded to our servers.
+- [Image Converter](https://gmtoolshub.com/tools/image-converter/): Free image converter: change JPG, PNG, WebP, GIF, BMP or AVIF images to JPG, PNG or WebP in bulk. Runs in your browser; your images are not uploaded.
+- [Image Resizer](https://gmtoolshub.com/tools/image-resizer/): Free image resizer: resize photos to exact pixels, a percentage or common social sizes, with crop or fit options. Runs in your browser; images are not uploaded.
+- [Images to PDF Free](https://gmtoolshub.com/tools/images-to-pdf/): Free images to PDF converter: combine JPG, PNG and WebP photos or scans into one PDF with A4 or Letter pages. Runs in your browser; images are not uploaded.
+- [JSON Formatter & Validator](https://gmtoolshub.com/tools/json-formatter/): Free JSON formatter and validator: beautify or minify JSON, sort keys, and find syntax errors with the exact line and column. Runs in your browser.
+- [KPI Calculator – Weighted Performance Score](https://gmtoolshub.com/tools/kpi-performance-calculator/): Free KPI calculator: set weights, targets and actuals for each KPI and get a weighted performance score with per-KPI achievement and a rating.
+- [Marla to Square Feet Converter](https://gmtoolshub.com/tools/land-area-converter/): Free marla to square feet converter for Pakistan: convert marla, kanal, acre, square yards, square metres and murabba, or find a plot size from its length and width.
+- [LinkedIn Headline Generator](https://gmtoolshub.com/tools/linkedin-headline-generator/): Free LinkedIn headline generator: enter your role, skills and value to get up to nine headline options with a live 220-character counter. Copy in one click.
+- [Loan EMI Calculator Pakistan](https://gmtoolshub.com/tools/loan-emi-calculator/): Free loan and EMI calculator: enter amount, interest rate and term to get monthly EMI, total interest, yearly summary and a downloadable repayment schedule.
+- [MDCAT Aggregate Calculator 2026](https://gmtoolshub.com/tools/mdcat-aggregate-calculator/): Free MDCAT aggregate calculator: enter Matric, FSc and MDCAT marks to see your merit aggregate and the MDCAT marks needed for a target aggregate.
+- [Meeting Minutes Generator](https://gmtoolshub.com/tools/meeting-minutes-generator/): Free meeting minutes generator: paste raw notes and get structured Minutes of Meeting with decisions, action items, owners and due dates. Download as PDF.
+- [Email & WhatsApp Message Writer](https://gmtoolshub.com/tools/message-writer/): Free business message writer: draft professional emails or WhatsApp messages for follow-ups, meeting requests, payment reminders, leave requests and more.
+- [Online Notepad](https://gmtoolshub.com/tools/notepad/): Free online notepad with several notes that save automatically in your browser. Search, copy and download notes as text files. Nothing is uploaded.
+- [Number Converter: English, Urdu, Arabic & Hindi Digits | GM Tools](https://gmtoolshub.com/tools/number-converter/): Convert numbers between English, Urdu, Arabic and Hindi digits, and see them in words. For cheque-ready amounts in rupees and paisa, use the Amount in Words tool.
+- [NUST NET Aggregate Calculator 2026](https://gmtoolshub.com/tools/nust-net-aggregate-calculator/): Free NUST NET aggregate calculator: enter Matric, FSc and NET marks to see your merit aggregate and the NET marks needed for a target aggregate.
+- [Pakistan Property Price Converter](https://gmtoolshub.com/tools/pakistan-property-price-converter/): Free Pakistan property price converter: turn a plot or house price in rupees into dirhams, riyals, pounds and dollars, with price per marla and sq ft.
+- [Salary Tax Calculator Pakistan 2026-27](https://gmtoolshub.com/tools/pakistan-salary-tax-calculator/): Free Pakistan salary tax calculator for 2026-27: enter your salary to see monthly income tax, take-home pay and a slab-by-slab breakdown. No sign-up.
+- [Strong Password Generator & Strength Checker](https://gmtoolshub.com/tools/password-generator/): Free secure password generator: strong random passwords from your browser's cryptographic generator, plus a strength checker. Nothing is stored or sent.
+- [PDF Compressor – Reduce PDF File Size Free](https://gmtoolshub.com/tools/pdf-compressor/): Free PDF compressor: reduce PDF file size with a light mode that keeps text or a strong mode that suits scans and photos.
+- [Merge, Split & Extract PDF Pages Free](https://gmtoolshub.com/tools/pdf-merge-split/): Free PDF merger and splitter: combine PDFs in any order, extract page ranges or split every page. Works in your browser; files are not uploaded.
+- [PDF Rotator – Rotate PDF Pages and Save Free](https://gmtoolshub.com/tools/pdf-rotator/): Free PDF rotator: preview every page, rotate single pages, all pages or odd and even pages, and save the PDF. Runs in your browser; nothing is uploaded.
+- [PDF to Excel Converter – Free PDF Tables to XLSX](https://gmtoolshub.com/tools/pdf-to-excel/): Free PDF to Excel converter: extract tables from a text-based PDF into an .xlsx workbook with one cell per column. Runs in your browser; nothing is uploaded.
+- [PDF to JPG Converter](https://gmtoolshub.com/tools/pdf-to-jpg/): Free PDF to JPG converter: turn every page of a PDF into a JPG or PNG image at up to 300 DPI. Runs in your browser; your PDF is not uploaded.
+- [PDF to Word Converter – Free PDF to DOCX Online](https://gmtoolshub.com/tools/pdf-to-word/): Free PDF to Word converter: extract the text of a PDF into an editable .docx file with headings and paragraphs. Works in your browser; nothing is uploaded.
+- [Percentage Calculator](https://gmtoolshub.com/tools/percentage-calculator/): Free percentage calculator: find X% of a number, what percent one number is of another, percentage increase or decrease, and percentage difference.
+- [Pomodoro Timer Online](https://gmtoolshub.com/tools/pomodoro-timer/): Free online Pomodoro timer: 25-minute focus sessions with short and long breaks, custom lengths, sound alerts and optional notifications.
+- [Profit Margin Calculator – Gross, Net & Markup](https://gmtoolshub.com/tools/profit-margin-calculator/): Free profit margin calculator: enter revenue and costs to see gross, operating and net profit, margins and markup, or find the price for a target margin.
+- [Free QR Code Generator](https://gmtoolshub.com/tools/qr-code-generator/): Free QR code generator: create codes for URLs, text, contacts, Wi-Fi, email and phone. Choose colours and size, then download as PNG or SVG. No sign-up.
+- [QR Code Scanner Online](https://gmtoolshub.com/tools/qr-code-scanner/): Free online QR code scanner: scan with your phone or laptop camera, or upload a photo or screenshot. Reads links, text, Wi-Fi and contact codes in your browser.
+- [Random Number Generator](https://gmtoolshub.com/tools/random-number-generator/): Free random number generator: pick numbers in any range with or without repeats, roll dice, flip coins and choose winners from a list. Uses secure randomness.
+- [Free Resume Builder](https://gmtoolshub.com/tools/resume-builder/): Free resume builder: add your details, pick a template, preview live and download a clean ATS-friendly PDF.
+- [Roman Urdu to Urdu Converter](https://gmtoolshub.com/tools/roman-urdu-to-urdu/): Free Roman Urdu to Urdu converter: type 'aap kaise hain' and get آپ کیسے ہیں instantly. Copy or download the Urdu text.
+- [Salary Calculator Pakistan](https://gmtoolshub.com/tools/salary-calculator/): Free salary calculator: convert hourly, monthly and annual pay, estimate take-home pay and see Pakistan's 2026-27 salary tax slabs.
+- [Sales Target Calculator](https://gmtoolshub.com/tools/sales-target-calculator/): Free sales target calculator: see achievement %, remaining target, required daily sales and a run-rate projection so you know if you are on track.
+- [Send Money to Pakistan Calculator](https://gmtoolshub.com/tools/send-money-to-pakistan-calculator/): Free send money to Pakistan calculator: compare what your family receives in rupees from up to three transfer services after fees and exchange rate margins.
+- [Online Stopwatch with Laps – Free & Accurate](https://gmtoolshub.com/tools/stopwatch/): Free online stopwatch precise to one hundredth of a second, with lap times, best and worst lap highlighting, keyboard shortcuts and CSV download.
+- [Text Case Converter](https://gmtoolshub.com/tools/text-case-converter/): Free text case converter and cleaner: upper, lower, title or sentence case, camelCase or snake_case.
+- [Tola to Gram Converter & Gold Value](https://gmtoolshub.com/tools/tola-gold-converter/): Free tola to gram converter for gold: convert tola, masha, ratti and grams, and work out the value and making charges at your own gold rate.
+- [Typing Speed Test – Free WPM and Accuracy Test](https://gmtoolshub.com/tools/typing-speed-test/): Free typing speed test: measure your words per minute and accuracy with original passages in three difficulty levels. Your best score is saved in your browser.
+- [UK Take-Home Pay Calculator 2026-27](https://gmtoolshub.com/tools/uk-take-home-pay-calculator/): Free UK take-home pay calculator for 2026-27: income tax and National Insurance on your salary in England, Wales and Northern Ireland, with monthly and weekly pay.
+- [Unit Converter](https://gmtoolshub.com/tools/unit-converter/): Free unit converter with Pakistani units: marla, kanal, square feet, acres, tola, maund, plus length, weight, volume, temperature, speed and data sizes.
+- [University Merit Calculator (Pakistan)](https://gmtoolshub.com/tools/university-merit-calculator/): Free university merit calculator for Pakistan: enter Matric, FSc and entry test marks with your own weights to get your aggregate and test marks needed.
+- [Urdu Keyboard Online](https://gmtoolshub.com/tools/urdu-keyboard/): Free online Urdu keyboard: type Urdu with your normal keyboard using phonetic keys, or tap the on-screen keys. Word count, copy and download. No install needed.
+- [US Take-Home Pay Calculator 2026](https://gmtoolshub.com/tools/us-take-home-pay-calculator/): Free US take-home pay calculator for 2026: federal income tax, Social Security and Medicare on your salary, with an optional 401(k) and flat state tax rate.
+- [Word Counter](https://gmtoolshub.com/tools/word-counter/): Free online word counter: count words, characters, sentences and paragraphs with reading and speaking time and a most-used-words list.
+- [Word to PDF Converter – Free DOCX to PDF Online](https://gmtoolshub.com/tools/word-to-pdf/): Free Word to PDF converter: turn a .docx document into a PDF with headings, lists, tables and pictures. Works in your browser; your file is not uploaded.
+- [World Clock](https://gmtoolshub.com/tools/world-clock/): Free world clock: see the live time and date in 48 cities, the difference from your own time, and day or night. Your city list is saved in your browser.
+- [Zakat Calculator Pakistan](https://gmtoolshub.com/tools/zakat-calculator/): Free zakat calculator: enter today's gold and silver prices in tola or grams, add cash, savings and business stock, deduct debts and see zakat due at 2.5%.
+
+## blog (35)
+- [Blog & Insights](https://gmtoolshub.com/blog/): Articles on sales operations, FMCG management, KPI scorecards, Excel, minutes of meeting, resumes and digital transformation by Gmd Khan Niazi (Ghulam.
+- [How to Write an ATS-Friendly Resume Without Gaming the System](https://gmtoolshub.com/blog/ats-friendly-resume/): Practical advice on resume structure, keywords and formatting so applicant tracking systems and recruiters can both read your resume.
+- [How to Check Your Resume Against a Job Description for Free](https://gmtoolshub.com/blog/ats-resume-check-free/): A step-by-step way to compare your resume with a job advert, understand your ATS match score, and fix real keyword gaps without stuffing or exaggerating.
+- [Colour Contrast Explained for Readable Text](https://gmtoolshub.com/blog/color-contrast-and-accessible-design/): What colour contrast ratios mean, the WCAG AA and AAA targets, how to test your colours, and practical fixes for low-contrast text on websites, slides and documents.
+- [Common Interview Questions in Pakistan and How to Answer Them](https://gmtoolshub.com/blog/common-interview-questions-pakistan/): The interview questions Pakistani employers ask most often, with a simple structure for answering each one honestly and confidently.
+- [How to Compress a PDF Without Losing Quality](https://gmtoolshub.com/blog/compress-pdf-without-losing-quality/): Why PDFs get large, how to shrink them for email and online forms while keeping text readable, and how to do it free in your browser.
+- [Turn Photos and Scans Into One Clean PDF](https://gmtoolshub.com/blog/convert-photos-and-scans-into-one-pdf/): Combine phone photos or scanned pages into a single, tidy PDF: how to take good photos, order the pages, choose a page size and keep the file small.
+- [Digital Transformation in Distribution: Start With Data Quality](https://gmtoolshub.com/blog/digital-transformation-start-with-data/): Why data quality, clear ownership and simple process design should come before new software in any distribution or sales digital transformation.
+- [How to Write Minutes of Meeting That Drive Action](https://gmtoolshub.com/blog/effective-minutes-of-meeting/): What to include in minutes of meeting, a simple template, and how to track decisions and action items so meetings lead to results.
+- [Ten Excel Formulas Every Sales Operations Analyst Should Know](https://gmtoolshub.com/blog/excel-formulas-sales-ops/): Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.
+- [Flat Rate vs Reducing Balance: How to Compare Loan Offers](https://gmtoolshub.com/blog/flat-rate-vs-reducing-balance-loans/): Why a 12% flat rate can cost about as much as 20% on a reducing balance, with worked examples, conversion tables and the questions to ask any lender.
+- [How to Calculate GPA and CGPA: Formula and Worked Examples](https://gmtoolshub.com/blog/gpa-cgpa-calculation-guide/): How GPA and CGPA are calculated on a 4.0 scale using credit hours and grade points, with worked examples and tips for checking your university&rsquo;s own scale.
+- [Gross vs Net Salary: How to Work Out Your Take-Home Pay](https://gmtoolshub.com/blog/gross-vs-net-salary-take-home-pay/): The difference between gross and net salary, what is deducted from a Pakistani pay slip, a simple worked example and how to compare job offers fairly.
+- [How to Create a Strong Password](https://gmtoolshub.com/blog/how-to-create-a-strong-password/): What makes a password strong, why length beats complexity, how password managers and two-step login help, and how to build passwords that are safe and usable.
+- [How to Improve Your Typing Speed](https://gmtoolshub.com/blog/how-to-improve-your-typing-speed/): What a good typing speed looks like, how words per minute are measured, and a simple weekly practice plan to type faster with fewer mistakes.
+- [How to Write a Cover Letter in Five Steps](https://gmtoolshub.com/blog/how-to-write-a-cover-letter-in-five-steps/): A clear five-step method for a cover letter that gets read: research, opening, evidence, fit and closing, plus common mistakes and a structure to follow.
+- [JPG vs PNG vs WebP: Which Format to Use?](https://gmtoolshub.com/blog/jpg-vs-png-vs-webp/): The real differences between JPG, PNG and WebP, when each one is the best choice, and how to convert between them without wasting quality or file size.
+- [How to Write a Strong LinkedIn Headline](https://gmtoolshub.com/blog/linkedin-headline-formula/): Your LinkedIn headline appears wherever your name does. Learn a simple formula, see before-and-after examples and avoid mistakes that make profiles forgettable.
+- [Loan EMI Formula Explained: By Hand and in Excel](https://gmtoolshub.com/blog/loan-emi-formula-excel/): How a loan EMI is calculated with the reducing-balance formula, a worked example in rupees, the Excel PMT function and what the total interest really costs.
+- [Marla, Kanal and Square Feet Explained](https://gmtoolshub.com/blog/marla-kanal-and-square-feet-explained/): How marla and kanal are measured, why a marla is not always the same size, how to convert to square feet and compare plot prices fairly before you buy.
+- [How to Merge and Split PDF Files](https://gmtoolshub.com/blog/merge-and-split-pdf-files/): A practical guide to combining several PDFs into one, pulling out the pages you need, and avoiding the mistakes that waste time, with a free browser tool.
+- [How to Make a Monthly Budget in Pakistan: The 50/30/20 Rule](https://gmtoolshub.com/blog/monthly-budget-50-30-20-pakistan/): A simple way to plan your monthly salary: the 50/30/20 rule explained with a worked example in rupees, plus tips to adjust it for Pakistani household costs.
+- [PDF to Word and Excel: What to Expect](https://gmtoolshub.com/blog/pdf-to-word-and-excel-what-to-expect/): How PDF conversion really works, why some files convert well and others do not, and a step-by-step method for getting editable Word and Excel files from a PDF.
+- [How to Calculate Percentage, Discount and Sales Tax | GM Tools](https://gmtoolshub.com/blog/percentage-discount-sales-tax-guide/): Simple formulas for percentages, price after discount, adding and removing sales tax, and percentage change, each with a worked example in rupees.
+- [The Pomodoro Technique: A Practical Guide](https://gmtoolshub.com/blog/pomodoro-technique-guide/): How the Pomodoro Technique works, how long to work and rest, how to handle interruptions, and how to adapt it for study, office work and long projects.
+- [Profit Margin vs Markup: What Small Businesses Get Wrong](https://gmtoolshub.com/blog/profit-margin-vs-markup/): The difference between profit margin and markup, the formulas for each, a worked pricing example and how to avoid underpricing your products.
+- [QR Codes for Small Businesses: 7 Practical Uses and Setup Tips](https://gmtoolshub.com/blog/qr-codes-small-business/): Seven ways small businesses can use free QR codes for menus, WhatsApp, reviews,directions and more, with setup steps, print sizes and mistakes to avoid.
+- [How to Resize Images for Chat, Email and Web](https://gmtoolshub.com/blog/resize-images-for-whatsapp-email-and-websites/): Why photos are too big, what size to choose for chat, email, forms and web pages, and how to resize without stretching or blurring, using a free browser tool.
+- [Income Tax on Salary in Pakistan 2026-27: Slabs and Examples](https://gmtoolshub.com/blog/salary-tax-pakistan-2026-27/): See Pakistan's 2026-27 salary tax slabs, how much tax applies at common salary levels, what changed from last year and how to work out your own figure.
+- [What Does a Sales Operations Team Actually Do?](https://gmtoolshub.com/blog/sales-operations-explained/): A plain-English guide to sales operations: planning, data, reporting, process and coordination, and why strong sales ops makes sales teams faster.
+- [Sales Target Tracking: Using the Daily Run Rate Method | GM Tools](https://gmtoolshub.com/blog/sales-target-tracking/): Learn the daily run rate method for tracking sales targets: achievement, remaining target, required daily sales and projections, with simple examples.
+- [Primary vs Secondary Sales in FMCG: Why the Difference Matters](https://gmtoolshub.com/blog/secondary-vs-primary-sales-fmcg/): Understand primary, secondary and tertiary sales in FMCG distribution, why secondary sales data matters, and how to keep it accurate.
+- [How to Build a Weighted KPI Scorecard That Teams Trust | GM Tools](https://gmtoolshub.com/blog/weighted-kpi-scorecard/): Step-by-step guidance on choosing KPIs, setting weights, handling lower-is-better metrics and avoiding common scorecard mistakes.
+- [How to Write a CV for Jobs in Pakistan That Gets Interviews](https://gmtoolshub.com/blog/write-cv-for-jobs-in-pakistan/): A practical guide to writing a clear one-to-two page CV for Pakistani employers: what to include, how to word achievements, and mistakes that cost interviews.
+- [How to Calculate Zakat: A Simple Guide for Pakistan | GM Tools](https://gmtoolshub.com/blog/zakat-calculation-guide/): A plain guide to calculating Zakat: what counts as zakatable wealth, the nisab threshold, the 2.5% rate and a worked example, with a free calculator.
+
+## rates (9)
+- [Daily Exchange Rates in Pakistan (PKR)](https://gmtoolshub.com/rates/): Today's exchange rates in Pakistan: USD, GBP, EUR, AED, SAR, CAD, AUD and QAR to PKR with quick tables, history and a free converter. Updated 23 Nov 2026.
+- [AED to PKR Today: Dirham Rate in Pakistan](https://gmtoolshub.com/rates/aed-to-pkr/): Today's AED to PKR rate: 1 AED = 75.30 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to AED, rate history and a free converter.
+- [AUD to PKR Today: Australian Dollar Rate](https://gmtoolshub.com/rates/aud-to-pkr/): Today's AUD to PKR rate: 1 AUD = 183.51 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to AUD, rate history and a free converter.
+- [CAD to PKR Today: Canadian Dollar Rate](https://gmtoolshub.com/rates/cad-to-pkr/): Today's CAD to PKR rate: 1 CAD = 192.95 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to CAD, rate history and a free converter.
+- [EUR to PKR Today: Euro Rate in Pakistan](https://gmtoolshub.com/rates/eur-to-pkr/): Today's EUR to PKR rate: 1 EUR = 303.52 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to EUR, rate history and a free converter.
+- [GBP to PKR Today: Pound Rate in Pakistan](https://gmtoolshub.com/rates/gbp-to-pkr/): Today's GBP to PKR rate: 1 GBP = 362.17 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to GBP, rate history and a free converter.
+- [QAR to PKR Today: Qatari Riyal Rate in Pakistan](https://gmtoolshub.com/rates/qar-to-pkr/): Today's QAR to PKR rate: 1 QAR = 75.97 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to QAR, rate history and a free converter.
+- [SAR to PKR Today: Saudi Riyal Rate in Pakistan](https://gmtoolshub.com/rates/sar-to-pkr/): Today's SAR to PKR rate: 1 SAR = 73.75 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to SAR, rate history and a free converter.
+- [USD to PKR Today: Dollar Rate in Pakistan](https://gmtoolshub.com/rates/usd-to-pkr/): Today's USD to PKR rate: 1 USD = 276.55 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to USD, rate history and a free converter.
+
+## academy (7)
+- [Coding and Learning Academy: Free Lessons](https://gmtoolshub.com/academy/): Free beginner lessons in HTML, CSS, JavaScript, prompt writing and publishing a website, each with a live example you can edit.
+- [CSS basics: colours, spacing and layout](https://gmtoolshub.com/academy/css-basics/): Style a page with colours, fonts, spacing, rounded corners and hover effects.
+- [Git and GitHub Pages: publish a website for free](https://gmtoolshub.com/academy/git-and-github-pages/): Learn commits, branches and how to put a static website online with GitHub Pages at no cost.
+- [HTML basics: build your first web page](https://gmtoolshub.com/academy/html-basics/): Learn the structure of a web page: headings, paragraphs, lists and links, with a live example.
+- [JavaScript basics: variables, functions and events](https://gmtoolshub.com/academy/javascript-basics/): Learn the core of JavaScript by building a small calculator that reacts to clicks.
+- [JavaScript and the page: build a to-do list](https://gmtoolshub.com/academy/javascript-dom/): Create elements, handle clicks and toggle classes to build a working to-do list.
+- [Prompt writing: get better answers from AI assistants | GM Tools](https://gmtoolshub.com/academy/prompt-writing-for-work/): A simple, reliable structure for writing prompts: role, task, context, format and checks.
+
+## learn (6)
+- [Learn & Grow: English, Quizzes, Career Skills](https://gmtoolshub.com/learn/): Free learning for everyone: English vocabulary and grammar, general knowledge quizzes, computer basics, interview practice.
+- [Computer Basics for Beginners](https://gmtoolshub.com/learn/computer-basics/): Learn computer basics in plain language: hardware and software, files, strong passwords, email, backups, shortcuts and spotting phishing.
+- [Digital Skills](https://gmtoolshub.com/learn/digital-skills/): Practical lessons on Excel, Word and PowerPoint essentials, using AI assistants well, time management, personal productivity and CV improvement.
+- [General Knowledge Quiz](https://gmtoolshub.com/learn/general-knowledge/): Test your general knowledge with 40 questions on science, geography, history, nature and technology. Play short ten-question rounds for free.
+- [English Grammar Practice](https://gmtoolshub.com/learn/grammar/): Practise English grammar with 29 questions on tenses, articles, prepositions, punctuation and word choice. Each answer includes a clear explanation.
+- [English Vocabulary Practice](https://gmtoolshub.com/learn/vocabulary/): Learn 36 useful English words with clear meanings and example sentences. Study flashcards by level, then take a word quiz. Free, no sign-up.
+
+## gold-rate (5)
+- [Gold Rate in Pakistan Today: Tola Price 24K, 22K](https://gmtoolshub.com/gold-rate/): Gold rate in Pakistan today (estimate): 24K Rs 3,76,022 per tola, 22K Rs 3,44,687 on 23 Nov 2026. Price by karat, history and calculator.
+- [18 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/18-karat/): Estimated 18 karat gold rate in Pakistan: Rs 2,82,017 per tola, Rs 2,41,788 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+- [21 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/21-karat/): Estimated 21 karat gold rate in Pakistan: Rs 3,29,019 per tola, Rs 2,82,086 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+- [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,44,687 per tola, Rs 2,95,518 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+- [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,76,022 per tola, Rs 3,22,384 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+
+## solutions (4)
+- [Business Excel Dashboards and Reporting](https://gmtoolshub.com/solutions/): Excel dashboards, KPI scorecards, sales reporting and HR attendance systems for growing companies, delivered remotely with fixed-price quotes in US dollars.
+- [Gulf Business Excel Dashboards and HR Tracking](https://gmtoolshub.com/solutions/gulf/): Remote Excel dashboards, sales reporting, inventory and HR attendance systems for companies in the UAE, Saudi Arabia, Qatar and the Gulf.
+- [Excel Dashboards for US, Canada and Australia](https://gmtoolshub.com/solutions/north-america-australia/): Remote Excel dashboards, KPI scorecards, inventory and HR trackers for small businesses in the United States, Canada and Australia.
+- [Excel KPI Reporting for UK and EU Businesses](https://gmtoolshub.com/solutions/uk-europe/): Remote Excel dashboards, KPI scorecards, HR attendance trackers and management reporting for small and medium businesses in the UK and Europe.
+
+## about (2)
+- [About Us – Our Mission and Tools](https://gmtoolshub.com/about/): GM builds free, privacy-friendly online tools and GM HCM software for growing companies. Learn about our mission, vision and commitment to users.
+- [Gmd Khan Niazi – Professional Biography](https://gmtoolshub.com/about/founder/): Biography, career timeline and working approach of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): Project Manager and Sales Operations professional in FMCG and.
+
+## growth (2)
+- [Professional Growth Hub](https://gmtoolshub.com/growth/): Practical career guidance, communication tips, leadership and management advice and workplace productivity habits, plus free interview practice.
+- [Interview Practice](https://gmtoolshub.com/growth/interview-practice/): Practise 30 real job interview questions: common, behavioural, situational and strengths. Get answer guidance, write notes, time yourself and try a mock round.
+
+## hcm (2)
+- [GM HCM – HR Software for Growing Companies](https://gmtoolshub.com/hcm/): GM HCM is HR software for employee records, attendance, leave, payroll, recruitment and performance. Try the free demo and request early access.
+- [GM HCM Pricing](https://gmtoolshub.com/hcm/pricing/): GM HCM plans: Free Demo (Rs. 0), Starter (Rs. 1,499/month), Business (Rs. 3,999/month) and Enterprise (custom). Monthly or annual billing.
+
+## advertise (1)
+- [Advertise With Us](https://gmtoolshub.com/advertise/): Work with GM Tools Hub: sponsored articles, tool sponsorships and partnerships, with clear Sponsored labels and honest editorial rules.
+
+## affiliate-disclosure (1)
+- [Affiliate Disclosure](https://gmtoolshub.com/affiliate-disclosure/): How GM Tools Hub handles affiliate links and sponsored content, and how we keep recommendations honest.
+
+## apps (1)
+- [Family Story Keeper](https://gmtoolshub.com/apps/family-story-keeper/): Free private app to record your parents' and grandparents' life stories in their own voice, with guided questions in English and Urdu.
+
+## assistant (1)
+- [Smart Assistant: Find the Right Tool](https://gmtoolshub.com/assistant/): Tell GM what you need in plain words and get the best matching free tool, guide or template. Private, runs in your browser, no sign-up.
+
+## career-studio (1)
+- [Career Studio: CV, Interview and Job Tools](https://gmtoolshub.com/career-studio/): One place for everything in a job search: CV builder, ATS checker, cover letters, LinkedIn headline, interview practice and a progress checklist.
+
+## contact (1)
+- [Contact Us – Questions, Feedback, GM HCM](https://gmtoolshub.com/contact/): Contact Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi) for collaboration, consulting enquiries or job opportunities in sales operations and project management.
+
+## convert (1)
+- [Unit Conversion Pages: Tola, Marla, Kanal, Maund and More](https://gmtoolshub.com/convert/): Free converters and tables for tola, marla, kanal, acre, maund, seer, kilograms, miles, feet, litres and temperature, one page for each conversion.
+
+## cookie-policy (1)
+- [Cookie Policy](https://gmtoolshub.com/cookie-policy/): Cookie Policy: the essential storage, analytics and advertising cookies used on this website and how to manage them.
+
+## creative-studio (1)
+- [Creative Studio: Image, Colour and Text Tools](https://gmtoolshub.com/creative-studio/): Free creative utilities in one place: QR and barcode makers, colour picker and contrast checker, image converter, resizer and compressor, and writing helpers.
+
+## daily-rates-email (1)
+- [Daily Pakistan Gold, Silver & Dollar Rates by Email](https://gmtoolshub.com/daily-rates-email/): Free short email with the latest estimated gold (per tola), silver and USD to PKR rates and the change since yesterday. No spam, unsubscribe any time.
+
+## developer-playground (1)
+- [Developer Playground: Live HTML, CSS and JavaScript Editor](https://gmtoolshub.com/developer-playground/): Write HTML, CSS and JavaScript and see the result instantly in a safe sandbox, with a console and a regex tester. Free, private, no sign-up.
+
+## disclaimer (1)
+- [Disclaimer](https://gmtoolshub.com/disclaimer/): Disclaimer for the calculators, career tools and articles on the website of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi).
+
+## electricity (1)
+- [Electricity Units Used by Home Appliances](https://gmtoolshub.com/electricity/): Typical electricity units per hour and per month for AC, fan, fridge, iron, water pump, geyser, LED bulb and other home appliances in Pakistan.
+
+## embed-rates (1)
+- [Free Pakistan Gold, Silver & Dollar Rate Widget](https://gmtoolshub.com/embed-rates/): Free embeddable widget showing Pakistan gold (24K, 22K per tola), silver and USD to PKR rates. One line of code, no sign-up, updated daily. Estimates, English or Urdu.
+
+## free-templates (1)
+- [Free Excel Attendance and KPI Templates](https://gmtoolshub.com/free-templates/): Download free Excel templates with no sign-up: an attendance and leave tracker for up to 10 employees and a weighted KPI scorecard for up to 5 people.
+
+## get-expert-help (1)
+- [Get Help from a Tax, Accounting or Web Professional](https://gmtoolshub.com/get-expert-help/): Need a tax return filed, books set up, zakat guidance or a small website? Send a free request and we will point you to a suitable independent professional.
+
+## inspiration (1)
+- [Daily Inspiration](https://gmtoolshub.com/inspiration/): A new thought, productivity tip, positive message and success lesson every day. Copy or save the thoughts you like. Free and private.
+
+## loan-emi (1)
+- [Loan EMI by Amount: Monthly Installment Tables](https://gmtoolshub.com/loan-emi/): Monthly installment and total interest tables for loans from Rs 100,000 to Rs 10,000,000 at 10% to 24% over 12 to 60 months.
+
+## media-kit (1)
+- [GM Media Kit](https://gmtoolshub.com/media-kit/): Media kit for GM Tools Hub: descriptions, quick facts, brand colours, collaboration options and downloadable PDFs for journalists, bloggers and partners.
+
+## membership (1)
+- [Membership: Optional Premium Extras](https://gmtoolshub.com/membership/): Everything free on GM stays free. Optional memberships add bonus templates and a CV review. Manual delivery, no logins, no auto-renewal.
+
+## partners (1)
+- [Partner with GM: Referrals and Collaboration](https://gmtoolshub.com/partners/): Partnership programmes with GM Tools Hub: referral partners, template resellers, co-branded templates, sponsored content.
+
+## people-success-hub (1)
+- [People & Success Hub – Share Achievements](https://gmtoolshub.com/people-success-hub/): A moderated community for achievements, career experiences, professional journeys, inspiration and positive reviews.
+
+## portfolio (1)
+- [Portfolio – Sales Operations & Project Work](https://gmtoolshub.com/portfolio/): Portfolio of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): project delivery, sales operations frameworks.
+
+## privacy-policy (1)
+- [Privacy Policy](https://gmtoolshub.com/privacy-policy/): Privacy Policy for the website and free online tools of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): what data is processed, cookies.
+
+## rates-data (1)
+- [Pakistan Gold, Silver & Exchange Rate Data (JSON)](https://gmtoolshub.com/rates-data/): Free daily JSON data for Pakistan gold per tola, silver per tola and PKR exchange rates (USD, GBP, EUR, AED, SAR, CAD, AUD, QAR). Fields, examples and terms of use.
+
+## refund-policy (1)
+- [Refund Policy – Digital Products and Services](https://gmtoolshub.com/refund-policy/): Refund policy for GM digital products. Templates, CV packs, PDFs, GM HCM and services are delivered digitally and are not refundable, but delivery faults are fixed.
+
+## resume (1)
+- [Resume – Gmd Khan Niazi, Project Manager](https://gmtoolshub.com/resume/): Interactive resume of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): 9+ years in sales operations, secondary sales administration and project management.
+
+## salary-tax (1)
+- [Pakistan Salary Tax by Monthly Salary 2026-27](https://gmtoolshub.com/salary-tax/): Income tax and take-home pay for monthly salaries from Rs 30,000 to Rs 1,000,000 in Pakistan for 2026-27, with a page of working for each salary.
+
+## security (1)
+- [Safety and Official Channels](https://gmtoolshub.com/security/): How to recognise the official GM website, how orders and payments work, what GM will never ask for, and how to report scams or security problems.
+
+## send-money-to-pakistan (1)
+- [Send Money to Pakistan: Compare Fees & Exchange Rates](https://gmtoolshub.com/send-money-to-pakistan/): Free calculator to compare how many rupees your family receives from USD, GBP, EUR, AED, SAR, CAD, AUD or QAR, including transfer fees and exchange-rate margin.
+
+## services (1)
+- [Hire Me](https://gmtoolshub.com/services/): Hire Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi) for resume writing, Excel dashboards, KPI scorecards and sales operations support, in Pakistan and abroad.
+
+## shop (1)
+- [Shop: Excel Templates, CV Pack and Interview Pack](https://gmtoolshub.com/shop/): Ready-made Excel templates, a CV pack, a 41-page interview pack and printable PDFs. Prices in USD and PKR; pay by bank transfer or JazzCash; delivered digitally.
+
+## silver-rate (1)
+- [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,413 per tola, Rs 3,784 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+
+## subscription-policy (1)
+- [Subscription Policy](https://gmtoolshub.com/subscription-policy/): How GM HCM subscriptions will work: plans, monthly and annual billing, payment verification, activation, renewal, expiry, cancellation and data export.
+
+## tech-briefing (1)
+- [AI and Technology Briefing: Plain-Language Explainers | GM Tools](https://gmtoolshub.com/tech-briefing/): Short, original explainers on AI, the web, speed and online safety, each with a link to a trusted source. Reviewed November 2026.
+
+## terms-and-conditions (1)
+- [Terms and Conditions](https://gmtoolshub.com/terms-and-conditions/): Terms and Conditions for using the website and free online tools of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi).
+
+## updates (1)
+- [What's New: Latest Tools and Guides](https://gmtoolshub.com/updates/): See the newest free tools, guides and features on GM Tools Hub: Pakistan calculators, plot sizes, embeds and the new design.
+
+## ur (1)
+- [جی ایم ٹولز ہب: مفت ٹولز اردو میں](https://gmtoolshub.com/ur/): جی ایم ٹولز ہب کے مفت ٹولز: پی ڈی ایف، تنخواہ پر ٹیکس، قسط، زکوٰۃ، سی وی اور مزید۔ کوئی سائن اپ نہیں، آپ کی فائلیں آپ کے براؤزر ہی میں رہتی ہیں۔

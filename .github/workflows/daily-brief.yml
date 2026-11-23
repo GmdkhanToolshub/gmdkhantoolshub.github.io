@@ -1,0 +1,21 @@
+name: Daily rates email draft
+# Creates a DRAFT in Buttondown with the latest rates. Nothing is sent automatically: you review and send it in Buttondown.
+# Needs the repository secret BUTTONDOWN_API_KEY (Settings > Secrets and variables > Actions). Without it the job prints the email text and stops.
+# Run it manually (Actions > Daily rates email draft > Run workflow). To make it daily, remove the "#" before the schedule lines.
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '30 6 * * *'
+permissions:
+  contents: read
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/daily-brief.mjs
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}

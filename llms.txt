@@ -8,7 +8,12 @@
 - [Blog and guides](https://gmtoolshub.com/blog/): money, careers, Excel and sales operations
 - [Free Excel templates](https://gmtoolshub.com/free-templates/): attendance, KPI scorecard and monthly budget planner
 - [Free live rates widget](https://gmtoolshub.com/embed-rates/): embeddable Pakistan gold, silver and USD to PKR estimates, updated daily, English or Urdu
+- [Send money to Pakistan calculator](https://gmtoolshub.com/send-money-to-pakistan/): compare fees and exchange-rate margin for USD, GBP, EUR, AED, SAR, CAD, AUD and QAR
+- [Daily rates email](https://gmtoolshub.com/daily-rates-email/): free short daily email with estimated gold, silver and dollar rates
+- [Rates data (JSON)](https://gmtoolshub.com/rates-data/): free daily JSON for gold, silver and PKR exchange rates with field notes and terms
+- [Get expert help](https://gmtoolshub.com/get-expert-help/): request an introduction to an independent tax, accounting or web professional
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes
 - Calculators give estimates for general information. Rates, tax slabs and prices are entered or checked by the user.
+- Full page map: https://gmtoolshub.com/llms-full.txt
