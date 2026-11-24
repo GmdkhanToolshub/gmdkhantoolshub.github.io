@@ -1,9 +1,9 @@
-// Hides the Live jobs feed and Kids Corner from navigation, footers, home and content pages.
+﻿// Hides the Live jobs feed and Kids Corner from navigation, footers, home and content pages.
 // The hidden pages stay on disk but get noindex. Safe to re-run.
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude';
 const pages = [];
-(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|products|node_modules|embed|scripts|build)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) pages.push(rel); } })(root);
+(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|products|node_modules|backend|embed|scripts|build)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) pages.push(rel); } })(root);
 
 // remove the smallest <section> that encloses `marker`
 function removeSectionAround(h, marker) {

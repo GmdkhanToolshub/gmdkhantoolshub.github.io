@@ -1,8 +1,8 @@
-// Full static audit of the site. Usage: node build/audit-site.mjs [--json out.json]
+﻿// Full static audit of the site. Usage: node build/audit-site.mjs [--json out.json]
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude'; const SITE = 'https://gmtoolshub.com';
 const pages = [];
-(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html') && !/^google/.test(e.name)) pages.push(rel); } })(root);
+(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|backend|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html') && !/^google/.test(e.name)) pages.push(rel); } })(root);
 const exists = u => { let p = u.split('#')[0].split('?')[0]; if (!p) return true; p = decodeURIComponent(p); const f = path.join(root, p); if (fs.existsSync(f)) return fs.statSync(f).isDirectory() ? fs.existsSync(path.join(f, 'index.html')) : true; return false; };
 const R = { pages: pages.length, indexable: 0, issues: {} };
 const add = (k, v) => { (R.issues[k] = R.issues[k] || []).push(v); };

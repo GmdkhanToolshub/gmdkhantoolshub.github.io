@@ -1,11 +1,11 @@
-// Generates llms-full.txt: a plain-text map of every indexable page (title, address, description), grouped by section.
+﻿// Generates llms-full.txt: a plain-text map of every indexable page (title, address, description), grouped by section.
 // Regenerate with: node build/make-llms-full.mjs   (after adding pages; keep it in step with the sitemap)
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude/'; const pages = [];
 (function walk(d) {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
     const p = path.join(d, e.name), rel = path.relative(root, p).replace(/\\/g, '/');
-    if (/^(\.git|\.github|\.well-known|node_modules|products|build|scripts|assets|data|embed)(\/|$)/.test(rel)) continue;
+    if (/^(\.git|\.github|\.well-known|node_modules|backend|products|build|scripts|assets|data|embed)(\/|$)/.test(rel)) continue;
     if (e.isDirectory()) walk(p); else if (e.name === 'index.html') {
       const h = fs.readFileSync(p, 'utf8');
       if (/name="robots" content="[^"]*noindex/i.test(h)) continue;

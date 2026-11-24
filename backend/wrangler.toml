@@ -1,0 +1,25 @@
+# GM Tools Hub payments API. No secrets here. Set secrets with `npx wrangler secret put NAME` (see README.md).
+name = "gm-payments"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Where the site is served from. Add your API origin for the admin pages if different.
+[vars]
+ALLOWED_ORIGINS = "https://gmtoolshub.com"
+COOKIE_SAMESITE = "Strict"
+GATEWAY_NAME = "gateway"
+
+# After `npx wrangler d1 create gm-payments`, replace database_id with the id it prints.
+[[d1_databases]]
+binding = "DB"
+database_name = "gm-payments"
+database_id = "REPLACE_AFTER_d1_create"
+migrations_dir = "migrations"
+
+# After `npx wrangler r2 bucket create gm-receipts`
+[[r2_buckets]]
+binding = "RECEIPTS"
+bucket_name = "gm-receipts"
+
+[triggers]
+crons = ["17 * * * *"]

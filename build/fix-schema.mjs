@@ -1,10 +1,10 @@
-// Replaces WebApplication structured data with WebPage on tool and calculator pages.
+﻿// Replaces WebApplication structured data with WebPage on tool and calculator pages.
 // Why: Google's software-app rich result requires a genuine aggregateRating or review. GM Tools Hub has no real
 // ratings and must not invent them, so the pages are described honestly as free web pages instead.
 // Safe to re-run. If real user ratings are ever collected, restore SoftwareApplication with the real aggregateRating.
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude'; let pages = 0, blocks = 0, bad = 0;
-const walk = d => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) fix(p); } };
+const walk = d => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|backend|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) fix(p); } };
 function fix(p) {
   let h = fs.readFileSync(p, 'utf8'); let changed = false;
   h = h.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (m, body) => {

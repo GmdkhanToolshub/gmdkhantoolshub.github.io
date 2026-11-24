@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import os, re, json, html
 os.chdir('D:/GM_Claude')
 def rd(p): return open(p, encoding='utf-8', newline='').read()
 def wr(p, t): open(p, 'w', encoding='utf-8', newline='').write(t)
-SKIP = ('products', '.git', 'node_modules', 'scripts', 'build', 'embed')
+SKIP = ('products', '.git', 'node_modules', 'backend', 'scripts', 'build', 'embed')
 pages = []
 for d, ds, fs in os.walk('.'):
     ds[:] = [x for x in ds if x not in SKIP and not x.startswith('.')]

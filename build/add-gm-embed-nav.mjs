@@ -1,11 +1,11 @@
-// Adds "GM Embed" to the site navigation (Business & resources dropdown) and to the footer Explore list on every page. Idempotent.
+﻿// Adds "GM Embed" to the site navigation (Business & resources dropdown) and to the footer Explore list on every page. Idempotent.
 // Deliberately does not use sync_header.py, which would re-add the hidden "Live jobs" link.
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude/'; let n = 0, skipped = 0;
 (function walk(d) {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
     const p = path.join(d, e.name), rel = path.relative(root, p).replace(/\\/g, '/');
-    if (/^(\.git|\.github|node_modules|products|build|scripts|assets|data|embed)(\/|$)/.test(rel)) continue;
+    if (/^(\.git|\.github|node_modules|backend|products|build|scripts|assets|data|embed)(\/|$)/.test(rel)) continue;
     if (e.isDirectory()) { walk(p); continue; }
     if (!e.name.endsWith('.html')) continue;
     let h = fs.readFileSync(p, 'utf8'); const o = h;

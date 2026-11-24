@@ -1,4 +1,4 @@
-// Brings Kids Corner back: navigation, footer, home section, About card, changelog entries, and makes the Kids pages indexable again.
+﻿// Brings Kids Corner back: navigation, footer, home section, About card, changelog entries, and makes the Kids pages indexable again.
 // Run ONLY after you have decided Kids Corner should be public (for example after AdSense approval).
 // Usage: node build/restore-kids.mjs [--root D:/path/to/copy] [--no-sitemap]
 // Safe to re-run. Kids pages carry no ad code and must keep carrying none.
@@ -8,7 +8,7 @@ const root = (arg('--root') || 'D:/GM_Claude').replace(/\\/g, '/').replace(/\/$/
 const snippets = JSON.parse(fs.readFileSync('D:/GM_Claude/build/kids-snippets.json', 'utf8'));
 const stats = {}; const bump = k => stats[k] = (stats[k] || 0) + 1;
 const pages = [];
-(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) pages.push(rel); } })(root);
+(function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); const rel = path.relative(root, p).replace(/\\/g, '/'); if (/^(\.git|\.github|products|node_modules|backend|embed|scripts|build|data|assets)(\/|$)/.test(rel)) continue; if (e.isDirectory()) walk(p); else if (e.name.endsWith('.html')) pages.push(rel); } })(root);
 for (const rel of pages) {
   const f = root + rel; let h = fs.readFileSync(f, 'utf8'); const o = h;
   if (rel.startsWith('kids/')) {
