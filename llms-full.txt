@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 186 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 193 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub – Free Tools & Gadgets for Everyday Life](https://gmtoolshub.com/): 74 free tools and gadgets: merge and convert PDFs, convert images, calculators, clocks, resume builder and more. No sign-up.
@@ -139,6 +139,15 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [JavaScript basics: variables, functions and events](https://gmtoolshub.com/academy/javascript-basics/): Learn the core of JavaScript by building a small calculator that reacts to clicks.
 - [JavaScript and the page: build a to-do list](https://gmtoolshub.com/academy/javascript-dom/): Create elements, handle clicks and toggle classes to build a working to-do list.
 - [Prompt writing: get better answers from AI assistants | GM Tools](https://gmtoolshub.com/academy/prompt-writing-for-work/): A simple, reliable structure for writing prompts: role, task, context, format and checks.
+
+## gm-embed (7)
+- [GM Embed: Add Calculators and Tools to Your Website](https://gmtoolshub.com/gm-embed/): Embed professional online calculators and productivity tools into your website with GM Embed. Easy integration, responsive widgets and planned commercial licensing.
+- [GM Embed Documentation: Install, Customise, Secure](https://gmtoolshub.com/gm-embed/docs/): How to choose a widget, generate and install embed code, customise it, plus WordPress, Blogger, React, troubleshooting, security, privacy and licensing notes.
+- [GM Embed Generator: Customise and Copy Embed Code](https://gmtoolshub.com/gm-embed/generator/): Choose a widget, set theme, colours, radius and size, preview it live and copy the iframe or script embed code for your website.
+- [My Embeds: GM Embed Dashboard (Prototype)](https://gmtoolshub.com/gm-embed/my-embeds/): Manage the embeds you saved in this browser. A frontend prototype: no accounts yet, no view counts, no fabricated statistics.
+- [GM Embed Pricing and Plans (Free, Pro, Business)](https://gmtoolshub.com/gm-embed/pricing/): GM Embed plans: Free is available now. Pro and Business are planned and not for sale yet. See what each plan includes and join the waiting list.
+- [GM Embed Support, Enquiries and Waiting List](https://gmtoolshub.com/gm-embed/support/): Get help installing a GM Embed widget, ask about commercial licensing or agency use, or join the Pro and Business waiting list.
+- [GM Embed Widgets: Embeddable Calculators](https://gmtoolshub.com/gm-embed/widgets/): Browse tested embeddable calculators: salary tax, zakat, loan EMI, gold rates, land area, percentage, BMI and more. Search, preview and get the embed code.
 
 ## learn (6)
 - [Learn & Grow: English, Quizzes, Career Skills](https://gmtoolshub.com/learn/): Free learning for everyone: English vocabulary and grammar, general knowledge quizzes, computer basics, interview practice.

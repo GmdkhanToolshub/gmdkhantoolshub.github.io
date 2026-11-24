@@ -12,6 +12,7 @@
 - [Daily rates email](https://gmtoolshub.com/daily-rates-email/): free short daily email with estimated gold, silver and dollar rates
 - [Rates data (JSON)](https://gmtoolshub.com/rates-data/): free daily JSON for gold, silver and PKR exchange rates with field notes and terms
 - [Get expert help](https://gmtoolshub.com/get-expert-help/): request an introduction to an independent tax, accounting or web professional
+- [GM Embed](https://gmtoolshub.com/gm-embed/): embed tested GM Tools Hub calculators on your own website; generator, documentation and planned plans
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes

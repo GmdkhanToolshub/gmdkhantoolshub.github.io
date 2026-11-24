@@ -1,0 +1,634 @@
+{
+ "version": 1,
+ "generated": "2026-11-24",
+ "widgets": [
+  {
+   "id": "tola-gold-converter",
+   "name": "Tola to Gram Converter & Gold Value",
+   "category": "Calculators",
+   "description": "Convert tola, masha, ratti and grams and see the value at a gold rate you enter.",
+   "features": [
+    "Tola, masha, ratti and gram units",
+    "Value from the rate you type"
+   ],
+   "minHeight": 420,
+   "route": "/embed/tola-gold-converter/",
+   "toolPage": "/tools/tola-gold-converter/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "zakat-calculator",
+   "name": "Zakat Calculator",
+   "category": "Calculators",
+   "description": "Work out zakat on cash, gold, silver and savings against the nisab.",
+   "features": [
+    "Gold and silver nisab",
+    "Clear step-by-step result"
+   ],
+   "minHeight": 520,
+   "route": "/embed/zakat-calculator/",
+   "toolPage": "/tools/zakat-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "pakistan-salary-tax-calculator",
+   "name": "Pakistan Salary Tax Calculator",
+   "category": "Calculators",
+   "description": "Estimate monthly and annual salary tax and take-home pay for Pakistan, tax years 2025-26 and 2026-27.",
+   "features": [
+    "Two tax years",
+    "Slab-by-slab breakdown"
+   ],
+   "minHeight": 680,
+   "route": "/embed/pakistan-salary-tax-calculator/",
+   "toolPage": "/tools/pakistan-salary-tax-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "loan-emi-calculator",
+   "name": "Loan & EMI Calculator",
+   "category": "Calculators",
+   "description": "Monthly instalment, total interest and repayment for a loan.",
+   "features": [
+    "Amount, rate and term",
+    "Total cost shown"
+   ],
+   "minHeight": 520,
+   "route": "/embed/loan-emi-calculator/",
+   "toolPage": "/tools/loan-emi-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "electricity-bill-calculator",
+   "name": "Electricity Bill & Units Calculator",
+   "category": "Calculators",
+   "description": "Estimate an electricity bill from units used.",
+   "features": [
+    "Units to bill estimate",
+    "Plain-language result"
+   ],
+   "minHeight": 480,
+   "route": "/embed/electricity-bill-calculator/",
+   "toolPage": "/tools/electricity-bill-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "fuel-cost-calculator",
+   "name": "Fuel Cost & Mileage Calculator",
+   "category": "Calculators",
+   "description": "Trip and monthly fuel cost from distance, mileage and fuel price.",
+   "features": [
+    "Trip cost",
+    "Monthly cost"
+   ],
+   "minHeight": 460,
+   "route": "/embed/fuel-cost-calculator/",
+   "toolPage": "/tools/fuel-cost-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "land-area-converter",
+   "name": "Marla to Square Feet Converter",
+   "category": "Calculators",
+   "description": "Convert marla, kanal, square feet, square metres and more.",
+   "features": [
+    "Pakistani and international units",
+    "Instant results"
+   ],
+   "minHeight": 460,
+   "route": "/embed/land-area-converter/",
+   "toolPage": "/tools/land-area-converter/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "amount-in-words",
+   "name": "Amount in Words Converter (Lakh & Crore)",
+   "category": "Calculators",
+   "description": "Write a number as words in English, handy for cheques and invoices.",
+   "features": [
+    "Cheque and invoice wording",
+    "Copy-ready text"
+   ],
+   "minHeight": 400,
+   "route": "/embed/amount-in-words/",
+   "toolPage": "/tools/amount-in-words/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "board-marks-calculator",
+   "name": "Matric & FSc Marks Percentage Calculator",
+   "category": "Calculators",
+   "description": "Work out percentage and grade from board marks.",
+   "features": [
+    "Total and percentage",
+    "Grade guide"
+   ],
+   "minHeight": 460,
+   "route": "/embed/board-marks-calculator/",
+   "toolPage": "/tools/board-marks-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "percentage-calculator",
+   "name": "Percentage Calculator",
+   "category": "Calculators",
+   "description": "Percent of a number, percent change and what percent one number is of another.",
+   "features": [
+    "Three common percentage questions",
+    "Instant results"
+   ],
+   "minHeight": 460,
+   "route": "/embed/percentage-calculator/",
+   "toolPage": "/tools/percentage-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "age-calculator",
+   "name": "Age Calculator",
+   "category": "Calculators",
+   "description": "Exact age in years, months and days from a date of birth.",
+   "features": [
+    "Date of birth to age",
+    "Days until next birthday"
+   ],
+   "minHeight": 440,
+   "route": "/embed/age-calculator/",
+   "toolPage": "/tools/age-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "bmi-calculator",
+   "name": "BMI Calculator",
+   "category": "Calculators",
+   "description": "Body mass index from height and weight with the standard categories.",
+   "features": [
+    "Metric and imperial",
+    "Category explanation"
+   ],
+   "minHeight": 440,
+   "route": "/embed/bmi-calculator/",
+   "toolPage": "/tools/bmi-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "profit-margin-calculator",
+   "name": "Profit Margin Calculator",
+   "category": "Calculators",
+   "description": "Profit, margin and markup from cost and selling price.",
+   "features": [
+    "Margin and markup together",
+    "Selling price from target margin"
+   ],
+   "minHeight": 480,
+   "route": "/embed/profit-margin-calculator/",
+   "toolPage": "/tools/profit-margin-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "date-difference-calculator",
+   "name": "Date Difference Calculator",
+   "category": "Calculators",
+   "description": "Days, weeks, months and years between two dates.",
+   "features": [
+    "Two dates to difference",
+    "Working days option where available"
+   ],
+   "minHeight": 460,
+   "route": "/embed/date-difference-calculator/",
+   "toolPage": "/tools/date-difference-calculator/",
+   "params": [
+    "theme",
+    "accent",
+    "bg",
+    "radius",
+    "font",
+    "title",
+    "footer"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  },
+  {
+   "id": "live-rates",
+   "name": "Live Pakistan Rates",
+   "category": "Rates",
+   "description": "Estimated gold (24K, 22K per tola), silver and USD to PKR rates, updated daily, in English or Urdu.",
+   "features": [
+    "Gold, silver and dollar",
+    "English or Urdu",
+    "Daily history change"
+   ],
+   "minHeight": 240,
+   "route": "/embed/live-rates/",
+   "toolPage": "/embed-rates/",
+   "params": [
+    "theme",
+    "accent",
+    "lang",
+    "show"
+   ],
+   "tested": {
+    "date": "2026-11-24",
+    "browsers": [
+     "Chromium (Claude desktop browser pane)"
+    ],
+    "notTested": [
+     "Firefox",
+     "Safari",
+     "Edge (separate install)",
+     "real WordPress site",
+     "real phone devices"
+    ],
+    "checks": [
+     "loads inside a sandboxed iframe on a different origin through the loader",
+     "typing in the inputs produces a result",
+     "no horizontal overflow at 340px width",
+     "auto-resize message reaches the parent page",
+     "no console errors on load"
+    ]
+   }
+  }
+ ]
+}

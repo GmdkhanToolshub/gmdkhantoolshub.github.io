@@ -1,0 +1,302 @@
+﻿{
+    "tola-gold-converter":  {
+                                "date":  "2026-11-24",
+                                "browsers":  [
+                                                 "Chromium (Claude desktop browser pane)"
+                                             ],
+                                "notTested":  [
+                                                  "Firefox",
+                                                  "Safari",
+                                                  "Edge (separate install)",
+                                                  "real WordPress site",
+                                                  "real phone devices"
+                                              ],
+                                "checks":  [
+                                               "loads inside a sandboxed iframe on a different origin through the loader",
+                                               "typing in the inputs produces a result",
+                                               "no horizontal overflow at 340px width",
+                                               "auto-resize message reaches the parent page",
+                                               "no console errors on load"
+                                           ]
+                            },
+    "zakat-calculator":  {
+                             "date":  "2026-11-24",
+                             "browsers":  [
+                                              "Chromium (Claude desktop browser pane)"
+                                          ],
+                             "notTested":  [
+                                               "Firefox",
+                                               "Safari",
+                                               "Edge (separate install)",
+                                               "real WordPress site",
+                                               "real phone devices"
+                                           ],
+                             "checks":  [
+                                            "loads inside a sandboxed iframe on a different origin through the loader",
+                                            "typing in the inputs produces a result",
+                                            "no horizontal overflow at 340px width",
+                                            "auto-resize message reaches the parent page",
+                                            "no console errors on load"
+                                        ]
+                         },
+    "pakistan-salary-tax-calculator":  {
+                                           "date":  "2026-11-24",
+                                           "browsers":  [
+                                                            "Chromium (Claude desktop browser pane)"
+                                                        ],
+                                           "notTested":  [
+                                                             "Firefox",
+                                                             "Safari",
+                                                             "Edge (separate install)",
+                                                             "real WordPress site",
+                                                             "real phone devices"
+                                                         ],
+                                           "checks":  [
+                                                          "loads inside a sandboxed iframe on a different origin through the loader",
+                                                          "typing in the inputs produces a result",
+                                                          "no horizontal overflow at 340px width",
+                                                          "auto-resize message reaches the parent page",
+                                                          "no console errors on load"
+                                                      ]
+                                       },
+    "loan-emi-calculator":  {
+                                "date":  "2026-11-24",
+                                "browsers":  [
+                                                 "Chromium (Claude desktop browser pane)"
+                                             ],
+                                "notTested":  [
+                                                  "Firefox",
+                                                  "Safari",
+                                                  "Edge (separate install)",
+                                                  "real WordPress site",
+                                                  "real phone devices"
+                                              ],
+                                "checks":  [
+                                               "loads inside a sandboxed iframe on a different origin through the loader",
+                                               "typing in the inputs produces a result",
+                                               "no horizontal overflow at 340px width",
+                                               "auto-resize message reaches the parent page",
+                                               "no console errors on load"
+                                           ]
+                            },
+    "electricity-bill-calculator":  {
+                                        "date":  "2026-11-24",
+                                        "browsers":  [
+                                                         "Chromium (Claude desktop browser pane)"
+                                                     ],
+                                        "notTested":  [
+                                                          "Firefox",
+                                                          "Safari",
+                                                          "Edge (separate install)",
+                                                          "real WordPress site",
+                                                          "real phone devices"
+                                                      ],
+                                        "checks":  [
+                                                       "loads inside a sandboxed iframe on a different origin through the loader",
+                                                       "typing in the inputs produces a result",
+                                                       "no horizontal overflow at 340px width",
+                                                       "auto-resize message reaches the parent page",
+                                                       "no console errors on load"
+                                                   ]
+                                    },
+    "fuel-cost-calculator":  {
+                                 "date":  "2026-11-24",
+                                 "browsers":  [
+                                                  "Chromium (Claude desktop browser pane)"
+                                              ],
+                                 "notTested":  [
+                                                   "Firefox",
+                                                   "Safari",
+                                                   "Edge (separate install)",
+                                                   "real WordPress site",
+                                                   "real phone devices"
+                                               ],
+                                 "checks":  [
+                                                "loads inside a sandboxed iframe on a different origin through the loader",
+                                                "typing in the inputs produces a result",
+                                                "no horizontal overflow at 340px width",
+                                                "auto-resize message reaches the parent page",
+                                                "no console errors on load"
+                                            ]
+                             },
+    "land-area-converter":  {
+                                "date":  "2026-11-24",
+                                "browsers":  [
+                                                 "Chromium (Claude desktop browser pane)"
+                                             ],
+                                "notTested":  [
+                                                  "Firefox",
+                                                  "Safari",
+                                                  "Edge (separate install)",
+                                                  "real WordPress site",
+                                                  "real phone devices"
+                                              ],
+                                "checks":  [
+                                               "loads inside a sandboxed iframe on a different origin through the loader",
+                                               "typing in the inputs produces a result",
+                                               "no horizontal overflow at 340px width",
+                                               "auto-resize message reaches the parent page",
+                                               "no console errors on load"
+                                           ]
+                            },
+    "amount-in-words":  {
+                            "date":  "2026-11-24",
+                            "browsers":  [
+                                             "Chromium (Claude desktop browser pane)"
+                                         ],
+                            "notTested":  [
+                                              "Firefox",
+                                              "Safari",
+                                              "Edge (separate install)",
+                                              "real WordPress site",
+                                              "real phone devices"
+                                          ],
+                            "checks":  [
+                                           "loads inside a sandboxed iframe on a different origin through the loader",
+                                           "typing in the inputs produces a result",
+                                           "no horizontal overflow at 340px width",
+                                           "auto-resize message reaches the parent page",
+                                           "no console errors on load"
+                                       ]
+                        },
+    "board-marks-calculator":  {
+                                   "date":  "2026-11-24",
+                                   "browsers":  [
+                                                    "Chromium (Claude desktop browser pane)"
+                                                ],
+                                   "notTested":  [
+                                                     "Firefox",
+                                                     "Safari",
+                                                     "Edge (separate install)",
+                                                     "real WordPress site",
+                                                     "real phone devices"
+                                                 ],
+                                   "checks":  [
+                                                  "loads inside a sandboxed iframe on a different origin through the loader",
+                                                  "typing in the inputs produces a result",
+                                                  "no horizontal overflow at 340px width",
+                                                  "auto-resize message reaches the parent page",
+                                                  "no console errors on load"
+                                              ]
+                               },
+    "percentage-calculator":  {
+                                  "date":  "2026-11-24",
+                                  "browsers":  [
+                                                   "Chromium (Claude desktop browser pane)"
+                                               ],
+                                  "notTested":  [
+                                                    "Firefox",
+                                                    "Safari",
+                                                    "Edge (separate install)",
+                                                    "real WordPress site",
+                                                    "real phone devices"
+                                                ],
+                                  "checks":  [
+                                                 "loads inside a sandboxed iframe on a different origin through the loader",
+                                                 "typing in the inputs produces a result",
+                                                 "no horizontal overflow at 340px width",
+                                                 "auto-resize message reaches the parent page",
+                                                 "no console errors on load"
+                                             ]
+                              },
+    "age-calculator":  {
+                           "date":  "2026-11-24",
+                           "browsers":  [
+                                            "Chromium (Claude desktop browser pane)"
+                                        ],
+                           "notTested":  [
+                                             "Firefox",
+                                             "Safari",
+                                             "Edge (separate install)",
+                                             "real WordPress site",
+                                             "real phone devices"
+                                         ],
+                           "checks":  [
+                                          "loads inside a sandboxed iframe on a different origin through the loader",
+                                          "typing in the inputs produces a result",
+                                          "no horizontal overflow at 340px width",
+                                          "auto-resize message reaches the parent page",
+                                          "no console errors on load"
+                                      ]
+                       },
+    "bmi-calculator":  {
+                           "date":  "2026-11-24",
+                           "browsers":  [
+                                            "Chromium (Claude desktop browser pane)"
+                                        ],
+                           "notTested":  [
+                                             "Firefox",
+                                             "Safari",
+                                             "Edge (separate install)",
+                                             "real WordPress site",
+                                             "real phone devices"
+                                         ],
+                           "checks":  [
+                                          "loads inside a sandboxed iframe on a different origin through the loader",
+                                          "typing in the inputs produces a result",
+                                          "no horizontal overflow at 340px width",
+                                          "auto-resize message reaches the parent page",
+                                          "no console errors on load"
+                                      ]
+                       },
+    "profit-margin-calculator":  {
+                                     "date":  "2026-11-24",
+                                     "browsers":  [
+                                                      "Chromium (Claude desktop browser pane)"
+                                                  ],
+                                     "notTested":  [
+                                                       "Firefox",
+                                                       "Safari",
+                                                       "Edge (separate install)",
+                                                       "real WordPress site",
+                                                       "real phone devices"
+                                                   ],
+                                     "checks":  [
+                                                    "loads inside a sandboxed iframe on a different origin through the loader",
+                                                    "typing in the inputs produces a result",
+                                                    "no horizontal overflow at 340px width",
+                                                    "auto-resize message reaches the parent page",
+                                                    "no console errors on load"
+                                                ]
+                                 },
+    "date-difference-calculator":  {
+                                       "date":  "2026-11-24",
+                                       "browsers":  [
+                                                        "Chromium (Claude desktop browser pane)"
+                                                    ],
+                                       "notTested":  [
+                                                         "Firefox",
+                                                         "Safari",
+                                                         "Edge (separate install)",
+                                                         "real WordPress site",
+                                                         "real phone devices"
+                                                     ],
+                                       "checks":  [
+                                                      "loads inside a sandboxed iframe on a different origin through the loader",
+                                                      "typing in the inputs produces a result",
+                                                      "no horizontal overflow at 340px width",
+                                                      "auto-resize message reaches the parent page",
+                                                      "no console errors on load"
+                                                  ]
+                                   },
+    "live-rates":  {
+                       "date":  "2026-11-24",
+                       "browsers":  [
+                                        "Chromium (Claude desktop browser pane)"
+                                    ],
+                       "notTested":  [
+                                         "Firefox",
+                                         "Safari",
+                                         "Edge (separate install)",
+                                         "real WordPress site",
+                                         "real phone devices"
+                                     ],
+                       "checks":  [
+                                      "loads inside a sandboxed iframe on a different origin through the loader",
+                                      "typing in the inputs produces a result",
+                                      "no horizontal overflow at 340px width",
+                                      "auto-resize message reaches the parent page",
+                                      "no console errors on load"
+                                  ]
+                   }
+}

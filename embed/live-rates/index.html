@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
@@ -32,7 +32,7 @@ body{padding:8px}
 <body>
 <div class="wrap" id="w">
 <div class="head"><b id="t">Pakistan rates today</b><span id="d"></span></div>
-<div class="rows" id="r"><p class="err">Loading rates…</p></div>
+<div class="rows" id="r"><p class="err">Loading ratesâ€¦</p></div>
 <p class="foot" id="f"></p>
 </div>
 <script>
@@ -44,11 +44,11 @@ var LANG=Q.get('lang')==='ur'?'ur':'en';
 var SHOW=(Q.get('show')||'gold,silver,usd').split(',').filter(function(x){return /^(gold|silver|usd)$/.test(x)});
 if(!SHOW.length)SHOW=['gold','silver','usd'];
 var T={en:{title:'Pakistan rates today',gold:'Gold 24K, per tola',gold22:'Gold 22K, per tola',silver:'Silver, per tola',usd:'US dollar (USD to PKR)',upd:'Estimate, updated',note:'Estimates from international prices, not a jeweller quote.',by:'Rates by',vs:'vs previous day',err:'Rates are not available right now.'},
-ur:{title:'آج کے ریٹ',gold:'سونا 24 قیراط، فی تولہ',gold22:'سونا 22 قیراط، فی تولہ',silver:'چاندی، فی تولہ',usd:'امریکی ڈالر (روپے میں)',upd:'اندازہ، تاریخ',note:'یہ بین الاقوامی قیمتوں سے اندازہ ہے، جیولر کا ریٹ نہیں۔',by:'ریٹس از',vs:'پچھلے دن کے مقابلے',err:'ریٹ ابھی دستیاب نہیں۔'}}[LANG];
+ur:{title:'Ø¢Ø¬ Ú©Û’ Ø±ÛŒÙ¹',gold:'Ø³ÙˆÙ†Ø§ 24 Ù‚ÛŒØ±Ø§Ø·ØŒ ÙÛŒ ØªÙˆÙ„Û',gold22:'Ø³ÙˆÙ†Ø§ 22 Ù‚ÛŒØ±Ø§Ø·ØŒ ÙÛŒ ØªÙˆÙ„Û',silver:'Ú†Ø§Ù†Ø¯ÛŒØŒ ÙÛŒ ØªÙˆÙ„Û',usd:'Ø§Ù…Ø±ÛŒÚ©ÛŒ ÚˆØ§Ù„Ø± (Ø±ÙˆÙ¾Û’ Ù…ÛŒÚº)',upd:'Ø§Ù†Ø¯Ø§Ø²ÛØŒ ØªØ§Ø±ÛŒØ®',note:'ÛŒÛ Ø¨ÛŒÙ† Ø§Ù„Ø§Ù‚ÙˆØ§Ù…ÛŒ Ù‚ÛŒÙ…ØªÙˆÚº Ø³Û’ Ø§Ù†Ø¯Ø§Ø²Û ÛÛ’ØŒ Ø¬ÛŒÙˆÙ„Ø± Ú©Ø§ Ø±ÛŒÙ¹ Ù†ÛÛŒÚºÛ”',by:'Ø±ÛŒÙ¹Ø³ Ø§Ø²',vs:'Ù¾Ú†Ú¾Ù„Û’ Ø¯Ù† Ú©Û’ Ù…Ù‚Ø§Ø¨Ù„Û’',err:'Ø±ÛŒÙ¹ Ø§Ø¨Ú¾ÛŒ Ø¯Ø³ØªÛŒØ§Ø¨ Ù†ÛÛŒÚºÛ”'}}[LANG];
 if(LANG==='ur')document.documentElement.setAttribute('dir','rtl');
 function $(i){return document.getElementById(i)}
 function fmt(n){return 'Rs '+Math.round(n).toLocaleString('en-IN')}
-function chg(a,b,dec){if(!b)return '';var p=(a-b)/b*100;var c=Math.abs(p)<0.05?'flat':(p>0?'up':'down');var arrow=c==='up'?'▲ ':c==='down'?'▼ ':'';return '<div class="chg '+c+'">'+arrow+(p>0?'+':'')+p.toFixed(2)+'% '+T.vs+'</div>'}
+function chg(a,b,dec){if(!b)return '';var p=(a-b)/b*100;var c=Math.abs(p)<0.05?'flat':(p>0?'up':'down');var arrow=c==='up'?'â–² ':c==='down'?'â–¼ ':'';return '<div class="chg '+c+'">'+arrow+(p>0?'+':'')+p.toFixed(2)+'% '+T.vs+'</div>'}
 function get(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 $('t').textContent=T.title;
@@ -65,7 +65,7 @@ Promise.all([get('../../data/gold.json'),get('../../data/silver.json'),get('../.
  });
  $('r').innerHTML=html;
  $('d').textContent=T.upd+' '+g1.d;
- try{parent.postMessage({gmRatesHeight:document.documentElement.scrollHeight},'*')}catch(e){}
+ try{var gid=(Q.get('id')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,40);var wq=document.getElementById('w'),hh=Math.ceil((wq?wq.getBoundingClientRect().height:document.body.scrollHeight)+16);parent.postMessage({gmRatesHeight:hh},'*');parent.postMessage({source:'gm-embed',type:'height',id:gid,height:hh},'*')}catch(e){}
 }).catch(function(){$('r').innerHTML='<p class="err">'+esc(T.err)+'</p>'});
 })();
 </script>
