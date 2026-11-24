@@ -1,4 +1,4 @@
-/* GM Tools Hub checkout page. Prices shown here are only for display; the server recomputes the price, coupon and total when the order is created. */
+﻿/* GM Tools Hub checkout page. Prices shown here are only for display; the server recomputes the price, coupon and total when the order is created. */
 (function () {
   'use strict';
   var P = window.GMPay, root = P && P.$('ck-app'); if (!root) return;
@@ -61,11 +61,12 @@
       if (!$('ck-terms').checked) { msg.textContent = 'Please accept the terms and refund policy.'; return; }
       if (cur.kind !== 'one_time' && !$('ck-recur').checked) { msg.textContent = 'Please confirm you understand how this plan renews.'; return; }
       sb.disabled = true; sb.textContent = 'Creating your order…';
-      P.api('/api/orders', { method: 'POST', json: { product_id: cur.id, method: m.value, name: name, email: email, phone: phone, coupon: couponCode || undefined, accept_terms: true, accept_recurring: cur.kind !== 'one_time' ? true : undefined } }).then(function (r) {
+      P.api('/api/orders', { method: 'POST', json: { product_id: cur.id, method: m.value, name: name, email: email, phone: phone, coupon: couponCode || undefined, attempt_id: cur.id === 'reasoning-certificate' ? attemptId : undefined, attempt_token: cur.id === 'reasoning-certificate' ? attemptTok : undefined, certificate_name: cur.id === 'reasoning-certificate' ? name : undefined, accept_terms: true, accept_recurring: cur.kind !== 'one_time' ? true : undefined } }).then(function (r) {
         P.saveOrder(r.order.ref, r.token, r.order.product); if (window.GM_track) window.GM_track('checkout_order_created', { page: location.pathname });
         location.href = 'status/?ref=' + encodeURIComponent(r.order.ref) + '#t=' + encodeURIComponent(r.token);
       }, function (e) { msg.textContent = e.message; sb.disabled = false; summary(); });
     });
   }
-  Promise.all([P.api('/api/products'), P.api('/api/config')]).then(function (r) { products = r[0].products; cfg = r[1]; if (!products.length) { left.textContent = ''; left.appendChild(el('p', '', 'No products are available for checkout yet.')); return; } build(); }, function (e) { left.textContent = ''; left.appendChild(el('p', 'ck-err', e.message)); });
+  var attemptId = q.get('attempt') || '', am = location.hash.match(/a=([A-Za-z0-9_-]+)/), attemptTok = am ? am[1] : '';
+  Promise.all([P.api('/api/products'), P.api('/api/config')]).then(function (r) { products = r[0].products.filter(function (p) { return p.id === 'reasoning-certificate' ? !!attemptId : true; }); if (attemptId) q.set('product', 'reasoning-certificate'); cfg = r[1]; if (!products.length) { left.textContent = ''; left.appendChild(el('p', '', 'No products are available for checkout yet.')); return; } build(); }, function (e) { left.textContent = ''; left.appendChild(el('p', 'ck-err', e.message)); });
 })();

@@ -1,4 +1,4 @@
-/* GM Tools Hub order page: payment instructions, receipt upload, verification status, confirmation, and this browser's order history. */
+﻿/* GM Tools Hub order page: payment instructions, receipt upload, verification status, confirmation, and this browser's order history. */
 (function () {
   'use strict';
   var P = window.GMPay, root = P && P.$('ck-status'); if (!root) return;
@@ -26,6 +26,7 @@
     var card = el('div', 'ck-card'); main.appendChild(card);
     if (o.status === 'paid' || o.status === 'partially_refunded' || o.status === 'refunded') {
       card.appendChild(el('h2', 'ck-ok', o.status === 'paid' ? (o.total_minor ? 'Payment verified. Thank you!' : 'Your order is confirmed') : o.status === 'refunded' ? 'This order was refunded' : 'This order was partly refunded'));
+      if (o.certificate_id) { var cl = el('a', 'btn btn-primary', 'View your certificate'); cl.href = '../../reasoning-test/certificate/?id=' + encodeURIComponent(o.certificate_id); card.appendChild(cl); card.appendChild(el('p', 'small', 'Certificate ID: ' + o.certificate_id + '. Anyone can verify it with that ID.')); }
       card.appendChild(el('p', '', 'Keep this order number for support: ' + o.ref + '. We deliver your purchase to the email address you gave at checkout, and we will contact you if anything is missing.'));
     } else if (failed) {
       card.appendChild(el('h2', 'ck-err', o.status === 'expired' ? 'This order has expired' : o.status === 'cancelled' ? 'This order was cancelled' : 'We could not verify this payment'));

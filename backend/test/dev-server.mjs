@@ -1,4 +1,4 @@
-// Local preview of the whole system for manual/browser testing: serves the static site AND the real Worker API (in-memory test database) on one origin.
+﻿// Local preview of the whole system for manual/browser testing: serves the static site AND the real Worker API (in-memory test database) on one origin.
 // NOT for production. The data lives in memory and is lost when you stop it. Usage: node backend/test/dev-server.mjs  then open http://localhost:8787/checkout/?product=salary-tax-pack
 import http from 'node:http';
 import fs from 'node:fs';
@@ -16,6 +16,8 @@ for (const [k, v] of Object.entries({ bank_name: 'PREVIEW BANK (test data)', acc
 const salt = 'devsalt', k = await crypto.subtle.importKey('raw', enc.encode('ui-test-password-123'), 'PBKDF2', false, ['deriveBits']);
 raw.prepare("INSERT INTO admins(id,email,pass_hash,salt,role,created_at) VALUES('dev-owner','owner@test.local',?,?, 'owner', datetime('now'))").run(hex(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode(salt), iterations: 100000 }, k, 256)), salt);
 
+
+if (fs.existsSync(new URL('../private/reasoning-key.sql', import.meta.url))) { raw.exec(fs.readFileSync(new URL('../private/reasoning-key.sql', import.meta.url), 'utf8')); raw.exec("UPDATE products SET active=1, price_minor=49900 WHERE id='reasoning-certificate'"); console.log('certified test key loaded (local test only)'); }
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.json': 'application/json', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8', '.webmanifest': 'application/manifest+json' };
 http.createServer(async (req, res) => {
   try {

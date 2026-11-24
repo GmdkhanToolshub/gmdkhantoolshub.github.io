@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 193 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 194 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub – Free Tools & Gadgets for Everyday Life](https://gmtoolshub.com/): 74 free tools and gadgets: merge and convert PDFs, convert images, calculators, clocks, resume builder and more. No sign-up.
@@ -121,15 +121,15 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [How to Calculate Zakat: A Simple Guide for Pakistan | GM Tools](https://gmtoolshub.com/blog/zakat-calculation-guide/): A plain guide to calculating Zakat: what counts as zakatable wealth, the nisab threshold, the 2.5% rate and a worked example, with a free calculator.
 
 ## rates (9)
-- [Daily Exchange Rates in Pakistan (PKR)](https://gmtoolshub.com/rates/): Today's exchange rates in Pakistan: USD, GBP, EUR, AED, SAR, CAD, AUD and QAR to PKR with quick tables, history and a free converter. Updated 23 Nov 2026.
-- [AED to PKR Today: Dirham Rate in Pakistan](https://gmtoolshub.com/rates/aed-to-pkr/): Today's AED to PKR rate: 1 AED = 75.30 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to AED, rate history and a free converter.
-- [AUD to PKR Today: Australian Dollar Rate](https://gmtoolshub.com/rates/aud-to-pkr/): Today's AUD to PKR rate: 1 AUD = 183.51 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to AUD, rate history and a free converter.
-- [CAD to PKR Today: Canadian Dollar Rate](https://gmtoolshub.com/rates/cad-to-pkr/): Today's CAD to PKR rate: 1 CAD = 192.95 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to CAD, rate history and a free converter.
-- [EUR to PKR Today: Euro Rate in Pakistan](https://gmtoolshub.com/rates/eur-to-pkr/): Today's EUR to PKR rate: 1 EUR = 303.52 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to EUR, rate history and a free converter.
-- [GBP to PKR Today: Pound Rate in Pakistan](https://gmtoolshub.com/rates/gbp-to-pkr/): Today's GBP to PKR rate: 1 GBP = 362.17 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to GBP, rate history and a free converter.
-- [QAR to PKR Today: Qatari Riyal Rate in Pakistan](https://gmtoolshub.com/rates/qar-to-pkr/): Today's QAR to PKR rate: 1 QAR = 75.97 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to QAR, rate history and a free converter.
-- [SAR to PKR Today: Saudi Riyal Rate in Pakistan](https://gmtoolshub.com/rates/sar-to-pkr/): Today's SAR to PKR rate: 1 SAR = 73.75 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to SAR, rate history and a free converter.
-- [USD to PKR Today: Dollar Rate in Pakistan](https://gmtoolshub.com/rates/usd-to-pkr/): Today's USD to PKR rate: 1 USD = 276.55 Pakistani rupees on 23 Nov 2026. Quick conversion table, PKR to USD, rate history and a free converter.
+- [Daily Exchange Rates in Pakistan (PKR)](https://gmtoolshub.com/rates/): Today's exchange rates in Pakistan: USD, GBP, EUR, AED, SAR, CAD, AUD and QAR to PKR with quick tables, history and a free converter. Updated 24 Nov 2026.
+- [AED to PKR Today: Dirham Rate in Pakistan](https://gmtoolshub.com/rates/aed-to-pkr/): Today's AED to PKR rate: 1 AED = 75.30 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to AED, rate history and a free converter.
+- [AUD to PKR Today: Australian Dollar Rate](https://gmtoolshub.com/rates/aud-to-pkr/): Today's AUD to PKR rate: 1 AUD = 183.28 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to AUD, rate history and a free converter.
+- [CAD to PKR Today: Canadian Dollar Rate](https://gmtoolshub.com/rates/cad-to-pkr/): Today's CAD to PKR rate: 1 CAD = 192.58 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to CAD, rate history and a free converter.
+- [EUR to PKR Today: Euro Rate in Pakistan](https://gmtoolshub.com/rates/eur-to-pkr/): Today's EUR to PKR rate: 1 EUR = 302.03 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to EUR, rate history and a free converter.
+- [GBP to PKR Today: Pound Rate in Pakistan](https://gmtoolshub.com/rates/gbp-to-pkr/): Today's GBP to PKR rate: 1 GBP = 360.71 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to GBP, rate history and a free converter.
+- [QAR to PKR Today: Qatari Riyal Rate in Pakistan](https://gmtoolshub.com/rates/qar-to-pkr/): Today's QAR to PKR rate: 1 QAR = 75.97 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to QAR, rate history and a free converter.
+- [SAR to PKR Today: Saudi Riyal Rate in Pakistan](https://gmtoolshub.com/rates/sar-to-pkr/): Today's SAR to PKR rate: 1 SAR = 73.75 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to SAR, rate history and a free converter.
+- [USD to PKR Today: Dollar Rate in Pakistan](https://gmtoolshub.com/rates/usd-to-pkr/): Today's USD to PKR rate: 1 USD = 276.55 Pakistani rupees on 24 Nov 2026. Quick conversion table, PKR to USD, rate history and a free converter.
 
 ## academy (7)
 - [Coding and Learning Academy: Free Lessons](https://gmtoolshub.com/academy/): Free beginner lessons in HTML, CSS, JavaScript, prompt writing and publishing a website, each with a live example you can edit.
@@ -158,11 +158,11 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [English Vocabulary Practice](https://gmtoolshub.com/learn/vocabulary/): Learn 36 useful English words with clear meanings and example sentences. Study flashcards by level, then take a word quiz. Free, no sign-up.
 
 ## gold-rate (5)
-- [Gold Rate in Pakistan Today: Tola Price 24K, 22K](https://gmtoolshub.com/gold-rate/): Gold rate in Pakistan today (estimate): 24K Rs 3,76,022 per tola, 22K Rs 3,44,687 on 23 Nov 2026. Price by karat, history and calculator.
-- [18 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/18-karat/): Estimated 18 karat gold rate in Pakistan: Rs 2,82,017 per tola, Rs 2,41,788 per 10 g (23 Nov 2026). Price by weight, history and calculator.
-- [21 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/21-karat/): Estimated 21 karat gold rate in Pakistan: Rs 3,29,019 per tola, Rs 2,82,086 per 10 g (23 Nov 2026). Price by weight, history and calculator.
-- [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,44,687 per tola, Rs 2,95,518 per 10 g (23 Nov 2026). Price by weight, history and calculator.
-- [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,76,022 per tola, Rs 3,22,384 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+- [Gold Rate in Pakistan Today: Tola Price 24K, 22K](https://gmtoolshub.com/gold-rate/): Gold rate in Pakistan today (estimate): 24K Rs 3,75,232 per tola, 22K Rs 3,43,963 on 24 Nov 2026. Price by karat, history and calculator.
+- [18 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/18-karat/): Estimated 18 karat gold rate in Pakistan: Rs 2,81,424 per tola, Rs 2,41,280 per 10 g (24 Nov 2026). Price by weight, history and calculator.
+- [21 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/21-karat/): Estimated 21 karat gold rate in Pakistan: Rs 3,28,328 per tola, Rs 2,81,493 per 10 g (24 Nov 2026). Price by weight, history and calculator.
+- [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,43,963 per tola, Rs 2,94,898 per 10 g (24 Nov 2026). Price by weight, history and calculator.
+- [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,75,232 per tola, Rs 3,21,706 per 10 g (24 Nov 2026). Price by weight, history and calculator.
 
 ## solutions (4)
 - [Business Excel Dashboards and Reporting](https://gmtoolshub.com/solutions/): Excel dashboards, KPI scorecards, sales reporting and HR attendance systems for growing companies, delivered remotely with fixed-price quotes in US dollars.
@@ -257,6 +257,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 ## rates-data (1)
 - [Pakistan Gold, Silver & Exchange Rate Data (JSON)](https://gmtoolshub.com/rates-data/): Free daily JSON data for Pakistan gold per tola, silver per tola and PKR exchange rates (USD, GBP, EUR, AED, SAR, CAD, AUD, QAR). Fields, examples and terms of use.
 
+## reasoning-test (1)
+- [Free Online Reasoning Test: IQ-Style Pattern Puzzles](https://gmtoolshub.com/reasoning-test/): Free 20-puzzle pattern reasoning test with instant score and review. IQ-style matrix puzzles, not a clinical IQ test. Optional certified test and certificate.
+
 ## refund-policy (1)
 - [Refund Policy – Digital Products and Services](https://gmtoolshub.com/refund-policy/): Refund policy for GM digital products. Templates, CV packs, PDFs, GM HCM and services are delivered digitally and are not refundable, but delivery faults are fixed.
 
@@ -279,7 +282,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [Shop: Excel Templates, CV Pack and Interview Pack](https://gmtoolshub.com/shop/): Ready-made Excel templates, a CV pack, a 41-page interview pack and printable PDFs. Prices in USD and PKR; pay by bank transfer or JazzCash; delivered digitally.
 
 ## silver-rate (1)
-- [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,413 per tola, Rs 3,784 per 10 g (23 Nov 2026). Price by weight, history and calculator.
+- [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,370 per tola, Rs 3,747 per 10 g (24 Nov 2026). Price by weight, history and calculator.
 
 ## subscription-policy (1)
 - [Subscription Policy](https://gmtoolshub.com/subscription-policy/): How GM HCM subscriptions will work: plans, monthly and annual billing, payment verification, activation, renewal, expiry, cancellation and data export.

@@ -28,3 +28,9 @@ Failed payment event, duplicate webhook delivery, second success event with a ne
 
 ## Still to do before real money
 Deploy the Worker, run the smoke test on the live Worker, enter your real bank details in the admin console, connect a card or wallet provider if wanted, and enable Cloudflare Access for admin MFA.
+
+## Addendum: reasoning test and certificates (2026-11-24)
+- `node test/reasoning.mjs`: 23 checks pass (server scoring, weighting, skipped answers, double submit, wrong token, malformed answers, time limit, answer-free public bank, inactive product, attempt validation, single-use attempt, certificate NOT issued by receipt alone, issued on admin approval and on webhook payment, idempotent issuance, public verification, revocation, 100% coupon, rate limit). `npm test` now runs both suites: 58 + 23 = 81 checks, all passing.
+- Puzzle quality: all 50 generated puzzles (20 practice, 30 certified) pass an independent solver that checks the missing piece is uniquely determined, and every puzzle has 8 distinct options.
+- Browser run through the real pages: Home page quiz started in place and scored (16 of 20 correct gave 81/100, matching the hand calculation); certified attempt scored on the server (25 of 30 gave 84/100); certificate order placed, receipt uploaded, admin approved, order page showed the certificate link, and the verification page showed "Valid certificate" with the right name, score, level and ID. No sideways scroll at 375px on the test, certificate and Home pages.
+- Not covered: the same limits as above (real Cloudflare runtime, real payment), and the certified answer key used in the browser run was the local private key.

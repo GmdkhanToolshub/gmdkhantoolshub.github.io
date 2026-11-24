@@ -1,4 +1,4 @@
-// GM Tools Hub payments API (Cloudflare Worker + D1 + R2). No secrets in this file: set them with `wrangler secret put` (see ../README.md).
+﻿// GM Tools Hub payments API (Cloudflare Worker + D1 + R2). No secrets in this file: set them with `wrangler secret put` (see ../README.md).
 // What is real here: orders with server-side pricing, coupons, bank-transfer instructions from admin settings, receipt upload, manual approval,
 // admin accounts with roles, CSRF, audit log, CSV export, signed-webhook endpoint with idempotency. What is NOT here: a specific card or wallet
 // provider (needs your merchant account), see README "Gateway and wallet".
@@ -66,6 +66,48 @@ async function loadOrderByToken(env, req, ref) {
 function notify(ctx, env, to, subject, text) { if (!env.RESEND_API_KEY || !env.MAIL_FROM || !to) return; ctx.waitUntil(fetch('https://api.resend.com/emails', { method: 'POST', headers: { Authorization: 'Bearer ' + env.RESEND_API_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ from: env.MAIL_FROM, to: [to], subject, text }) }).catch(() => { })); }
 const money = (m, c) => c + ' ' + (m / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+// ---------- reasoning test: server scoring and certificates
+const LEVEL_W = { 1: 1, 2: 2, 3: 3, 4: 4 };
+const BANDS = [[90, 'Very high'], [75, 'High'], [55, 'Above average for this test'], [35, 'Average for this test'], [0, 'Developing']];
+const levelOf = pct => { for (const b of BANDS) if (pct >= b[0]) return b[1]; return 'Developing'; };
+const QUIZ_SECONDS = 35 * 60, QUIZ_GRACE = 45;
+const CERT_CHARS = '0123456789ABCDEFGHJKMNPQRSTUVWXYZ';
+function newCertId() { const b = crypto.getRandomValues(new Uint8Array(10)); return 'GMC-' + [...b].map(x => CERT_CHARS[x % CERT_CHARS.length]).join(''); }
+async function quizStart(req, env) {
+  await rateLimit(env, req, 'quizstart', 6); await json(req); const n = await env.DB.prepare('SELECT COUNT(*) c FROM quiz_keys').first();
+  if (!n.c) throw bad('quiz_not_ready', 'The certified test is not available yet.', 503);
+  const id = rand(12), token = rand(24), t = Date.now();
+  await env.DB.prepare("INSERT INTO quiz_attempts(id,token_hash,bank,status,started_at,deadline_at) VALUES(?,?,?,?,?,?)").bind(id, await sha256(token), 'certified', 'started', new Date(t).toISOString(), new Date(t + QUIZ_SECONDS * 1000).toISOString()).run();
+  return [{ attempt_id: id, token, seconds: QUIZ_SECONDS, questions: n.c }, 201];
+}
+async function quizFinish(req, env, id) {
+  await rateLimit(env, req, 'quizfinish', 10); const b = await json(req, 4096);
+  const a = await env.DB.prepare('SELECT * FROM quiz_attempts WHERE id=?').bind(id).first(), tok = req.headers.get('X-Order-Token') || '';
+  if (!a || !tok || !same(await sha256(tok), a.token_hash)) throw bad('not_found', 'Attempt not found.', 404);
+  if (a.status !== 'started') throw bad('already_finished', 'This attempt was already submitted.', 409);
+  if (Date.now() > Date.parse(a.deadline_at) + QUIZ_GRACE * 1000) throw bad('time_up', 'The time limit for this attempt has passed.', 410);
+  const keys = (await env.DB.prepare('SELECT qid, level, correct FROM quiz_keys ORDER BY CAST(SUBSTR(qid,2) AS INTEGER)').all()).results;
+  if (!Array.isArray(b.answers) || b.answers.length !== keys.length) throw bad('invalid_answers', 'Send one answer (or null) for every question.');
+  let gotW = 0, totW = 0, raw = 0;
+  keys.forEach((k, i) => { const v = b.answers[i]; if (!(v === null || (Number.isInteger(v) && v >= 0 && v <= 7))) throw bad('invalid_answers', 'Answers must be numbers 0 to 7 or null.'); totW += LEVEL_W[k.level]; if (v === k.correct) { gotW += LEVEL_W[k.level]; raw++; } });
+  const pct = Math.round(gotW / totW * 100), level = levelOf(pct);
+  const r = await env.DB.prepare("UPDATE quiz_attempts SET status='finished', finished_at=?, answers=?, raw=?, total=?, pct=?, level=? WHERE id=? AND status='started'").bind(now(), JSON.stringify(b.answers), raw, keys.length, pct, level, id).run();
+  if (!r.meta.changes) throw bad('already_finished', 'This attempt was already submitted.', 409);
+  return { attempt_id: id, raw, total: keys.length, pct, level };
+}
+async function issueCertificate(env, orderId) {
+  const l = await env.DB.prepare('SELECT * FROM order_links WHERE order_id=?').bind(orderId).first(); if (!l) return null;
+  const have = await env.DB.prepare('SELECT id FROM certificates WHERE attempt_id=?').bind(l.attempt_id).first(); if (have) return have.id;
+  const a = await env.DB.prepare('SELECT * FROM quiz_attempts WHERE id=?').bind(l.attempt_id).first(); if (!a || a.status !== 'finished') return null;
+  const id = newCertId();
+  await env.DB.prepare('INSERT OR IGNORE INTO certificates(id,attempt_id,order_id,name,raw,total,pct,level,status,issued_at) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(id, l.attempt_id, orderId, l.cert_name, a.raw, a.total, a.pct, a.level, 'valid', now()).run();
+  await audit(env, null, 'certificate.issue', 'certificate', id, ''); return id;
+}
+async function certificateOf(env, req, id) {
+  await rateLimit(env, req, 'certget', 60); if (!/^GMC-[0-9A-Z]{10}$/.test(id)) throw bad('not_found', 'Certificate not found.', 404);
+  const c = await env.DB.prepare('SELECT * FROM certificates WHERE id=?').bind(id).first(); if (!c) throw bad('not_found', 'Certificate not found.', 404);
+  return { id: c.id, name: c.name, raw: c.raw, total: c.total, pct: c.pct, level: c.level, issued_at: c.issued_at, valid: c.status === 'valid', status: c.status, test: 'GM Reasoning Test (30 pattern puzzles)', notice: 'Certificate of completion. This is a reasoning quiz, not a clinical IQ assessment.' };
+}
 // ---------- public handlers
 async function createOrder(req, env, ctx) {
   await rateLimit(env, req, 'order', 10); const b = await json(req); const s = await allSettings(env);
@@ -75,6 +117,13 @@ async function createOrder(req, env, ctx) {
   const method = str(b.method, 3, 20, 'method'); if (!enabledMethods(s, env).includes(method)) throw bad('method_unavailable', 'That payment method is not available yet.', 503);
   const p = await env.DB.prepare('SELECT * FROM products WHERE id=? AND active=1').bind(str(b.product_id, 1, 60, 'product')).first(); if (!p) throw bad('product_not_found', 'That product is not available.', 404);
   const price = await priceFor(env, p, b.coupon);
+  let link = null;
+  if (p.requires === 'quiz_attempt') {
+    const at = await env.DB.prepare("SELECT * FROM quiz_attempts WHERE id=? AND status='finished'").bind(String(b.attempt_id || '')).first();
+    if (!at || !same(await sha256(String(b.attempt_token || '')), at.token_hash)) throw bad('attempt_invalid', 'Finish a certified test first, then buy the certificate for that attempt.');
+    if (await env.DB.prepare('SELECT 1 x FROM order_links l JOIN orders o ON o.id=l.order_id WHERE l.attempt_id=? AND o.status NOT IN (\'expired\',\'cancelled\',\'rejected\')').bind(at.id).first()) throw bad('attempt_used', 'A certificate order already exists for this attempt.', 409);
+    link = { attempt_id: at.id, name: str(b.certificate_name || name, 2, 60, 'certificate_name') };
+  }
   if (p.kind !== 'one_time' && b.accept_recurring !== true) throw bad('recurring_consent_required', 'Please confirm you understand how this plan renews.');
   if (method === 'bank_transfer' && price.total > 0 && !bankReady(s)) throw bad('payment_details_not_configured', 'Bank details have not been set up yet. Please contact support.', 503);
   const t = now(), expiresH = Math.min(168, Math.max(1, parseInt(s.order_expiry_hours || '48', 10) || 48)), id = rand(12), ref = newRef(), token = rand(24);
@@ -82,7 +131,9 @@ async function createOrder(req, env, ctx) {
   const renews = free ? addPeriod(t, p.kind, price.trial ? p.trial_days : 0) : null;
   const expires = new Date(Date.now() + expiresH * 3600000).toISOString();
   await env.DB.prepare('INSERT INTO orders(id,ref,token_hash,product_id,product_name,kind,currency,list_minor,discount_minor,total_minor,recurring_minor,trial_days,coupon_code,customer_name,customer_email,customer_phone,method,status,created_at,expires_at,paid_at,renews_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)').bind(id, ref, await sha256(token), p.id, p.name, p.kind, p.currency, price.list, price.discount, price.total, price.recurring, price.trial ? p.trial_days : 0, price.couponCode, name, email.toLowerCase(), phone, free ? 'free' : method, status, t, expires, paidAt, renews).run();
+  if (link) { await env.DB.prepare('DELETE FROM order_links WHERE attempt_id IN (SELECT l.attempt_id FROM order_links l JOIN orders o ON o.id=l.order_id WHERE l.attempt_id=? AND o.status IN (\'expired\',\'cancelled\',\'rejected\'))').bind(link.attempt_id).run(); await env.DB.prepare('INSERT INTO order_links(order_id,attempt_id,cert_name) VALUES(?,?,?)').bind(id, link.attempt_id, link.name).run(); }
   if (free && price.couponCode) await env.DB.prepare('UPDATE coupons SET used_count=used_count+1 WHERE code=?').bind(price.couponCode).run();
+  if (free) await issueCertificate(env, id);
   await audit(env, null, 'order.create', 'order', ref, p.id + ' ' + money(price.total, p.currency));
   const o = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();
   notify(ctx, env, email, 'Your GM Tools Hub order ' + ref, 'Order ' + ref + ' for ' + p.name + '. Total: ' + money(price.total, p.currency) + '. Track it on the status page you were shown.');
@@ -129,6 +180,7 @@ async function webhook(req, env) {
     env.DB.prepare("INSERT OR IGNORE INTO payments(id,order_id,method,provider,provider_ref,amount_minor,currency,status,decided_at,decided_by,decision_note,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)").bind(rand(12), o.id, o.method, prov, providerRef, o.total_minor, o.currency, 'approved', t, 'gateway', 'Confirmed by signed gateway webhook', t),
     env.DB.prepare("UPDATE orders SET status='paid', paid_at=?, renews_at=? WHERE id=? AND status<>'paid'").bind(t, addPeriod(t, o.kind), o.id),
     ...(o.coupon_code ? [env.DB.prepare('UPDATE coupons SET used_count=used_count+1 WHERE code=?').bind(o.coupon_code)] : [])]);
+  await issueCertificate(env, o.id);
   return done('paid');
 }
 
@@ -190,6 +242,7 @@ async function decide(req, env, adminRow, paymentId, approve) {
     const left = await env.DB.prepare("SELECT COUNT(*) c FROM payments WHERE order_id=? AND status='submitted'").bind(o.id).first();
     if (!left.c) await env.DB.prepare("UPDATE orders SET status=? WHERE id=? AND status='awaiting_verification'").bind(b.final === true ? 'rejected' : (o.expires_at > t ? 'pending_payment' : 'expired'), o.id).run();
   }
+  if (approve) await issueCertificate(env, o.id);
   await audit(env, adminRow.id, approve ? 'payment.approve' : 'payment.reject', 'payment', p.id, o.ref + ' ' + note); return { ok: true };
 }
 async function refund(req, env, adminRow, orderId) {
@@ -217,7 +270,10 @@ async function route(req, env, ctx) {
   if (path === '/api/products' && m === 'GET') { const rs = await env.DB.prepare('SELECT id,name,description,kind,currency,price_minor,trial_days FROM products WHERE active=1 ORDER BY name').all(); return { products: rs.results }; }
   if (path === '/api/coupons/validate' && m === 'POST') { await rateLimit(env, req, 'coupon', 20); const b = await json(req); const p = await env.DB.prepare('SELECT * FROM products WHERE id=? AND active=1').bind(str(b.product_id, 1, 60, 'product')).first(); if (!p) throw bad('product_not_found', 'That product is not available.', 404); const pr = await priceFor(env, p, b.code); return { ok: true, list_minor: pr.list, discount_minor: pr.discount, total_minor: pr.total, recurring_minor: pr.recurring, trial: pr.trial }; }
   if (path === '/api/orders' && m === 'POST') return [await createOrder(req, env, ctx), 201];
-  if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})$/)) && m === 'GET') { await rateLimit(env, req, 'orderget', 60); const o = await loadOrderByToken(env, req, x[1]); const pays = await env.DB.prepare('SELECT * FROM payments WHERE order_id=? ORDER BY created_at').bind(o.id).all(); return { order: publicOrder(o, pays.results, await allSettings(env), true) }; }
+  if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})$/)) && m === 'GET') { await rateLimit(env, req, 'orderget', 60); const o = await loadOrderByToken(env, req, x[1]); const pays = await env.DB.prepare('SELECT * FROM payments WHERE order_id=? ORDER BY created_at').bind(o.id).all(); const cert = await env.DB.prepare('SELECT id FROM certificates WHERE order_id=?').bind(o.id).first(); return { order: { ...publicOrder(o, pays.results, await allSettings(env), true), certificate_id: cert ? cert.id : null } }; }
+  if (path === '/api/quiz/start' && m === 'POST') return quizStart(req, env);
+  if ((x = path.match(/^\/api\/quiz\/([A-Za-z0-9_-]{6,40})\/finish$/)) && m === 'POST') return quizFinish(req, env, x[1]);
+  if ((x = path.match(/^\/api\/certificates\/(GMC-[0-9A-Z]{10})$/)) && m === 'GET') return certificateOf(env, req, x[1]);
   if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})\/receipt$/)) && m === 'POST') return uploadReceipt(req, env, x[1]);
   if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})\/cancel$/)) && m === 'POST') { const o = await loadOrderByToken(env, req, x[1]); if (o.status !== 'pending_payment') throw bad('not_cancellable', 'Only unpaid orders can be cancelled.', 409); await env.DB.prepare("UPDATE orders SET status='cancelled' WHERE id=? AND status='pending_payment'").bind(o.id).run(); await audit(env, null, 'order.cancel', 'order', o.ref, 'by customer'); return { ok: true }; }
   if (path === '/api/webhooks/gateway' && m === 'POST') return webhook(req, env);
@@ -240,6 +296,8 @@ async function route(req, env, ctx) {
     if (path === '/api/admin/products' && m === 'POST') { need(a, ['owner']); const b = await json(req); const id = str(b.id, 2, 60, 'id'); if (!/^[a-z0-9-]+$/.test(id)) throw bad('invalid_id', 'Use lowercase letters, numbers and hyphens.'); const kind = str(b.kind, 3, 12, 'kind'); if (!['one_time', 'monthly', 'annual'].includes(kind)) throw bad('invalid_kind', 'Kind must be one_time, monthly or annual.'); await env.DB.prepare("INSERT INTO products(id,name,description,kind,currency,price_minor,trial_days,active,created_at) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name, description=excluded.description, kind=excluded.kind, price_minor=excluded.price_minor, trial_days=excluded.trial_days, active=excluded.active").bind(id, str(b.name, 2, 120, 'name'), optStr(b.description, 400, 'description'), kind, 'PKR', intIn(b.price_minor, 0, 100000000, 'price'), intIn(b.trial_days || 0, 0, 90, 'trial_days'), b.active === false ? 0 : 1, now()).run(); await audit(env, a.id, 'product.upsert', 'product', id, ''); return { ok: true }; }
     if (path === '/api/admin/coupons' && m === 'GET') { const rs = await env.DB.prepare('SELECT * FROM coupons ORDER BY created_at DESC').all(); return { coupons: rs.results }; }
     if (path === '/api/admin/coupons' && m === 'POST') { need(a, ['owner']); const b = await json(req); const code = str(b.code, 2, 30, 'code').toUpperCase(); if (!/^[A-Z0-9_-]+$/.test(code)) throw bad('invalid_code', 'Use letters, numbers, hyphens or underscores.'); const pct = b.percent_off ? intIn(b.percent_off, 1, 100, 'percent_off') : null, amt = b.amount_off_minor ? intIn(b.amount_off_minor, 1, 100000000, 'amount_off') : null; if ((pct == null) === (amt == null)) throw bad('invalid_discount', 'Set either a percentage or a fixed amount.'); await env.DB.prepare('INSERT INTO coupons(code,percent_off,amount_off_minor,applies_to,valid_from,valid_until,max_uses,active,created_at) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(code) DO UPDATE SET percent_off=excluded.percent_off, amount_off_minor=excluded.amount_off_minor, applies_to=excluded.applies_to, valid_from=excluded.valid_from, valid_until=excluded.valid_until, max_uses=excluded.max_uses, active=excluded.active').bind(code, pct, amt, optStr(b.applies_to, 60, 'applies_to') || null, optStr(b.valid_from, 30, 'valid_from') || null, optStr(b.valid_until, 30, 'valid_until') || null, b.max_uses ? intIn(b.max_uses, 1, 1000000, 'max_uses') : null, b.active === false ? 0 : 1, now()).run(); await audit(env, a.id, 'coupon.upsert', 'coupon', code, ''); return { ok: true }; }
+    if (path === '/api/admin/certificates' && m === 'GET') { need(a, ['owner', 'finance']); const rs = await env.DB.prepare('SELECT id,name,pct,level,status,issued_at,order_id FROM certificates ORDER BY issued_at DESC LIMIT 200').all(); return { certificates: rs.results }; }
+    if ((x = path.match(/^\/api\/admin\/certificates\/(GMC-[0-9A-Z]{10})\/revoke$/)) && m === 'POST') { need(a, ['owner']); const b = await json(req); const r = await env.DB.prepare("UPDATE certificates SET status='revoked' WHERE id=?").bind(x[1]).run(); if (!r.meta.changes) throw bad('not_found', 'Certificate not found.', 404); await audit(env, a.id, 'certificate.revoke', 'certificate', x[1], optStr(b.note, 300, 'note')); return { ok: true }; }
     if (path === '/api/admin/audit' && m === 'GET') { need(a, ['owner', 'finance']); const rs = await env.DB.prepare('SELECT at, admin_id, action, entity, entity_id, detail FROM audit_log ORDER BY id DESC LIMIT 100').all(); return { entries: rs.results }; }
   }
   throw bad('not_found', 'Not found.', 404);

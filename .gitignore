@@ -4,3 +4,5 @@ backend/node_modules/
 backend/.wrangler-state/
 backend/.wrangler/
 backend/.dev.vars
+
+backend/private/

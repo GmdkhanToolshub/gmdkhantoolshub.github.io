@@ -13,6 +13,7 @@
 - [Rates data (JSON)](https://gmtoolshub.com/rates-data/): free daily JSON for gold, silver and PKR exchange rates with field notes and terms
 - [Get expert help](https://gmtoolshub.com/get-expert-help/): request an introduction to an independent tax, accounting or web professional
 - [GM Embed](https://gmtoolshub.com/gm-embed/): embed tested GM Tools Hub calculators on your own website; generator, documentation and planned plans
+- [Reasoning test](https://gmtoolshub.com/reasoning-test/): free 20-puzzle IQ-style pattern reasoning quiz, not a clinical IQ test; optional certified test and certificate
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes
