@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 200 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 202 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -83,7 +83,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [World Clock](https://gmtoolshub.com/tools/world-clock/): Free world clock: see the live time and date in 48 cities, the difference from your own time, and day or night. Your city list is saved in your browser.
 - [Zakat Calculator Pakistan](https://gmtoolshub.com/tools/zakat-calculator/): Free zakat calculator: enter today's gold and silver prices in tola or grams, add cash, savings and business stock, deduct debts and see zakat due at 2.5%.
 
-## blog (37)
+## blog (39)
 - [Blog & Insights](https://gmtoolshub.com/blog/): Articles on sales operations, FMCG management, KPI scorecards, Excel, minutes of meeting, resumes and digital transformation by Gmd Khan Niazi (Ghulam.
 - [How to Write an ATS-Friendly Resume Without Gaming the System](https://gmtoolshub.com/blog/ats-friendly-resume/): Practical advice on resume structure, keywords and formatting so applicant tracking systems and recruiters can both read your resume.
 - [How to Check Your Resume Against a Job Description for Free](https://gmtoolshub.com/blog/ats-resume-check-free/): A step-by-step way to compare your resume with a job advert, understand your ATS match score, and fix real keyword gaps without stuffing or exaggerating.
@@ -93,6 +93,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [Turn Photos and Scans Into One Clean PDF](https://gmtoolshub.com/blog/convert-photos-and-scans-into-one-pdf/): Combine phone photos or scanned pages into a single, tidy PDF: how to take good photos, order the pages, choose a page size and keep the file small.
 - [Digital Transformation in Distribution: Start With Data Quality](https://gmtoolshub.com/blog/digital-transformation-start-with-data/): Why data quality, clear ownership and simple process design should come before new software in any distribution or sales digital transformation.
 - [How to Write Minutes of Meeting That Drive Action](https://gmtoolshub.com/blog/effective-minutes-of-meeting/): What to include in minutes of meeting, a simple template, and how to track decisions and action items so meetings lead to results.
+- [Employee Attendance and Productivity Tracking in Excel](https://gmtoolshub.com/blog/employee-attendance-productivity-tracking-excel/): Define attendance clearly, record absences in an Excel exceptions log, calculate attendance fairly and measure productivity with care, with a free example.
 - [Complete Excel Dashboard Guide for Business Reporting](https://gmtoolshub.com/blog/excel-dashboard-guide-business-reporting/): Build an Excel sales dashboard step by step: data layout, SUMIFS, summary tiles, a month selector, charts, status colours and checks, with a free example.
 - [Ten Excel Formulas Every Sales Operations Analyst Should Know](https://gmtoolshub.com/blog/excel-formulas-sales-ops/): Ten essential Excel formulas for sales and operations reporting: SUMIFS, COUNTIFS, XLOOKUP, INDEX-MATCH, IFERROR, SUMPRODUCT and more, with examples.
 - [Flat Rate vs Reducing Balance: How to Compare Loan Offers](https://gmtoolshub.com/blog/flat-rate-vs-reducing-balance-loans/): Why a 12% flat rate can cost about as much as 20% on a reducing balance, with worked examples, conversion tables and the questions to ask any lender.
@@ -101,6 +102,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [How to Create a Strong Password](https://gmtoolshub.com/blog/how-to-create-a-strong-password/): What makes a password strong, why length beats complexity, how password managers and two-step login help, and how to build passwords that are safe and usable.
 - [How to Improve Your Typing Speed](https://gmtoolshub.com/blog/how-to-improve-your-typing-speed/): What a good typing speed looks like, how words per minute are measured, and a simple weekly practice plan to type faster with fewer mistakes.
 - [How to Write a Cover Letter in Five Steps](https://gmtoolshub.com/blog/how-to-write-a-cover-letter-in-five-steps/): A clear five-step method for a cover letter that gets read: research, opening, evidence, fit and closing, plus common mistakes and a structure to follow.
+- [How to Build an HR Attendance Dashboard in Excel](https://gmtoolshub.com/blog/hr-attendance-dashboard-excel/): Turn monthly attendance data into an Excel HR dashboard with correct department totals, trends, follow-up counts, data checks and care for privacy.
 - [Inventory Management Using Excel: A Practical Guide](https://gmtoolshub.com/blog/inventory-management-using-excel/): Track stock in Excel with a movements log, reorder points, days of cover, stock value, inventory turnover and ABC analysis, with a free example workbook.
 - [JPG vs PNG vs WebP: Which Format to Use?](https://gmtoolshub.com/blog/jpg-vs-png-vs-webp/): The real differences between JPG, PNG and WebP, when each one is the best choice, and how to convert between them without wasting quality or file size.
 - [How to Write a Strong LinkedIn Headline](https://gmtoolshub.com/blog/linkedin-headline-formula/): Your LinkedIn headline appears wherever your name does. Learn a simple formula, see before-and-after examples and avoid mistakes that make profiles forgettable.

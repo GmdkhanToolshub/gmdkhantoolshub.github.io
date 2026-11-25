@@ -1,0 +1,258 @@
+{
+ "tracker": {
+  "workingDays": 21,
+  "staff": 8,
+  "entries": 19,
+  "summary": [
+   {
+    "id": "E01",
+    "name": "Ayesha K.",
+    "dept": "Operations",
+    "working": 21,
+    "AL": 1,
+    "SL": 0,
+    "HD": 1,
+    "UA": 0,
+    "LT": 0,
+    "lateMin": 0,
+    "approved": 1.5,
+    "present": 19.5,
+    "att": 0.9285714285714286,
+    "adj": 1.0
+   },
+   {
+    "id": "E02",
+    "name": "Bilal R.",
+    "dept": "Operations",
+    "working": 21,
+    "AL": 0,
+    "SL": 0,
+    "HD": 0,
+    "UA": 2,
+    "LT": 3,
+    "lateMin": 80,
+    "approved": 0,
+    "present": 19,
+    "att": 0.9047619047619048,
+    "adj": 0.9047619047619048
+   },
+   {
+    "id": "E03",
+    "name": "Celine D.",
+    "dept": "Operations",
+    "working": 21,
+    "AL": 3,
+    "SL": 0,
+    "HD": 0,
+    "UA": 0,
+    "LT": 0,
+    "lateMin": 0,
+    "approved": 3,
+    "present": 18,
+    "att": 0.8571428571428571,
+    "adj": 1.0
+   },
+   {
+    "id": "E04",
+    "name": "Danish M.",
+    "dept": "Sales",
+    "working": 21,
+    "AL": 0,
+    "SL": 2,
+    "HD": 0,
+    "UA": 0,
+    "LT": 0,
+    "lateMin": 0,
+    "approved": 2,
+    "present": 19,
+    "att": 0.9047619047619048,
+    "adj": 1.0
+   },
+   {
+    "id": "E05",
+    "name": "Erum S.",
+    "dept": "Sales",
+    "working": 21,
+    "AL": 0,
+    "SL": 0,
+    "HD": 1,
+    "UA": 1,
+    "LT": 0,
+    "lateMin": 0,
+    "approved": 0.5,
+    "present": 19.5,
+    "att": 0.9285714285714286,
+    "adj": 0.9512195121951219
+   },
+   {
+    "id": "E06",
+    "name": "Farhan T.",
+    "dept": "Accounts",
+    "working": 21,
+    "AL": 0,
+    "SL": 0,
+    "HD": 0,
+    "UA": 0,
+    "LT": 1,
+    "lateMin": 10,
+    "approved": 0,
+    "present": 21,
+    "att": 1.0,
+    "adj": 1.0
+   },
+   {
+    "id": "E07",
+    "name": "Gul N.",
+    "dept": "Accounts",
+    "working": 21,
+    "AL": 2,
+    "SL": 0,
+    "HD": 0,
+    "UA": 0,
+    "LT": 0,
+    "lateMin": 0,
+    "approved": 2,
+    "present": 19,
+    "att": 0.9047619047619048,
+    "adj": 1.0
+   },
+   {
+    "id": "E08",
+    "name": "Hamza A.",
+    "dept": "Operations",
+    "working": 21,
+    "AL": 0,
+    "SL": 1,
+    "HD": 0,
+    "UA": 0,
+    "LT": 1,
+    "lateMin": 15,
+    "approved": 1,
+    "present": 20,
+    "att": 0.9523809523809523,
+    "adj": 1.0
+   }
+  ],
+  "teamPresent": 155.0,
+  "teamWorking": 168,
+  "teamApproved": 10.0,
+  "teamAtt": 0.9226190476190477,
+  "teamAdj": 0.9810126582278481,
+  "teamUA": 3,
+  "teamLT": 5,
+  "productivity": [
+   {
+    "id": "E01",
+    "hours": 151,
+    "orders": 906,
+    "perHour": 6.0
+   },
+   {
+    "id": "E02",
+    "hours": 140,
+    "orders": 700,
+    "perHour": 5.0
+   },
+   {
+    "id": "E03",
+    "hours": 136,
+    "orders": 884,
+    "perHour": 6.5
+   },
+   {
+    "id": "E08",
+    "hours": 156,
+    "orders": 936,
+    "perHour": 6.0
+   }
+  ],
+  "opsHours": 583,
+  "opsOrders": 3426,
+  "opsPerHour": 5.876500857632933
+ },
+ "hr": {
+  "rows": 114,
+  "months": {
+   "Jan": {
+    "people": 38,
+    "working": 836,
+    "present": 815,
+    "approved": 18,
+    "ua": 3,
+    "late": 24,
+    "att": 0.9748803827751196,
+    "adj": 0.9963325183374083,
+    "ua2": 0
+   },
+   "Feb": {
+    "people": 38,
+    "working": 760,
+    "present": 736,
+    "approved": 20,
+    "ua": 4,
+    "late": 18,
+    "att": 0.968421052631579,
+    "adj": 0.9945945945945946,
+    "ua2": 0
+   },
+   "Mar": {
+    "people": 38,
+    "working": 798,
+    "present": 772,
+    "approved": 18,
+    "ua": 8,
+    "late": 18,
+    "att": 0.9674185463659147,
+    "adj": 0.9897435897435898,
+    "ua2": 1
+   }
+  },
+  "deptMar": {
+   "Operations": {
+    "people": 14,
+    "working": 294,
+    "present": 287,
+    "approved": 6,
+    "ua": 1,
+    "late": 5,
+    "att": 0.9761904761904762,
+    "adj": 0.9965277777777778,
+    "ua2": 0
+   },
+   "Sales": {
+    "people": 9,
+    "working": 189,
+    "present": 182,
+    "approved": 6,
+    "ua": 1,
+    "late": 7,
+    "att": 0.9629629629629629,
+    "adj": 0.994535519125683,
+    "ua2": 0
+   },
+   "Accounts": {
+    "people": 4,
+    "working": 84,
+    "present": 84,
+    "approved": 0,
+    "ua": 0,
+    "late": 0,
+    "att": 1.0,
+    "adj": 1.0,
+    "ua2": 0
+   },
+   "Warehouse": {
+    "people": 11,
+    "working": 231,
+    "present": 219,
+    "approved": 6,
+    "ua": 6,
+    "late": 6,
+    "att": 0.948051948051948,
+    "adj": 0.9733333333333334,
+    "ua2": 1
+   }
+  },
+  "simpleAvgMar": 0.9718013468013468
+ }
+}

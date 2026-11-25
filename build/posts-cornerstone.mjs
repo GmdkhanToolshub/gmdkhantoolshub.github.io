@@ -6,6 +6,8 @@ const refs = items => `<section class="refs"><h2>References</h2><ul>${items.join
 const fig = (src, w, h, alt, cap) => `<figure class="guide-fig"><a href="../../assets/img/guides/${src}.webp" target="_blank" rel="noopener noreferrer"><img src="../../assets/img/guides/${src}.webp" width="${w}" height="${h}" alt="${alt}" loading="lazy" decoding="async"></a><figcaption>${cap} Select the image to open it full size.</figcaption></figure>`;
 const dl = (file, label) => `<p class="guide-dl"><a class="btn btn-primary" href="../../assets/downloads/${file}" download>${label}</a></p>`;
 
+import ATTENDANCE from './posts-attendance.mjs';
+
 export default [
 {
 slug: 'excel-dashboard-guide-business-reporting', eyebrow: 'Business Intelligence', status: 'published', /* approved by the owner 2026-11-25 */
@@ -182,5 +184,6 @@ ${fig('inventory-abc-sheet', 1095, 417, 'Excel ABC ranking of eight products by 
 ${refs([ref(MS + 'functions/sumifs-function', 'Microsoft Support: SUMIFS', 'Totalling movements by code and type.'), ref(MS + 'functions/large-function', 'Microsoft Support: LARGE', 'Used to rank items for ABC analysis.'), ref(MS + 'get-started/apply-data-validation-to-cells', 'Microsoft Support: Data validation', 'Limiting what can be typed in a cell.'), ref(MS + 'use-conditional-formatting-to-highlight-information-in-excel', 'Microsoft Support: Conditional formatting', 'Highlighting reorder and negative values.'), ref(MS + 'overview-of-excel-tables', 'Microsoft Support: Overview of Excel tables', 'How tables work.')])}
 <p class="small muted">The references cover the Excel features. The stock management methods are common practice described for general information; they are not accounting, tax or professional advice.</p>
 `
-}
+},
+...ATTENDANCE
 ];
