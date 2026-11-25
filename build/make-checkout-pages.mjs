@@ -28,4 +28,4 @@ const pages = [
   { slug: 'admin-payments', depth: 1, title: 'Payments Admin | GM Tools Hub', desc: 'Administrator payments console for GM Tools Hub.', robots: 'noindex, nofollow',
     main: hero('Payments admin', 'Payments admin', 'Authorised staff only.', 1) + CSS + `<section class="section"><div class="container ck-wrap"><div id="ap-app"><noscript><p>This page needs JavaScript.</p></noscript><p class="muted">Loading…</p></div></div></section>` + scripts(1, 'admin-payments') }
 ];
-for (const p of pages) console.log(p.slug, buildPage(p));
+for (const p of pages) console.log(p.slug, buildPage({ ...p, ads: false }));

@@ -6,10 +6,12 @@ const base = fs.readFileSync(ROOT + 'gold-rate/index.html', 'utf8');
 const mi = base.indexOf('<main id="main">'), me = base.indexOf('</main>');
 const PRE = base.slice(0, mi + '<main id="main">'.length), POST0 = base.slice(me);
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-export function buildPage({ slug, title, desc, ld = [], main, extraHead = '', robots = 'index, follow, max-image-preview:large', depth = 1 }) {
+export function buildPage({ slug, title, desc, ld = [], main, extraHead = '', robots = 'index, follow, max-image-preview:large', depth = 1, ads = true }) {
   const url = 'https://gmtoolshub.com/' + slug + '/';
   let pre = PRE; const deep = s => depth === 2 ? s.replace(/((?:href|src|data-root)=")\.\.\//g, '$1../../') : s; pre = deep(pre).replace(/frame-src https:;/, "frame-src 'self' https:;");
   const t = esc(title), d = esc(desc);
+  // Sign-in, order and payment pages pass ads: false so no advertising script runs beside forms or private order links.
+  if (!ads) pre = pre.replace(/<!-- adsense:start -->[\s\S]*?<!-- adsense:end -->\s*/g, '');
   // The shell page's own "current" menu item must not carry over; mark the new page's item if the menu has one.
   pre = pre.replace(/<ul class="nav-links" id="nav-links">[\s\S]*?<\/ul><\/nav>/, n => n.replace(/ aria-current="page"/g, '').replace(new RegExp('(<a class="nav-link" href="(?:\\.\\./)+' + slug + '/")'), '$1 aria-current="page"'));
   pre = pre.replace(/<title>[\s\S]*?<\/title>/, '<title>' + t + '</title>')

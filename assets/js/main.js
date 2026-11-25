@@ -75,11 +75,11 @@
   var CK = 'niazi.consent';
   var consent = store(CK, null);
   function loadScript(src, attrs) { var s = doc.createElement('script'); s.async = true; s.src = src; for (var k in (attrs || {})) s.setAttribute(k, attrs[k]); doc.head.appendChild(s); return s; }
-  var analyticsLoaded = false, inKids = /\/kids\//.test(location.pathname);
+  var analyticsLoaded = false, inKids = /\/kids\//.test(location.pathname), inPrivate = /^\/(checkout|admin-payments)\//.test(location.pathname); /* order pages carry a private order key in the address */
   /* Analytics never runs in Kids Corner. Elsewhere it runs only after the visitor allows it, and only when a real ID is set in config.js. */
   var EEA = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
   function loadAnalytics() {
-    if (inKids || !(C.gaMeasurementId || C.gtmContainerId)) return;
+    if (inKids || inPrivate || !(C.gaMeasurementId || C.gtmContainerId)) return;
     if (analyticsLoaded) { if (window.gtag && consent === 'all') gtag('consent', 'update', { analytics_storage: 'granted' }); return; }
     analyticsLoaded = true; window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
