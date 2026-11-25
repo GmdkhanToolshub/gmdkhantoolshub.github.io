@@ -1,5 +1,5 @@
 // Sales performance, monthly reporting, and BI vs analytics guides. Figures come from build/cornerstone_reporting.py,
-// checked in Excel by build/verify-reporting.ps1. status stays 'draft' until the owner approves.
+// checked in Excel by build/verify-reporting.ps1. All three were approved by the owner on 2026-11-25.
 const MS = 'https://support.microsoft.com/en-us/excel/';
 const ref = (u, t, n) => `<li><a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>. ${n}</li>`;
 const refs = items => `<section class="refs"><h2>References</h2><ul>${items.join('')}</ul><p class="small muted">Links checked on 25 November 2026.</p></section>`;
@@ -9,7 +9,7 @@ const NOT_ADVICE = t => `<p class="small muted">${t} All names and figures are m
 
 export default [
 {
-slug: 'sales-performance-dashboard-measures', eyebrow: 'Sales Operations', status: 'draft',
+slug: 'sales-performance-dashboard-measures', eyebrow: 'Sales Operations', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Sales Performance Dashboard: Which Measures to Use',
 desc: 'Choose and read sales dashboard measures: achievement, pace, required daily sales, projection, outlet coverage, invoice value, lines and product mix.',
 tools: [['sales-target-calculator', 'Sales Target Calculator'], ['kpi-performance-calculator', 'KPI Performance Calculator'], ['percentage-calculator', 'Percentage Calculator']],
@@ -88,7 +88,7 @@ ${NOT_ADVICE('The references cover Excel features.')}
 `
 },
 {
-slug: 'automated-monthly-business-reporting-excel', eyebrow: 'Business Intelligence', status: 'draft',
+slug: 'automated-monthly-business-reporting-excel', eyebrow: 'Business Intelligence', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Automated Monthly Business Reporting in Excel',
 desc: 'Make an Excel management report move to the new month by itself, with budget and prior-month comparisons, draft commentary and checks that block bad data.',
 tools: [['business-report-generator', 'Business Report Generator'], ['percentage-calculator', 'Percentage Calculator'], ['meeting-minutes-generator', 'Meeting Minutes Generator']],
@@ -164,7 +164,7 @@ ${NOT_ADVICE('The references cover Excel features. Reporting practice described 
 `
 },
 {
-slug: 'business-intelligence-vs-business-analytics', eyebrow: 'Business Intelligence', status: 'draft',
+slug: 'business-intelligence-vs-business-analytics', eyebrow: 'Business Intelligence', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Business Intelligence vs Business Analytics Explained',
 desc: 'How business intelligence and business analytics differ and overlap, shown with one worked data set: what happened, why, what may happen and what to do.',
 tools: [['percentage-calculator', 'Percentage Calculator'], ['business-report-generator', 'Business Report Generator'], ['profit-margin-calculator', 'Profit Margin Calculator']],
