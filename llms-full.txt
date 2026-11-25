@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 196 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 198 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -194,6 +194,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 ## assistant (1)
 - [Smart Assistant: Find the Right Tool](https://gmtoolshub.com/assistant/): Tell GM what you need in plain words and get the best matching free tool, guide or template. Private, runs in your browser, no sign-up.
 
+## business-calculators (1)
+- [Business Calculator Lab](https://gmtoolshub.com/business-calculators/): Free business calculators for sales growth, inventory turnover, employee productivity and attendance, with formulas and examples, plus target, KPI and margin tools.
+
 ## career-studio (1)
 - [Career Studio: CV, Interview and Job Tools](https://gmtoolshub.com/career-studio/): One place for everything in a job search: CV builder, ATS checker, cover letters, LinkedIn headline, interview practice and a progress checklist.
 
@@ -223,6 +226,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## embed-rates (1)
 - [Free Pakistan Gold, Silver & Dollar Rate Widget](https://gmtoolshub.com/embed-rates/): Free embeddable widget showing Pakistan gold (24K, 22K per tola), silver and USD to PKR rates. One line of code, no sign-up, updated daily. Estimates, English or Urdu.
+
+## excel-formulas (1)
+- [Excel Formula Library with Examples](https://gmtoolshub.com/excel-formulas/): 44 Excel formulas for sales, operations and HR reporting, with syntax, worked results, common mistakes, a copy button and a free example workbook.
 
 ## free-templates (1)
 - [Free Excel Attendance and KPI Templates](https://gmtoolshub.com/free-templates/): Download free Excel templates with no sign-up: an attendance and leave tracker for up to 10 employees and a weighted KPI scorecard for up to 5 people.

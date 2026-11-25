@@ -17,6 +17,8 @@
 - [Pricing](https://gmtoolshub.com/pricing/): free tools, planned Pro and Agency embed plans (not on sale), quoted custom work and one-time product prices
 - [Excel and reporting services](https://gmtoolshub.com/solutions/): data cleaning, dashboards and business reporting by request
 - [Recommendations](https://gmtoolshub.com/recommendations/): books, work technology and shopping links, all marked as affiliate links
+- [Excel formula library](https://gmtoolshub.com/excel-formulas/): 44 formulas with syntax, worked results on sample data and a downloadable example workbook
+- [Business calculator lab](https://gmtoolshub.com/business-calculators/): sales growth, inventory turnover, productivity and attendance calculators with formulas and examples
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes
