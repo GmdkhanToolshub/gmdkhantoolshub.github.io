@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 228 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 230 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -227,6 +227,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 ## assistant (1)
 - [Smart Assistant: Find the Right Tool](https://gmtoolshub.com/assistant/): Tell GM what you need in plain words and get the best matching free tool, guide or template. Private, runs in your browser, no sign-up.
 
+## bi-studio (1)
+- [BI Studio: Data to Dashboard in Six Steps](https://gmtoolshub.com/bi-studio/): A six-step path from raw data to a checked report and decisions in Excel, with guides, practice workbooks, tools and a quick self-check.
+
 ## business-calculators (1)
 - [Business Calculator Lab](https://gmtoolshub.com/business-calculators/): Free business calculators for sales growth, inventory turnover, employee productivity and attendance, with formulas and examples, plus target, KPI and margin tools.
 
@@ -307,6 +310,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## refund-policy (1)
 - [Refund Policy – Digital Products and Services](https://gmtoolshub.com/refund-policy/): Refund policy for GM digital products. Templates, CV packs, PDFs, GM HCM and services are delivered digitally and are not refundable, but delivery faults are fixed.
+
+## report-library (1)
+- [Report Library: Excel Report Templates](https://gmtoolshub.com/report-library/): Sales, management, HR, inventory and money reports: free example workbooks, report tools, guides and paid templates, each clearly labelled.
 
 ## resume (1)
 - [Resume – Gmd Khan Niazi, Project Manager](https://gmtoolshub.com/resume/): Interactive resume of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): 9+ years in sales operations, secondary sales administration and project management.

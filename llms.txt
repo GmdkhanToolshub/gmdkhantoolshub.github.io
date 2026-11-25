@@ -19,6 +19,8 @@
 - [Recommendations](https://gmtoolshub.com/recommendations/): books, work technology and shopping links, all marked as affiliate links
 - [Excel formula library](https://gmtoolshub.com/excel-formulas/): 44 formulas with syntax, worked results on sample data and a downloadable example workbook
 - [Business calculator lab](https://gmtoolshub.com/business-calculators/): sales growth, inventory turnover, productivity and attendance calculators with formulas and examples
+- [Report library](https://gmtoolshub.com/report-library/): sales, management, HR, inventory and money reports, with free example workbooks, report tools, guides and paid templates
+- [BI Studio](https://gmtoolshub.com/bi-studio/): six steps from raw data to a checked report, with practice workbooks and a self-check
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes
