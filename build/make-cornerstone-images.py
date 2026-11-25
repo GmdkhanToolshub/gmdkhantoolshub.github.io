@@ -4,7 +4,7 @@ import os, sys
 import pypdfium2 as pdfium
 from PIL import Image, ImageChops
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); OUT = os.path.join(ROOT, 'assets', 'img', 'guides'); os.makedirs(OUT, exist_ok=True)
-ALL = (('dash.pdf', 'sales-dashboard-example'), ('stock.pdf', 'inventory-stock-sheet'), ('abc.pdf', 'inventory-abc-sheet'), ('attsummary.pdf', 'attendance-summary-sheet'), ('hrdash.pdf', 'hr-attendance-dashboard'))
+ALL = (('dash.pdf', 'sales-dashboard-example'), ('stock.pdf', 'inventory-stock-sheet'), ('abc.pdf', 'inventory-abc-sheet'), ('attsummary.pdf', 'attendance-summary-sheet'), ('hrdash.pdf', 'hr-attendance-dashboard'), ('salesperf.pdf', 'sales-performance-scorecard'), ('monthreport.pdf', 'monthly-report-sheet'))
 WANT = sys.argv[2:]  # optional: only these image names
 for pdf, name in (x for x in ALL if not WANT or x[1] in WANT):
     doc = pdfium.PdfDocument(os.path.join(sys.argv[1], pdf))

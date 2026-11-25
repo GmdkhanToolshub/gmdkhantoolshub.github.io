@@ -1,0 +1,296 @@
+{
+ "sales": {
+  "days": 26,
+  "done": 16,
+  "timeGone": 0.6153846153846154,
+  "reps": [
+   {
+    "rep": "Rep A",
+    "area": "North",
+    "target": 1000000,
+    "sales": 700000,
+    "outlets": 120,
+    "billed": 54,
+    "invoices": 90,
+    "lines": 270,
+    "ach": 0.7,
+    "expected": 615384.6153846154,
+    "pace": 1.1375,
+    "required": 30000.0,
+    "projection": 1137500.0,
+    "projAch": 1.1375,
+    "coverage": 0.45,
+    "invValue": 7777.777777777777,
+    "linesPerInv": 3.0
+   },
+   {
+    "rep": "Rep B",
+    "area": "North",
+    "target": 900000,
+    "sales": 540000,
+    "outlets": 150,
+    "billed": 123,
+    "invoices": 210,
+    "lines": 840,
+    "ach": 0.6,
+    "expected": 553846.1538461539,
+    "pace": 0.975,
+    "required": 36000.0,
+    "projection": 877500.0,
+    "projAch": 0.975,
+    "coverage": 0.82,
+    "invValue": 2571.4285714285716,
+    "linesPerInv": 4.0
+   },
+   {
+    "rep": "Rep C",
+    "area": "South",
+    "target": 800000,
+    "sales": 420000,
+    "outlets": 110,
+    "billed": 77,
+    "invoices": 130,
+    "lines": 325,
+    "ach": 0.525,
+    "expected": 492307.6923076923,
+    "pace": 0.853125,
+    "required": 38000.0,
+    "projection": 682500.0,
+    "projAch": 0.853125,
+    "coverage": 0.7,
+    "invValue": 3230.769230769231,
+    "linesPerInv": 2.5
+   },
+   {
+    "rep": "Rep D",
+    "area": "South",
+    "target": 1100000,
+    "sales": 720000,
+    "outlets": 140,
+    "billed": 98,
+    "invoices": 160,
+    "lines": 640,
+    "ach": 0.6545454545454545,
+    "expected": 676923.0769230769,
+    "pace": 1.0636363636363637,
+    "required": 38000.0,
+    "projection": 1170000.0,
+    "projAch": 1.0636363636363637,
+    "coverage": 0.7,
+    "invValue": 4500.0,
+    "linesPerInv": 4.0
+   },
+   {
+    "rep": "Rep E",
+    "area": "East",
+    "target": 700000,
+    "sales": 350000,
+    "outlets": 100,
+    "billed": 45,
+    "invoices": 70,
+    "lines": 154,
+    "ach": 0.5,
+    "expected": 430769.23076923075,
+    "pace": 0.8125,
+    "required": 35000.0,
+    "projection": 568750.0,
+    "projAch": 0.8125,
+    "coverage": 0.45,
+    "invValue": 5000.0,
+    "linesPerInv": 2.2
+   },
+   {
+    "rep": "Rep F",
+    "area": "East",
+    "target": 900000,
+    "sales": 610000,
+    "outlets": 130,
+    "billed": 104,
+    "invoices": 175,
+    "lines": 700,
+    "ach": 0.6777777777777778,
+    "expected": 553846.1538461539,
+    "pace": 1.1013888888888888,
+    "required": 29000.0,
+    "projection": 991250.0,
+    "projAch": 1.101388888888889,
+    "coverage": 0.8,
+    "invValue": 3485.714285714286,
+    "linesPerInv": 4.0
+   }
+  ],
+  "target": 5400000,
+  "sales": 3340000,
+  "outlets": 750,
+  "billed": 501,
+  "invoices": 835,
+  "lines": 2929,
+  "ach": 0.6185185185185185,
+  "pace": 1.0050925925925926,
+  "required": 206000.0,
+  "projection": 5427500.0,
+  "currentPerDay": 208750.0,
+  "coverage": 0.668,
+  "invValue": 4000.0,
+  "linesPerInv": 3.5077844311377246,
+  "projAch": 1.0050925925925926,
+  "products": [
+   {
+    "name": "Tea",
+    "target": 2400000,
+    "sales": 1700000,
+    "ach": 0.7083333333333334,
+    "mix": 0.5089820359281437,
+    "targetMix": 0.4444444444444444
+   },
+   {
+    "name": "Juice",
+    "target": 1800000,
+    "sales": 980000,
+    "ach": 0.5444444444444444,
+    "mix": 0.2934131736526946,
+    "targetMix": 0.3333333333333333
+   },
+   {
+    "name": "Biscuits",
+    "target": 1200000,
+    "sales": 660000,
+    "ach": 0.55,
+    "mix": 0.19760479041916168,
+    "targetMix": 0.2222222222222222
+   }
+  ]
+ },
+ "report": {
+  "rows": 42,
+  "months": [
+   {
+    "actual": {
+     "revenue": 930000,
+     "cogs": 492000,
+     "gross": 438000,
+     "margin": 0.47096774193548385,
+     "opex": 292000,
+     "profit": 146000
+    },
+    "budget": {
+     "revenue": 910000,
+     "cogs": 480000,
+     "gross": 430000,
+     "margin": 0.4725274725274725,
+     "opex": 290000,
+     "profit": 140000
+    },
+    "control": 1714000
+   },
+   {
+    "actual": {
+     "revenue": 905000,
+     "cogs": 481900,
+     "gross": 423100,
+     "margin": 0.4675138121546961,
+     "opex": 287000,
+     "profit": 136100
+    },
+    "budget": {
+     "revenue": 932000,
+     "cogs": 492000,
+     "gross": 440000,
+     "margin": 0.4721030042918455,
+     "opex": 290000,
+     "profit": 150000
+    },
+    "control": 1673900
+   },
+   {
+    "actual": {
+     "revenue": 988000,
+     "cogs": 523400,
+     "gross": 464600,
+     "margin": 0.47024291497975707,
+     "opex": 297000,
+     "profit": 167600
+    },
+    "budget": {
+     "revenue": 964000,
+     "cogs": 510000,
+     "gross": 454000,
+     "margin": 0.470954356846473,
+     "opex": 294000,
+     "profit": 160000
+    },
+    "control": 1808400
+   },
+   {
+    "actual": {
+     "revenue": 1030000,
+     "cogs": 542950,
+     "gross": 487050,
+     "margin": 0.4728640776699029,
+     "opex": 291000,
+     "profit": 196050
+    },
+    "budget": {
+     "revenue": 996000,
+     "cogs": 528000,
+     "gross": 468000,
+     "margin": 0.46987951807228917,
+     "opex": 294000,
+     "profit": 174000
+    },
+    "control": 1863950
+   },
+   {
+    "actual": {
+     "revenue": 1002000,
+     "cogs": 548150,
+     "gross": 453850,
+     "margin": 0.4529441117764471,
+     "opex": 309000,
+     "profit": 144850
+    },
+    "budget": {
+     "revenue": 1018000,
+     "cogs": 540000,
+     "gross": 478000,
+     "margin": 0.46954813359528486,
+     "opex": 294000,
+     "profit": 184000
+    },
+    "control": 1859150
+   },
+   {
+    "actual": {
+     "revenue": 1088000,
+     "cogs": 592700,
+     "gross": 495300,
+     "margin": 0.4552389705882353,
+     "opex": 314000,
+     "profit": 181300
+    },
+    "budget": {
+     "revenue": 1040000,
+     "cogs": 552000,
+     "gross": 488000,
+     "margin": 0.46923076923076923,
+     "opex": 294000,
+     "profit": 194000
+    },
+    "control": 1994700
+   }
+  ],
+  "forecast7": 1102800.0,
+  "slope": 32085.714285714286,
+  "backtest6": 1051700.0,
+  "actual6": 1088000,
+  "backtestError": -0.03336397058823526,
+  "revenues": [
+   930000,
+   905000,
+   988000,
+   1030000,
+   1002000,
+   1088000
+  ]
+ }
+}

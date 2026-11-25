@@ -29,6 +29,24 @@ const hrBody = POSTS.find(p => p.slug === 'hr-attendance-dashboard-excel').body;
 for (const [name, m] of [['January', 'Jan'], ['February', 'Feb'], ['March', 'Mar']]) if (!hrBody.includes(monthRow(name, m))) throw new Error('monthly table row wrong: ' + name);
 for (const [k, v] of Object.entries(dm)) if (v.people >= 5 && !hrBody.includes(`<tr><td>${k}</td><td>${v.people}</td><td>${P(v.att)}</td><td>${P(v.adj)}</td><td>${v.ua}</td><td>${v.ua2}</td></tr>`)) throw new Error('department row wrong: ' + k);
 console.log('table rows and claims about people, months and departments hold | average of four hourly rates would be', simpleOps.toFixed(3), 'vs team rate', t.opsPerHour.toFixed(3));
+const R = JSON.parse(fs.readFileSync('D:/GM_Claude/data/cornerstone-reporting.json', 'utf8'));
+const sp = R.sales, rp = R.report, cn = x => Math.round(x).toLocaleString('en-US'), jun = rp.months[5], may = rp.months[4], bodyOf = s => POSTS.find(p => p.slug === s).body;
+const must = (ok, why) => { if (!ok) throw new Error('claim does not hold: ' + why); };
+need['sales-performance-dashboard-measures'] = [P(sp.ach), P(sp.timeGone), P(sp.pace), cn(sp.sales), cn(sp.target), cn(sp.required), cn(sp.currentPerDay), cn(sp.projection), cn(sp.billed) + ' of ' + cn(sp.outlets) + ' outlets', P(sp.coverage), cn(sp.invValue) + ' per invoice', sp.linesPerInv.toFixed(1) + ' lines'];
+for (const x of sp.reps) must(bodyOf('sales-performance-dashboard-measures').includes(`<tr><td>${x.rep}</td><td>${P(x.pace)}</td><td>${cn(x.required)}</td><td>${P(x.coverage)}</td><td>${cn(x.invValue)}</td><td>${x.linesPerInv.toFixed(1)}</td></tr>`), 'rep row ' + x.rep + ' ' + P(x.pace));
+for (const x of sp.products) must(bodyOf('sales-performance-dashboard-measures').includes(`<tr><td>${x.name}</td><td>${P(x.ach)}</td><td>${P(x.mix)}</td><td>${P(x.targetMix)}</td></tr>`), 'product row ' + x.name);
+must(sp.reps.filter(x => x.pace < 1).map(x => x.rep).join() === 'Rep B,Rep C,Rep E', 'which reps are behind');
+must(sp.products.filter(x => x.ach > sp.timeGone).map(x => x.name).join() === 'Tea', 'only tea ahead');
+must(sp.reps.every(x => Math.abs(x.pace - x.projAch) < 1e-9), 'pace equals projected achievement');
+const by = Object.fromEntries(sp.reps.map(x => [x.rep, x])); must(by['Rep E'].linesPerInv === Math.min(...sp.reps.map(x => x.linesPerInv)), 'E has fewest lines');
+need['automated-monthly-business-reporting-excel'] = [String(rp.rows) + ' rows', cn(jun.actual.revenue), cn(jun.budget.revenue), cn(jun.actual.cogs), cn(jun.budget.cogs), cn(jun.actual.gross), cn(jun.budget.gross), cn(jun.actual.opex), cn(jun.budget.opex), cn(jun.actual.profit), cn(jun.budget.profit), cn(jun.budget.profit - jun.actual.profit), P(jun.actual.profit / may.actual.profit - 1) + ' higher than May', P(jun.actual.margin), P(jun.budget.margin), ((jun.budget.margin - jun.actual.margin) * 100).toFixed(1) + ' percentage points', P(jun.actual.revenue / jun.budget.revenue - 1) + ' above budget', P(jun.actual.revenue / may.actual.revenue - 1) + ' up'];
+need['business-intelligence-vs-business-analytics'] = [cn(jun.actual.revenue), cn(jun.budget.revenue), P(jun.actual.revenue / may.actual.revenue - 1), cn(jun.actual.profit), cn(jun.budget.profit - jun.actual.profit), cn(jun.actual.gross - jun.budget.gross), cn(jun.actual.opex - jun.budget.opex), ...rp.revenues.map(cn), cn(rp.forecast7), cn(rp.slope), cn(rp.backtest6), P(-rp.backtestError) + ' too low'];
+// materials split and the what-if, from the same inputs as the workbook
+const matA = Math.round(960000 * 0.565), matB = Math.round(920000 * 0.55), vol = (960000 - 920000) * 0.55, rate = 960000 * (0.565 - 0.55);
+must(Math.abs(vol + rate - (matA - matB)) < 0.5, 'materials split adds up');
+need['business-intelligence-vs-business-analytics'].push(cn(matA - matB), cn(vol), cn(rate), cn(jun.actual.profit + rate));
+must(jun.actual.profit + rate > jun.budget.profit, 'what-if beats budget');
+need['automated-monthly-business-reporting-excel'].push(cn(matA), cn(matB));
 let fail = 0;
 for (const p of POSTS) {
   const text = p.body.replace(/<section class="refs">[\s\S]*?<\/section>/g, ' ').replace(/<(figure|p class="guide-dl")[\s\S]*?<\/(figure|p)>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');

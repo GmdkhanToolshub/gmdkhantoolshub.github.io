@@ -7,6 +7,7 @@ const fig = (src, w, h, alt, cap) => `<figure class="guide-fig"><a href="../../a
 const dl = (file, label) => `<p class="guide-dl"><a class="btn btn-primary" href="../../assets/downloads/${file}" download>${label}</a></p>`;
 
 import ATTENDANCE from './posts-attendance.mjs';
+import REPORTING from './posts-reporting.mjs';
 
 export default [
 {
@@ -185,5 +186,6 @@ ${refs([ref(MS + 'functions/sumifs-function', 'Microsoft Support: SUMIFS', 'Tota
 <p class="small muted">The references cover the Excel features. The stock management methods are common practice described for general information; they are not accounting, tax or professional advice.</p>
 `
 },
-...ATTENDANCE
+...ATTENDANCE,
+...REPORTING
 ];
