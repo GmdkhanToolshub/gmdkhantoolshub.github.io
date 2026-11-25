@@ -1,5 +1,5 @@
 // The two attendance guides. Figures come from build/cornerstone_attendance.py, checked in Excel by build/verify-attendance.ps1.
-// Every attendance rule in them is an example. status stays 'draft' until the owner approves.
+// Every attendance rule in them is an example. Both were approved by the owner on 2026-11-25.
 const MS = 'https://support.microsoft.com/en-us/excel/';
 const ref = (u, t, n) => `<li><a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>. ${n}</li>`;
 const refs = items => `<section class="refs"><h2>References</h2><ul>${items.join('')}</ul><p class="small muted">Links checked on 25 November 2026.</p></section>`;
@@ -9,7 +9,7 @@ const NOT_ADVICE = '<p class="small muted">The references cover the Excel featur
 
 export default [
 {
-slug: 'employee-attendance-productivity-tracking-excel', eyebrow: 'Business', status: 'draft',
+slug: 'employee-attendance-productivity-tracking-excel', eyebrow: 'Business', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Employee Attendance and Productivity Tracking in Excel',
 desc: 'Define attendance clearly, record absences in an Excel exceptions log, calculate attendance fairly and measure productivity with care, with a free example.',
 tools: [['date-difference-calculator', 'Date Difference Calculator'], ['percentage-calculator', 'Percentage Calculator'], ['kpi-performance-calculator', 'KPI Performance Calculator']],
@@ -94,7 +94,7 @@ ${NOT_ADVICE}
 `
 },
 {
-slug: 'hr-attendance-dashboard-excel', eyebrow: 'Business Intelligence', status: 'draft',
+slug: 'hr-attendance-dashboard-excel', eyebrow: 'Business Intelligence', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'How to Build an HR Attendance Dashboard in Excel',
 desc: 'Turn monthly attendance data into an Excel HR dashboard with correct department totals, trends, follow-up counts, data checks and care for privacy.',
 tools: [['percentage-calculator', 'Percentage Calculator'], ['business-report-generator', 'Business Report Generator'], ['kpi-performance-calculator', 'KPI Performance Calculator']],
