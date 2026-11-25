@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 205 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 228 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -126,6 +126,32 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [How to Build a Weighted KPI Scorecard That Teams Trust | GM Tools](https://gmtoolshub.com/blog/weighted-kpi-scorecard/): Step-by-step guidance on choosing KPIs, setting weights, handling lower-is-better metrics and avoiding common scorecard mistakes.
 - [How to Write a CV for Jobs in Pakistan That Gets Interviews](https://gmtoolshub.com/blog/write-cv-for-jobs-in-pakistan/): A practical guide to writing a clear one-to-two page CV for Pakistani employers: what to include, how to word achievements, and mistakes that cost interviews.
 - [How to Calculate Zakat: A Simple Guide for Pakistan | GM Tools](https://gmtoolshub.com/blog/zakat-calculation-guide/): A plain guide to calculating Zakat: what counts as zakatable wealth, the nisab threshold, the 2.5% rate and a worked example, with a free calculator.
+
+## shop (24)
+- [Shop: Excel Templates, CV Pack and Interview Pack](https://gmtoolshub.com/shop/): Ready-made Excel templates, a CV pack, a 41-page interview pack and printable PDFs. Prices in USD and PKR; pay by bank transfer or JazzCash; delivered digitally.
+- [Personal Monthly Budget Planner](https://gmtoolshub.com/shop/budget-planner/): Plan a monthly budget, record income and spending and compare the two. Excel workbook (.xlsx), $6.99 or Rs 1,999.
+- [Career Starter Bundle](https://gmtoolshub.com/shop/career-bundle/): The CV templates and the interview preparation pack together. Bundle, $17.99 or Rs 4,999.
+- [Complete Business Bundle](https://gmtoolshub.com/shop/complete-business-bundle/): Four business workbooks. They are separate files that do not exchange data. Bundle, $34.99 or Rs 9,499.
+- [Professional CV Pack](https://gmtoolshub.com/shop/cv-pack/): Four editable one-page CV templates in Word, with a short writing guide. Word templates (.docx), $9.99 or Rs 2,799.
+- [Freelancer Income & Tax Tracker (Pakistan)](https://gmtoolshub.com/shop/freelancer-income-tax-tracker/): Record freelance income and expenses in Pakistan and estimate how much tax to set aside. Excel workbook (.xlsx), $11.99 or Rs 3,299.
+- [HR Attendance & Leave Tracker](https://gmtoolshub.com/shop/hr-attendance-tracker/): Record absences, leave and late arrivals, and see attendance and leave balances. Excel workbook (.xlsx), $19.99 or Rs 5,499.
+- [HR & Team Pack](https://gmtoolshub.com/shop/hr-team-pack/): Attendance records and performance scores for the same team, as two separate workbooks that do not exchange data. Bundle, $27.99 or Rs 7,499.
+- [Interview Success Pack](https://gmtoolshub.com/shop/interview-success-pack/): A printable pack to prepare for job interviews. Printable PDF, $12.99 or Rs 3,499.
+- [Inventory & Sales Tracker](https://gmtoolshub.com/shop/inventory-sales-tracker/): Track stock in and out, sales and profit for a small shop or business. Excel workbook (.xlsx), $14.99 or Rs 3,999.
+- [Invoice Generator & Payment Tracker](https://gmtoolshub.com/shop/invoice-payment-tracker/): Make a one-page invoice and keep track of who has paid. Excel workbook (.xlsx), $9.99 or Rs 2,799.
+- [Kids Math Practice Workbook](https://gmtoolshub.com/shop/kids-math-workbook/): Printable maths practice for children aged about 6 to 9. Printable PDF, $4.99 or Rs 1,399.
+- [Kids Routine & Reward Chart Pack](https://gmtoolshub.com/shop/kids-routine-chart-pack/): Printable routine and reward charts for families, for children aged about 3 to 10. Printable PDF, $3.99 or Rs 999.
+- [Large-Print Health & Medication Organizer](https://gmtoolshub.com/shop/large-print-health-organizer/): Large-print sheets to keep medicines and health notes in one place. Printable PDF, $3.99 or Rs 999.
+- [Large-Print Word Search for Seniors](https://gmtoolshub.com/shop/large-print-word-search/): Large-print word search puzzles with solutions. Printable PDF, $3.99 or Rs 999.
+- [Pakistan Payroll & Salary Tax Workbook 2026-27](https://gmtoolshub.com/shop/pakistan-payroll-tax-workbook/): Monthly payroll for a Pakistani business, with salary income tax worked out and printable payslips. Excel workbook (.xlsx), $19.99 or Rs 5,499.
+- [Recruitment & Hiring Tracker](https://gmtoolshub.com/shop/recruitment-hiring-tracker/): Follow candidates from application to offer and see how each role is filling. Excel workbook (.xlsx), $14.99 or Rs 3,999.
+- [Pakistan Salary Tax Pack](https://gmtoolshub.com/shop/salary-tax-pack/): Estimate Pakistan salary income tax for one person, and run a simple monthly payroll sheet for a small team. Excel workbook (.xlsx), $9.99 or Rs 2,499.
+- [Sales Leads & Pipeline Tracker](https://gmtoolshub.com/shop/sales-leads-pipeline-tracker/): A simple lead tracker in Excel with follow-up alerts and pipeline value. Excel workbook (.xlsx), $14.99 or Rs 3,999.
+- [Sales Manager Pack](https://gmtoolshub.com/shop/sales-manager-pack/): A KPI scorecard and a monthly sales target tracker, as two separate workbooks that do not exchange data. Bundle, $19.99 or Rs 5,499.
+- [Sales Target & Daily Run-Rate Tracker](https://gmtoolshub.com/shop/sales-target-tracker/): Follow a monthly sales target day by day, and see each salesperson on one sheet. Excel workbook (.xlsx), $9.99 or Rs 2,799.
+- [Small Business Starter Pack](https://gmtoolshub.com/shop/small-business-starter-pack/): Stock and sales tracking plus invoicing, as two separate workbooks that do not exchange data. Bundle, $19.99 or Rs 5,499.
+- [Student Study Planner](https://gmtoolshub.com/shop/student-study-planner/): An undated printable planner for students aged about 13 and over. Printable PDF, $3.99 or Rs 999.
+- [Team KPI Scorecard](https://gmtoolshub.com/shop/team-kpi-scorecard/): Score and rank a team on weighted performance measures, with a summary for review meetings. Excel workbook (.xlsx), $14.99 or Rs 3,999.
 
 ## rates (9)
 - [Daily Exchange Rates in Pakistan (PKR)](https://gmtoolshub.com/rates/): Today's exchange rates in Pakistan: USD, GBP, EUR, AED, SAR, CAD, AUD and QAR to PKR with quick tables, history and a free converter. Updated 25 Nov 2026.
@@ -296,9 +322,6 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## services (1)
 - [Hire Me](https://gmtoolshub.com/services/): Hire Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi) for resume writing, Excel dashboards, KPI scorecards and sales operations support, in Pakistan and abroad.
-
-## shop (1)
-- [Shop: Excel Templates, CV Pack and Interview Pack](https://gmtoolshub.com/shop/): Ready-made Excel templates, a CV pack, a 41-page interview pack and printable PDFs. Prices in USD and PKR; pay by bank transfer or JazzCash; delivered digitally.
 
 ## silver-rate (1)
 - [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,151 per tola, Rs 3,559 per 10 g (25 Nov 2026). Price by weight, history and calculator.

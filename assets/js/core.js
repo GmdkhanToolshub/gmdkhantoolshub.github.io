@@ -655,6 +655,12 @@ window.SITE_CONFIG = {
     else if (/^(solutions|services|advertise|media-kit|partners)$/.test(location.pathname.replace(/^\/|\/$/g, '')) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('enquiry_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
   });
   window.GM_track = track; /* lets tools and forms report events (downloads, sign-ups, quote requests) */
+  /* Order links carry a {REF} placeholder. Fill in a short order reference when one is clicked, on every page that has order links. */
+  doc.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a || a.href.indexOf('%7BREF%7D') < 0) return;
+    var d = new Date(), r = 'GM-' + String(d.getFullYear()).slice(2) + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    a.href = a.href.split('%7BREF%7D').join(r);
+  }, true);
   (function () { var t = $('#tool-root'); if (t && consent !== 'essential') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
   /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
