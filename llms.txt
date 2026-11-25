@@ -1,4 +1,4 @@
-﻿# GM Tools Hub
+# GM Tools Hub
 > Free browser-based tools, calculators, converters, templates and learning pages by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser and do not upload what you type.
 
 ## Main sections
@@ -14,6 +14,9 @@
 - [Get expert help](https://gmtoolshub.com/get-expert-help/): request an introduction to an independent tax, accounting or web professional
 - [GM Embed](https://gmtoolshub.com/gm-embed/): embed tested GM Tools Hub calculators on your own website; generator, documentation and planned plans
 - [Reasoning test](https://gmtoolshub.com/reasoning-test/): free 20-puzzle IQ-style pattern reasoning quiz, not a clinical IQ test; optional certified test and certificate
+- [Pricing](https://gmtoolshub.com/pricing/): free tools, planned Pro and Agency embed plans (not on sale), quoted custom work and one-time product prices
+- [Excel and reporting services](https://gmtoolshub.com/solutions/): data cleaning, dashboards and business reporting by request
+- [Recommendations](https://gmtoolshub.com/recommendations/): books, work technology and shopping links, all marked as affiliate links
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes

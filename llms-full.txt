@@ -1,10 +1,10 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 194 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 196 indexable pages, generated from the site files.
 
 ## home (1)
-- [GM Tools Hub – Free Tools & Gadgets for Everyday Life](https://gmtoolshub.com/): 74 free tools and gadgets: merge and convert PDFs, convert images, calculators, clocks, resume builder and more. No sign-up.
+- [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
 
 ## tools (75)
 - [Free Tools & Gadgets: PDF, Image & Calculators](https://gmtoolshub.com/tools/): 74 free tools and gadgets: merge and convert PDFs, convert and resize images, calculators, clocks, timers, notepad, QR and barcode makers.
@@ -145,8 +145,8 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [GM Embed Documentation: Install, Customise, Secure](https://gmtoolshub.com/gm-embed/docs/): How to choose a widget, generate and install embed code, customise it, plus WordPress, Blogger, React, troubleshooting, security, privacy and licensing notes.
 - [GM Embed Generator: Customise and Copy Embed Code](https://gmtoolshub.com/gm-embed/generator/): Choose a widget, set theme, colours, radius and size, preview it live and copy the iframe or script embed code for your website.
 - [My Embeds: GM Embed Dashboard (Prototype)](https://gmtoolshub.com/gm-embed/my-embeds/): Manage the embeds you saved in this browser. A frontend prototype: no accounts yet, no view counts, no fabricated statistics.
-- [GM Embed Pricing and Plans (Free, Pro, Business)](https://gmtoolshub.com/gm-embed/pricing/): GM Embed plans: Free is available now. Pro and Business are planned and not for sale yet. See what each plan includes and join the waiting list.
-- [GM Embed Support, Enquiries and Waiting List](https://gmtoolshub.com/gm-embed/support/): Get help installing a GM Embed widget, ask about commercial licensing or agency use, or join the Pro and Business waiting list.
+- [GM Embed Pricing and Plans (Free, Pro, Agency)](https://gmtoolshub.com/gm-embed/pricing/): GM Embed plans: Free is available now. Pro and Agency are planned and not for sale yet. See what each plan includes and join the waiting list.
+- [GM Embed Support, Enquiries and Waiting List](https://gmtoolshub.com/gm-embed/support/): Get help installing a GM Embed widget, ask about commercial licensing or agency use, or join the Pro and Agency waiting list.
 - [GM Embed Widgets: Embeddable Calculators](https://gmtoolshub.com/gm-embed/widgets/): Browse tested embeddable calculators: salary tax, zakat, loan EMI, gold rates, land area, percentage, BMI and more. Search, preview and get the embed code.
 
 ## learn (6)
@@ -251,6 +251,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 ## portfolio (1)
 - [Portfolio – Sales Operations & Project Work](https://gmtoolshub.com/portfolio/): Portfolio of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): project delivery, sales operations frameworks.
 
+## pricing (1)
+- [Pricing: Free Tools, Pro, Agency and Custom](https://gmtoolshub.com/pricing/): GM Tools Hub pricing: free online tools, planned Pro and Agency embed plans, custom business solutions and one-time digital product prices in USD and PKR.
+
 ## privacy-policy (1)
 - [Privacy Policy](https://gmtoolshub.com/privacy-policy/): Privacy Policy for the website and free online tools of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): what data is processed, cookies.
 
@@ -259,6 +262,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## reasoning-test (1)
 - [Free Online Reasoning Test: IQ-Style Pattern Puzzles](https://gmtoolshub.com/reasoning-test/): Free 20-puzzle pattern reasoning test with instant score and review. IQ-style matrix puzzles, not a clinical IQ test. Optional certified test and certificate.
+
+## recommendations (1)
+- [Recommended Software, Tech and Books (Affiliate Links)](https://gmtoolshub.com/recommendations/): GM Tools Hub recommendations for books, work technology and shopping, with every affiliate link clearly marked. We may earn a commission at no extra cost to you.
 
 ## refund-policy (1)
 - [Refund Policy – Digital Products and Services](https://gmtoolshub.com/refund-policy/): Refund policy for GM digital products. Templates, CV packs, PDFs, GM HCM and services are delivered digitally and are not refundable, but delivery faults are fixed.

@@ -10,6 +10,8 @@ export function buildPage({ slug, title, desc, ld = [], main, extraHead = '', ro
   const url = 'https://gmtoolshub.com/' + slug + '/';
   let pre = PRE; const deep = s => depth === 2 ? s.replace(/((?:href|src|data-root)=")\.\.\//g, '$1../../') : s; pre = deep(pre).replace(/frame-src https:;/, "frame-src 'self' https:;");
   const t = esc(title), d = esc(desc);
+  // The shell page's own "current" menu item must not carry over; mark the new page's item if the menu has one.
+  pre = pre.replace(/<ul class="nav-links" id="nav-links">[\s\S]*?<\/ul><\/nav>/, n => n.replace(/ aria-current="page"/g, '').replace(new RegExp('(<a class="nav-link" href="(?:\\.\\./)+' + slug + '/")'), '$1 aria-current="page"'));
   pre = pre.replace(/<title>[\s\S]*?<\/title>/, '<title>' + t + '</title>')
     .replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="' + d + '">')
     .replace(/<link rel="canonical" href="[^"]*">/, '<link rel="canonical" href="' + url + '">')
