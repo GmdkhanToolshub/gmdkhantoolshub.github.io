@@ -62,7 +62,7 @@ const SERVICES = [
 const servicesGrid = () => '<div class="v2-services">' + SERVICES.map(([t, d, i]) => `<article class="v2-service">${ICON(i)}<h3>${t}</h3><p>${d}</p><a href="${WA('Hello GM, I would like a quote for: ' + t + '. My company and what I need:')}" target="_blank" rel="noopener noreferrer">Request a Service &rarr;</a></article>`).join('') + '</div>';
 const rates = JSON.parse(read('data/rates.json')).history.USD, usd = rates[rates.length - 1];
 const pkr = d => 'Rs ' + (Math.round(d * usd.r / 50) * 50).toLocaleString('en-IN');
-const amount = (d, per) => `<div class="v2-amount"><span data-usd="$${d}" data-pkr="≈ ${pkr(d)}">$${d}</span>${per ? ' <small>/ month, planned</small>' : ''}</div>`;
+const amount = (d, per) => `<div class="v2-amount"><span data-usd="$${d}" data-pkr="${d ? '≈ ' : ''}${pkr(d)}">$${d}</span>${per ? ' <small>/ month, planned</small>' : ''}</div>`;
 const plans = pre => `<div class="v2-plans">
 <article class="v2-plan feature"><span class="v2-chip">Available now</span><h3>Free</h3>${amount(0)}<ul><li>All free online tools, no registration</li><li>Guides and free templates</li><li>GM Embed widgets with a credit link</li></ul><a class="btn btn-primary" href="${pre}tools/">Try Free</a></article>
 <article class="v2-plan"><span class="v2-chip soon">Planned, not on sale</span><h3>Pro</h3>${amount(15, true)}<ul><li>More embed widgets as they are added</li><li>Advanced themes and customisation</li><li>Usage analytics and higher limits</li><li>Priority support</li></ul><a class="btn btn-ghost" href="${pre}gm-embed/support/">Join the waiting list</a></article>
