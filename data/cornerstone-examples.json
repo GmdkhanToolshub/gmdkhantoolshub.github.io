@@ -1,0 +1,216 @@
+{
+ "dashboard": {
+  "rows": 36,
+  "sales": 1533200,
+  "target": 1576600,
+  "months": {
+   "Jan": {
+    "sales": 491700,
+    "target": 500500
+   },
+   "Feb": {
+    "sales": 506000,
+    "target": 525500
+   },
+   "Mar": {
+    "sales": 535500,
+    "target": 550600
+   }
+  },
+  "regionsMar": {
+   "North": {
+    "sales": 171800,
+    "target": 171600
+   },
+   "South": {
+    "sales": 136100,
+    "target": 143000
+   },
+   "East": {
+    "sales": 141700,
+    "target": 128700
+   },
+   "West": {
+    "sales": 85900,
+    "target": 107300
+   }
+  },
+  "marSales": 535500,
+  "marTarget": 550600,
+  "marAch": 0.9725753723211042,
+  "marGrowth": 0.05830039525691699,
+  "marGap": -15100,
+  "simpleAvgAch": 0.9636207584483447
+ },
+ "inventory": {
+  "items": [
+   {
+    "code": "P01",
+    "name": "Black tea 500 g",
+    "cost": 620,
+    "opening": 120,
+    "lead": 7,
+    "safety": 20,
+    "inQty": 60,
+    "outQty": 105,
+    "closing": 75,
+    "value": 46500,
+    "daily": 3.3870967741935485,
+    "rop": 43.70967741935484,
+    "status": "OK",
+    "cover": 22.142857142857142,
+    "cogs": 65100,
+    "openValue": 74400,
+    "share": 0.4827067154732989,
+    "abc": "A"
+   },
+   {
+    "code": "P02",
+    "name": "Green tea 250 g",
+    "cost": 410,
+    "opening": 60,
+    "lead": 10,
+    "safety": 10,
+    "inQty": 20,
+    "outQty": 42,
+    "closing": 38,
+    "value": 15580,
+    "daily": 1.3548387096774193,
+    "rop": 23.548387096774192,
+    "status": "OK",
+    "cover": 28.04761904761905,
+    "cogs": 17220,
+    "openValue": 24600,
+    "share": 0.9512845951216174,
+    "abc": "B"
+   },
+   {
+    "code": "P03",
+    "name": "Mango juice 1 L",
+    "cost": 190,
+    "opening": 300,
+    "lead": 5,
+    "safety": 60,
+    "inQty": 350,
+    "outQty": 400,
+    "closing": 250,
+    "value": 47500,
+    "daily": 12.903225806451612,
+    "rop": 124.51612903225806,
+    "status": "OK",
+    "cover": 19.375,
+    "cogs": 76000,
+    "openValue": 57000,
+    "share": 0.2599979473846259,
+    "abc": "A"
+   },
+   {
+    "code": "P04",
+    "name": "Apple juice 1 L",
+    "cost": 200,
+    "opening": 160,
+    "lead": 5,
+    "safety": 40,
+    "inQty": 0,
+    "outQty": 126,
+    "closing": 34,
+    "value": 6800,
+    "daily": 4.064516129032258,
+    "rop": 60.32258064516129,
+    "status": "Reorder",
+    "cover": 8.365079365079366,
+    "cogs": 25200,
+    "openValue": 32000,
+    "share": 0.8085594061099518,
+    "abc": "B"
+   },
+   {
+    "code": "P05",
+    "name": "Salted biscuits",
+    "cost": 55,
+    "opening": 500,
+    "lead": 4,
+    "safety": 120,
+    "inQty": 550,
+    "outQty": 660,
+    "closing": 390,
+    "value": 21450,
+    "daily": 21.29032258064516,
+    "rop": 205.16129032258064,
+    "status": "OK",
+    "cover": 18.31818181818182,
+    "cogs": 36300,
+    "openValue": 27500,
+    "share": 0.6068899456056925,
+    "abc": "A"
+   },
+   {
+    "code": "P06",
+    "name": "Cream biscuits",
+    "cost": 70,
+    "opening": 380,
+    "lead": 4,
+    "safety": 100,
+    "inQty": 100,
+    "outQty": 350,
+    "closing": 130,
+    "value": 9100,
+    "daily": 11.290322580645162,
+    "rop": 145.16129032258064,
+    "status": "Reorder",
+    "cover": 11.514285714285714,
+    "cogs": 24500,
+    "openValue": 26600,
+    "share": 0.8923745338852588,
+    "abc": "B"
+   },
+   {
+    "code": "P07",
+    "name": "Sugar 1 kg",
+    "cost": 135,
+    "opening": 200,
+    "lead": 3,
+    "safety": 50,
+    "inQty": 120,
+    "outQty": 250,
+    "closing": 70,
+    "value": 9450,
+    "daily": 8.064516129032258,
+    "rop": 74.19354838709677,
+    "status": "Reorder",
+    "cover": 8.68,
+    "cogs": 33750,
+    "openValue": 27000,
+    "share": 0.7223495603982074,
+    "abc": "A"
+   },
+   {
+    "code": "P08",
+    "name": "Honey 500 g",
+    "cost": 890,
+    "opening": 25,
+    "lead": 14,
+    "safety": 6,
+    "inQty": 10,
+    "outQty": 16,
+    "closing": 19,
+    "value": 16910,
+    "daily": 0.5161290322580645,
+    "rop": 13.225806451612904,
+    "status": "OK",
+    "cover": 36.8125,
+    "cogs": 14240,
+    "openValue": 22250,
+    "share": 1.0,
+    "abc": "C"
+   }
+  ],
+  "moves": 41,
+  "openValue": 291350,
+  "closeValue": 173290,
+  "cogs": 292310,
+  "turnover": 1.2582214187327823,
+  "days": 31,
+  "daysOfStock": 24.63795285826691
+ }
+}
