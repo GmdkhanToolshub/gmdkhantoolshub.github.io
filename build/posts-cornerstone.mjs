@@ -1,5 +1,5 @@
 // Cornerstone guides. Every figure quoted here comes from the example workbooks (build/cornerstone_examples.py),
-// checked in Microsoft Excel by build/verify-cornerstone.ps1. status: 'draft' until the owner has read and approved it.
+// checked in Microsoft Excel by build/verify-cornerstone.ps1. status: 'draft' until the owner has read and approved it. Set new guides to 'draft' first.
 const MS = 'https://support.microsoft.com/en-us/excel/';
 const ref = (u, t, n) => `<li><a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>. ${n}</li>`;
 const refs = items => `<section class="refs"><h2>References</h2><ul>${items.join('')}</ul><p class="small muted">Links checked on 25 November 2026.</p></section>`;
@@ -8,7 +8,7 @@ const dl = (file, label) => `<p class="guide-dl"><a class="btn btn-primary" href
 
 export default [
 {
-slug: 'excel-dashboard-guide-business-reporting', eyebrow: 'Business Intelligence', status: 'draft',
+slug: 'excel-dashboard-guide-business-reporting', eyebrow: 'Business Intelligence', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Complete Excel Dashboard Guide for Business Reporting',
 desc: 'Build an Excel sales dashboard step by step: data layout, SUMIFS, summary tiles, a month selector, charts, status colours and checks, with a free example.',
 tools: [['sales-target-calculator', 'Sales Target Calculator'], ['kpi-performance-calculator', 'KPI Performance Calculator'], ['excel-formula-generator', 'Excel Formula Generator']],
@@ -95,7 +95,7 @@ ${refs([ref(MS + 'functions/sumifs-function', 'Microsoft Support: SUMIFS', 'Synt
 `
 },
 {
-slug: 'inventory-management-using-excel', eyebrow: 'Business', status: 'draft',
+slug: 'inventory-management-using-excel', eyebrow: 'Business', status: 'published', /* approved by the owner 2026-11-25 */
 title: 'Inventory Management Using Excel: A Practical Guide',
 desc: 'Track stock in Excel with a movements log, reorder points, days of cover, stock value, inventory turnover and ABC analysis, with a free example workbook.',
 tools: [['profit-margin-calculator', 'Profit Margin Calculator'], ['barcode-generator', 'Barcode Generator'], ['percentage-calculator', 'Percentage Calculator']],
