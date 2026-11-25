@@ -30,7 +30,7 @@ export function buildPage({ slug, title, desc, ld = [], main, extraHead = '', ro
   pre = pre.replace('</head>', all + '\n' + extraHead + '</head>');
   const post = deep(POST0).replace(/\s*<script src="(?:\.\.\/)+assets\/js\/gold-page\.js[^>]*><\/script>/, '').replace(/%2Fservices%2F/g, '%2F' + slug.replace(/\//g, '%2F') + '%2F');
   fs.mkdirSync(ROOT + slug, { recursive: true });
-  const out = pre + main + post;
+  const out = (pre + main + post).replace(/<!-- translate:start -->[\s\S]*?<!-- translate:end -->/, b => b.replace(/(&amp;u=)[^"]+(")/g, (m, a, q) => a + encodeURIComponent(url) + q));
   fs.writeFileSync(ROOT + slug + '/index.html', out, 'utf8');
   return out.length;
 }
