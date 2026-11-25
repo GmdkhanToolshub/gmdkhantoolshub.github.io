@@ -1,4 +1,4 @@
-﻿/* GM Tools Hub v2 design system. Loaded after premium.css on every page. Restrained palette: midnight navy foundation, refined blue accent, teal for success.
+/* GM Tools Hub v2 design system. Loaded after premium.css on every page. Restrained palette: midnight navy foundation, refined blue accent, teal for success.
    Uses the existing theme tokens so light, dark and the accent picker keep working. */
 :root{--gm-navy:#0b1630;--gm-navy-2:#12244a;--gm-teal:#0f9d94;--gm-teal-ink:#0b6f69;--gm-ring:0 0 0 1px rgba(15,35,80,.08);--gm-shadow:0 1px 2px rgba(11,22,48,.05),0 8px 24px -12px rgba(11,22,48,.18);--gm-shadow-hi:0 2px 4px rgba(11,22,48,.06),0 22px 44px -18px rgba(11,22,48,.30)}
 h1,h2,h3{letter-spacing:-.018em;text-wrap:balance}
@@ -127,3 +127,13 @@ body:has(.v2-hero) .shop-fab,body:has(.v2-plans) .shop-fab{display:none!importan
 
 /* open phone menu: solid, above the hero */
 @media (max-width:1100px){.site-header{z-index:120}.site-header .nav-links.open{background:#f5f7fc!important;backdrop-filter:none!important;z-index:130}.site-header .nav-links.open,.site-header .nav-links.open>li{opacity:1!important}:root[data-theme="dark"] .site-header .nav-links.open{background:#0e1730!important}}
+
+/* wide tables and code samples scroll inside their own box on small screens instead of being cut off */
+.rate-split>*{min-width:0}
+@media (max-width:900px){.rate-split{grid-template-columns:minmax(0,1fr)!important}}
+main pre{max-width:100%;overflow-x:auto}
+
+/* keyboard focus on "choose file" buttons whose real input is visually hidden */
+label.btn:has(+ input[type=file].sr-only:focus){outline:3px solid var(--accent);outline-offset:2px}
+/* category label on tool cards: a little darker in light mode to reach 4.5:1 */
+:root:not([data-theme="dark"]) .tool-card .meta span:last-child:not(.badge-new){color:color-mix(in srgb,var(--ok) 86%,#000)}

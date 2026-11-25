@@ -20,13 +20,14 @@ NiaziTools['cover-letter-generator'] = function (root, U) {
   });
   function gen(v, c) {
     if (!v.name.trim() || !v.role.trim() || !v.company.trim()) return c.error('Please enter your name, the job title and the company name.');
-    var yrs = U.num(v.years), sk = U.list(v.skills).slice(0, 5), field = v.field.trim() || 'my field', hm = v.hm.trim() || 'Hiring Manager';
-    var exp = U.isNum(yrs) && yrs > 0 ? 'With ' + U.fmt(yrs, 0) + ' year' + (yrs === 1 ? '' : 's') + ' of experience in ' + field + ', ' : 'Drawing on my background in ' + field + ', ';
+    var yrs = U.num(v.years), sk = U.list(v.skills).slice(0, 5), field = v.field.trim(), hm = v.hm.trim() || 'Hiring Manager';
+    var exp = U.isNum(yrs) && yrs > 0 ? 'With ' + U.fmt(yrs, 0) + ' year' + (yrs === 1 ? '' : 's') + ' of experience' + (field ? ' in ' + field : '') + ', ' : field ? 'Drawing on my background in ' + field + ', ' : '';
     var src = v.source.trim() ? ' that I found via ' + v.source.trim() : '';
     var p = [];
     var open = { professional: 'I am writing to apply for the ' + v.role.trim() + ' position at ' + v.company.trim() + src + '. ' + exp + 'I am confident I can contribute to your team from day one.',
       enthusiastic: 'I was excited to see the ' + v.role.trim() + ' opening at ' + v.company.trim() + src + '. ' + exp + 'I would love the opportunity to bring my skills to your team.',
       concise: 'I am applying for the ' + v.role.trim() + ' role at ' + v.company.trim() + src + '. ' + exp + 'my background matches what you are looking for.' }[v.tone];
+    if (!exp) open = open.replace(/\. my background/, '. My background'); // no experience or field given
     p.push(open);
     if (sk.length) p.push('My core strengths include ' + U.joinAnd(sk) + '. I use these skills to deliver accurate work, communicate clearly with stakeholders and keep projects moving on schedule.');
     if (v.ach.trim()) p.push(v.tone === 'concise' ? 'Highlight: ' + v.ach.trim().replace(/\.*$/, '.') : 'One example of my work: ' + v.ach.trim().replace(/\.*$/, '.') + ' I would bring the same focus on results to ' + v.company.trim() + '.');
