@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 230 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 231 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -331,6 +331,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## silver-rate (1)
 - [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,151 per tola, Rs 3,559 per 10 g (25 Nov 2026). Price by weight, history and calculator.
+
+## spreadsheet-checker (1)
+- [Spreadsheet Checker for Excel and CSV](https://gmtoolshub.com/spreadsheet-checker/): Free check of an Excel or CSV sales sheet for repeated rows, missing values, wrong totals, mixed dates and spelling variations. Your file is not uploaded.
 
 ## subscription-policy (1)
 - [Subscription Policy](https://gmtoolshub.com/subscription-policy/): How GM HCM subscriptions will work: plans, monthly and annual billing, payment verification, activation, renewal, expiry, cancellation and data export.

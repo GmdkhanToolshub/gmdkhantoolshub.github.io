@@ -1,0 +1,23 @@
+/* Smart Spreadsheet Checker. Uses the site's colour tokens so light and dark mode both work. */
+.sc-wrap{max-width:1000px;min-width:0}
+.sc-card{border:1px solid var(--border);border-radius:16px;background:var(--surface);padding:18px;margin:0 0 16px;min-width:0}
+.sc-card h2{margin-top:0;font-size:1.25rem}
+.sc-card[hidden],#results[hidden]{display:none}
+.sc-drop{display:block;border:2px dashed var(--accent);border-radius:12px;padding:30px 16px;text-align:center;cursor:pointer}
+.sc-drop b,.sc-drop span{display:block}.sc-drop span{color:var(--text);opacity:.8;font-size:.9rem;margin-top:4px}
+.sc-drop.drag{border-style:solid}.sc-drop:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.sc-sr{position:absolute;width:1px;height:1px;opacity:0}
+.sc-err{color:#b91c1c;font-weight:700;margin:10px 0 0}.sc-err:empty{display:none}
+[data-theme="dark"] .sc-err{color:#fca5a5}
+.sc-fields{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.sc-f{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:.9rem;min-width:0}
+.sc-f select{font:inherit;width:100%;padding:9px 11px;border-radius:10px;border:1.5px solid var(--border-strong);background:var(--surface);color:var(--text)}
+.sc-filter{max-width:320px;margin-bottom:12px}
+.sc-tiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-top:12px}
+.sc-tile{border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.sc-tile b{display:block;font-size:1.6rem;line-height:1.2}.sc-tile span{font-size:.85rem}
+.sc-tile.found{border:2px solid #d97706}
+.sc-scroll{overflow-x:auto}
+.sc-scroll table{width:100%;min-width:620px;border-collapse:collapse;font-size:.9rem}
+.sc-scroll th,.sc-scroll td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid var(--border)}
+.sc-scroll td.val{white-space:pre-wrap;word-break:break-word;max-width:260px}
