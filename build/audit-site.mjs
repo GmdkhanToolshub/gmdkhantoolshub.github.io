@@ -1,4 +1,4 @@
-﻿// Full static audit of the site. Usage: node build/audit-site.mjs [--json out.json]
+// Full static audit of the site. Usage: node build/audit-site.mjs [--json out.json]
 import fs from 'fs'; import path from 'path';
 const root = 'D:/GM_Claude'; const SITE = 'https://gmtoolshub.com';
 const pages = [];
@@ -43,7 +43,9 @@ for (const rel of pages) {
   }
 }
 // anchors
-for (const rel of pages) { if (rel === '404.html') continue; const h = fs.readFileSync(path.join(root, rel), 'utf8'); const dirOf = path.posix.dirname(rel); for (const m of h.matchAll(/<a\b[^>]*href=["']([^"'#]*)#([^"']+)["']/gi)) { if (/^https?:|^mailto:/i.test(m[1])) continue; const tgt = m[1] ? path.posix.normalize(path.posix.join(dirOf, m[1])).replace(/\/$/, '') + '/index.html' : rel; const key = ids[tgt] ? tgt : (ids[tgt.replace(/\/index\.html$/, '.html')] ? tgt : null); if (key && !ids[key].has(m[2]) && !/^[!:~]/.test(m[2])) add('broken #anchor', rel + ' -> ' + m[1] + '#' + m[2]); } }
+// The learning games open the game named after # (read by script, so there is no matching id on the page).
+const gameModes = new Set([...fs.readFileSync(path.join(root, 'assets/js/tools/kids-games.js'), 'utf8').match(/var MODES = \[(.*?)\]\];/)[1].matchAll(/\['([a-z]+)'/g)].map(m => m[1]).concat('abc'));
+for (const rel of pages) { if (rel === '404.html') continue; const h = fs.readFileSync(path.join(root, rel), 'utf8'); const dirOf = path.posix.dirname(rel); for (const m of h.matchAll(/<a\b[^>]*href=["']([^"'#]*)#([^"']+)["']/gi)) { if (/^https?:|^mailto:/i.test(m[1])) continue; const tgt = m[1] ? path.posix.normalize(path.posix.join(dirOf, m[1])).replace(/\/$/, '') + '/index.html' : rel; const key = ids[tgt] ? tgt : (ids[tgt.replace(/\/index\.html$/, '.html')] ? tgt : null); if (key && !ids[key].has(m[2]) && !/^[!:~]/.test(m[2]) && !(key === 'kids/learning-games/index.html' && gameModes.has(m[2]))) add('broken #anchor', rel + ' -> ' + m[1] + '#' + m[2]); } }
 console.log('pages', R.pages, '| indexable', R.indexable, '| sitemap urls', sm.size);
 for (const [k, v] of Object.entries(R.issues).sort((a, b) => b[1].length - a[1].length)) console.log(String(v.length).padStart(4), k, '|', [...new Set(v)].slice(0, 4).join('; '));
 if (process.argv[2] === '--json') fs.writeFileSync(process.argv[3], JSON.stringify(R, null, 1));

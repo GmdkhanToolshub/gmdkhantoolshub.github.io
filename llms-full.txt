@@ -191,11 +191,11 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [English Vocabulary Practice](https://gmtoolshub.com/learn/vocabulary/): Learn 36 useful English words with clear meanings and example sentences. Study flashcards by level, then take a word quiz. Free, no sign-up.
 
 ## gold-rate (5)
-- [Gold Rate in Pakistan Today: Tola Price 24K, 22K](https://gmtoolshub.com/gold-rate/): Gold rate in Pakistan today (estimate): 24K Rs 3,65,034 per tola, 22K Rs 3,34,615 on 25 Nov 2026. Price by karat, history and calculator.
-- [18 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/18-karat/): Estimated 18 karat gold rate in Pakistan: Rs 2,73,776 per tola, Rs 2,34,722 per 10 g (25 Nov 2026). Price by weight, history and calculator.
-- [21 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/21-karat/): Estimated 21 karat gold rate in Pakistan: Rs 3,19,405 per tola, Rs 2,73,843 per 10 g (25 Nov 2026). Price by weight, history and calculator.
-- [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,34,615 per tola, Rs 2,86,883 per 10 g (25 Nov 2026). Price by weight, history and calculator.
-- [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,65,034 per tola, Rs 3,12,963 per 10 g (25 Nov 2026). Price by weight, history and calculator.
+- [Gold Rate in Pakistan Today: Tola Price 24K, 22K](https://gmtoolshub.com/gold-rate/): Gold rate in Pakistan today (estimate): 24K Rs 3,70,206 per tola, 22K Rs 3,39,356 on 26 Nov 2026. Price by karat, history and calculator.
+- [18 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/18-karat/): Estimated 18 karat gold rate in Pakistan: Rs 2,77,655 per tola, Rs 2,38,048 per 10 g (26 Nov 2026). Price by weight, history and calculator.
+- [21 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/21-karat/): Estimated 21 karat gold rate in Pakistan: Rs 3,23,930 per tola, Rs 2,77,723 per 10 g (26 Nov 2026). Price by weight, history and calculator.
+- [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,39,356 per tola, Rs 2,90,948 per 10 g (26 Nov 2026). Price by weight, history and calculator.
+- [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,70,206 per tola, Rs 3,17,397 per 10 g (26 Nov 2026). Price by weight, history and calculator.
 
 ## solutions (4)
 - [Business Excel Dashboards and Reporting](https://gmtoolshub.com/solutions/): Excel dashboards, KPI scorecards, sales reporting and HR attendance systems for growing companies, delivered remotely with fixed-price quotes in US dollars.
@@ -261,7 +261,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [Electricity Units Used by Home Appliances](https://gmtoolshub.com/electricity/): Typical electricity units per hour and per month for AC, fan, fridge, iron, water pump, geyser, LED bulb and other home appliances in Pakistan.
 
 ## embed-rates (1)
-- [Free Pakistan Gold, Silver & Dollar Rate Widget](https://gmtoolshub.com/embed-rates/): Free embeddable widget showing Pakistan gold (24K, 22K per tola), silver and USD to PKR rates. One line of code, no sign-up, updated daily. Estimates, English or Urdu.
+- [Free Pakistan Gold, Silver & Dollar Rate Widget](https://gmtoolshub.com/embed-rates/): Free embeddable widget showing Pakistan gold (24K, 22K per tola), silver and USD-PKR rates. One line of code, no sign-up, daily updates. Estimates, English or Urdu.
 
 ## excel-formulas (1)
 - [Excel Formula Library with Examples](https://gmtoolshub.com/excel-formulas/): 44 Excel formulas for sales, operations and HR reporting, with syntax, worked results, common mistakes, a copy button and a free example workbook.
@@ -330,7 +330,7 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [Hire Me](https://gmtoolshub.com/services/): Hire Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi) for resume writing, Excel dashboards, KPI scorecards and sales operations support, in Pakistan and abroad.
 
 ## silver-rate (1)
-- [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,151 per tola, Rs 3,559 per 10 g (25 Nov 2026). Price by weight, history and calculator.
+- [Silver Rate in Pakistan Today: Chandi Price per Tola](https://gmtoolshub.com/silver-rate/): Estimated silver rate in Pakistan today: Rs 4,267 per tola, Rs 3,658 per 10 g (26 Nov 2026). Price by weight, history and calculator.
 
 ## spreadsheet-checker (1)
 - [Spreadsheet Checker for Excel and CSV](https://gmtoolshub.com/spreadsheet-checker/): Free check of an Excel or CSV sales sheet for repeated rows, missing values, wrong totals, mixed dates and spelling variations. Your file is not uploaded.
