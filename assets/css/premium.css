@@ -450,12 +450,25 @@ main > section.section:not(:first-of-type) { content-visibility: auto; contain-i
 
 /* ---------- Content tables: one professional style for every table in the page body (light and dark) ---------- */
 main :is(table:not([class]), .prose table, table.data) {
-  display: block; max-width: 100%; overflow-x: auto; width: 100%; margin: 1.1em 0; border-collapse: separate; border-spacing: 0;
+  display: table; max-width: 100%; width: 100%; margin: 1.1em 0; border-collapse: separate; border-spacing: 0;
   font-size: .94rem; line-height: 1.45; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm, 0 1px 2px rgba(11, 18, 40, .06));
+}
+/* round the corner cells, because a table box does not clip its cell backgrounds */
+main :is(table:not([class]), .prose table, table.data) tr:first-child > :first-child { border-top-left-radius: 13px; }
+main :is(table:not([class]), .prose table, table.data) tr:first-child > :last-child { border-top-right-radius: 13px; }
+/* Small screens: a wide table scrolls inside its own box. A table without a heading group still fills the box. */
+@media (max-width: 760px) {
+  main :is(table:not([class]), .prose table, table.data) { display: block; overflow-x: auto; }
+  main :is(table:not([class]), .prose table, table.data):not(:has(thead)) > tbody { display: table; width: 100%; border-collapse: separate; border-spacing: 0; }
+}
+/* tables with three columns or fewer fit a phone, so they stay full width */
+@media (min-width: 340px) and (max-width: 760px) {
+  main :is(table:not([class]), .prose table, table.data):has(thead):not(:has(tr > :nth-child(4))) { display: table; }
+  main :is(table:not([class]), .prose table, table.data):has(thead):not(:has(tr > :nth-child(4))) :is(th, td) { min-width: 0; overflow-wrap: anywhere; }
 }
 main :is(table:not([class]), .prose table, table.data) th,
 main :is(table:not([class]), .prose table, table.data) td { padding: 12px 18px; text-align: left; vertical-align: top; border: 0; border-bottom: 1px solid var(--border); color: var(--text-soft); }
-main :is(table:not([class]), .prose table, table.data) th { background: var(--surface-strong); color: var(--text); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border-strong); }
+main :is(table:not([class]), .prose table, table.data) th { background: var(--surface-strong); color: var(--text); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: normal; border-bottom: 1px solid var(--border-strong); }
 main :is(table:not([class]), .prose table, table.data) td:first-child { color: var(--text); font-weight: 600; }
 main :is(table:not([class]), .prose table, table.data) tbody tr:nth-child(even) td,
 main :is(table:not([class]), .prose table, table.data) tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-strong) 38%, transparent); }

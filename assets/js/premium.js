@@ -97,11 +97,11 @@
 
   /* ---------- announcement bar (dismissible; shown again only when the announcement id changes) ---------- */
   (function () {
-    var ID = '2026-11-18', hdr = $('.site-header');
+    var ID = '2026-11-26', hdr = $('.site-header');
     if (isKids || isEmbed || !hdr || $('.gx-ann') || /\/updates\/?$/.test(path)) return;
     if (store('gm.ann', '') === ID) return;
     var bar = doc.createElement('div'); bar.className = 'gx-ann no-print'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Announcement');
-    bar.innerHTML = '<p><span class="gx-ann-tag">New</span><span>A fresh look for GM Tools Hub: day/night switch, instant search<span class="gx-ann-d"> with <kbd>Ctrl</kbd> <kbd>K</kbd></span> and 6 new Pakistan tools.</span> <a href="' + base + 'updates/">See what&rsquo;s new <span aria-hidden="true">&rarr;</span></a></p>' +
+    bar.innerHTML = '<p><span class="gx-ann-tag">New</span><span>Free Spreadsheet Checker: find repeated rows and wrong totals<span class="gx-ann-d">. Your file is not uploaded</span>.</span> <a href="' + base + 'spreadsheet-checker/">Try it <span aria-hidden="true">&rarr;</span></a></p>' +
       '<button type="button" class="gx-ann-x" aria-label="Dismiss announcement"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
     hdr.parentNode.insertBefore(bar, hdr);
     $('.gx-ann-x', bar).addEventListener('click', function () {
