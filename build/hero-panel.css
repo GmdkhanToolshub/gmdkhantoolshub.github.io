@@ -1,0 +1,92 @@
+/* hero-panel:start */
+/* Top-of-page panel: fills the empty right side with the page's own section links and a small animated drawing. */
+.gmhp-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.gmhp-main{min-width:0}
+.gmhp{--gmhp-a:#4f63f6;--gmhp-b:#10a98f;--gmhp-c:#8b5cf6;min-width:0;border:1px solid var(--border);border-radius:20px;background:color-mix(in srgb,var(--surface) 88%,transparent);box-shadow:0 26px 54px -40px rgba(25,40,110,.65);overflow:hidden}
+.gmhp[data-art="gold"],.gmhp[data-art="money"]{--gmhp-a:#b8860b;--gmhp-b:#0f9d78;--gmhp-c:#e0a420}
+.gmhp[data-art="learn"],.gmhp[data-art="language"]{--gmhp-a:#7c3aed;--gmhp-b:#0ea5a0;--gmhp-c:#e8860c}
+.gmhp[data-art="shield"],.gmhp[data-art="mail"]{--gmhp-a:#2563eb;--gmhp-b:#0e9f8a;--gmhp-c:#6366f1}
+.gmhp-art{display:none;height:86px;background:radial-gradient(70% 140% at 12% 0,color-mix(in srgb,var(--gmhp-a) 20%,transparent),transparent 70%),radial-gradient(60% 130% at 92% 100%,color-mix(in srgb,var(--gmhp-b) 20%,transparent),transparent 70%);border-bottom:1px solid var(--border)}
+.gmhp-art svg{display:block;width:100%;height:100%}
+.gmhp-grid{fill:none;stroke:color-mix(in srgb,var(--gmhp-a) 20%,transparent);stroke-width:1}
+.gmhp-f1{fill:var(--gmhp-a)}.gmhp-f2{fill:var(--gmhp-b)}.gmhp-f3{fill:var(--gmhp-c)}
+.gmhp-card{fill:var(--surface);stroke:color-mix(in srgb,var(--gmhp-a) 55%,transparent);stroke-width:1.4}
+.gmhp-line{fill:none;stroke:color-mix(in srgb,var(--gmhp-a) 40%,transparent);stroke-width:3;stroke-linecap:round}
+.gmhp-stroke,.gmhp-hand{fill:none;stroke:var(--gmhp-a);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.gmhp-flow{fill:none;stroke:var(--gmhp-b);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:7 7}
+.gmhp-twinkle{fill:var(--gmhp-c);transform-box:fill-box;transform-origin:center}
+.gmhp-art text{fill:var(--gmhp-a);font:700 22px/1 "Noto Nastaliq Urdu","Urdu Typesetting",system-ui,sans-serif}
+.gmhp-body{padding:12px 14px 14px;min-width:0}
+.gmhp-title{display:flex;justify-content:space-between;gap:10px;margin:0 0 8px;font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-soft)}
+.gmhp-title span{letter-spacing:.02em;text-transform:none;font-weight:700;color:var(--accent)}
+/* phones: one swipeable row, so the page content is not pushed far down */
+.gmhp-list{display:flex;gap:8px;margin:0;padding:0 0 4px;list-style:none;overflow-x:auto;scrollbar-width:thin}
+.gmhp-list li{flex:none;margin:0}
+.gmhp-list a{display:flex;align-items:center;gap:8px;min-height:40px;padding:7px 13px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font-size:.83rem;font-weight:600;line-height:1.35;text-decoration:none}
+.gmhp-list a::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;transform:rotate(45deg);background:linear-gradient(135deg,var(--gmhp-a),var(--gmhp-b))}
+.gmhp-list a:hover{border-color:var(--gmhp-a);text-decoration:none}
+.gmhp-list a:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+@media (min-width:640px){.gmhp-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;padding:0}.gmhp-list.gmhp-one{grid-template-columns:minmax(0,1fr)}}
+@media (min-width:1000px){
+.page-hero .gmhp-wrap{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:clamp(28px,4vw,56px);align-items:center}
+.gmhp-art{display:block}
+}
+.page-hero .gmhp-main>*:last-child{margin-bottom:0}
+/* anchor targets stay clear of the sticky header */
+main h2[id]{scroll-margin-top:90px}
+/* inner pages: tighter vertical rhythm, so there are no tall empty bands between blocks */
+body:not([data-tab="home"]) main .page-hero{padding-top:clamp(20px,2.4vw,30px);padding-bottom:clamp(20px,2.4vw,30px)}
+main>.section,main>section.section{padding-top:clamp(28px,3.2vw,42px);padding-bottom:clamp(28px,3.2vw,42px)}
+main>.page-hero+.section{padding-top:clamp(22px,2.6vw,32px)}
+main>.section:not(.alt)+.section:not(.alt){padding-top:6px}
+main .section .prose>h2:first-child,main .section .section-head:first-child>h2:first-of-type{margin-top:0}
+/* short card rows stretch across the page instead of leaving empty columns */
+main>.section>.container>:is(.gm-grid,.pf-grid,.grid):not(:has(>:nth-child(4))){grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+main .kc-zone .kc-tiles:not(:has(>:nth-child(5))){grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+/* Kids pages: give the white reading boxes breathing room */
+.kc-page .content-block{padding:clamp(16px,2.4vw,26px);border-radius:20px}
+/* heading with only buttons or a short text under it: place them side by side on wide screens */
+@media (min-width:1000px){
+/* career timeline and daily planner: heading stays beside the list while you scroll */
+main>.section>.container:has(>.section-head:first-child+ol.timeline),main>.section>.container:has(#pl-slots){display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);column-gap:48px;align-items:start}
+main>.section>.container:has(>.section-head:first-child+ol.timeline)>:not(.section-head),main>.section>.container:has(#pl-slots)>:not(.section-head){grid-column:2;max-width:none!important}
+main>.section>.container:has(>.section-head:first-child+ol.timeline)>.section-head,main>.section>.container:has(#pl-slots)>.section-head{grid-column:1;grid-row:1/span 3;position:sticky;top:100px;margin:0}
+main>.section>.container:has(>.section-head:first-child+.btn-row:last-child),main>.section>.container>.card:has(>.btn-row:last-child>a[href="fmcg-sales-bi/"]){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:40px;align-items:center}
+main>.section>.container:has(>.section-head:first-child+.btn-row:last-child)>*{margin:0}
+main>.section>.container>.card:has(>.btn-row:last-child>a[href="fmcg-sales-bi/"])>:not(.btn-row){grid-column:1}
+main>.section>.container>.card>.btn-row:has(>a[href="fmcg-sales-bi/"]){grid-column:2;grid-row:1/span 3;flex-direction:column;align-items:stretch}
+main>.section>.container:has(>.section-head:first-child+.prose:last-child){display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);column-gap:48px;align-items:start}
+main>.section>.container:has(>.section-head:first-child+.prose:last-child)>.prose{max-width:none!important;margin:0}
+main>.section>.container:has(>.section-head:first-child+.prose:last-child)>.prose>:first-child{margin-top:0}
+}
+/* plain lists and numbered steps become balanced cards on wide screens */
+@media (min-width:900px){
+main>.section>.container:not(.prose)>:is(ol.steps-list,ul:not([class])){grid-template-columns:repeat(2,minmax(0,1fr));gap:14px!important;max-width:none!important;padding-left:0!important;list-style:none;counter-reset:gmstep}
+main>.section>.container:not(.prose)>:is(ol.steps-list,ul:not([class]))>li{position:relative;counter-increment:gmstep;margin:0;padding:16px 18px 16px 62px;border:1px solid var(--border);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-sm)}
+main>.section>.container:not(.prose)>:is(ol.steps-list,ul:not([class]))>li::before{content:counter(gmstep);position:absolute;left:18px;top:16px;display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#4f63f6,#7c4ddb);color:#fff;font-size:.82rem;font-weight:800}
+main>.section>.container:not(.prose)>ul:not([class])>li::before{content:"\2713"}
+main>.section>.container:not(.prose)>:is(ol.steps-list,ul:not([class]))>li:last-child:nth-child(odd){grid-column:1/-1}
+main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!important}
+}
+@media (prefers-reduced-motion:no-preference){
+.gmhp-flow{animation:gmhp-dash 1.6s linear infinite}
+.gmhp-float{animation:gmhp-float 5.5s ease-in-out infinite}
+.gmhp-pulse{animation:gmhp-pulse 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.gmhp-bar{animation:gmhp-bar 3.8s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom}
+.gmhp-key,.gmhp-blink{animation:gmhp-blink 2.4s ease-in-out infinite}
+.gmhp-twinkle{animation:gmhp-twinkle 3.6s ease-in-out infinite}
+.gmhp-hand{animation:gmhp-spin 12s linear infinite}
+.gmhp-list a{transition:transform .2s ease,border-color .2s ease}
+.gmhp-list a:hover{transform:translateX(3px)}
+@keyframes gmhp-dash{to{stroke-dashoffset:-28}}
+@keyframes gmhp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes gmhp-pulse{0%,100%{opacity:.65;transform:scale(.86)}50%{opacity:1;transform:scale(1.14)}}
+@keyframes gmhp-bar{0%,100%{transform:scaleY(.72)}50%{transform:scaleY(1)}}
+@keyframes gmhp-blink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes gmhp-twinkle{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
+@keyframes gmhp-spin{to{transform:rotate(360deg)}}
+}
+/* tool pages on phones: the tool comes first */
+@media (max-width:639px){body:has(#tool-root) .gmhp{display:none}}
+@media print{.gmhp{display:none}}
+/* hero-panel:end */
