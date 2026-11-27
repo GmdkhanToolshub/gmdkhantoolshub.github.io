@@ -496,3 +496,51 @@ main .pp-wrap table:not([class]) tr:last-child td { border-bottom: 0; }
 .rate-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(8, 11, 20, .28)); pointer-events: none; }
 @media (max-width: 860px) { .rate-split { grid-template-columns: 1fr; } .rate-art { min-height: 0; aspect-ratio: 16 / 10; order: -1; } }
 @media (prefers-reduced-motion: reduce) { .rate-art img { transition: none; } .rate-art:hover img { transform: none; } }
+
+/* header art: transparent animation on every page except the home page. A script measures the header and gives each
+   picture only a space that no menu item uses; where there is no such space only the thin bottom line is drawn.
+   Decoration only: not clickable, and it never changes any size or position. */
+body:not([data-tab="home"]) .site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: url("../img/header-art/ai-neural-light.svg"), url("../img/header-art/ai-circuit-light.svg"), url("../img/header-art/ai-line-light.svg");
+  background-repeat: no-repeat;
+  background-position: var(--ha-lx, 0px) 50%, var(--ha-rx, 0px) 50%, 0 100%;
+  background-size: var(--ha-lw, 0px) 44px, var(--ha-rw, 0px) 44px, 100% 3px;
+}
+:root[data-theme="dark"] body:not([data-tab="home"]) .site-header::before { background-image: url("../img/header-art/ai-neural-dark.svg"), url("../img/header-art/ai-circuit-dark.svg"), url("../img/header-art/ai-line-dark.svg"); }
+@media (prefers-reduced-motion: reduce) {
+  body:not([data-tab="home"]) .site-header::before { background-image: url("../img/header-art/ai-neural-light-still.svg"), url("../img/header-art/ai-circuit-light-still.svg"), url("../img/header-art/ai-line-light-still.svg"); }
+  :root[data-theme="dark"] body:not([data-tab="home"]) .site-header::before { background-image: url("../img/header-art/ai-neural-dark-still.svg"), url("../img/header-art/ai-circuit-dark-still.svg"), url("../img/header-art/ai-line-dark-still.svg"); }
+}
+@media print { .site-header::before { content: none !important; } }
+
+/* product pages: the same premium look as the Shop. Style only: no text, price, link or picture is changed. */
+main:has(.pp2)>.page-hero{position:relative;isolation:isolate;overflow:hidden}
+main:has(.pp2)>.page-hero::before{content:"";position:absolute;z-index:-1;inset:-30% -8% -45% 38%;pointer-events:none;background:radial-gradient(38% 46% at 30% 40%,rgba(79,99,246,.24),transparent 70%),radial-gradient(36% 44% at 72% 34%,rgba(139,92,246,.22),transparent 70%),radial-gradient(40% 40% at 58% 74%,rgba(16,185,160,.2),transparent 70%)}
+.pp2{gap:34px}
+.pp2 figure{position:relative;isolation:isolate;padding:0 12px 0 0}
+.pp2 figure::before{content:"";position:absolute;z-index:-1;left:14px;right:0;top:12px;aspect-ratio:16/10;border-radius:20px;transform:rotate(1.8deg);background:linear-gradient(135deg,rgba(79,99,246,.26),rgba(139,92,246,.24) 55%,rgba(16,185,160,.22))}
+.pp2 figure img{border-radius:18px;box-shadow:0 30px 60px -34px rgba(25,40,110,.6)}
+.pp2 figcaption{margin-top:20px;line-height:1.6}
+.pp-buy{position:relative;overflow:hidden;border-radius:22px;padding:28px 24px 24px;background:color-mix(in srgb,var(--surface) 92%,transparent);box-shadow:0 30px 64px -40px rgba(25,40,110,.65);line-height:1.65}
+.pp-buy::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,#4f63f6,#8b5cf6 50%,#10b9a0)}
+.pp-buy .btn{min-height:44px}
+.pp-buy ol{line-height:1.7}
+.pp-buy ol li{margin-bottom:6px}
+.pp-buy ol li::marker{color:var(--accent);font-weight:800}
+.pp-body h2{position:relative;margin-top:38px;padding-left:18px;line-height:1.3}
+.pp-body h2::before{content:"";position:absolute;left:0;top:.18em;bottom:.18em;width:5px;border-radius:99px;background:linear-gradient(#4f63f6,#8b5cf6,#10b9a0)}
+.pp-body ul:not(.pp-sheets){list-style:none;padding-left:0}
+.pp-body ul:not(.pp-sheets) li{position:relative;margin:0 0 9px;padding-left:28px;line-height:1.7}
+.pp-body ul:not(.pp-sheets) li::before{content:"";position:absolute;left:4px;top:.62em;width:9px;height:9px;border-radius:3px;transform:rotate(45deg);background:linear-gradient(135deg,#4f63f6,#10b9a0)}
+.pp-sheets li{border-radius:12px;font-weight:600;box-shadow:0 10px 22px -18px rgba(25,40,110,.7)}
+@media (max-width:640px){.pp-buy{padding:22px 16px 18px}.pp2 figure{padding-right:8px}}
+@media (prefers-reduced-motion:no-preference){
+main:has(.pp2)>.page-hero::before{animation:pp-aura 14s ease-in-out infinite alternate}
+.pp2 figure img{animation:pp-in .8s ease both;transition:transform .35s ease,box-shadow .35s ease}
+.pp2 figure img:hover{transform:translateY(-4px);box-shadow:0 38px 70px -34px rgba(25,40,110,.7)}
+.pp-buy{animation:pp-in .8s .12s ease both}
+.pp-sheets li{transition:transform .25s ease}.pp-sheets li:hover{transform:translateY(-3px)}
+@keyframes pp-aura{from{transform:translate(-14px,6px) scale(.97)}to{transform:translate(16px,-8px) scale(1.04)}}
+@keyframes pp-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}

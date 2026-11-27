@@ -3,6 +3,8 @@
 (function () {
   'use strict';
   var el = document.querySelector('.qa-sky');
+  /* a press anywhere on the banner works like pressing its button */
+  if (el) el.addEventListener('click', function (e) { var a = el.querySelector('a.qa-banner-btn'); if (a && !e.target.closest('a') && !String(window.getSelection())) a.click(); });
   if (!el || !('IntersectionObserver' in window) || !window.matchMedia || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var played = false;
   el.classList.add('qa-live', 'qa-wait', 'qa-off');

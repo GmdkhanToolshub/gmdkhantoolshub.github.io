@@ -260,3 +260,49 @@
     doc.addEventListener('touchstart', pf, { passive: true });
   })();
 })();
+
+;
+/* Header art placement: finds the empty gaps in the header row and hands their position to the style rule.
+   Every link and button is treated as occupied, with a clear margin, so the pictures never sit under or over a menu item. */
+(function () {
+  'use strict';
+  var d = document, body = d.body;
+  if (!body || body.getAttribute('data-tab') === 'home') return;
+  var head = d.querySelector('header.site-header'); if (!head) return;
+  var MARGIN = 12, SMALLEST = 56, WIDEST = 272, raf = 0;
+  function place() {
+    raf = 0;
+    var H = head.getBoundingClientRect(), W = d.documentElement.clientWidth, used = [];
+    var items = head.querySelectorAll('a, button, input, select, label, .brand, .nav-links > li, .nav-actions > *');
+    for (var i = 0; i < items.length; i++) {
+      var r = items[i].getBoundingClientRect();
+      if (!r.width || !r.height || r.top >= H.bottom - 4 || r.bottom <= H.top + 4 || r.right <= 0 || r.left >= W) continue;
+      if (getComputedStyle(items[i]).visibility === 'hidden') continue;
+      used.push([r.left - MARGIN, r.right + MARGIN]);
+    }
+    used.sort(function (a, b) { return a[0] - b[0]; });
+    var gaps = [], at = 6;
+    used.forEach(function (u) { if (u[0] - at >= SMALLEST) gaps.push([at, u[0]]); if (u[1] > at) at = u[1]; });
+    if (W - 6 - at >= SMALLEST) gaps.push([at, W - 6]);
+    function widest(onLeft) {
+      var best = null;
+      gaps.forEach(function (g) { if (((g[0] + g[1]) / 2 < W / 2) === onLeft && (!best || g[1] - g[0] > best[1] - best[0])) best = g; });
+      return best;
+    }
+    [['l', widest(true)], ['r', widest(false)]].forEach(function (p) {
+      var g = used.length ? p[1] : null, w = g ? Math.min(WIDEST, Math.floor(g[1] - g[0])) : 0;
+      head.style.setProperty('--ha-' + p[0] + 'w', w + 'px');
+      head.style.setProperty('--ha-' + p[0] + 'x', (g ? Math.round(g[0] + (g[1] - g[0] - w) / 2 - H.left) : 0) + 'px');
+    });
+  }
+  function soon() { if (!raf) raf = requestAnimationFrame(place); }
+  place();
+  window.addEventListener('resize', function () { place(); soon(); });
+  window.addEventListener('load', place);
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(place);
+  /* buttons are added to the header after loading, and the menu changes: measure again when that happens */
+  if ('MutationObserver' in window) new MutationObserver(soon).observe(head, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden', 'aria-expanded'] });
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(soon); ro.observe(head); [].forEach.call(head.querySelectorAll('.brand, .nav-links, .nav-actions'), function (e) { ro.observe(e); }); }
+  head.addEventListener('transitionend', soon);
+  setTimeout(place, 600); setTimeout(place, 2000);
+})();

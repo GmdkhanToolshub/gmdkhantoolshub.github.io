@@ -100,3 +100,54 @@
 @media (prefers-reduced-motion:no-preference){#qa-body:not([hidden]){animation:qa-in .7s ease both}@keyframes qa-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
 /* nothing promotional floats over or beside the Quran text on this page */
 body:has(.qa-page) :is(.shop-fab,.gx-ann){display:none!important}
+
+/* recitation player and passage navigation */
+.qa-player{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:16px;row-gap:10px;margin:0 0 18px;padding:18px 20px 14px;border-radius:20px;border:1px solid rgba(230,195,106,.55);background:radial-gradient(70% 150% at 8% 0,rgba(255,226,150,.26),transparent 60%),linear-gradient(150deg,#07162f 0%,#0d3a46 60%,#0f4436 100%);color:#fbf3da;box-shadow:0 22px 44px -28px rgba(5,18,40,.85)}
+.qa-player::before{content:"";position:absolute;z-index:-1;inset:-56px;opacity:.09;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' fill='none' stroke='%23e6c36a'%3E%3Cpath d='M16 16h24v24H16zM28 11l17 17-17 17-17-17zM0 28h11M45 28h11M28 0v11M28 45v11'/%3E%3C/svg%3E") repeat}
+.qa-play{position:relative;display:grid;place-items:center;width:64px;height:64px;padding:0;border:0;border-radius:50%;background:linear-gradient(180deg,#f8e19d,#d8ad45);color:#10271c;cursor:pointer;box-shadow:0 10px 26px -10px rgba(240,200,100,.9)}
+.qa-play svg{width:28px;height:28px;fill:currentColor}
+.qa-play .i-pause,.qa-player[data-state="playing"] .qa-play .i-play,.qa-player[data-state="loading"] .qa-play .i-play{display:none}
+.qa-player[data-state="playing"] .qa-play .i-pause,.qa-player[data-state="loading"] .qa-play .i-pause{display:block}
+.qa-play::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;pointer-events:none}
+.qa-player[data-state="loading"] .qa-play::after{border-top-color:#f8e19d;border-right-color:rgba(248,225,157,.4)}
+.qa-info{min-width:0;text-align:left}
+.qa-reciter{margin:0;font-weight:700;font-size:1rem;line-height:1.4;color:#fff6df}
+.qa-reciter span{display:block;font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#f0d07c}
+.qa-say{margin:3px 0 0;font-size:.85rem;line-height:1.5;color:#d9e8ea;min-height:1.5em}
+.qa-player[data-state="error"] .qa-say{color:#ffd0c2;font-weight:600}
+.qa-eq{display:flex;align-items:flex-end;gap:3px;height:30px}
+.qa-eq i{width:4px;height:100%;border-radius:2px;background:linear-gradient(#f8e19d,#7fe0c0);transform-origin:bottom;transform:scaleY(.18)}
+.qa-line{grid-column:1/-1;display:flex;align-items:center;gap:12px}
+.qa-bar{position:relative;flex:1;height:6px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden}
+.qa-fill{position:absolute;inset:0;background:linear-gradient(90deg,#f8e19d,#7fe0c0);transform-origin:left;transform:scaleX(0);transition:transform .25s linear}
+.qa-time{font-size:.74rem;font-variant-numeric:tabular-nums;color:#cfe0e2;white-space:nowrap}
+.qa-ctrls{grid-column:1/-1;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.qa-ctrls button{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:8px 18px;border-radius:999px;border:1px solid rgba(230,195,106,.6);background:rgba(255,255,255,.07);color:#fff6df;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.qa-ctrls button:hover{background:rgba(255,255,255,.16)}
+.qa-player button:focus-visible{outline:3px solid #fff3c4;outline-offset:3px}
+.qa-aya.is-playing{background:rgba(216,173,69,.22);box-shadow:0 0 0 5px rgba(216,173,69,.14);border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.qa-urdu p{border-radius:10px;padding:0 6px}
+.qa-aya{scroll-margin-block:110px 40px}
+.qa-urdu p.is-playing{background:rgba(216,173,69,.16)}
+.qa-nav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;margin-top:18px}
+.qa-nav button{min-height:44px;padding:9px 18px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}
+.qa-nav button:hover{border-color:var(--accent);color:var(--accent)}
+.qa-nav button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.qa-mid{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:.85rem;color:var(--text-soft)}
+.qa-nav .qa-mid button{min-height:34px;padding:4px 14px;font-size:.8rem}
+@media (max-width:560px){.qa-player{grid-template-columns:auto minmax(0,1fr);padding:14px 12px 12px;column-gap:12px}.qa-eq{display:none}.qa-play{width:56px;height:56px}.qa-ctrls button{flex:1;justify-content:center;padding:8px 10px}.qa-nav{grid-template-columns:1fr 1fr}.qa-nav .qa-mid{grid-column:1/-1;order:3}}
+@media (prefers-reduced-motion:no-preference){
+.qa-player::before{animation:qa-drift 60s linear infinite;animation-play-state:paused}
+.qa-player[data-state="playing"]::before{animation-play-state:running}
+.qa-player[data-state="playing"] .qa-eq i{animation:qa-eq .9s ease-in-out infinite alternate}
+.qa-eq i:nth-child(2){animation-delay:-.35s!important}.qa-eq i:nth-child(3){animation-delay:-.7s!important}.qa-eq i:nth-child(4){animation-delay:-.2s!important}.qa-eq i:nth-child(5){animation-delay:-.55s!important}
+.qa-player[data-state="loading"] .qa-play::after{animation:qa-spin .9s linear infinite}
+.qa-player[data-state="playing"] .qa-play::after{border-color:rgba(248,225,157,.7);animation:qa-ring 1.8s ease-out infinite}
+.qa-aya,.qa-urdu p{transition:background-color .35s ease,box-shadow .35s ease}
+@keyframes qa-eq{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
+@keyframes qa-spin{to{transform:rotate(360deg)}}
+@keyframes qa-ring{0%{transform:scale(.94);opacity:1}100%{transform:scale(1.22);opacity:0}}
+@keyframes qa-drift{to{transform:translate(56px,56px)}}
+}
+
+.qa-banner{cursor:pointer}

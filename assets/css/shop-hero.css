@@ -1,0 +1,52 @@
+/* Shop page top section: a product showcase in the space that was empty. Uses the site's own colours, so light and dark both work. */
+.sh-hero>.container{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:center}
+.sh-intro{min-width:0}
+.sh-show{position:relative;isolation:isolate;min-width:0;width:100%;max-width:520px;justify-self:center;padding:16px;border:1px solid var(--border);border-radius:24px;background:color-mix(in srgb,var(--surface) 84%,transparent);box-shadow:0 34px 70px -38px rgba(25,40,110,.55)}
+.sh-glow{position:absolute;z-index:-1;inset:-26px;border-radius:50%;pointer-events:none;background:radial-gradient(42% 38% at 18% 22%,rgba(79,99,246,.34),transparent 70%),radial-gradient(40% 38% at 86% 30%,rgba(139,92,246,.32),transparent 70%),radial-gradient(46% 38% at 62% 92%,rgba(16,185,160,.28),transparent 70%)}
+.sh-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.sh-top p{margin:0;font-size:.95rem;color:var(--text-soft)}
+.sh-top strong{color:var(--text);font-size:1.05rem}
+.sh-pause{display:inline-flex;align-items:center;gap:6px;min-height:28px;font-size:.78rem;color:var(--text-soft);cursor:pointer}
+.sh-deck{position:relative;padding:0 12px 12px 0}
+.sh-back{position:absolute;inset:0 12px 12px 0;border-radius:16px;border:1px solid var(--border)}
+.sh-back1{transform:translate(7px,7px) rotate(1.4deg);background:linear-gradient(135deg,rgba(79,99,246,.22),rgba(139,92,246,.22))}
+.sh-back2{transform:translate(12px,12px) rotate(2.8deg);background:linear-gradient(135deg,rgba(16,185,160,.2),rgba(79,99,246,.14))}
+.sh-slides{position:relative;list-style:none;margin:0;padding:0;display:grid;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--border)}
+.sh-slide{grid-area:1/1;opacity:0;visibility:hidden}
+.sh-slide:first-child{opacity:1;visibility:visible}
+.sh-slide a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;color:var(--text);text-decoration:none}
+.sh-slide img{grid-column:1/-1;display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:top}
+.sh-cap{display:flex;flex-direction:column;gap:1px;min-width:0;padding:10px 14px 12px}
+.sh-kind{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.sh-cap b{font-size:1rem;line-height:1.35}
+.sh-price{font-size:1.05rem;font-weight:800;line-height:1.5}
+.sh-price .sh-was{font-size:.86rem;font-weight:600;color:var(--text-soft)}
+.sh-price em{display:block;font-style:normal;font-size:.7rem;font-weight:500;color:var(--text-soft)}
+.sh-go{margin:0 14px 14px 0;padding:8px 14px;border-radius:999px;background:var(--grad-btn);color:#fff;font-size:.84rem;font-weight:700;white-space:nowrap}
+.sh-slide a:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.sh-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+.sh-tile{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-align:center;text-decoration:none;border-top:3px solid #4f63f6}
+.sh-career{border-top-color:#8b5cf6}.sh-bundles{border-top-color:#d99a12}.sh-pdfs{border-top-color:#10a98f}
+.sh-tile b{font-size:1.35rem;line-height:1.1}
+.sh-tile span{font-size:.74rem;line-height:1.3;color:var(--text-soft)}
+.sh-tile:hover{text-decoration:none;box-shadow:0 12px 24px -16px rgba(40,60,160,.65)}
+.sh-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px;color:var(--text);text-decoration:none}
+.sh-steps span{display:flex;align-items:center;gap:7px;font-size:.76rem;line-height:1.35}
+.sh-steps i{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:var(--grad-btn);color:#fff;font-style:normal;font-size:.72rem;font-weight:800}
+.sh-steps:hover{text-decoration:none}.sh-steps:hover span{color:var(--accent)}
+.sh-safe{margin:8px 0 0;font-size:.74rem;line-height:1.5;color:var(--text-soft);text-align:center}
+@media (min-width:1000px){.sh-hero>.container{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:44px}.sh-show{justify-self:end}}
+@media (max-width:480px){.sh-show{padding:12px}.sh-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.sh-steps{grid-template-columns:minmax(0,1fr)}.sh-slide a{grid-template-columns:minmax(0,1fr)}.sh-go{justify-self:start;margin:0 0 12px 14px}}
+/* motion: six slides, four seconds each. It stops on hover, keyboard focus or the Pause box, and is off for reduced motion. */
+@media (prefers-reduced-motion:no-preference){
+.sh-slide,.sh-slide:first-child{animation:sh-slide 24s ease infinite backwards;animation-delay:calc(var(--i) * 4s - .9s)}
+.sh-glow{animation:sh-drift 12s ease-in-out infinite alternate}
+.sh-back1{animation:sh-sway 8s ease-in-out infinite alternate}
+.sh-tile,.sh-go{transition:transform .25s ease,box-shadow .25s ease}
+.sh-tile:hover{transform:translateY(-3px)}.sh-slide a:hover .sh-go{transform:translateX(3px)}
+.sh-deck:hover .sh-slide,.sh-deck:focus-within .sh-slide,.sh-show:has(.sh-pause input:checked) *{animation-play-state:paused!important}
+@keyframes sh-slide{0%{opacity:0;visibility:hidden}.1%{opacity:0;visibility:visible}2.5%{opacity:1;visibility:visible}16.6%{opacity:1;visibility:visible}19.2%{opacity:0;visibility:visible}19.3%,100%{opacity:0;visibility:hidden}}
+@keyframes sh-drift{from{transform:translate(-10px,6px) scale(.96)}to{transform:translate(12px,-8px) scale(1.04)}}
+@keyframes sh-sway{from{transform:translate(7px,7px) rotate(1deg)}to{transform:translate(9px,6px) rotate(2.1deg)}}
+}
+@media (prefers-reduced-motion:reduce){.sh-pause{display:none}}
