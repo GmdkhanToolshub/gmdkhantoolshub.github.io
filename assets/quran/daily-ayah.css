@@ -1,0 +1,36 @@
+/* Daily Quran Ayat: calm cream, deep green and soft gold. One gentle fade; none if the visitor asks for less motion. */
+@font-face{font-family:"GM Hafs";src:url("Hafs_20.woff2") format("woff2");font-display:block}
+.qa-page,.qa-home{--qa-paper:#fdf8ea;--qa-edge:#e4d3a3;--qa-ink:#1d2417;--qa-green:#14543d;--qa-gold:#9a7416;--qa-soft:#5c6350}
+[data-theme="dark"] .qa-page,[data-theme="dark"] .qa-home{--qa-paper:#17201b;--qa-edge:#4a4326;--qa-ink:#f1ead6;--qa-green:#8fd0b2;--qa-gold:#e0bd62;--qa-soft:#b9bfa9}
+.qa-page{padding:28px 0 64px}
+.qa-wrap{max-width:860px}
+.qa-head{text-align:center;margin:12px 0 26px}
+.qa-art{width:min(300px,70%);height:auto;display:block;margin:0 auto 8px}
+.qa-head h1{margin:0 0 8px;font-size:clamp(1.8rem,4vw,2.5rem)}
+.qa-lead{margin:0 auto;max-width:46ch;color:var(--text-soft)}
+.qa-card{position:relative;background:var(--qa-paper);color:var(--qa-ink);border:1px solid var(--qa-edge);border-radius:18px;padding:clamp(22px,5vw,52px) clamp(16px,5vw,52px);box-shadow:0 18px 44px -30px rgba(60,48,10,.45);text-align:center}
+.qa-card::before{content:"";position:absolute;inset:9px;border:1px solid var(--qa-edge);border-radius:12px;pointer-events:none}
+.qa-ref{display:flex;flex-direction:column;gap:2px;margin:0 0 20px;color:var(--qa-soft);font-size:.9rem}
+.qa-surah{font:600 1.35rem/2 "Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",serif;color:var(--qa-green)}
+.qa-arabic{font-family:"GM Hafs";font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:2.15;color:var(--qa-ink);word-spacing:.04em;text-align:center;font-weight:400}
+.qa-aya{display:inline}
+.qa-rule{width:min(240px,60%);height:5px;margin:22px auto;border-top:1px solid var(--qa-gold);border-bottom:1px solid var(--qa-gold)}
+.qa-urdu{font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting","Noto Naskh Arabic",serif;font-size:clamp(1.1rem,2.8vw,1.35rem);line-height:2.5}
+.qa-urdu p{margin:0 0 12px}
+.qa-no{font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif;color:var(--qa-gold);direction:ltr;unicode-bidi:isolate;margin-inline-end:6px}
+.qa-notes{margin-top:22px;border-top:1px solid var(--qa-edge);padding-top:12px;text-align:center}
+.qa-notes summary{cursor:pointer;color:var(--qa-green);font-weight:600}
+#qa-notes-body{text-align:right;font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",serif;line-height:2.5;font-size:1rem}
+.qa-note p{white-space:pre-line;margin:4px 0 16px}
+.qa-date{margin:20px 0 0;font-size:.85rem;color:var(--qa-soft)}
+.qa-status{margin:0;color:var(--qa-soft)}
+.qa-source{margin-top:22px;font-size:.9rem;color:var(--text-soft)}
+.qa-source p{margin:0 0 8px}
+.qa-home-card{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:28px;align-items:center;background:var(--qa-paper);color:var(--qa-ink);border:1px solid var(--qa-edge);border-radius:20px;padding:clamp(18px,3.5vw,34px)}
+.qa-home-card img{width:100%;height:auto}
+.qa-home-card h2{margin:0 0 6px;color:var(--qa-ink)}
+.qa-home-card p{margin:0 0 16px;color:var(--qa-soft);max-width:52ch}
+@media (max-width:640px){.qa-home-card{grid-template-columns:1fr;text-align:center;gap:14px}.qa-home-card img{max-width:220px;margin:0 auto}.qa-home-card p{margin-inline:auto}}
+@media (prefers-reduced-motion:no-preference){#qa-body:not([hidden]){animation:qa-in .7s ease both}@keyframes qa-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+/* nothing promotional floats over or beside the Quran text on this page */
+body:has(.qa-page) :is(.shop-fab,.gx-ann){display:none!important}

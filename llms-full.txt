@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 234 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 235 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -250,6 +250,9 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## creative-studio (1)
 - [Creative Studio: Image, Colour and Text Tools](https://gmtoolshub.com/creative-studio/): Free creative utilities in one place: QR and barcode makers, colour picker and contrast checker, image converter, resizer and compressor, and writing helpers.
+
+## daily-ayah (1)
+- [Daily Quran Ayat with Urdu Translation](https://gmtoolshub.com/daily-ayah/): One Quran ayah passage each day in Arabic with the Urdu translation of Muhammad Junagarhi from QuranEnc.com, on a page without advertisements.
 
 ## daily-rates-email (1)
 - [Daily Pakistan Gold, Silver & Dollar Rates by Email](https://gmtoolshub.com/daily-rates-email/): Free short email with the latest estimated gold (per tola), silver and USD to PKR rates and the change since yesterday. No spam, unsubscribe any time.
