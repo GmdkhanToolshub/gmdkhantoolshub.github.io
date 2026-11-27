@@ -2,6 +2,7 @@
    Shows one authentic hadith per day (Arabic, English, Urdu) scrolling slowly from right to left. No background, cards or borders.
    A small picture of the Kaaba (left) and one of the Green Dome (right) stand at the two ends; the text scrolls between them, never behind them.
    On opening, each picture comes down gently among small gold stars. The stars and light stay behind the pictures.
+   Up to 960px wide the whole Hadith is shown wrapped and still, so no part of it is cut off.
    Self-contained: its own styles, no external requests. It only adds this strip; no other element is changed.
    Texts are short, well-known narrations from the major collections; the collection is named after each one. */
 (function () {
@@ -89,6 +90,49 @@
     '@keyframes hd-pool{0%{opacity:0;transform:scaleX(.3)}45%{opacity:1;transform:scaleX(1.25)}100%{opacity:.7;transform:scaleX(1)}}' +
     '@keyframes hd-star-fall{0%{opacity:0;transform:translateY(-30px) rotate(-90deg) scale(.4)}35%{opacity:1}100%{opacity:.75;transform:translateY(0) rotate(0) scale(1)}}' +
     '@keyframes hd-twinkle{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}' +
+    /* heavenly light: rays from above, a stream of falling stars and rising gold dust. All of it is behind the pictures. */
+    '#gm-hadith-bar .hd-rays,#gm-hadith-bar .hd-fall,#gm-hadith-bar .hd-mote{position:absolute;z-index:-1;display:block;pointer-events:none}' +
+    '#gm-hadith-bar .hd-rays{left:-9px;right:-9px;top:-5px;bottom:0;background:repeating-conic-gradient(from 150deg at 50% 0,rgba(214,156,24,.42) 0 4deg,transparent 4deg 12deg);-webkit-mask-image:radial-gradient(72% 100% at 50% 0,#000 25%,transparent 78%);mask-image:radial-gradient(72% 100% at 50% 0,#000 25%,transparent 78%);transform-origin:50% 0;opacity:.7}' +
+    '#gm-hadith-bar .hd-fall{left:var(--x);top:var(--y);width:var(--s);height:var(--s);opacity:0}' +
+    '#gm-hadith-bar .hd-fall::before{content:"";position:absolute;left:50%;bottom:55%;width:1px;height:14px;margin-left:-.5px;background:linear-gradient(transparent,#d19a14)}' +
+    '#gm-hadith-bar .hd-fall::after{content:"";position:absolute;inset:0;background:#cf970f;-webkit-clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}' +
+    '#gm-hadith-bar .hd-mote{left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:#d39d17;box-shadow:0 0 5px 1px rgba(226,172,40,.6);opacity:0}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-rays{background:repeating-conic-gradient(from 150deg at 50% 0,rgba(255,224,145,.42) 0 4deg,transparent 4deg 12deg)}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-fall::before{background:linear-gradient(transparent,#ffe9a6)}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-fall::after{background:#fff0bd}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-mote{background:#ffe9a6;box-shadow:0 0 7px 2px rgba(255,214,110,.7)}' +
+    '@media (max-width:599px){#gm-hadith-bar .hd-rays{left:-5px;right:-5px}#gm-hadith-bar .hd-fall,#gm-hadith-bar .hd-mote{width:calc(var(--s) * .78);height:calc(var(--s) * .78)}#gm-hadith-bar .hd-fall::before{height:10px}}' +
+    '@media (prefers-reduced-motion:no-preference){' +
+    '#gm-hadith-bar .hd-rays{animation:hd-art-in-rays 2.5s ease var(--land) both,hd-rays 9s ease-in-out calc(var(--land) + 2.5s) infinite}' +
+    '#gm-hadith-bar .hd-fall{animation:hd-meteor var(--t) cubic-bezier(.35,.55,.45,1) calc(var(--land) + var(--d)) infinite}' +
+    '#gm-hadith-bar .hd-mote{animation:hd-dust var(--t) ease-in-out calc(var(--land) + var(--d)) infinite}' +
+    '#gm-hadith-bar.hd-off .hd-art,#gm-hadith-bar.hd-off .hd-art *,#gm-hadith-bar.hd-off .hd-art::before,#gm-hadith-bar.hd-off .hd-art::after,#gm-hadith-bar.hd-off .hd-art *::before,#gm-hadith-bar.hd-off .hd-art *::after{animation-play-state:paused!important}' +
+    '}' +
+    '@media (prefers-reduced-motion:reduce){#gm-hadith-bar .hd-fall,#gm-hadith-bar .hd-mote{display:none}}' +
+    /* a star comes down, touches its place, brightens for a moment and melts away */
+    '@keyframes hd-meteor{0%{opacity:0;transform:translateY(-34px) scale(.6)}12%{opacity:1}52%{opacity:1;transform:translateY(0) scale(1)}62%{opacity:1;transform:translateY(0) scale(1.45)}82%,100%{opacity:0;transform:translateY(1px) scale(.35)}}' +
+    '@keyframes hd-dust{0%{opacity:0;transform:translateY(7px) scale(.6)}30%{opacity:1}70%{opacity:.6}100%{opacity:0;transform:translateY(-15px) scale(1)}}' +
+    '@keyframes hd-rays{0%,100%{opacity:.5;transform:rotate(-5deg)}50%{opacity:1;transform:rotate(5deg)}}' +
+    '@keyframes hd-art-in-rays{from{opacity:0}to{opacity:.5;transform:rotate(-5deg)}}' +
+    /* phones and tablets: nothing scrolls past or gets cut off. Picture sizes stay as they are. */
+    '#gm-hadith-bar .hd-title{display:none}' +
+    '@media (max-width:960px){' +
+    '#gm-hadith-bar{grid-template-areas:"kaaba title dome" "text text text";row-gap:6px;padding-top:8px;padding-bottom:10px}' +
+    '#gm-hadith-bar .hd-art-kaaba{grid-area:kaaba}#gm-hadith-bar .hd-art-dome{grid-area:dome}' +
+    '#gm-hadith-bar .hd-title{grid-area:title;display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;text-align:center;font-size:.68rem;font-weight:800;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:#7a5a00}' +
+    '#gm-hadith-bar .hd-title::before,#gm-hadith-bar .hd-title::after{content:"\\2726";font-size:.6rem;color:#c9a227}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-title,[data-theme="dark"] #gm-hadith-bar .hd-title::before,[data-theme="dark"] #gm-hadith-bar .hd-title::after{color:#e5c76b}' +
+    '#gm-hadith-bar #gm-hadith{grid-area:text;overflow:visible;-webkit-mask-image:none;mask-image:none}' +
+    '#gm-hadith-bar #gm-hadith .hd-track{display:block;width:auto;animation:none;transform:none;will-change:auto}' +
+    '#gm-hadith-bar #gm-hadith .hd-grp{display:block}' +
+    '#gm-hadith-bar #gm-hadith .hd-grp+.hd-grp,#gm-hadith-bar #gm-hadith .hd-item+.hd-item,#gm-hadith-bar #gm-hadith .hd-tag,#gm-hadith-bar #gm-hadith .hd-dot{display:none}' +
+    '#gm-hadith-bar #gm-hadith .hd-item{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;max-width:640px;margin:0 auto;padding:0 4px;white-space:normal;text-align:center;overflow-wrap:break-word}' +
+    '#gm-hadith-bar #gm-hadith .hd-item>span{max-width:100%}' +
+    '#gm-hadith-bar #gm-hadith .hd-ar{font-size:1.3rem;line-height:2}' +
+    '#gm-hadith-bar #gm-hadith .hd-en{font-size:.88rem;line-height:1.6}' +
+    '#gm-hadith-bar #gm-hadith .hd-ur{font-size:1.06rem;line-height:2.1}' +
+    '#gm-hadith-bar #gm-hadith .hd-src{font-size:.72rem;line-height:1.6}' +
+    '}' +
     '@media print{#gm-hadith,#gm-hadith-bar{display:none}}';
   d.head.appendChild(css);
 
@@ -103,11 +147,21 @@
   /* star places around a picture: [left, top, size in px, twinkle seconds, delay seconds] */
   var STARS = [['-9px', '2px', 8, 3.6, .2], ['-5px', '62%', 5, 4.4, .7], ['18%', '-1px', 5, 5.1, 1.1], ['78%', '0px', 7, 4, .45], ['96%', '38%', 5, 4.8, .9], ['92%', '76%', 7, 3.9, 1.3]];
   var stars = STARS.map(function (s) { return '<i class="hd-star" aria-hidden="true" style="--x:' + s[0] + ';--y:' + s[1] + ';--s:' + s[2] + 'px;--t:' + s[3] + 's;--d:' + s[4] + 's"></i>'; }).join('');
-  function art(cls, file, w, alt, land) { return '<span class="hd-art ' + cls + '" style="--land:' + land + 's">' + stars + '<img src="./assets/img/hadith/' + file + '" width="' + w + '" height="156" alt="' + alt + '" decoding="async"></span>'; }
+  /* falling stars and gold dust: [left, top (where it lands), size in px, seconds per fall, start delay] */
+  function bits(cls, list) { return list.map(function (s) { return '<i class="' + cls + '" aria-hidden="true" style="--x:' + s[0] + ';--y:' + s[1] + ';--s:' + s[2] + 'px;--t:' + s[3] + 's;--d:' + s[4] + 's"></i>'; }).join(''); }
+  var light = '<i class="hd-rays" aria-hidden="true"></i>' +
+    bits('hd-fall', [['-8px', '20%', 7, 4.6, 0], ['9%', '-2px', 6, 5.4, 1.7], ['88%', '1px', 7, 4.9, .9], ['97%', '52%', 6, 5.8, 2.9], ['-5px', '68%', 5, 6.3, 3.8], ['46%', '-3px', 5, 5.1, 2.3]]) +
+    bits('hd-mote', [['-6px', '80%', 3, 4.2, .4], ['4%', '45%', 2, 5, 2.1], ['22%', '88%', 2, 3.8, 1.2], ['78%', '86%', 3, 4.6, 2.8], ['100%', '66%', 2, 5.3, .8], ['94%', '20%', 2, 4, 3.3], ['-3px', '8%', 2, 5.6, 1.9]]);
+  function art(cls, file, w, alt, land) { return '<span class="hd-art ' + cls + '" style="--land:' + land + 's">' + light + stars + '<img src="./assets/img/hadith/' + file + '" width="' + w + '" height="156" alt="' + alt + '" decoding="async"></span>'; }
   var bar = d.createElement('div'); bar.id = 'gm-hadith-bar';
   bar.innerHTML = art('hd-art-kaaba', 'kaaba.webp', 180, 'The Holy Kaaba, Makkah', .3) + art('hd-art-dome', 'green-dome.webp', 146, 'The Green Dome of Al-Masjid an-Nabawi, Madinah', .8);
   bar.insertBefore(el, bar.lastChild);
+  /* the heading shown between the pictures on small screens; the region is already named for screen readers */
+  var title = d.createElement('span'); title.className = 'hd-title'; title.setAttribute('aria-hidden', 'true'); title.textContent = 'Hadith of the Day';
+  bar.insertBefore(title, el);
   header.insertAdjacentElement('afterend', bar);
+  /* rest all of the picture effects while the bar is scrolled out of sight */
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { bar.classList.toggle('hd-off', !e[e.length - 1].isIntersecting); }).observe(bar);
 
   /* repeat the hadith until one group is wider than the screen, then duplicate the group for a seamless loop */
   var track = el.firstChild, grp = track.firstChild;
