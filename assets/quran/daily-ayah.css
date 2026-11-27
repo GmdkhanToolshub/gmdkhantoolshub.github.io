@@ -151,3 +151,6 @@ body:has(.qa-page) :is(.shop-fab,.gx-ann){display:none!important}
 }
 
 .qa-banner{cursor:pointer}
+/* while the passage loads the card fills the screen, so nothing visible jumps when the text arrives */
+.qa-card[aria-busy="true"]{min-height:100vh}
+.qa-page:has(.qa-card[aria-busy="true"]) :is(.qa-nav,.qa-source){display:none}

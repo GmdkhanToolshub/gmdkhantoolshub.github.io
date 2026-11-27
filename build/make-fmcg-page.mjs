@@ -1,0 +1,64 @@
+// Builds /portfolio/fmcg-sales-bi/ from build/fmcg-sample.json (made by make-fmcg-sample.py and checked in Excel).
+// Charts are plain SVG in the page, so they are readable without JavaScript. No advertising on this page.
+import fs from 'fs';
+import { ROOT, esc, buildPage, faqLd, faqHtml } from './page-shell.mjs';
+const D = JSON.parse(fs.readFileSync(ROOT + 'build/fmcg-sample.json', 'utf8'));
+const num = n => Math.round(n).toLocaleString('en-US');
+const mil = n => (n / 1e6).toFixed(2) + 'm';
+const pct = n => (n * 100).toFixed(1) + '%';
+const H = D.head, ach = H.secondary / H.target, s2p = H.secondary / H.primary, cov = H.billed / H.listed, drop = H.secondary / H.billed;
+const monthName = m => new Date(m + '-01T00:00:00Z').toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const latest = monthName(D.month);
+
+const kpi = (value, label, how) => `<div class="pf-kpi"><span>${label}</span><b>${value}</b><small>${how}</small></div>`;
+const kpis = [kpi(mil(H.secondary), 'Secondary sales', 'Sold by distributors to outlets'), kpi(pct(ach), 'Target achievement', 'Secondary ÷ target of ' + mil(H.target)), kpi(pct(s2p), 'Secondary to primary', 'Secondary ÷ ' + mil(H.primary) + ' sold to distributors'), kpi(pct(cov), 'Outlet coverage', num(H.billed) + ' billed of ' + num(H.listed) + ' listed'), kpi(num(drop), 'Sales per billed outlet', 'Secondary ÷ billed outlets')].join('');
+
+// trend: two bars a month
+const max = Math.max(...D.trend.flatMap(t => [t.target, t.secondary]));
+const bars = D.trend.map((t, i) => { const x = 46 + i * 92, th = t.target / max * 170, sh = t.secondary / max * 170; return `<rect x="${x}" y="${200 - th}" width="30" height="${th}" rx="3" fill="#9aa8c7"/><rect x="${x + 33}" y="${200 - sh}" width="30" height="${sh}" rx="3" fill="#4f63f6"/><text x="${x + 31}" y="218" text-anchor="middle">${monthName(t.month).slice(0, 3)}</text><text class="soft" x="${x + 48}" y="${194 - sh}" text-anchor="middle">${pct(t.secondary / t.target).replace(/\.\d%/, '%')}</text>`; }).join('');
+const trendSvg = `<svg viewBox="0 0 610 250" role="img" aria-label="Sample target and secondary sales by month. Achievement: ${D.trend.map(t => monthName(t.month) + ' ' + pct(t.secondary / t.target)).join(', ')}"><line x1="36" y1="200" x2="600" y2="200" stroke="#9aa8c7"/>${bars}<rect x="46" y="232" width="12" height="12" fill="#9aa8c7"/><text x="64" y="243">Target</text><rect x="140" y="232" width="12" height="12" fill="#4f63f6"/><text x="158" y="243">Secondary (percent shows achievement)</text></svg>`;
+
+// achievement by distributor, with a 95% reference line
+const ds = [...D.distributors].sort((a, b) => b.secondary / b.target - a.secondary / a.target);
+const W = v => Math.min(v, 1.15) / 1.15 * 300;
+const distSvg = `<svg viewBox="0 0 520 ${ds.length * 28 + 30}" role="img" aria-label="Sample achievement by distributor: ${ds.map(d => d.name.replace('Sample ', '') + ' ' + pct(d.secondary / d.target)).join(', ')}">${ds.map((d, i) => { const a = d.secondary / d.target, y = i * 28 + 6; return `<text x="0" y="${y + 14}">${esc(d.name.replace('Sample ', ''))}</text><rect x="118" y="${y}" width="${W(a).toFixed(1)}" height="19" rx="3" fill="${a < 0.95 ? '#d9534f' : '#10a98f'}"/><text x="${(124 + W(a)).toFixed(1)}" y="${y + 14}">${pct(a)}</text>`; }).join('')}<line x1="${118 + W(0.95)}" y1="0" x2="${118 + W(0.95)}" y2="${ds.length * 28 + 4}" stroke="currentColor" stroke-dasharray="4 4" opacity=".6"/><text class="soft" x="${118 + W(0.95)}" y="${ds.length * 28 + 22}" text-anchor="middle">95% reference</text></svg>`;
+
+const table = (head, rows) => '<div class="sv-wrap"><table><thead><tr>' + head.map(x => '<th scope="col">' + x + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(x => '<td>' + x + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+const flag = d => d < 10 ? '<span class="pf-low">Low: check supply</span>' : d > 25 ? '<span class="pf-low">High: check selling</span>' : '<span class="pf-ok">In range</span>';
+const distTable = table(['Distributor', 'Region', 'Achievement', 'Outlet coverage', 'Stock cover (days)', 'Flag'], D.distributors.map(d => [esc(d.name), d.region, pct(d.secondary / d.target), pct(d.coverage), d.cover.toFixed(1), flag(d.cover)]));
+const catTable = table(['Category', 'Target', 'Secondary', 'Achievement', 'Gap'], D.categories.map(c => [c.name, num(c.target), num(c.secondary), pct(c.secondary / c.target), num(c.secondary - c.target)]));
+
+// observations worked out from the figures, not typed by hand
+const weakest = ds[ds.length - 1], low = D.distributors.filter(d => d.cover < 10), high = D.distributors.filter(d => d.cover > 25);
+const gapAll = H.target - H.secondary, gapWeak = weakest.target - weakest.secondary;
+const weakCat = [...D.categories].sort((a, b) => a.secondary / a.target - b.secondary / b.target)[0];
+const notes = [
+  `${weakest.name} has the lowest achievement at ${pct(weakest.secondary / weakest.target)}, a gap of ${num(gapWeak)}${gapAll > 0 ? ' against a total gap of ' + num(gapAll) : ''}. First check: outlet coverage (${pct(weakest.coverage)} against ${pct(cov)} overall).`,
+  ...low.map(d => `${d.name} has about ${d.cover.toFixed(0)} days of stock. Confirm pending orders before outlets run out.`),
+  ...high.map(d => `${d.name} has about ${d.cover.toFixed(0)} days of stock. Review its selling plan before sending more.`),
+  `${weakCat.name} is the weakest category at ${pct(weakCat.secondary / weakCat.target)} of target. Check availability by distributor before changing the target.`
+];
+
+const faqs = [['Is this a real client dashboard?', 'No. Every figure is invented with a fixed random seed to demonstrate the method. The distributor names are placeholders.'], ['Can I check the formulas?', 'Yes. Download the workbook. The dashboard uses SUMIFS formulas on two data sheets, and a Checks sheet compares totals with the source rows.'], ['Can this be built on my data?', 'Usually, if your export has a stable layout. Send a sample with private details removed, and the scope and price are confirmed in writing first.'], ['Are the 10 and 25 day stock flags a standard?', 'No. They are example limits. Suitable stock cover depends on your products, delivery times and shelf life.']];
+const main = `<section class="page-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../">Portfolio</a></li><li aria-current="page">FMCG sample dashboard</li></ol></nav><span class="eyebrow">Sample work</span><h1>FMCG sales operations and <span class="gradient-text">business intelligence</span></h1><p class="lead">A working example of distributor reporting, KPI tracking, distribution analysis and Excel automation. Download the workbook and check every formula.</p><div class="btn-row" style="margin-top:20px"><a class="btn btn-primary" href="../../assets/downloads/gm-fmcg-sales-sample-dashboard.xlsx" download>Download the sample workbook (.xlsx)</a><a class="btn btn-ghost" href="../../solutions/#packages">Build one on your data</a></div></div></section>
+<section class="section" style="padding-bottom:0"><div class="container"><p class="pf-flag" role="note"><span><strong>Sample data only.</strong> All figures and distributor names are invented for demonstration. This is not client work, not a real company and not a record of any result.</span></p></div></section>
+<section class="section"><div class="container"><div class="section-head"><h2>Headline measures, ${latest}</h2><p>Each card states how it is worked out.</p></div><div class="pf-kpis">${kpis}</div></div></section>
+<section class="section alt"><div class="container"><div class="pf-panels"><div class="pf-panel" tabindex="0" role="group" aria-label="Monthly chart"><h3>Target and secondary by month</h3><p>Sample data, six months.</p>${trendSvg}</div><div class="pf-panel" tabindex="0" role="group" aria-label="Distributor chart"><h3>Achievement by distributor</h3><p>${latest}, sample data. Red marks results under the 95% reference.</p>${distSvg}</div></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><h2>Distribution analysis</h2><p>Coverage shows how many listed outlets were billed. Stock cover is closing stock ÷ (the month’s secondary ÷ ${D.workdays} working days).</p></div>${distTable}<h3 style="margin-top:28px">Category performance, ${latest}</h3>${catTable}</div></section>
+<section class="section alt"><div class="container prose sv-body"><h2>What a manager could check next</h2><ol>${notes.map(n => '<li>' + esc(n) + '</li>').join('')}</ol><p>These are questions the sample figures raise. Data like this shows where to look; it does not prove why something happened.</p></div></section>
+<section class="section"><div class="container prose sv-body"><h2>How the Excel automation works</h2><ul><li>New rows go into two data sheets, <b>Sales Data</b> and <b>Outlet Data</b>. The dashboard is not typed by hand.</li><li>Totals use <code>SUMIFS</code> by month, distributor and category. Changing the month cell recalculates the tables.</li><li>Ratios use <code>IFERROR</code>, so an empty period shows zero instead of an error.</li><li>The <b>Checks</b> sheet compares dashboard totals with the source rows and shows “Matched” or “CHECK”.</li><li>The workbook has no macros and no links to outside files.</li></ul><p>When the data sheets grow past their current rows, the formula ranges need extending or converting to Excel tables. A delivered project sets this up for your file.</p><h2>Questions</h2>${faqHtml(faqs)}<h2>Related</h2><ul><li><a href="../../solutions/business-dashboards/">Excel dashboard services</a></li><li><a href="../../solutions/sales-operations/">Sales operations consulting</a></li><li><a href="../../blog/secondary-vs-primary-sales-fmcg/">Primary and secondary sales explained</a></li><li><a href="../../blog/sales-performance-dashboard-measures/">Choosing sales dashboard measures</a></li></ul></div></section>
+<section class="section alt" id="quote" style="scroll-margin-top:80px"><div class="container" style="max-width:860px"><div class="section-head"><h2>Request a quote</h2><p>Want this for your own distributors or sales team?</p></div><div data-quote="FMCG sample dashboard" data-quote-service="Sales or distribution dashboard"></div></div></section><script src="../../assets/js/quote.js?v=00000000" defer></script>`;
+const url = 'https://gmtoolshub.com/portfolio/fmcg-sales-bi/';
+buildPage({ slug: 'portfolio/fmcg-sales-bi', depth: 2, ads: false, title: 'FMCG Sales Dashboard Example in Excel | GM Tools Hub', desc: 'Sample FMCG sales dashboard with invented data: secondary sales, target achievement, outlet coverage and stock cover, plus a downloadable Excel workbook.', ld: [faqLd(faqs)], extraHead: '<link rel="stylesheet" href="../../assets/css/services-growth.css?v=00000000">\n', main });
+const f = ROOT + 'portfolio/fmcg-sales-bi/index.html';
+let h = fs.readFileSync(f, 'utf8').replace(/<script type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"BreadcrumbList"[\s\S]*?<\/script>/, '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gmtoolshub.com/' }, { '@type': 'ListItem', position: 2, name: 'Portfolio', item: 'https://gmtoolshub.com/portfolio/' }, { '@type': 'ListItem', position: 3, name: 'FMCG sample dashboard' }] }) + '</script>');
+fs.writeFileSync(f, h, 'utf8');
+// link it from the portfolio page
+const pf = ROOT + 'portfolio/index.html'; let p = fs.readFileSync(pf, 'utf8').replace(/<!-- gm:fmcg:start -->[\s\S]*?<!-- gm:fmcg:end -->\n?/g, '');
+const card = `<!-- gm:fmcg:start --><section class="section" aria-labelledby="gm-fmcg-h"><div class="container"><div class="card" style="padding:26px;border-left:5px solid var(--accent)"><span class="eyebrow">Sample work you can open</span><h2 id="gm-fmcg-h" style="margin:6px 0">FMCG sales dashboard with a downloadable workbook</h2><p style="margin:0 0 14px;max-width:70ch">Distributor reporting, KPI tracking, distribution analysis and Excel automation, shown with invented sample data. It is a demonstration of method, not client work.</p><div class="btn-row"><a class="btn btn-primary" href="fmcg-sales-bi/">Open the sample dashboard</a><a class="btn btn-ghost" href="../solutions/#packages">See service packages</a></div></div></div></section><!-- gm:fmcg:end -->\n`;
+const at = p.indexOf('<section', p.indexOf('</section>', p.indexOf('class="page-hero"')));
+if (at < 0) throw new Error('place on portfolio page not found');
+p = p.slice(0, at) + card + p.slice(at);
+fs.writeFileSync(pf, p, 'utf8');
+console.log('portfolio sample page built | notes:', notes.length);
+for (const n of notes) console.log(' -', n);

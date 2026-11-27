@@ -93,19 +93,34 @@
       loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(C.gaMeasurementId));
     }
     if (C.gtmContainerId) { dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); loadScript('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(C.gtmContainerId)); }
+    pageViews(); /* sent here, once analytics exists; sent earlier they were silently dropped */
+  }
+  function pageViews() {
+    var m = location.pathname.match(/^\/shop\/([a-z0-9-]+)\/$/), t = doc.getElementById('tool-root');
+    if (m) track('product_view', { product: m[1] });
+    if (t) track('tool_view', { tool: t.getAttribute('data-tool-id') });
   }
   /* Conversion events: shop orders, affiliate clicks, tool views. They do nothing until analytics is allowed and configured. */
   function track(name, params) { if (!analyticsLoaded || consent === 'essential') return; try { if (window.gtag) gtag('event', name, params || {}); else if (window.dataLayer) dataLayer.push({ event: name, params: params || {} }); } catch (e) { /* ignore */ } }
   doc.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
-    if (a.hasAttribute('data-aff')) track('affiliate_click', { item: a.getAttribute('data-aff'), page: location.pathname });
+    var href = a.getAttribute('href') || '', msg = /wa\.me|^mailto:/.test(href), channel = /wa\.me/.test(a.href) ? 'whatsapp' : 'email';
+    var order = msg && /I%20would%20like%20to%20order|subject=Order/i.test(href);
+    if (a.hasAttribute('data-package')) track('package_enquiry_click', { package: a.getAttribute('data-package'), price: Number(a.getAttribute('data-price')) || 0, channel: msg ? channel : 'form', page: location.pathname });
+    else if (a.hasAttribute('data-preview')) track('product_preview_open', { product: a.getAttribute('data-preview'), page: location.pathname });
+    else if (a.hasAttribute('data-aff')) track('affiliate_click', { item: a.getAttribute('data-aff'), page: location.pathname });
     else if (a.hasAttribute('data-job')) track('job_apply_click', { source: a.getAttribute('data-job'), page: location.pathname });
-    else if (/\/shop\/$/.test(location.pathname) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('shop_order_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
+    /* an order button anywhere: the Shop, a product page or the home page. This is an intention to order, not a purchase. */
+    else if (order || (msg && /\/shop\/$/.test(location.pathname))) track('shop_order_click', { channel: channel, product: productFrom(href), page: location.pathname });
     else if (a.classList.contains('shop-fab') || /shop\/#/.test(a.getAttribute('href') || '')) track('shop_cta_click', { page: location.pathname });
     else if (/gumroad\.com/i.test(a.getAttribute('href') || '')) track('purchase_click', { product: (a.getAttribute('href') || '').replace(/^https?:\/\/[^/]+\//, '').split(/[?#]/)[0].slice(0, 60), page: location.pathname });
     else if (/\.(xlsx|xls|pdf|zip|docx|csv)(\?|#|$)/i.test(a.getAttribute('href') || '') || a.hasAttribute('download')) track('file_download', { file: (a.getAttribute('href') || '').split(/[?#]/)[0].split('/').pop().slice(0, 60), page: location.pathname });
-    else if (/^(solutions|services|advertise|media-kit|partners)$/.test(location.pathname.replace(/^\/|\/$/g, '')) && /wa\.me|^mailto:/.test(a.getAttribute('href') || '')) track('enquiry_click', { channel: /wa\.me/.test(a.href) ? 'whatsapp' : 'email', page: location.pathname });
+    else if (/^(solutions(\/[a-z-]+)?|portfolio(\/[a-z-]+)?|services|pricing|contact|advertise|media-kit|partners)$/.test(location.pathname.replace(/^\/|\/$/g, '')) && msg) track('enquiry_click', { channel: channel, page: location.pathname });
   });
+  /* the product named in an order message, from the page's own link text; never anything the visitor typed */
+  function productFrom(href) { try { var m = decodeURIComponent(href).match(/(?:like to order:\s*|subject=Order:\s*)([^(&\n]+)/); return m ? m[1].trim().slice(0, 60) : ''; } catch (e) { return ''; } }
+  /* the first time a visitor actually works with a tool: counted once, with no values */
+  (function () { var t = doc.getElementById('tool-root'); if (!t) return; var done = false; function used(e) { if (done || !e.isTrusted || !e.target.closest('input,select,textarea,button,[role=button],canvas')) return; done = true; track('tool_use', { tool: t.getAttribute('data-tool-id') }); } ['input', 'change', 'click'].forEach(function (n) { t.addEventListener(n, used, true); }); })();
   window.GM_track = track; /* lets tools and forms report events (downloads, sign-ups, quote requests) */
   /* Order links carry a {REF} placeholder. Fill in a short order reference when one is clicked, on every page that has order links. */
   doc.addEventListener('click', function (e) {
@@ -113,7 +128,6 @@
     var d = new Date(), r = 'GM-' + String(d.getFullYear()).slice(2) + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
     a.href = a.href.split('%7BREF%7D').join(r);
   }, true);
-  (function () { var t = $('#tool-root'); if (t && consent !== 'essential') setTimeout(function () { track('tool_view', { tool: t.getAttribute('data-tool-id') }); }, 1200); })();
   function slotId(key) { return (C.adSlots && C.adSlots[key]) || ''; }
   /* The AdSense loader itself is in <head> (see build.py). Ads are personalised unless the visitor opts out (or Google's EEA message says otherwise). */
   function initAds() {

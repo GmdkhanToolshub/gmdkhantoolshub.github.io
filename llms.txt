@@ -22,6 +22,8 @@
 - [Report library](https://gmtoolshub.com/report-library/): sales, management, HR, inventory and money reports, with free example workbooks, report tools, guides and paid templates
 - [BI Studio](https://gmtoolshub.com/bi-studio/): six steps from raw data to a checked report, with practice workbooks and a self-check
 - [Daily Quran Ayat](https://gmtoolshub.com/daily-ayah/): one passage a day in Arabic, with Arabic recitation by Mishary Rashid Alafasy and the Urdu translation of Muhammad Junagarhi from QuranEnc.com, on a page without advertisements
+- [Excel service packages](https://gmtoolshub.com/solutions/#packages): fixed scope at $49, $99 and $199, with service pages for Excel automation, dashboards, data analysis, reporting and sales operations
+- [FMCG sample dashboard](https://gmtoolshub.com/portfolio/fmcg-sales-bi/): invented sample data with a downloadable Excel workbook; not client work
 - [About the author](https://gmtoolshub.com/about/)
 
 ## Notes

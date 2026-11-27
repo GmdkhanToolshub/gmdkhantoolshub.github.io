@@ -1,7 +1,7 @@
 # GM Tools Hub: full page map
 > GM Tools Hub (https://gmtoolshub.com/) is an online platform providing accessible, practical and free digital tools and utilities to help users complete everyday online tasks efficiently. Operated by Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi), Lahore, Pakistan. Tools run in the browser. Rates, tax slabs and prices are estimates for general information, not professional advice.
 
-See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 235 indexable pages, generated from the site files.
+See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 240 indexable pages, generated from the site files.
 
 ## home (1)
 - [GM Tools Hub: Free Online Tools & Business Solutions](https://gmtoolshub.com/): Free online utilities, premium Excel business templates, embeddable calculators and business solutions from GM Tools Hub. Free tools need no account.
@@ -167,6 +167,17 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [SAR to PKR Today: Saudi Riyal Rate in Pakistan](https://gmtoolshub.com/rates/sar-to-pkr/): Today's SAR to PKR rate: 1 SAR = 73.65 Pakistani rupees on 27 Nov 2026. Quick conversion table, PKR to SAR, rate history and a free converter.
 - [USD to PKR Today: Dollar Rate in Pakistan](https://gmtoolshub.com/rates/usd-to-pkr/): Today's USD to PKR rate: 1 USD = 276.18 Pakistani rupees on 27 Nov 2026. Quick conversion table, PKR to USD, rate history and a free converter.
 
+## solutions (9)
+- [Business Excel Dashboards and Reporting](https://gmtoolshub.com/solutions/): Excel dashboards, KPI scorecards, sales reporting and HR attendance systems for growing companies, delivered remotely with fixed-price quotes in US dollars.
+- [Excel Dashboard Design Services](https://gmtoolshub.com/solutions/business-dashboards/): Excel dashboard design for sales, distribution, stock and team measures. Clear definitions, one-page layout, fixed packages from $99 and written quotes.
+- [Business Data Analysis Services in Excel](https://gmtoolshub.com/solutions/data-analysis/): Excel data analysis for sales, margin, stock and team data: why a number changed, which items drive it, what the data cannot show, in a short written note.
+- [Excel Automation Services for Reports](https://gmtoolshub.com/solutions/excel-automation/): Excel automation and clean-up by quote or fixed package: repeatable monthly steps, Power Query or formulas, checked totals and written instructions.
+- [Gulf Business Excel Dashboards and HR Tracking](https://gmtoolshub.com/solutions/gulf/): Remote Excel dashboards, sales reporting, inventory and HR attendance systems for companies in the UAE, Saudi Arabia, Qatar and the Gulf.
+- [Excel Dashboards for US, Canada and Australia](https://gmtoolshub.com/solutions/north-america-australia/): Remote Excel dashboards, KPI scorecards, inventory and HR trackers for small businesses in the United States, Canada and Australia.
+- [Management Reporting Pack Services](https://gmtoolshub.com/solutions/reporting/): Monthly and weekly management reporting packs in Excel: agreed definitions, a one-page summary, checks against source totals and written close steps.
+- [FMCG Sales Operations Consulting](https://gmtoolshub.com/solutions/sales-operations/): Remote sales operations consulting for FMCG and distributors: secondary sales data flow, targets, distributor reporting, review routines and scorecards.
+- [Excel KPI Reporting for UK and EU Businesses](https://gmtoolshub.com/solutions/uk-europe/): Remote Excel dashboards, KPI scorecards, HR attendance trackers and management reporting for small and medium businesses in the UK and Europe.
+
 ## academy (7)
 - [Coding and Learning Academy: Free Lessons](https://gmtoolshub.com/academy/): Free beginner lessons in HTML, CSS, JavaScript, prompt writing and publishing a website, each with a live example you can edit.
 - [CSS basics: colours, spacing and layout](https://gmtoolshub.com/academy/css-basics/): Style a page with colours, fonts, spacing, rounded corners and hover effects.
@@ -176,11 +187,10 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [JavaScript and the page: build a to-do list](https://gmtoolshub.com/academy/javascript-dom/): Create elements, handle clicks and toggle classes to build a working to-do list.
 - [Prompt writing: get better answers from AI assistants | GM Tools](https://gmtoolshub.com/academy/prompt-writing-for-work/): A simple, reliable structure for writing prompts: role, task, context, format and checks.
 
-## gm-embed (7)
+## gm-embed (6)
 - [GM Embed: Add Calculators and Tools to Your Website](https://gmtoolshub.com/gm-embed/): Embed professional online calculators and productivity tools into your website with GM Embed. Easy integration, responsive widgets and planned commercial licensing.
 - [GM Embed Documentation: Install, Customise, Secure](https://gmtoolshub.com/gm-embed/docs/): How to choose a widget, generate and install embed code, customise it, plus WordPress, Blogger, React, troubleshooting, security, privacy and licensing notes.
 - [GM Embed Generator: Customise and Copy Embed Code](https://gmtoolshub.com/gm-embed/generator/): Choose a widget, set theme, colours, radius and size, preview it live and copy the iframe or script embed code for your website.
-- [My Embeds: GM Embed Dashboard (Prototype)](https://gmtoolshub.com/gm-embed/my-embeds/): Manage the embeds you saved in this browser. A frontend prototype: no accounts yet, no view counts, no fabricated statistics.
 - [GM Embed Pricing and Plans (Free, Pro, Agency)](https://gmtoolshub.com/gm-embed/pricing/): GM Embed plans: Free is available now. Pro and Agency are planned and not for sale yet. See what each plan includes and join the waiting list.
 - [GM Embed Support, Enquiries and Waiting List](https://gmtoolshub.com/gm-embed/support/): Get help installing a GM Embed widget, ask about commercial licensing or agency use, or join the Pro and Agency waiting list.
 - [GM Embed Widgets: Embeddable Calculators](https://gmtoolshub.com/gm-embed/widgets/): Browse tested embeddable calculators: salary tax, zakat, loan EMI, gold rates, land area, percentage, BMI and more. Search, preview and get the embed code.
@@ -200,12 +210,6 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 - [22 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/22-karat/): Estimated 22 karat gold rate in Pakistan: Rs 3,47,121 per tola, Rs 2,97,605 per 10 g (27 Nov 2026). Price by weight, history and calculator.
 - [24 Karat Gold Rate in Pakistan Today per Tola](https://gmtoolshub.com/gold-rate/24-karat/): Estimated 24 karat gold rate in Pakistan: Rs 3,78,677 per tola, Rs 3,24,660 per 10 g (27 Nov 2026). Price by weight, history and calculator.
 
-## solutions (4)
-- [Business Excel Dashboards and Reporting](https://gmtoolshub.com/solutions/): Excel dashboards, KPI scorecards, sales reporting and HR attendance systems for growing companies, delivered remotely with fixed-price quotes in US dollars.
-- [Gulf Business Excel Dashboards and HR Tracking](https://gmtoolshub.com/solutions/gulf/): Remote Excel dashboards, sales reporting, inventory and HR attendance systems for companies in the UAE, Saudi Arabia, Qatar and the Gulf.
-- [Excel Dashboards for US, Canada and Australia](https://gmtoolshub.com/solutions/north-america-australia/): Remote Excel dashboards, KPI scorecards, inventory and HR trackers for small businesses in the United States, Canada and Australia.
-- [Excel KPI Reporting for UK and EU Businesses](https://gmtoolshub.com/solutions/uk-europe/): Remote Excel dashboards, KPI scorecards, HR attendance trackers and management reporting for small and medium businesses in the UK and Europe.
-
 ## about (2)
 - [About Us – Our Mission and Tools](https://gmtoolshub.com/about/): GM builds free, privacy-friendly online tools and GM HCM software for growing companies. Learn about our mission, vision and commitment to users.
 - [Gmd Khan Niazi – Professional Biography](https://gmtoolshub.com/about/founder/): Biography, career timeline and working approach of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): Project Manager and Sales Operations professional in FMCG and.
@@ -217,6 +221,10 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 ## hcm (2)
 - [GM HCM – HR Software for Growing Companies](https://gmtoolshub.com/hcm/): GM HCM is HR software for employee records, attendance, leave, payroll, recruitment and performance. Try the free demo and request early access.
 - [GM HCM Pricing](https://gmtoolshub.com/hcm/pricing/): GM HCM plans: Free Demo (Rs. 0), Starter (Rs. 1,499/month), Business (Rs. 3,999/month) and Enterprise (custom). Monthly or annual billing.
+
+## portfolio (2)
+- [Portfolio – Sales Operations & Project Work](https://gmtoolshub.com/portfolio/): Portfolio of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): project delivery, sales operations frameworks.
+- [FMCG Sales Dashboard Example in Excel](https://gmtoolshub.com/portfolio/fmcg-sales-bi/): Sample FMCG sales dashboard with invented data: secondary sales, target achievement, outlet coverage and stock cover, plus a downloadable Excel workbook.
 
 ## advertise (1)
 - [Advertise With Us](https://gmtoolshub.com/advertise/): Work with GM Tools Hub: sponsored articles, tool sponsorships and partnerships, with clear Sponsored labels and honest editorial rules.
@@ -295,9 +303,6 @@ See also the short summary at https://gmtoolshub.com/llms.txt . This file lists 
 
 ## people-success-hub (1)
 - [People & Success Hub – Share Achievements](https://gmtoolshub.com/people-success-hub/): A moderated community for achievements, career experiences, professional journeys, inspiration and positive reviews.
-
-## portfolio (1)
-- [Portfolio – Sales Operations & Project Work](https://gmtoolshub.com/portfolio/): Portfolio of Gmd Khan Niazi (Ghulam Mohiuddin Khan Niazi): project delivery, sales operations frameworks.
 
 ## pricing (1)
 - [Pricing: Free Tools, Pro, Agency and Custom](https://gmtoolshub.com/pricing/): GM Tools Hub pricing: free online tools, planned Pro and Agency embed plans, custom business solutions and one-time digital product prices in USD and PKR.

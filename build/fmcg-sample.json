@@ -1,0 +1,140 @@
+{
+ "month": "2026-06",
+ "workdays": 26,
+ "head": {
+  "target": 10557000,
+  "secondary": 10068300,
+  "primary": 10392400,
+  "billed": 1558,
+  "listed": 2048
+ },
+ "distributors": [
+  {
+   "name": "Sample Distributor A",
+   "region": "North",
+   "target": 1015000,
+   "secondary": 1039400,
+   "coverage": 0.8291457286432161,
+   "stock": 530300,
+   "cover": 13.265152972868963
+  },
+  {
+   "name": "Sample Distributor B",
+   "region": "North",
+   "target": 1385000,
+   "secondary": 1395000,
+   "coverage": 0.8022388059701493,
+   "stock": 375600,
+   "cover": 7.000430107526881
+  },
+  {
+   "name": "Sample Distributor C",
+   "region": "Central",
+   "target": 1393000,
+   "secondary": 1361100,
+   "coverage": 0.7555555555555555,
+   "stock": 887200,
+   "cover": 16.947468958930276
+  },
+  {
+   "name": "Sample Distributor D",
+   "region": "Central",
+   "target": 1730000,
+   "secondary": 1453700,
+   "coverage": 0.7057057057057057,
+   "stock": 896300,
+   "cover": 16.030680332943522
+  },
+  {
+   "name": "Sample Distributor E",
+   "region": "Central",
+   "target": 1000000,
+   "secondary": 938000,
+   "coverage": 0.7704081632653061,
+   "stock": 488600,
+   "cover": 13.543283582089552
+  },
+  {
+   "name": "Sample Distributor F",
+   "region": "South",
+   "target": 1116000,
+   "secondary": 1162300,
+   "coverage": 0.7752293577981652,
+   "stock": 816700,
+   "cover": 18.269121569302246
+  },
+  {
+   "name": "Sample Distributor G",
+   "region": "South",
+   "target": 1480000,
+   "secondary": 1299500,
+   "coverage": 0.7342657342657343,
+   "stock": 1549400,
+   "cover": 30.999923047325893
+  },
+  {
+   "name": "Sample Distributor H",
+   "region": "South",
+   "target": 1438000,
+   "secondary": 1419300,
+   "coverage": 0.7517985611510791,
+   "stock": 769600,
+   "cover": 14.09821743112802
+  }
+ ],
+ "categories": [
+  {
+   "name": "Beverages",
+   "target": 3758000,
+   "secondary": 3555900
+  },
+  {
+   "name": "Snacks",
+   "target": 2774000,
+   "secondary": 2655200
+  },
+  {
+   "name": "Dairy",
+   "target": 2326000,
+   "secondary": 2220200
+  },
+  {
+   "name": "Home care",
+   "target": 1699000,
+   "secondary": 1637000
+  }
+ ],
+ "trend": [
+  {
+   "month": "2026-01",
+   "target": 9687000,
+   "secondary": 9271600
+  },
+  {
+   "month": "2026-02",
+   "target": 9860000,
+   "secondary": 9270800
+  },
+  {
+   "month": "2026-03",
+   "target": 10036000,
+   "secondary": 9501200
+  },
+  {
+   "month": "2026-04",
+   "target": 10207000,
+   "secondary": 9833000
+  },
+  {
+   "month": "2026-05",
+   "target": 10382000,
+   "secondary": 9892000
+  },
+  {
+   "month": "2026-06",
+   "target": 10557000,
+   "secondary": 10068300
+  }
+ ],
+ "rows": 192
+}
