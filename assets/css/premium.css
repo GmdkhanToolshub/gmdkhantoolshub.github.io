@@ -544,3 +544,13 @@ main:has(.pp2)>.page-hero::before{animation:pp-aura 14s ease-in-out infinite alt
 @keyframes pp-aura{from{transform:translate(-14px,6px) scale(.97)}to{transform:translate(16px,-8px) scale(1.04)}}
 @keyframes pp-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 }
+
+/* phones: the floating Shop button becomes a small round icon so it covers much less text. Its spoken name is unchanged. */
+@media (max-width: 600px) {
+  .shop-fab { width: 52px; height: 52px; right: 12px; }
+  .shop-fab .sf-inner { animation: none !important; transform: none !important; }
+  .shop-fab .sf-back { display: none; }
+  .shop-fab .sf-front { gap: 0; }
+  .shop-fab .sf-front b { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .shop-fab .sf-front svg { width: 23px; height: 23px; }
+}
