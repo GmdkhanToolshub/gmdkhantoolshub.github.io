@@ -1,5 +1,6 @@
 /* Hadith of the Day: a minimal, transparent news ticker directly below the top navigation bar on the home page.
    Shows one authentic hadith per day (Arabic, English, Urdu) scrolling slowly from right to left. No background, cards or borders.
+   A small picture of the Green Dome and one of the Kaaba stand still at the two ends; the text scrolls between them, never behind them.
    Self-contained: its own styles, no external requests. It only adds this strip; no other element is changed.
    Texts are short, well-known narrations from the major collections; the collection is named after each one. */
 (function () {
@@ -62,7 +63,18 @@
     '@keyframes hd-scroll{to{transform:translateX(-50%)}}' +
     '@media (max-width:599px){#gm-hadith .hd-item{font-size:.72rem;gap:12px;padding-left:22px}#gm-hadith .hd-ar{font-size:1rem}#gm-hadith .hd-ur{font-size:.9rem}}' +
     '@media (prefers-reduced-motion:reduce){#gm-hadith{-webkit-mask-image:none;mask-image:none}#gm-hadith .hd-track{animation:none;width:auto;justify-content:center;flex-wrap:wrap}#gm-hadith .hd-grp+.hd-grp{display:none}#gm-hadith .hd-item{white-space:normal;flex-wrap:wrap;justify-content:center;padding:6px 16px;text-align:center}}' +
-    '@media print{#gm-hadith{display:none}}';
+    '#gm-hadith-bar{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:10px;padding:3px max(14px,env(safe-area-inset-left,0px))}' +
+    '#gm-hadith-bar .hd-art{position:relative;isolation:isolate;display:block;line-height:0}' +
+    '#gm-hadith-bar .hd-art::before{content:"";position:absolute;z-index:-1;inset:-3px -9px;border-radius:50%;background:radial-gradient(closest-side,rgba(226,184,74,.5),rgba(226,184,74,.16) 60%,transparent);opacity:.7;pointer-events:none}' +
+    '#gm-hadith-bar .hd-art-dome::before{background:radial-gradient(closest-side,rgba(40,170,110,.42),rgba(226,184,74,.18) 62%,transparent)}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-art::before{background:radial-gradient(closest-side,rgba(255,220,130,.55),rgba(255,214,120,.18) 60%,transparent)}' +
+    '#gm-hadith-bar .hd-art img{display:block;height:48px;width:auto;max-width:none}' +
+    '@media (max-width:599px){#gm-hadith-bar{column-gap:6px;padding-left:8px;padding-right:8px}#gm-hadith-bar .hd-art img{height:34px}#gm-hadith-bar .hd-art::before{inset:-2px -5px}}' +
+    '@media (prefers-reduced-motion:no-preference){#gm-hadith-bar .hd-art{animation:hd-art-in 1.4s ease both}#gm-hadith-bar .hd-art img{animation:hd-art-float 6s ease-in-out infinite}#gm-hadith-bar .hd-art::before{animation:hd-art-glow 5s ease-in-out infinite}#gm-hadith-bar .hd-art-kaaba img,#gm-hadith-bar .hd-art-kaaba::before{animation-delay:-2.5s}}' +
+    '@keyframes hd-art-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}' +
+    '@keyframes hd-art-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-2px)}}' +
+    '@keyframes hd-art-glow{0%,100%{opacity:.45}50%{opacity:1}}' +
+    '@media print{#gm-hadith,#gm-hadith-bar{display:none}}';
   d.head.appendChild(css);
 
   var item = '<span class="hd-item"><span class="hd-tag">Hadith of the Day</span><span class="hd-dot" aria-hidden="true">&#10022;</span>' +
@@ -72,7 +84,12 @@
     '<span class="hd-src">' + esc(h[2]) + '</span></span>';
   var el = d.createElement('div'); el.id = 'gm-hadith'; el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Hadith of the Day');
   el.innerHTML = '<div class="hd-track"><div class="hd-grp">' + item + '</div></div>';
-  header.insertAdjacentElement('afterend', el);
+  /* the two pictures sit outside the scrolling strip, so its text and edge fade work exactly as before */
+  function art(cls, file, w, alt) { return '<span class="hd-art ' + cls + '"><img src="./assets/img/hadith/' + file + '" width="' + w + '" height="156" alt="' + alt + '" decoding="async"></span>'; }
+  var bar = d.createElement('div'); bar.id = 'gm-hadith-bar';
+  bar.innerHTML = art('hd-art-dome', 'green-dome.webp', 146, 'The Green Dome of Al-Masjid an-Nabawi, Madinah') + art('hd-art-kaaba', 'kaaba.webp', 180, 'The Holy Kaaba, Makkah');
+  bar.insertBefore(el, bar.lastChild);
+  header.insertAdjacentElement('afterend', bar);
 
   /* repeat the hadith until one group is wider than the screen, then duplicate the group for a seamless loop */
   var track = el.firstChild, grp = track.firstChild;
