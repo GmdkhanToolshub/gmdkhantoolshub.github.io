@@ -1,6 +1,7 @@
 /* Hadith of the Day: a minimal, transparent news ticker directly below the top navigation bar on the home page.
    Shows one authentic hadith per day (Arabic, English, Urdu) scrolling slowly from right to left. No background, cards or borders.
-   A small picture of the Green Dome and one of the Kaaba stand still at the two ends; the text scrolls between them, never behind them.
+   A small picture of the Kaaba (left) and one of the Green Dome (right) stand at the two ends; the text scrolls between them, never behind them.
+   On opening, each picture comes down gently among small gold stars. The stars and light stay behind the pictures.
    Self-contained: its own styles, no external requests. It only adds this strip; no other element is changed.
    Texts are short, well-known narrations from the major collections; the collection is named after each one. */
 (function () {
@@ -70,10 +71,24 @@
     '[data-theme="dark"] #gm-hadith-bar .hd-art::before{background:radial-gradient(closest-side,rgba(255,220,130,.55),rgba(255,214,120,.18) 60%,transparent)}' +
     '#gm-hadith-bar .hd-art img{display:block;height:48px;width:auto;max-width:none}' +
     '@media (max-width:599px){#gm-hadith-bar{column-gap:6px;padding-left:8px;padding-right:8px}#gm-hadith-bar .hd-art img{height:34px}#gm-hadith-bar .hd-art::before{inset:-2px -5px}}' +
-    '@media (prefers-reduced-motion:no-preference){#gm-hadith-bar .hd-art{animation:hd-art-in 1.4s ease both}#gm-hadith-bar .hd-art img{animation:hd-art-float 6s ease-in-out infinite}#gm-hadith-bar .hd-art::before{animation:hd-art-glow 5s ease-in-out infinite}#gm-hadith-bar .hd-art-kaaba img,#gm-hadith-bar .hd-art-kaaba::before{animation-delay:-2.5s}}' +
-    '@keyframes hd-art-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}' +
-    '@keyframes hd-art-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-2px)}}' +
+    /* four-point gold stars around each picture, and the pool of light it comes to rest on */
+    '#gm-hadith-bar .hd-star{position:absolute;z-index:-1;width:var(--s);height:var(--s);left:var(--x);top:var(--y);background:#d9a620;opacity:.75;pointer-events:none;-webkit-clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}' +
+    '[data-theme="dark"] #gm-hadith-bar .hd-star{background:#ffe08a;opacity:.9}' +
+    '#gm-hadith-bar .hd-art::after{content:"";position:absolute;z-index:-1;left:-6px;right:-6px;bottom:-3px;height:10px;border-radius:50%;background:radial-gradient(closest-side,rgba(232,186,64,.85),rgba(232,186,64,.25) 60%,transparent);opacity:.7;pointer-events:none}' +
+    '@media (max-width:599px){#gm-hadith-bar .hd-star{width:calc(var(--s) * .75);height:calc(var(--s) * .75)}}' +
+    '@media (prefers-reduced-motion:no-preference){' +
+    '#gm-hadith-bar .hd-art img{animation:hd-land 3s cubic-bezier(.2,.72,.22,1) var(--land) both,hd-art-float 6s ease-in-out calc(var(--land) + 3s) infinite}' +
+    '#gm-hadith-bar .hd-art::before{animation:hd-art-in 2.4s ease var(--land) both,hd-art-glow 5s ease-in-out calc(var(--land) + 3s) infinite}' +
+    '#gm-hadith-bar .hd-art::after{animation:hd-pool 1.8s ease-out calc(var(--land) + 2s) both}' +
+    '#gm-hadith-bar .hd-star{animation:hd-star-fall 2.4s cubic-bezier(.25,.7,.3,1) calc(var(--land) + var(--d)) both,hd-twinkle var(--t) ease-in-out calc(var(--land) + var(--d) + 2.4s) infinite}' +
+    '}' +
+    '@keyframes hd-land{0%{opacity:0;transform:translateY(-34px)}25%{opacity:1}84%{transform:translateY(2px)}100%{opacity:1;transform:translateY(0)}}' +
+    '@keyframes hd-art-in{from{opacity:0}to{opacity:.45}}' +
+    '@keyframes hd-art-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}' +
     '@keyframes hd-art-glow{0%,100%{opacity:.45}50%{opacity:1}}' +
+    '@keyframes hd-pool{0%{opacity:0;transform:scaleX(.3)}45%{opacity:1;transform:scaleX(1.25)}100%{opacity:.7;transform:scaleX(1)}}' +
+    '@keyframes hd-star-fall{0%{opacity:0;transform:translateY(-30px) rotate(-90deg) scale(.4)}35%{opacity:1}100%{opacity:.75;transform:translateY(0) rotate(0) scale(1)}}' +
+    '@keyframes hd-twinkle{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}' +
     '@media print{#gm-hadith,#gm-hadith-bar{display:none}}';
   d.head.appendChild(css);
 
@@ -85,9 +100,12 @@
   var el = d.createElement('div'); el.id = 'gm-hadith'; el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Hadith of the Day');
   el.innerHTML = '<div class="hd-track"><div class="hd-grp">' + item + '</div></div>';
   /* the two pictures sit outside the scrolling strip, so its text and edge fade work exactly as before */
-  function art(cls, file, w, alt) { return '<span class="hd-art ' + cls + '"><img src="./assets/img/hadith/' + file + '" width="' + w + '" height="156" alt="' + alt + '" decoding="async"></span>'; }
+  /* star places around a picture: [left, top, size in px, twinkle seconds, delay seconds] */
+  var STARS = [['-9px', '2px', 8, 3.6, .2], ['-5px', '62%', 5, 4.4, .7], ['18%', '-1px', 5, 5.1, 1.1], ['78%', '0px', 7, 4, .45], ['96%', '38%', 5, 4.8, .9], ['92%', '76%', 7, 3.9, 1.3]];
+  var stars = STARS.map(function (s) { return '<i class="hd-star" aria-hidden="true" style="--x:' + s[0] + ';--y:' + s[1] + ';--s:' + s[2] + 'px;--t:' + s[3] + 's;--d:' + s[4] + 's"></i>'; }).join('');
+  function art(cls, file, w, alt, land) { return '<span class="hd-art ' + cls + '" style="--land:' + land + 's">' + stars + '<img src="./assets/img/hadith/' + file + '" width="' + w + '" height="156" alt="' + alt + '" decoding="async"></span>'; }
   var bar = d.createElement('div'); bar.id = 'gm-hadith-bar';
-  bar.innerHTML = art('hd-art-dome', 'green-dome.webp', 146, 'The Green Dome of Al-Masjid an-Nabawi, Madinah') + art('hd-art-kaaba', 'kaaba.webp', 180, 'The Holy Kaaba, Makkah');
+  bar.innerHTML = art('hd-art-kaaba', 'kaaba.webp', 180, 'The Holy Kaaba, Makkah', .3) + art('hd-art-dome', 'green-dome.webp', 146, 'The Green Dome of Al-Masjid an-Nabawi, Madinah', .8);
   bar.insertBefore(el, bar.lastChild);
   header.insertAdjacentElement('afterend', bar);
 
