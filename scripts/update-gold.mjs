@@ -46,6 +46,8 @@ const dTxt = (now, before) => before === null ? 'First day recorded' : (now - be
 function patch(html, name, inner) {
   const re = new RegExp('<!--' + name + ':start-->[\\s\\S]*?<!--' + name + ':end-->');
   if (!re.test(html)) throw new Error('marker missing: ' + name);
+  /* keep each section heading's id, which the links at the top of the page point to */
+  inner = String(inner).replace(/<h2>([^<]+)<\/h2>/g, (m, t) => '<h2 id="s-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '">' + t + '</h2>');
   return html.replace(re, () => '<!--' + name + ':start-->' + inner + '<!--' + name + ':end-->');
 }
 function setMeta(html, text) {

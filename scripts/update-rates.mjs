@@ -77,6 +77,8 @@ function pairBlocks(c) {
 function patch(html, a, b, inner) {
   const re = new RegExp('<!--' + a + ':start-->[\\s\\S]*?<!--' + a + ':end-->');
   if (!re.test(html)) throw new Error('marker missing: ' + a);
+  /* keep each section heading's id, which the links at the top of the page point to */
+  inner = String(inner).replace(/<h2>([^<]+)<\/h2>/g, (m, t) => '<h2 id="s-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '">' + t + '</h2>');
   return html.replace(re, () => '<!--' + a + ':start-->' + inner + '<!--' + a + ':end-->');
 }
 function setMeta(html, text) {

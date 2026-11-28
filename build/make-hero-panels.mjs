@@ -5,7 +5,7 @@ import fs from 'fs'; import { execSync } from 'child_process';
 import { art } from './hero-art.mjs';
 const R = 'D:/GM_Claude/';
 const files = [...new Set((execSync('git ls-files "*.html"', { cwd: R, encoding: 'utf8', maxBuffer: 1 << 24 }) + execSync('git ls-files --others --exclude-standard "*.html"', { cwd: R, encoding: 'utf8' })).split('\n').filter(f => f && !/^(backend|embed\/|products\/(ayah|excel|phase|master|social))/.test(f)))];
-const SKIP = /^(checkout|admin-payments|daily-ayah|shop\/index\.html$|reasoning-test\/(certificate|certified)\/)/;
+const SKIP = /^(checkout|admin-payments|admin-members|account|premium|daily-ayah|shop\/index\.html$|reasoning-test\/(certificate|certified)\/)/;
 const decode = s => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;|&#x27;|&rsquo;/g, '’').replace(/&quot;/g, '"').replace(/&middot;/g, '·').replace(/&rarr;/g, '').replace(/&ldquo;/g, '“').replace(/&rdquo;/g, '”').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const short = s => { s = s.replace(/^\d+\.\s*/, ''); if (s.length <= 38) return s; const cut = s.slice(0, 37); return cut.slice(0, cut.lastIndexOf(' ') > 20 ? cut.lastIndexOf(' ') : 37).replace(/[,:;(–-]+$/, '') + '…'; };

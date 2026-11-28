@@ -44,6 +44,8 @@ const dTxt = prev === null ? 'First day recorded' : (tola - prev.tola >= 0 ? '+'
 function patch(html, name, inner) {
   const re = new RegExp('<!--' + name + ':start-->[\\s\\S]*?<!--' + name + ':end-->');
   if (!re.test(html)) throw new Error('marker missing: ' + name);
+  /* keep each section heading's id, which the links at the top of the page point to */
+  inner = String(inner).replace(/<h2>([^<]+)<\/h2>/g, (m, t) => '<h2 id="s-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '">' + t + '</h2>');
   return html.replace(re, () => '<!--' + name + ':start-->' + inner + '<!--' + name + ':end-->');
 }
 const artImg = (kind, depth, alt) => '<figure class="rate-art"><img src="' + '../'.repeat(depth) + 'assets/img/' + kind + '-rate-art.svg" alt="' + alt + '" width="1024" height="1280" loading="lazy" decoding="async"></figure>';
