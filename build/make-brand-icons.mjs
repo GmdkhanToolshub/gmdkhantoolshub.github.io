@@ -15,7 +15,6 @@ export function logo(shape) {
 <radialGradient id="s" cx=".28" cy=".08" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <radialGradient id="d" cx=".85" cy=".95" r=".7"><stop offset="0" stop-color="#22d3ee" stop-opacity=".2"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient></defs>
 <rect ${tile} fill="url(#g)"/><rect ${tile} fill="url(#s)"/><rect ${tile} fill="url(#d)"/>
-${rounded ? '<rect x="25" y="25" width="462" height="462" rx="108" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="5"/>' : ''}
 <g transform="translate(${256 - 19 * k} ${262 - 11 * k}) scale(${k})" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4">
 <g stroke="#1b1464" stroke-opacity=".32" transform="translate(0 .85)"><path d="${G}"/><path d="${M}"/></g>
 <g stroke="#fff"><path d="${G}"/><path d="${M}"/></g></g>

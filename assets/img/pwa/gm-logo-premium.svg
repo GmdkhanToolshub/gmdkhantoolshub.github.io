@@ -3,7 +3,6 @@
 <radialGradient id="s" cx=".28" cy=".08" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <radialGradient id="d" cx=".85" cy=".95" r=".7"><stop offset="0" stop-color="#22d3ee" stop-opacity=".2"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient></defs>
 <rect x="16" y="16" width="480" height="480" rx="116" fill="url(#g)"/><rect x="16" y="16" width="480" height="480" rx="116" fill="url(#s)"/><rect x="16" y="16" width="480" height="480" rx="116" fill="url(#d)"/>
-<rect x="25" y="25" width="462" height="462" rx="108" fill="none" stroke="#ffd66b" stroke-width="18"/>
 <g transform="translate(73.6 156.4) scale(9.6)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4">
 <g stroke="#1b1464" stroke-opacity=".32" transform="translate(0 .85)"><path d="M15.6 5.9A8 8 0 1 0 17.5 11H10.5"/><path d="M22.5 19V3.5l7 10 7-10V19"/></g>
 <g stroke="#fff"><path d="M15.6 5.9A8 8 0 1 0 17.5 11H10.5"/><path d="M22.5 19V3.5l7 10 7-10V19"/></g></g>

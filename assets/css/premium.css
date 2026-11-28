@@ -660,27 +660,26 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 .gmapp-rail{display:none}
 .gmapp.is-open{z-index:1000} /* the open card sits above the sticky header, so its close button is always reachable */
 /* below 1320px: a slim tab that stays inside the page margin, so it never sits on top of text */
-.gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;width:17px;padding:7px 0 8px;border:0;border-radius:0 10px 10px 0;background:linear-gradient(180deg,#1d4ed8,#4f46e5 55%,#7c3aed);box-shadow:0 0 0 1px rgba(103,232,249,.55),0 0 14px -2px rgba(99,102,241,.85);cursor:pointer;color:#fff}
+.gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;width:17px;padding:7px 0 8px;border:0;border-radius:0 10px 10px 0;background:linear-gradient(180deg,#1d4ed8,#4f46e5 55%,#7c3aed);box-shadow:0 0 14px -2px rgba(99,102,241,.85);cursor:pointer;color:#fff}
 .gmapp-tab::after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;right:-9px}
 .gmapp-tab::before{content:"";position:absolute;right:1px;top:8px;width:2px;height:14px;border-radius:2px;background:linear-gradient(transparent,#a5f3fc,transparent)}
-.gmapp-tab img{width:13px;height:13px;border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+.gmapp-tab img{width:13px;height:13px;border-radius:4px}
 .gmapp-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.55rem;font-weight:900;letter-spacing:.14em;line-height:1}
 @media (min-width:1320px){
 .gmapp-tab{display:none}
-.gmapp-rail{position:absolute;left:8px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:9px;width:48px;padding:8px 0 9px;border-radius:17px;border:1px solid color-mix(in srgb,#6366f1 34%,var(--border));background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);box-shadow:0 18px 40px -22px rgba(30,40,120,.65),0 0 20px -12px #6366f1}
+.gmapp-rail{position:absolute;left:8px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:9px;width:48px;padding:8px 0 9px;border-radius:17px;border:0;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);box-shadow:0 18px 40px -22px rgba(30,40,120,.65),0 0 20px -12px #6366f1}
 }
 .gmapp-head{font-size:.5rem;font-weight:900;letter-spacing:.2em;padding-left:.2em;color:var(--text-soft)}
 .gmapp-ic{position:relative;display:grid;justify-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;color:var(--text)}
 .gmapp-art{--gmapp-a:#22d3ee;--gmapp-b:#6366f1;--gmapp-c:#c084fc;position:relative;display:block;width:32px;height:32px}
 .gmapp-premium .gmapp-art{--gmapp-a:#ffe08a;--gmapp-b:#f59e0b;--gmapp-c:#a855f7}
 .gmapp-art svg{position:relative;display:block;width:100%;height:100%;border-radius:9px}
-/* spinning light ring */
-.gmapp-ring{position:absolute;inset:-2.5px;border-radius:11px;padding:1.6px;overflow:hidden;z-index:1;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
-.gmapp-ring::before{content:"";position:absolute;inset:-45%;background:conic-gradient(from 0deg,transparent 0 12%,var(--gmapp-a) 28%,var(--gmapp-b) 40%,transparent 52% 62%,var(--gmapp-c) 80%,transparent 92%)}
+/* spinning light behind the logo: soft, with no edge or outline */
+.gmapp-ring{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,transparent 0 12%,var(--gmapp-a) 28%,var(--gmapp-b) 40%,transparent 52% 62%,var(--gmapp-c) 80%,transparent 92%);filter:blur(4.5px);opacity:.8}
 /* a small satellite dot circling the icon, and a soft glow behind it */
 .gmapp-orbit{position:absolute;inset:-5px;border-radius:50%;pointer-events:none;z-index:2}
 .gmapp-orbit::before{content:"";position:absolute;left:50%;top:-1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--gmapp-a);box-shadow:0 0 6px 1px var(--gmapp-a)}
-.gmapp-art::before{content:"";position:absolute;inset:-3px;border-radius:12px;box-shadow:0 0 13px 1px var(--gmapp-b);opacity:.45}
+.gmapp-art::before{content:"";position:absolute;inset:0;border-radius:9px;box-shadow:0 0 11px 2px var(--gmapp-b);opacity:.45}
 .gmapp-flow{stroke-dasharray:9 91;stroke-dashoffset:20}
 .gmapp-tag{padding:1px 6px;border-radius:999px;font-size:.52rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;line-height:1.6;background:#0f7a4d;color:#fff}
 .gmapp-premium .gmapp-tag{background:linear-gradient(135deg,#ffe08a,#ffc83d);color:#3a2600}
@@ -709,7 +708,7 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 @media (prefers-reduced-motion:no-preference){
 .gmapp-rail .gmapp-art{animation:gmapp-float 4.2s ease-in-out infinite}
 .gmapp-premium .gmapp-art{animation-delay:-2.1s!important}
-.gmapp-ring::before{animation:gmapp-turn 2.6s linear infinite}
+.gmapp-ring{animation:gmapp-turn 2.6s linear infinite}
 .gmapp-orbit{animation:gmapp-turn 4.4s linear infinite}
 .gmapp-premium .gmapp-orbit{animation-direction:reverse}
 .gmapp-art::before{animation:gmapp-glow 2.4s ease-in-out infinite}
