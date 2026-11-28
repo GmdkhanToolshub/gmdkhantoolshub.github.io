@@ -662,12 +662,11 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 /* below 1320px: a slim tab that stays inside the page margin, so it never sits on top of text */
 .gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;width:17px;padding:7px 0 8px;border:0;border-radius:0 10px 10px 0;background:linear-gradient(180deg,#1d4ed8,#4f46e5 55%,#7c3aed);box-shadow:0 0 14px -2px rgba(99,102,241,.85);cursor:pointer;color:#fff}
 .gmapp-tab::after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;right:-9px}
-.gmapp-tab::before{content:"";position:absolute;right:1px;top:8px;width:2px;height:14px;border-radius:2px;background:linear-gradient(transparent,#a5f3fc,transparent)}
 .gmapp-tab img{width:13px;height:13px;border-radius:4px}
 .gmapp-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.55rem;font-weight:900;letter-spacing:.14em;line-height:1}
 @media (min-width:1320px){
 .gmapp-tab{display:none}
-.gmapp-rail{position:absolute;left:8px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:9px;width:48px;padding:8px 0 9px;border-radius:17px;border:0;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);box-shadow:0 18px 40px -22px rgba(30,40,120,.65),0 0 20px -12px #6366f1}
+.gmapp-rail{position:absolute;left:8px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:9px;width:48px;padding:8px 0 9px;border:0;background:transparent;box-shadow:none}
 }
 .gmapp-head{font-size:.5rem;font-weight:900;letter-spacing:.2em;padding-left:.2em;color:var(--text-soft)}
 .gmapp-ic{position:relative;display:grid;justify-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;color:var(--text)}
@@ -681,6 +680,9 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 .gmapp-orbit::before{content:"";position:absolute;left:50%;top:-1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--gmapp-a);box-shadow:0 0 6px 1px var(--gmapp-a)}
 .gmapp-art::before{content:"";position:absolute;inset:0;border-radius:9px;box-shadow:0 0 11px 2px var(--gmapp-b);opacity:.45}
 .gmapp-flow{stroke-dasharray:9 91;stroke-dashoffset:20}
+/* clean logos: no circuit lines, and the scan beam is a soft glow of light instead of a drawn line */
+.gmapp-art svg>path{display:none}
+.gmapp-scan{height:9px;fill-opacity:.55;filter:blur(3px)}
 .gmapp-tag{padding:1px 6px;border-radius:999px;font-size:.52rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;line-height:1.6;background:#0f7a4d;color:#fff}
 .gmapp-premium .gmapp-tag{background:linear-gradient(135deg,#ffe08a,#ffc83d);color:#3a2600}
 .gmapp-tip{position:absolute;left:calc(100% + 14px);top:16px;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;padding:7px 12px;border-radius:10px;background:#101c3d;color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
