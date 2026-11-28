@@ -660,27 +660,36 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 .gmapp-rail{display:none}
 .gmapp.is-open{z-index:1000} /* the open card sits above the sticky header, so its close button is always reachable */
 /* below 1320px: a slim tab that stays inside the page margin, so it never sits on top of text */
-.gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;width:19px;padding:8px 0 9px;border:0;border-radius:0 11px 11px 0;background:linear-gradient(180deg,#2f6bff,#4f46e5 55%,#7c3aed);box-shadow:0 10px 22px -8px rgba(49,46,129,.7);cursor:pointer;color:#fff}
-.gmapp-tab::after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;right:-7px}
-.gmapp-tab img{width:15px;height:15px;border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
-.gmapp-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.6rem;font-weight:900;letter-spacing:.14em;line-height:1}
+.gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;width:17px;padding:7px 0 8px;border:0;border-radius:0 10px 10px 0;background:linear-gradient(180deg,#1d4ed8,#4f46e5 55%,#7c3aed);box-shadow:0 0 0 1px rgba(103,232,249,.55),0 0 14px -2px rgba(99,102,241,.85);cursor:pointer;color:#fff}
+.gmapp-tab::after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;right:-9px}
+.gmapp-tab::before{content:"";position:absolute;right:1px;top:8px;width:2px;height:14px;border-radius:2px;background:linear-gradient(transparent,#a5f3fc,transparent)}
+.gmapp-tab img{width:13px;height:13px;border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+.gmapp-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.55rem;font-weight:900;letter-spacing:.14em;line-height:1}
 @media (min-width:1320px){
 .gmapp-tab{display:none}
-.gmapp-rail{position:absolute;left:14px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:12px;width:66px;padding:10px 0 12px;border-radius:22px;border:1px solid color-mix(in srgb,#4f46e5 22%,var(--border));background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(10px);box-shadow:0 22px 48px -24px rgba(30,40,120,.6)}
+.gmapp-rail{position:absolute;left:8px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:9px;width:48px;padding:8px 0 9px;border-radius:17px;border:1px solid color-mix(in srgb,#6366f1 34%,var(--border));background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);box-shadow:0 18px 40px -22px rgba(30,40,120,.65),0 0 20px -12px #6366f1}
 }
-.gmapp-head{font-size:.56rem;font-weight:900;letter-spacing:.18em;color:var(--text-soft)}
-.gmapp-ic{position:relative;display:grid;justify-items:center;gap:5px;padding:0;border:0;background:none;cursor:pointer;color:var(--text)}
-.gmapp-art{position:relative;display:block;width:46px;height:46px;border-radius:13px;overflow:hidden;filter:drop-shadow(0 6px 10px rgba(49,46,129,.35))}
-.gmapp-art img{display:block;width:100%;height:100%;transform:scale(1.07)}
-.gmapp-art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.55) 50%,transparent 68%);transform:translateX(-130%)}
-.gmapp-tag{padding:2px 8px;border-radius:999px;font-size:.62rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;line-height:1.5;background:#0f7a4d;color:#fff}
+.gmapp-head{font-size:.5rem;font-weight:900;letter-spacing:.2em;padding-left:.2em;color:var(--text-soft)}
+.gmapp-ic{position:relative;display:grid;justify-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;color:var(--text)}
+.gmapp-art{--gmapp-a:#22d3ee;--gmapp-b:#6366f1;--gmapp-c:#c084fc;position:relative;display:block;width:32px;height:32px}
+.gmapp-premium .gmapp-art{--gmapp-a:#ffe08a;--gmapp-b:#f59e0b;--gmapp-c:#a855f7}
+.gmapp-art svg{position:relative;display:block;width:100%;height:100%;border-radius:9px}
+/* spinning light ring */
+.gmapp-ring{position:absolute;inset:-2.5px;border-radius:11px;padding:1.6px;overflow:hidden;z-index:1;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.gmapp-ring::before{content:"";position:absolute;inset:-45%;background:conic-gradient(from 0deg,transparent 0 12%,var(--gmapp-a) 28%,var(--gmapp-b) 40%,transparent 52% 62%,var(--gmapp-c) 80%,transparent 92%)}
+/* a small satellite dot circling the icon, and a soft glow behind it */
+.gmapp-orbit{position:absolute;inset:-5px;border-radius:50%;pointer-events:none;z-index:2}
+.gmapp-orbit::before{content:"";position:absolute;left:50%;top:-1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--gmapp-a);box-shadow:0 0 6px 1px var(--gmapp-a)}
+.gmapp-art::before{content:"";position:absolute;inset:-3px;border-radius:12px;box-shadow:0 0 13px 1px var(--gmapp-b);opacity:.45}
+.gmapp-flow{stroke-dasharray:9 91;stroke-dashoffset:20}
+.gmapp-tag{padding:1px 6px;border-radius:999px;font-size:.52rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;line-height:1.6;background:#0f7a4d;color:#fff}
 .gmapp-premium .gmapp-tag{background:linear-gradient(135deg,#ffe08a,#ffc83d);color:#3a2600}
-.gmapp-tip{position:absolute;left:calc(100% + 16px);top:23px;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;padding:7px 12px;border-radius:10px;background:#101c3d;color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.gmapp-tip{position:absolute;left:calc(100% + 14px);top:16px;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;padding:7px 12px;border-radius:10px;background:#101c3d;color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
 .gmapp-ic:hover .gmapp-tip,.gmapp-ic:focus-visible .gmapp-tip{opacity:1;transform:translate(0,-50%)}
 .gmapp-ic[aria-expanded="true"] .gmapp-tip{opacity:0}
 .gmapp-ic:focus-visible,.gmapp-tab:focus-visible,.gmapp-x:focus-visible,.gmapp-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .gmapp-pop{position:fixed;left:30px;top:50%;transform:translateY(-50%);width:min(330px,calc(100vw - 56px));max-height:min(560px,calc(100vh - 120px));overflow-y:auto;z-index:260;padding:18px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:0 30px 70px -24px rgba(15,23,60,.6);text-align:left}
-@media (min-width:1320px){.gmapp-pop{left:96px}}
+@media (min-width:1320px){.gmapp-pop{left:68px}}
 .gmapp-x{position:absolute;right:8px;top:8px;width:36px;height:36px;border:0;border-radius:10px;background:transparent;color:var(--text-soft);font-size:1.5rem;line-height:1;cursor:pointer}
 .gmapp-card+.gmapp-card{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
 .gmapp-top{display:flex;align-items:center;gap:12px;margin:0 30px 10px 0}
@@ -698,15 +707,29 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 .gmapp-pop summary{cursor:pointer;font-weight:700;color:var(--text);min-height:32px}
 .gmapp-pop ol{margin:6px 0 0;padding-left:20px}
 @media (prefers-reduced-motion:no-preference){
-.gmapp-rail .gmapp-art{animation:gmapp-float 5s ease-in-out infinite}
-.gmapp-premium .gmapp-art{animation-delay:-2.5s}
-.gmapp-art::after{animation:gmapp-shine 5.5s ease-in-out infinite}
-.gmapp-ic .gmapp-art,.gmapp-tip,.gmapp-tab{transition:transform .22s ease,opacity .22s ease}
-.gmapp-ic:hover .gmapp-art{scale:1.1}
+.gmapp-rail .gmapp-art{animation:gmapp-float 4.2s ease-in-out infinite}
+.gmapp-premium .gmapp-art{animation-delay:-2.1s!important}
+.gmapp-ring::before{animation:gmapp-turn 2.6s linear infinite}
+.gmapp-orbit{animation:gmapp-turn 4.4s linear infinite}
+.gmapp-premium .gmapp-orbit{animation-direction:reverse}
+.gmapp-art::before{animation:gmapp-glow 2.4s ease-in-out infinite}
+.gmapp-flow{animation:gmapp-flow 2.2s linear infinite}
+.gmapp-node{animation:gmapp-node 2.4s ease-in-out infinite}
+.gmapp-scan{animation:gmapp-scan 3.4s ease-in-out infinite}
+.gmapp-tab::before{animation:gmapp-run 2.4s ease-in-out infinite}
+.gmapp-tab img{animation:gmapp-beat 2.4s ease-in-out infinite}
+.gmapp-ic .gmapp-art,.gmapp-tip,.gmapp-tab{transition:scale .22s ease,transform .22s ease,opacity .22s ease}
+.gmapp-ic:hover .gmapp-art{scale:1.14}
 .gmapp-tab:hover{filter:brightness(1.12)}
 .gmapp-pop{animation:gmapp-in .26s ease both}
-@keyframes gmapp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes gmapp-shine{0%,62%{transform:translateX(-130%)}82%,100%{transform:translateX(130%)}}
+@keyframes gmapp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes gmapp-turn{to{transform:rotate(360deg)}}
+@keyframes gmapp-glow{0%,100%{opacity:.25}50%{opacity:.75}}
+@keyframes gmapp-flow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes gmapp-node{0%,100%{opacity:.35}45%{opacity:1}}
+@keyframes gmapp-scan{0%{transform:translateY(3px);opacity:0}12%{opacity:.8}58%{opacity:.8}70%,100%{transform:translateY(43px);opacity:0}}
+@keyframes gmapp-run{0%{transform:translateY(0);opacity:0}20%,80%{opacity:1}100%{transform:translateY(34px);opacity:0}}
+@keyframes gmapp-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
 @keyframes gmapp-in{from{opacity:0;translate:-12px 0}to{opacity:1;translate:0 0}}
 }
 @media print{.gmapp{display:none}}

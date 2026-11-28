@@ -1521,7 +1521,18 @@ window.SITE_CONFIG = {
       '<a class="gmapp-btn gold" href="' + notify + '" target="_blank" rel="noopener">Tell me when it is ready</a>' }
   };
   var nav = d.createElement('aside'); nav.className = 'gmapp no-print'; nav.setAttribute('aria-label', 'GM Tools Hub Android apps');
-  function tile(k) { var a = APPS[k]; return '<button type="button" class="gmapp-ic gmapp-' + k + '" data-app="' + k + '" aria-haspopup="dialog" aria-expanded="false" aria-label="' + a.label + '"><span class="gmapp-art"><img src="' + img + a.icon + '" alt="" width="44" height="44" loading="lazy" decoding="async"></span><span class="gmapp-tag">' + a.tag + '</span><span class="gmapp-tip" aria-hidden="true">' + a.name + '</span></button>'; }
+  /* the GM lettering of the site logo on a tech tile: circuit nodes, light travelling through the letters and a scan beam */
+  function art(k) {
+    var pro = k === 'premium', c = pro ? ['#172554', '#3b2e9e', '#6d28d9'] : ['#1d4ed8', '#4f46e5', '#8b3ff0'], hot = pro ? '#ffd66b' : '#67e8f9';
+    var letters = 'M15.6 5.9A8 8 0 1 0 17.5 11H10.5M22.5 19V3.5l7 10 7-10V19';
+    return '<svg viewBox="0 0 48 48" focusable="false" aria-hidden="true"><defs><linearGradient id="gmapp-g-' + k + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + c[0] + '"/><stop offset=".55" stop-color="' + c[1] + '"/><stop offset="1" stop-color="' + c[2] + '"/></linearGradient></defs>' +
+      '<rect width="48" height="48" rx="13" fill="url(#gmapp-g-' + k + ')"/>' +
+      '<path d="M5 12h8l4-5M43 36h-8l-4 5M5 37h6l3 4M43 11h-6l-3-4" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>' +
+      [[17, 7, 0], [31, 41, .6], [14, 41, 1.2], [34, 7, 1.8]].map(function (n) { return '<circle class="gmapp-node" style="animation-delay:-' + n[2] + 's" cx="' + n[0] + '" cy="' + n[1] + '" r="1.7" fill="' + hot + '"/>'; }).join('') +
+      '<g transform="translate(8.8 15.2) scale(.8)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="' + letters + '" stroke="#fff" stroke-width="3.5"/><path class="gmapp-flow" d="' + letters + '" pathLength="100" stroke="' + hot + '" stroke-width="2"/></g>' +
+      '<rect class="gmapp-scan" x="3" y="0" width="42" height="2" rx="1" fill="' + hot + '" opacity="0"/></svg>';
+  }
+  function tile(k) { var a = APPS[k]; return '<button type="button" class="gmapp-ic gmapp-' + k + '" data-app="' + k + '" aria-haspopup="dialog" aria-expanded="false" aria-label="' + a.label + '"><span class="gmapp-art"><i class="gmapp-orbit"></i><i class="gmapp-ring"></i>' + art(k) + '</span><span class="gmapp-tag">' + a.tag + '</span><span class="gmapp-tip" aria-hidden="true">' + a.name + '</span></button>'; }
   nav.innerHTML = '<button type="button" class="gmapp-tab" aria-haspopup="dialog" aria-expanded="false" aria-label="Get the Android app"><img src="' + img + 'gm-logo.svg" alt="" width="26" height="26" loading="lazy" decoding="async"><span>APP</span></button>' +
     '<div class="gmapp-rail"><span class="gmapp-head" aria-hidden="true">APPS</span>' + tile('free') + tile('premium') + '</div>' +
     '<div class="gmapp-pop" role="dialog" aria-modal="false" hidden></div>';
