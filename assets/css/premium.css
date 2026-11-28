@@ -654,3 +654,60 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 .brand-mark::before{content:"";position:absolute;z-index:1;top:3px;right:3px;width:9px;height:9px;background:#ffd66b;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);pointer-events:none}
 @media (prefers-reduced-motion:no-preference){.brand-mark::before{animation:gm-spark 3.4s ease-in-out infinite}@keyframes gm-spark{0%,100%{opacity:.55;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(45deg)}}}
 /* brand-spark:end */
+
+/* app-dock:start */
+.gmapp{position:fixed;left:0;top:50%;z-index:95;height:0}
+.gmapp-rail{display:none}
+.gmapp.is-open{z-index:1000} /* the open card sits above the sticky header, so its close button is always reachable */
+/* below 1320px: a slim tab that stays inside the page margin, so it never sits on top of text */
+.gmapp-tab{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;width:19px;padding:8px 0 9px;border:0;border-radius:0 11px 11px 0;background:linear-gradient(180deg,#2f6bff,#4f46e5 55%,#7c3aed);box-shadow:0 10px 22px -8px rgba(49,46,129,.7);cursor:pointer;color:#fff}
+.gmapp-tab::after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;right:-7px}
+.gmapp-tab img{width:15px;height:15px;border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+.gmapp-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.6rem;font-weight:900;letter-spacing:.14em;line-height:1}
+@media (min-width:1320px){
+.gmapp-tab{display:none}
+.gmapp-rail{position:absolute;left:14px;top:0;transform:translateY(-50%);display:grid;justify-items:center;gap:12px;width:66px;padding:10px 0 12px;border-radius:22px;border:1px solid color-mix(in srgb,#4f46e5 22%,var(--border));background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(10px);box-shadow:0 22px 48px -24px rgba(30,40,120,.6)}
+}
+.gmapp-head{font-size:.56rem;font-weight:900;letter-spacing:.18em;color:var(--text-soft)}
+.gmapp-ic{position:relative;display:grid;justify-items:center;gap:5px;padding:0;border:0;background:none;cursor:pointer;color:var(--text)}
+.gmapp-art{position:relative;display:block;width:46px;height:46px;border-radius:13px;overflow:hidden;filter:drop-shadow(0 6px 10px rgba(49,46,129,.35))}
+.gmapp-art img{display:block;width:100%;height:100%;transform:scale(1.07)}
+.gmapp-art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.55) 50%,transparent 68%);transform:translateX(-130%)}
+.gmapp-tag{padding:2px 8px;border-radius:999px;font-size:.62rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;line-height:1.5;background:#0f7a4d;color:#fff}
+.gmapp-premium .gmapp-tag{background:linear-gradient(135deg,#ffe08a,#ffc83d);color:#3a2600}
+.gmapp-tip{position:absolute;left:calc(100% + 16px);top:23px;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;padding:7px 12px;border-radius:10px;background:#101c3d;color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.gmapp-ic:hover .gmapp-tip,.gmapp-ic:focus-visible .gmapp-tip{opacity:1;transform:translate(0,-50%)}
+.gmapp-ic[aria-expanded="true"] .gmapp-tip{opacity:0}
+.gmapp-ic:focus-visible,.gmapp-tab:focus-visible,.gmapp-x:focus-visible,.gmapp-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.gmapp-pop{position:fixed;left:30px;top:50%;transform:translateY(-50%);width:min(330px,calc(100vw - 56px));max-height:min(560px,calc(100vh - 120px));overflow-y:auto;z-index:260;padding:18px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:0 30px 70px -24px rgba(15,23,60,.6);text-align:left}
+@media (min-width:1320px){.gmapp-pop{left:96px}}
+.gmapp-x{position:absolute;right:8px;top:8px;width:36px;height:36px;border:0;border-radius:10px;background:transparent;color:var(--text-soft);font-size:1.5rem;line-height:1;cursor:pointer}
+.gmapp-card+.gmapp-card{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.gmapp-top{display:flex;align-items:center;gap:12px;margin:0 30px 10px 0}
+.gmapp-top img{border-radius:12px;flex:none}
+.gmapp-pop h2{margin:0;font-size:1.05rem;line-height:1.3}
+.gmapp-pop p{margin:0 0 10px;font-size:.9rem;line-height:1.55;color:var(--text-soft)}
+.gmapp-pop .gmapp-price{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gmapp-price b{font-size:1.45rem;color:var(--text)}
+.gmapp-price em{font-style:normal;font-size:.66rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#fff1c7;color:#6b4700}
+.gmapp-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;margin:0 0 10px;padding:10px 14px;border-radius:13px;background:linear-gradient(135deg,#2f6bff,#5b34d6);color:#fff!important;font-weight:800;font-size:.93rem;text-decoration:none;text-align:center}
+.gmapp-btn:hover{text-decoration:none;filter:brightness(1.08)}
+.gmapp-btn.gold{background:linear-gradient(135deg,#ffe08a,#ffc83d);color:#2b1c00!important}
+.gmapp-pop .gmapp-small{font-size:.8rem}
+.gmapp-pop details{font-size:.86rem;color:var(--text-soft)}
+.gmapp-pop summary{cursor:pointer;font-weight:700;color:var(--text);min-height:32px}
+.gmapp-pop ol{margin:6px 0 0;padding-left:20px}
+@media (prefers-reduced-motion:no-preference){
+.gmapp-rail .gmapp-art{animation:gmapp-float 5s ease-in-out infinite}
+.gmapp-premium .gmapp-art{animation-delay:-2.5s}
+.gmapp-art::after{animation:gmapp-shine 5.5s ease-in-out infinite}
+.gmapp-ic .gmapp-art,.gmapp-tip,.gmapp-tab{transition:transform .22s ease,opacity .22s ease}
+.gmapp-ic:hover .gmapp-art{scale:1.1}
+.gmapp-tab:hover{filter:brightness(1.12)}
+.gmapp-pop{animation:gmapp-in .26s ease both}
+@keyframes gmapp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes gmapp-shine{0%,62%{transform:translateX(-130%)}82%,100%{transform:translateX(130%)}}
+@keyframes gmapp-in{from{opacity:0;translate:-12px 0}to{opacity:1;translate:0 0}}
+}
+@media print{.gmapp{display:none}}
+/* app-dock:end */

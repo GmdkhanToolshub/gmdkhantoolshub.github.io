@@ -1495,3 +1495,50 @@ window.SITE_CONFIG = {
   head.addEventListener('transitionend', soon);
   setTimeout(place, 600); setTimeout(place, 2000);
 })();
+
+/* ---------- app dock: two small app icons, centred on the left edge. The free Android app downloads directly.
+   Premium is shown with its price but is not on sale until Premium accounts work, so it offers a reminder only.
+   Not shown on Kids Corner, the Quran page, checkout, account or admin pages, embeds, or inside the installed app. ---------- */
+(function () {
+  var d = document, p = location.pathname;
+  if (!d.body || /^\/(kids|daily-ayah|checkout|admin-[a-z]+|account|premium|embed)(\/|$)/.test(p) || d.body.getAttribute('data-tab') === 'kids' || d.querySelector('.gmapp')) return;
+  var inApp = /^android-app:\/\/com\.gmtoolshub\./.test(d.referrer);
+  try { if (inApp) sessionStorage.setItem('gm.inapp', '1'); inApp = inApp || sessionStorage.getItem('gm.inapp') === '1'; } catch (e) { /* storage blocked */ }
+  if (inApp || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)) return;
+  var base = d.body.getAttribute('data-root') || './', img = base + 'assets/img/pwa/', android = /Android/i.test(navigator.userAgent);
+  var notify = 'https://wa.me/923158935101?text=' + encodeURIComponent('Assalam o Alaikum, please tell me when GM Tools Hub Premium is ready.');
+  var DOWN = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>';
+  var APPS = {
+    free: { icon: 'gm-logo.svg', name: 'GM Tools Hub', tag: 'Free', label: 'Free Android app', html:
+      '<p class="gmapp-price"><b>Free</b> <span>Android 7 or newer &middot; 58 KB</span></p>' +
+      '<p>Opens GM Tools Hub from your home screen. It needs internet and a browser such as Chrome, and asks for no app permissions.</p>' +
+      '<a class="gmapp-btn" href="' + base + 'assets/downloads/Gmtoolshub.apk" download="Gmtoolshub.apk">' + DOWN + ' Download free APK</a>' +
+      (android ? '' : '<p class="gmapp-small">This file is for Android phones. Open this page on your phone to install it.</p>') +
+      '<details><summary>How to install</summary><ol><li>Open the downloaded file.</li><li>If Android asks, allow installs from your browser, then turn that off again afterwards.</li><li>Tap Install.</li></ol></details>' },
+    premium: { icon: 'gm-logo-premium.svg', name: 'GM Tools Hub Premium', tag: '$30', label: 'Premium Android app, 30 US dollars, coming soon', html:
+      '<p class="gmapp-price"><b>$30</b> <span>per download</span> <em>Coming soon</em></p>' +
+      '<p>Premium accounts are not open yet, so this app is not on sale and no payment is taken.</p>' +
+      '<a class="gmapp-btn gold" href="' + notify + '" target="_blank" rel="noopener">Tell me when it is ready</a>' }
+  };
+  var nav = d.createElement('aside'); nav.className = 'gmapp no-print'; nav.setAttribute('aria-label', 'GM Tools Hub Android apps');
+  function tile(k) { var a = APPS[k]; return '<button type="button" class="gmapp-ic gmapp-' + k + '" data-app="' + k + '" aria-haspopup="dialog" aria-expanded="false" aria-label="' + a.label + '"><span class="gmapp-art"><img src="' + img + a.icon + '" alt="" width="44" height="44" loading="lazy" decoding="async"></span><span class="gmapp-tag">' + a.tag + '</span><span class="gmapp-tip" aria-hidden="true">' + a.name + '</span></button>'; }
+  nav.innerHTML = '<button type="button" class="gmapp-tab" aria-haspopup="dialog" aria-expanded="false" aria-label="Get the Android app"><img src="' + img + 'gm-logo.svg" alt="" width="26" height="26" loading="lazy" decoding="async"><span>APP</span></button>' +
+    '<div class="gmapp-rail"><span class="gmapp-head" aria-hidden="true">APPS</span>' + tile('free') + tile('premium') + '</div>' +
+    '<div class="gmapp-pop" role="dialog" aria-modal="false" hidden></div>';
+  d.body.appendChild(nav);
+  var pop = nav.querySelector('.gmapp-pop'), openKey = '', opener = null;
+  function close(focus) { if (!openKey) return; openKey = ''; pop.hidden = true; nav.classList.remove('is-open'); [].forEach.call(nav.querySelectorAll('[aria-expanded]'), function (b) { b.setAttribute('aria-expanded', 'false'); }); if (focus && opener) opener.focus(); }
+  function card(k) { var a = APPS[k]; return '<div class="gmapp-card"><div class="gmapp-top"><img src="' + img + a.icon + '" alt="" width="46" height="46"><h2>' + a.name + '</h2></div>' + a.html + '</div>'; }
+  function open(k, btn) {
+    var same = openKey === k; close(false); if (same) return;
+    openKey = k; opener = btn; btn.setAttribute('aria-expanded', 'true');
+    pop.innerHTML = '<button type="button" class="gmapp-x" aria-label="Close">&times;</button>' + (k === 'both' ? card('free') + card('premium') : card(k));
+    pop.setAttribute('aria-label', k === 'both' ? 'GM Tools Hub apps' : APPS[k].name); pop.hidden = false; nav.classList.add('is-open'); pop.scrollTop = 0; pop.querySelector('.gmapp-x').focus({ preventScroll: true });
+  }
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('.gmapp-x')) return close(true);
+    var b = e.target.closest('.gmapp-ic, .gmapp-tab'); if (b) open(b.getAttribute('data-app') || 'both', b);
+  });
+  d.addEventListener('click', function (e) { if (openKey && !nav.contains(e.target)) close(false); });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
+})();

@@ -8,7 +8,7 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   var r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || u.origin !== self.location.origin || r.headers.has('range')) return;
-  if (/^\/data\//.test(u.pathname) || /\.(mp4|webm|mp3)$/i.test(u.pathname) || /sw\.js$/.test(u.pathname)) return;
+  if (/^\/data\//.test(u.pathname) || /\.(mp4|webm|mp3|apk)$/i.test(u.pathname) || /sw\.js$/.test(u.pathname)) return;
   if (r.mode === 'navigate') {
     e.respondWith(fetch(r).then(function (res) { if (res.ok) { var c = res.clone(); caches.open(VERSION).then(function (ch) { ch.put(r, c); }); } return res; })
       .catch(function () { return caches.match(r).then(function (m) { return m || caches.match('/') || new Response('You are offline. Open this page once while online to use it offline.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }); }); }));
