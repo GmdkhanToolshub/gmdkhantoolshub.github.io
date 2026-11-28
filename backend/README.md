@@ -90,3 +90,23 @@ Setup (once):
 5. Commit and push `data/reasoning-certified.json` (public, contains no answers). Until the key is loaded, the certified test says it is not available.
 Flow: certified attempt scored on the server (`POST /api/quiz/start`, `POST /api/quiz/:id/finish`) -> customer buys the certificate product for that attempt (private attempt token required) -> payment approved by an admin or a signed webhook -> exactly one certificate is issued -> public verification at `GET /api/certificates/:id`. Owners can revoke a certificate in the API (`POST /api/admin/certificates/:id/revoke`); verification then shows it as revoked.
 Limits: attempts are tied to the browser that holds the token, a motivated person can still ask someone else to take the test, and there is no identity check. The certificate therefore says "completion", not identity-verified ability.
+
+## 12. Free + Premium membership (accounts, approval, permissions)
+Code: `src/members.js`, migration `migrations/0003_membership.sql`, tests `test/members.mjs`. Pages: `/account/`, `/account/verify/`, `/account/reset/`, `/premium/`, `/admin-members/` (built by `node build/make-account-pages.mjs`). All 74 tools stay free. **While `assets/js/account-config.js` has an empty `apiBase`, nothing on the website is locked.**
+
+Flow: sign up -> email link + password verifies the address -> the owner is emailed -> the owner signs in to `/admin-members/` and approves or rejects -> activation email -> member signs in. Opening an email never approves anything.
+
+Protection: Premium content and cloud backup are checked by the server on every request (suspend, revoke and expiry act at once). The BI Studio and Calculator Lab locks hide code that runs in the visitor's browser and is public in this repository: they stop normal use only.
+
+Cost: Cloudflare's Workers Free plan allows 10 ms CPU per request (limits page, read 2026-11-28). One PBKDF2 password hash at 100,000 iterations measured well above that on the build PC, so sign up and sign in are expected to need **Workers Paid (from USD 5 per month)**. Do not lower the iteration count to fit the free plan. D1 free tier and Resend free tier (3,000 emails a month, 100 a day) should be enough to start. Check current prices before signing up.
+
+Extra setup after section 6 (the owner types every password and key):
+1. `npx wrangler d1 migrations apply gm-payments --remote` (applies 0003).
+2. In Resend, verify the domain `gmtoolshub.com` (DNS records), then `npx wrangler secret put RESEND_API_KEY`, `npx wrangler secret put MAIL_FROM`.
+3. `npx wrangler secret put ADMIN_NOTIFY_EMAIL` (where approval requests go) and optionally `SUPPORT_EMAIL`.
+4. Keep `SITE_URL = "https://gmtoolshub.com"` in `wrangler.toml`; attach `api.gmtoolshub.com`; keep `COOKIE_SAMESITE = "Strict"`.
+5. Create the owner account (section 6, step 9). Only the `owner` role can manage members.
+6. Update the privacy policy and terms (accounts store name, email, salted password hash, sign-in history without IP addresses, and the member's own cloud backup). Add a way to ask for account deletion.
+7. Test the whole journey with a real email address on a private copy of `account-config.js` before publishing `apiBase`.
+
+Not built: payments or automatic renewal, self-service account deletion (owner deletes on request), two-step sign-in for the administrator.

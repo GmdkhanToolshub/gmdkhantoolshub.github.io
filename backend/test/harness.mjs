@@ -14,7 +14,7 @@ class Stmt {
 }
 export function makeEnv(extra = {}) {
   const sqlite = new DatabaseSync(':memory:');
-  for (const f of ['0001_init.sql', '0002_reasoning_certificates.sql']) sqlite.exec(fs.readFileSync(new URL('../migrations/' + f, import.meta.url), 'utf8'));
+  for (const f of ['0001_init.sql', '0002_reasoning_certificates.sql', '0003_membership.sql']) sqlite.exec(fs.readFileSync(new URL('../migrations/' + f, import.meta.url), 'utf8'));
   const store = new Map();
   const DB = { prepare: sql => new Stmt(sqlite, sql), async batch(stmts) { sqlite.exec('BEGIN'); try { const res = []; for (const s of stmts) res.push(s._runSync()); sqlite.exec('COMMIT'); return res; } catch (e) { sqlite.exec('ROLLBACK'); throw e; } }, _raw: sqlite };
   const RECEIPTS = { async put(k, v, o) { store.set(k, { buf: Buffer.from(v), o }); }, async get(k) { const r = store.get(k); return r ? { body: new Blob([r.buf]).stream() } : null; }, _store: store };

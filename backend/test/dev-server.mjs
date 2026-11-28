@@ -7,7 +7,10 @@ import { makeEnv, worker } from './harness.mjs';
 
 const ROOT = path.resolve(new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const PORT = 8787, ORIGIN = 'http://localhost:' + PORT;
-const env = makeEnv({ ALLOWED_ORIGINS: ORIGIN, COOKIE_SAMESITE: 'Lax' });
+// Emails are not sent: they are captured here and readable at /__outbox (local testing only).
+const outbox = [];
+globalThis.fetch = async (url, o) => { const m = JSON.parse(o.body); outbox.push(m); console.log('[test email] to ' + m.to[0] + ': ' + m.subject); return new Response('{}'); };
+const env = makeEnv({ ALLOWED_ORIGINS: ORIGIN, COOKIE_SAMESITE: 'Lax', RESEND_API_KEY: 'local-test', MAIL_FROM: 'GM test <no-reply@example.test>', ADMIN_NOTIFY_EMAIL: 'owner@test.local', SITE_URL: ORIGIN });
 const raw = env.DB._raw, enc = new TextEncoder(), hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
 raw.exec(fs.readFileSync(new URL('../seed/products.sql', import.meta.url), 'utf8'));
 raw.exec("INSERT INTO products(id,name,description,kind,currency,price_minor,trial_days,active,created_at) VALUES('embed-pro-test','GM Embed Pro (test plan)','Test subscription for the preview','monthly','PKR',500000,14,1,datetime('now'))");
@@ -22,6 +25,8 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; ch
 http.createServer(async (req, res) => {
   try {
     const u = new URL(req.url, ORIGIN);
+    if (u.pathname === '/__outbox') { res.writeHead(200, { 'Content-Type': TYPES['.json'] }); res.end(JSON.stringify(outbox)); return; }
+    if (u.pathname === '/assets/js/account-config.js') { res.writeHead(200, { 'Content-Type': TYPES['.js'] }); res.end('window.GM_ACCOUNT = { apiBase: "' + ORIGIN + '" };'); return; }
     if (u.pathname.startsWith('/api/')) {
       const chunks = []; for await (const c of req) chunks.push(c); const body = Buffer.concat(chunks);
       const h = {}; for (const [kk, vv] of Object.entries(req.headers)) h[kk] = vv; h['cf-connecting-ip'] = '127.0.0.1';

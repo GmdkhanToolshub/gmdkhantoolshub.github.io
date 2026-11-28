@@ -7,6 +7,7 @@ compatibility_date = "2025-01-01"
 [vars]
 ALLOWED_ORIGINS = "https://gmtoolshub.com"
 COOKIE_SAMESITE = "Strict"
+SITE_URL = "https://gmtoolshub.com"
 GATEWAY_NAME = "gateway"
 
 # After `npx wrangler d1 create gm-payments`, replace database_id with the id it prints.

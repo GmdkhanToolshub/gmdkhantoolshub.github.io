@@ -2,6 +2,7 @@
 // What is real here: orders with server-side pricing, coupons, bank-transfer instructions from admin settings, receipt upload, manual approval,
 // admin accounts with roles, CSRF, audit log, CSV export, signed-webhook endpoint with idempotency. What is NOT here: a specific card or wallet
 // provider (needs your merchant account), see README "Gateway and wallet".
+import { membership } from './members.js';
 const enc = new TextEncoder();
 const VERSION = '0.1.0';
 const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
@@ -263,6 +264,8 @@ async function exportCsv(env, url) {
   return lines.join('\r\n');
 }
 
+const members = membership({ json, str, optStr, bad, rand, sha256, same, pbkdf2, now, rateLimit, audit, notify, cookieOf, origins });
+
 async function route(req, env, ctx) {
   const url = new URL(req.url), path = url.pathname.replace(/\/+$/, '') || '/', m = req.method; let x;
   if (path === '/api/health' && m === 'GET') return { ok: true, version: VERSION };
@@ -277,11 +280,13 @@ async function route(req, env, ctx) {
   if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})\/receipt$/)) && m === 'POST') return uploadReceipt(req, env, x[1]);
   if ((x = path.match(/^\/api\/orders\/(GM-[A-Z0-9]{8})\/cancel$/)) && m === 'POST') { const o = await loadOrderByToken(env, req, x[1]); if (o.status !== 'pending_payment') throw bad('not_cancellable', 'Only unpaid orders can be cancelled.', 409); await env.DB.prepare("UPDATE orders SET status='cancelled' WHERE id=? AND status='pending_payment'").bind(o.id).run(); await audit(env, null, 'order.cancel', 'order', o.ref, 'by customer'); return { ok: true }; }
   if (path === '/api/webhooks/gateway' && m === 'POST') return webhook(req, env);
+  if (path === '/api/features' || path.startsWith('/api/auth/') || path.startsWith('/api/premium/')) { const r = await members.publicRoutes(req, env, ctx, path, m); if (r) return r; }
   if (path === '/api/admin/setup' && m === 'POST') return adminSetup(req, env);
   if (path === '/api/admin/login' && m === 'POST') return adminLogin(req, env);
   if (path.startsWith('/api/admin/')) {
     const mut = m !== 'GET' && m !== 'HEAD'; const a = await adminOf(req, env, mut && path !== '/api/admin/logout' ? true : mut);
     if (path === '/api/admin/logout' && m === 'POST') { await env.DB.prepare('DELETE FROM sessions WHERE token_hash=?').bind(await sha256(cookieOf(req, 'gm_admin'))).run(); await audit(env, a.id, 'logout', 'admin', a.id, ''); return [{ ok: true }, 200, { 'Set-Cookie': sessionCookie(env, '', 0) }]; }
+    { const r = await members.adminRoutes(req, env, ctx, a, url, path, m); if (r) return r; }
     if (path === '/api/admin/me' && m === 'GET') return { email: a.email, role: a.role, csrf: a.csrf };
     if (path === '/api/admin/dashboard' && m === 'GET') return dashboard(env);
     if (path === '/api/admin/orders' && m === 'GET') return listOrders(env, url);
