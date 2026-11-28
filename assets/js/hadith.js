@@ -167,7 +167,7 @@
   var track = el.firstChild, grp = track.firstChild;
   function fit() {
     var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; if (rm) return;
-    var one = grp.firstChild; grp.innerHTML = ''; grp.appendChild(one.cloneNode(true));
+    var one = grp.firstChild; while (grp.children.length > 1) grp.removeChild(grp.lastChild); /* the first copy stays in place, so the browser does not treat it as new content */
     var w = grp.getBoundingClientRect().width || 1, need = Math.max(2, Math.ceil((window.innerWidth + 40) / w));
     for (var i = 1; i < need; i++) grp.appendChild(one.cloneNode(true));
     [].forEach.call(grp.children, function (c, i2) { if (i2) c.setAttribute('aria-hidden', 'true'); });
@@ -176,6 +176,8 @@
     el.style.setProperty('--hd-dur', Math.max(25, Math.round(grp.getBoundingClientRect().width / 45)) + 's');
   }
   var raf, last = 0;
-  fit(); if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit);
+  /* size the loop after the first paint, once fonts are ready, so it is measured once and does not hold up the page */
+  function fitSoon() { requestAnimationFrame(function () { setTimeout(fit, 0); }); }
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitSoon); else fitSoon();
   window.addEventListener('resize', function () { var w = window.innerWidth; if (w === last) return; last = w; cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); });
 })();

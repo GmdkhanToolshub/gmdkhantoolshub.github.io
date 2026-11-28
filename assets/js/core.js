@@ -921,9 +921,18 @@ window.SITE_CONFIG = {
 
   if (reduce || !('IntersectionObserver' in window)) return;
   var SEL = '.section-head, .card, .stat, .t-item, .trust li, .cta-band, details.faq, .side-card, .maker > div:first-child, .prose > h2, .prose > blockquote, .callout, ol.steps li';
-  var els = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
-    return !el.closest('#tool-root, .hero, .page-hero, .site-footer, .consent, .ad-slot, [data-list-section]') && el.getBoundingClientRect().top > window.innerHeight * 0.92;
-  }); /* only content below the first screen is revealed on scroll, so nothing above the fold is hidden while loading */
+  var candidates = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
+    return !el.closest('#tool-root, .hero, .page-hero, .site-footer, .consent, .ad-slot, [data-list-section]');
+  });
+  /* The browser reports where each block is after its own first layout, so measuring never forces an extra one (faster on phones). */
+  var probe = new IntersectionObserver(function (found) {
+    probe.disconnect();
+    /* only content below the first screen is revealed on scroll, so nothing above the fold is hidden while loading */
+    setupReveal(found.filter(function (f) { return f.boundingClientRect.top > window.innerHeight * 0.92; }).map(function (f) { return f.target; }));
+  });
+  candidates.forEach(function (el) { probe.observe(el); });
+
+  function setupReveal(els) {
   els = els.filter(function (el) { return !els.some(function (o) { return o !== el && o.contains(el); }); });
   els.forEach(function (el) {
     var sibs = [].filter.call(el.parentElement.children, function (c) { return els.indexOf(c) > -1; });
@@ -955,6 +964,8 @@ window.SITE_CONFIG = {
       pending.slice().forEach(function (el) { if (el.offsetParent && el.getBoundingClientRect().top < innerHeight) reveal(el); });
     }, 150);
   }, { passive: true });
+
+  }
 
   function count(b) {
     if (!b) return;
@@ -1138,6 +1149,10 @@ window.SITE_CONFIG = {
    Skipped on Kids Corner. Only transform and opacity animate. The picture loads after the page; reduced motion shows the still scene;
    phones, weak devices and data saver skip the network lines. ---------- */
 (function () {
+  /* decoration only: start after the page has loaded and the phone is idle, so it never delays the content */
+  function later() { if (window.requestIdleCallback) requestIdleCallback(start, { timeout: 2500 }); else setTimeout(start, 400); }
+  if (document.readyState === 'complete') later(); else addEventListener('load', later);
+  function start() {
   var b = document.body; if (!b || b.getAttribute('data-tab') === 'kids' || /\/kids\//.test(location.pathname)) return;
   var h = document.documentElement, base = b.getAttribute('data-root') || './'; h.classList.add('tech');
   var w = document.createElement('div'); w.className = 'tech-bg'; w.setAttribute('aria-hidden', 'true');
@@ -1169,6 +1184,7 @@ window.SITE_CONFIG = {
   tone(); size(); requestAnimationFrame(frame); setTimeout(function () { cv.className = 'on'; }, 50);
   var rt = 0; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
   new MutationObserver(tone).observe(h, { attributes: true, attributeFilter: ['data-accent', 'data-theme'] });
+  }
 })();
 ;
 /* GM Tools Hub: premium interaction layer (bundled into core.js after main.js).

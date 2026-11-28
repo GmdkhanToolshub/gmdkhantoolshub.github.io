@@ -647,3 +647,10 @@ main>.section>.container:not(.prose)>ol.steps-list~.callout{max-width:none!impor
 @media (max-width:639px){body:has(#tool-root) .gmhp{display:none}}
 @media print{.gmhp{display:none}}
 /* hero-panel:end */
+
+/* brand-spark:start */
+/* header logo matches the app icon: same lettering, blue to violet tile and a small gold sparkle */
+.brand-mark,:root[data-theme="dark"] .brand-mark{position:relative;background:radial-gradient(90% 90% at 28% 6%,rgba(255,255,255,.32),transparent 62%),linear-gradient(135deg,#2f6bff,#4f46e5 55%,#8b3ff0)}
+.brand-mark::before{content:"";position:absolute;z-index:1;top:3px;right:3px;width:9px;height:9px;background:#ffd66b;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.brand-mark::before{animation:gm-spark 3.4s ease-in-out infinite}@keyframes gm-spark{0%,100%{opacity:.55;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(45deg)}}}
+/* brand-spark:end */
